@@ -21,14 +21,32 @@ exports.config = {
         'appium:appPackage': 'com.kondajeswanth.TripSyncApp',
         'appium:appActivity': '.MainActivity',
         'appium:autoGrantPermissions': true,
-        'appium:adbExecTimeout': 60000,
-        'appium:androidInstallTimeout': 90000,
-        'appium:uiautomator2ServerInstallTimeout': 90000,
         'appium:noReset': false,
-        'appium:newCommandTimeout': 240,
+        'appium:newCommandTimeout': 300,
+        'appium:adbExecTimeout': 120000,
+        'appium:androidInstallTimeout': 180000,
+        'appium:uiautomator2ServerInstallTimeout': 180000,
+        'appium:ignoreHiddenApiPolicyError': true
     }],
     logLevel: 'info',
     bail: 0,
+    before: async function (capabilities, specs) {
+        console.log('====================================================');
+        console.log('🔍 VERIFYING APPIUM SESSION CREATION...');
+        try {
+            const pkg = await browser.getCurrentPackage();
+            const act = await browser.getCurrentActivity();
+            console.log(`✓ Active Package: ${pkg}`);
+            console.log(`✓ Active Activity: ${act}`);
+            if (!pkg || !act) {
+                throw new Error('Active Package or Activity is empty');
+            }
+        } catch (e) {
+            console.error('❌ ERROR: Appium session verification failed:', e.message);
+            process.exit(1);
+        }
+        console.log('====================================================');
+    },
     waitforTimeout: 10000,
     connectionRetryTimeout: 120000,
     connectionRetryCount: 3,

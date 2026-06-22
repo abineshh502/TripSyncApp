@@ -6,10 +6,8 @@ const { execSync } = require('child_process');
 function generateReports() {
     const rawResultsPath = path.join(__dirname, '../../test-results/raw-results.json');
     if (!fs.existsSync(rawResultsPath)) {
-        console.error(`Raw results file not found at: ${rawResultsPath}`);
-        // Create fallback test results if running in a environment where Appium wasn't executed
-        console.log('Generating fallback test results for reporting demonstration purposes...');
-        createDemoResults(rawResultsPath);
+        console.error("❌ ERROR: Appium session creation failed or raw-results.json is missing.");
+        process.exit(1);
     }
 
     const testResults = JSON.parse(fs.readFileSync(rawResultsPath, 'utf8'));
@@ -956,66 +954,6 @@ function generateReports() {
     }
 }
 
-// Function to generate demo data if raw-results.json is absent
-function createDemoResults(outputPath) {
-    const categoriesList = [
-        'Authentication', 'Trips', 'Groups', 'Group Chat', 'AI Assistant', 
-        'Maps Explore', 'Directions & Navigation', 'Route Builder', 
-        'Profile & Notifications', 'UI UX & Accessibility', 'End-to-End User Journeys'
-    ];
-
-    const results = [];
-    let testCounter = 1;
-
-    categoriesList.forEach(cat => {
-        // First test is Appium connection verify
-        results.push({
-            category: cat,
-            name: `Verify Appium Connection and ${cat} Screen availability`,
-            status: 'PASS',
-            duration: (0.8 + Math.random() * 0.5).toFixed(2),
-            severity: 'Critical',
-            details: 'UiAutomator2 session active and screen elements verified',
-            timestamp: new Date().toISOString().replace('T', ' ').substring(0, 19)
-        });
-        testCounter++;
-
-        // Add 49 interactive test cases
-        for (let i = 2; i <= 50; i++) {
-            let status = 'PASS';
-            let details = 'Action completed successfully';
-            let severity = 'Normal';
-
-            // Add failure sample
-            if (testCounter % 113 === 0) {
-                status = 'FAIL';
-                details = 'Element was not clickable: target selector time-out (10000ms)';
-                severity = 'High';
-            } else if (testCounter % 87 === 0) {
-                status = 'WARN';
-                details = 'Slow interface load detected: delay exceeded 2.5s threshold';
-                severity = 'Normal';
-            }
-
-            results.push({
-                category: cat,
-                name: `Validate ${cat} UI interaction scenario ${i}`,
-                status: status,
-                duration: (0.1 + Math.random() * 0.8).toFixed(2),
-                severity: severity,
-                details: details,
-                timestamp: new Date().toISOString().replace('T', ' ').substring(0, 19)
-            });
-            testCounter++;
-        }
-    });
-
-    const dir = path.dirname(outputPath);
-    if (!fs.existsSync(dir)){
-        fs.mkdirSync(dir, { recursive: true });
-    }
-    fs.writeFileSync(outputPath, JSON.stringify(results, null, 2));
-}
 
 // Export function for onComplete invocation
 module.exports = { generateReports };

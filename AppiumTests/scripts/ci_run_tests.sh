@@ -5,17 +5,49 @@ echo "===================================================="
 echo "🚀 STARTING TRIPSYNC APPIUM E2E TESTING PIPELINE"
 echo "===================================================="
 
+# Ensure test-results folder exists
+mkdir -p test-results
+
+# Helper to verify adb device online state
+verify_adb_device() {
+    for attempt in {1..10}; do
+        echo "🔍 Checking adb device state (Attempt $attempt/10)..."
+        adb wait-for-device
+        
+        # Check if the device is showing offline
+        device_status=$(adb devices | grep -E "emulator-5554|emulator" | head -n 1 | awk '{print $2}' | tr -d '\r')
+        echo "Device status reported as: '$device_status'"
+        
+        if [ "$device_status" = "offline" ] || [ -z "$device_status" ]; then
+            echo "⚠️ Device is offline or undetected. Restarting ADB server..."
+            adb kill-server
+            adb start-server
+            sleep 5
+        elif [ "$device_status" = "device" ]; then
+            echo "✓ Device is online and ready!"
+            return 0
+        else
+            echo "⚠️ Device status is '$device_status', waiting..."
+            sleep 3
+        fi
+    done
+    
+    echo "❌ ERROR: ADB device is not ready or still offline."
+    return 1
+}
+
 # 1. VERIFY EMULATOR BOOT COMPLETION
 echo "⏳ Waiting for Android emulator boot completion..."
+adb wait-for-device
 boot_completed=false
 for i in {1..60}; do
     status=$(adb shell getprop sys.boot_completed 2>/dev/null | tr -d '\r')
     if [ "$status" = "1" ]; then
-        echo "✓ Emulator is fully booted and online!"
+        echo "✓ Emulator is fully booted (sys.boot_completed=1)!"
         boot_completed=true
         break
     fi
-    echo "  - Waiting... ($i/60 seconds)"
+    echo "  - Waiting for sys.boot_completed... ($i/60 seconds)"
     sleep 2
 done
 
@@ -24,13 +56,15 @@ if [ "$boot_completed" = false ]; then
     exit 1
 fi
 
-# 2. VERIFY ADB DEVICES CONNECTION
+# 2. VERIFY ADB DEVICES ONLINE
+verify_adb_device
+if [ $? -ne 0 ]; then
+    echo "❌ ERROR: Emulator device is offline or unavailable."
+    exit 1
+fi
+
 echo "📱 Connected ADB Devices:"
 adb devices
-device_connected=$(adb devices | grep -w "emulator" | wc -l)
-if [ "$device_connected" -eq 0 ]; then
-    echo "⚠️ Warning: ADB devices list does not show standard emulator node. Checking default port."
-fi
 
 # 3. APK INSTALLATION
 APK_PATH="android/app/build/outputs/apk/debug/app-debug.apk"
@@ -48,7 +82,17 @@ else
     exit 1
 fi
 
-# 4. START APPIUM SERVER
+# 4. VERIFY PACKAGE INSTALLED
+echo "🔍 Checking installed packages on device..."
+installed_packages=$(adb shell pm list packages | grep "com.kondajeswanth.TripSyncApp" | tr -d '\r')
+if [[ -z "$installed_packages" ]]; then
+    echo "❌ ERROR: Package com.kondajeswanth.TripSyncApp was NOT installed correctly on the emulator!"
+    exit 1
+else
+    echo "✓ Verified package is present: $installed_packages"
+fi
+
+# 5. START APPIUM SERVER
 echo "🔥 Starting Appium Server on port 4723..."
 npx appium --port 4723 --allow-insecure chromedriver_autodownload > test-results/appium.log 2>&1 &
 APPIUM_PID=$!
@@ -71,14 +115,14 @@ if [ "$appium_ready" = false ]; then
     exit 1
 fi
 
-# 5. EXECUTE WDIO TESTS
-echo "🧪 Running E2E Test Suite..."
+# 6. EXECUTE WDIO E2E TESTS
+echo "🧪 Running WebdriverIO Test Suite..."
 cd AppiumTests
 npm install
 APK_PATH="../android/app/build/outputs/apk/debug/app-debug.apk" npx wdio run wdio.conf.js
 TEST_EXIT_CODE=$?
 
-# 6. DIAGNOSTIC CAPTURES
+# 7. DIAGNOSTIC CAPTURES
 echo "⚙️ Gathering diagnostic outputs..."
 echo "--- Active Device Focus ---"
 adb shell dumpsys window | grep -E 'mCurrentFocus|mFocusedApp' || echo "Focused window details unavailable"
