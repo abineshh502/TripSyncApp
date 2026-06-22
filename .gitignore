@@ -42,7 +42,3 @@ app-example
 # generated native folders
 /ios
 /android
-
-# test reports
-/TripSync_Android_TestReport.xlsx
-/test-results/

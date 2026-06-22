@@ -320,7 +320,6 @@ export default function OtpScreen() {
       <Animated.View style={[styles.otpRow, { transform: [{ translateX: shakeAnim }] }]}>
         {otp.map((digit, i) => (
           <TextInput
-            testID={`otp-input-${i}`}
             key={i}
             ref={(r) => { inputs.current[i] = r; }}
             value={digit}
@@ -344,7 +343,6 @@ export default function OtpScreen() {
 
       {/* Verify Button */}
       <TouchableOpacity
-        testID="verify-otp-button"
         onPress={handleVerify}
         style={[styles.verifyBtn, loading && { opacity: 0.7 }]}
         disabled={loading}
@@ -356,7 +354,6 @@ export default function OtpScreen() {
 
       {/* Resend */}
       <TouchableOpacity
-        testID="resend-otp-button"
         onPress={handleResend}
         disabled={timer > 0}
         style={[styles.resendBtn, timer > 0 && { opacity: 0.4 }]}
@@ -369,7 +366,6 @@ export default function OtpScreen() {
 
       {/* Cancel / Go Back */}
       <TouchableOpacity
-        testID="cancel-otp-button"
         onPress={handleCancelAndLogout}
         style={styles.cancelBtn}
       >
