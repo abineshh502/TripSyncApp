@@ -16,11 +16,10 @@ exports.config = {
         platformName: 'Android',
         'appium:automationName': 'UiAutomator2',
         'appium:deviceName': 'Android Emulator',
-        'appium:app': process.env.APK_PATH || path.join(__dirname, '../android/app/build/outputs/apk/debug/app-debug.apk'),
         'appium:appPackage': 'com.kondajeswanth.TripSyncApp',
         'appium:appActivity': '.MainActivity',
         'appium:autoGrantPermissions': true,
-        'appium:noReset': false,
+        'appium:noReset': true,
         'appium:newCommandTimeout': 300,
         'appium:adbExecTimeout': 120000,
         'appium:androidInstallTimeout': 180000,
@@ -141,6 +140,12 @@ exports.config = {
         const excelPath = path.join(__dirname, '../test-results/TripSync_Android_TestReport.xlsx');
         const jsonlPath = path.join(__dirname, '../.wdio-results.jsonl');
         const htmlPath = path.join(__dirname, '../test-results/html/execution-report.html');
+
+        if (!fs.existsSync(jsonlPath) || fs.readFileSync(jsonlPath, 'utf8').trim() === '') {
+            console.error('❌ ERROR: No E2E tests were executed. Skipping report generation.');
+            console.log('====================================================');
+            return;
+        }
 
         // Generate Excel report
         xlsxReporter.generateReport(excelPath);
