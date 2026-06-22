@@ -25,8 +25,8 @@ const wdioOpts = {
     'appium:automationName': 'UiAutomator2',
     'appium:deviceName': 'emulator-5554',
     'appium:app': './android/app/build/outputs/apk/debug/app-debug.apk',
-    'appium:appPackage': 'com.anonymous.TripSyncApp', // Default fallback for prebuild
-    'appium:appActivity': 'com.anonymous.TripSyncApp.MainActivity',
+    'appium:appPackage': 'com.kondajeswanth.TripSyncApp',
+    'appium:appActivity': 'com.kondajeswanth.TripSyncApp.MainActivity',
     'appium:newCommandTimeout': 240,
     'appium:autoGrantPermissions': true,
     'appium:gpsEnabled': true,

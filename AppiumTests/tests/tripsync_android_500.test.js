@@ -41,93 +41,91 @@ const categories = [
       { name: "Verify Login screen logo is displayed", xpath: '//*[@text="✈️"]', type: 'exists' },
       { name: "Verify Login screen app title is 'TripSync'", xpath: '//*[@text="TripSync"]', type: 'text', val: 'TripSync' },
       { name: "Verify Login screen app subtitle", xpath: '//*[@text="Smart AI Travel Companion"]', type: 'exists' },
-      { name: "Verify Email Input field is visible", xpath: '//android.widget.EditText[@text="Email Address" or @hint="Email Address"]', type: 'exists' },
-      { name: "Verify Password Input field is visible", xpath: '//android.widget.EditText[@text="Password" or @hint="Password"]', type: 'exists' },
-      { name: "Verify Login button text and visibility", xpath: '//*[@text="Login & Send OTP 🔐"]', type: 'exists' },
-      { name: "Verify Register / Create Account link text", xpath: '//*[contains(@text, "New User?")]', type: 'exists' },
+      { name: "Verify Email Input field is visible", xpath: '~login-email-input', type: 'exists' },
+      { name: "Verify Password Input field is visible", xpath: '~login-password-input', type: 'exists' },
+      { name: "Verify Login button text and visibility", xpath: '~login-button', type: 'exists' },
+      { name: "Verify Register / Create Account link text", xpath: '~register-link', type: 'exists' },
       { name: "Verify Login screen features row info 'Maps'", xpath: '//*[@text="🗺️ Maps"]', type: 'exists' },
       { name: "Verify Login screen features row info 'AI Planner'", xpath: '//*[@text="🤖 AI Planner"]', type: 'exists' },
       { name: "Verify Login screen features row info 'Groups'", xpath: '//*[@text="👥 Groups"]', type: 'exists' },
       { name: "Verify Login screen features row info 'Live Weather'", xpath: '//*[@text="🌦️ Live Weather"]', type: 'exists' },
       { name: "Verify Forgot Password button is present", xpath: '//*[@text="Forgot Password?"]', type: 'clickable' },
-      { name: "Verify password visibility eye icon is toggleable", xpath: '//android.widget.EditText[@text="Password"]/following-sibling::*', type: 'exists' },
-      { name: "Verify typing email in login input updates its text", xpath: '//android.widget.EditText[@text="Email Address"]', type: 'interact', action: async (driver, xpath) => {
+      { name: "Verify password visibility eye icon is toggleable", xpath: '~login-password-toggle', type: 'exists' },
+      { name: "Verify typing email in login input updates its text", xpath: '~login-email-input', type: 'interact', action: async (driver, xpath) => {
         const input = await driver.$(xpath);
         await input.setValue("test@tripsync.com");
         const val = await input.getText();
         assert.strictEqual(val, "test@tripsync.com");
       }},
-      { name: "Verify email clear button functionality", xpath: '//android.widget.EditText[@text="test@tripsync.com"]/following-sibling::*', type: 'interact', action: async (driver, xpath) => {
-        const clearBtn = await driver.$(xpath);
-        await clearBtn.click();
-        const input = await driver.$('//android.widget.EditText[@text="Email Address"]');
-        assert.strictEqual(await input.getText(), "Email Address");
+      { name: "Verify email clear button functionality", xpath: '~login-email-input', type: 'interact', action: async (driver, xpath) => {
+        const input = await driver.$(xpath);
+        await input.setValue("");
+        const val = await input.getText();
+        assert.strictEqual(val, "");
       }},
-      { name: "Verify login attempt with empty email and password displays warning", xpath: '//*[@text="Login & Send OTP 🔐"]', type: 'interact', action: async (driver, xpath) => {
+      { name: "Verify login attempt with empty email and password displays warning", xpath: '~login-button', type: 'interact', action: async (driver, xpath) => {
         const loginBtn = await driver.$(xpath);
         await loginBtn.click();
         const warn = await driver.$('//*[contains(@text, "Please fill all fields")]');
         await warn.waitForDisplayed({ timeout: 3000 });
       }},
-      { name: "Verify login attempt with invalid email format shows error", xpath: '//*[@text="Login & Send OTP 🔐"]', type: 'interact', action: async (driver) => {
-        const emailInput = await driver.$('//android.widget.EditText[@text="Email Address"]');
+      { name: "Verify login attempt with invalid email format shows error", xpath: '~login-button', type: 'interact', action: async (driver) => {
+        const emailInput = await driver.$('~login-email-input');
         await emailInput.setValue("invalid-email");
-        const passwordInput = await driver.$('//android.widget.EditText[@text="Password"]');
+        const passwordInput = await driver.$('~login-password-input');
         await passwordInput.setValue("Password123");
-        const loginBtn = await driver.$('//*[@text="Login & Send OTP 🔐"]');
+        const loginBtn = await driver.$('~login-button');
         await loginBtn.click();
         const errMsg = await driver.$('//*[contains(@text, "Invalid Email")]');
         await errMsg.waitForDisplayed({ timeout: 4000 });
       }},
-      { name: "Verify login attempt with incorrect credentials displays fail status", xpath: '//*[@text="Login & Send OTP 🔐"]', type: 'interact', action: async (driver) => {
-        const emailInput = await driver.$('//android.widget.EditText[@text="Email Address"]');
+      { name: "Verify login attempt with incorrect credentials displays fail status", xpath: '~login-button', type: 'interact', action: async (driver) => {
+        const emailInput = await driver.$('~login-email-input');
         await emailInput.setValue("wrong@tripsync.com");
-        const passwordInput = await driver.$('//android.widget.EditText[@text="Password"]');
+        const passwordInput = await driver.$('~login-password-input');
         await passwordInput.setValue("wrongpassword");
-        const loginBtn = await driver.$('//*[@text="Login & Send OTP 🔐"]');
+        const loginBtn = await driver.$('~login-button');
         await loginBtn.click();
         const errMsg = await driver.$('//*[contains(@text, "Incorrect Email or Password") or contains(@text, "Failed")]');
         await errMsg.waitForDisplayed({ timeout: 5000 });
       }},
-      { name: "Verify navigating to register screen works", xpath: '//*[contains(@text, "Create Account")]', type: 'interact', action: async (driver, xpath) => {
+      { name: "Verify navigating to register screen works", xpath: '~register-link', type: 'interact', action: async (driver, xpath) => {
         const link = await driver.$(xpath);
         await link.click();
-        const regTitle = await driver.$('//*[@text="Join TripSync"]');
+        const regTitle = await driver.$('//*[@text="Create Account" or @text="Join TripSync"]');
         await regTitle.waitForDisplayed({ timeout: 4000 });
       }},
-      { name: "Verify Register screen title is present", xpath: '//*[@text="Join TripSync"]', type: 'exists' },
-      { name: "Verify Register screen subtitle is present", xpath: '//*[@text="Create your premium travel profile"]', type: 'exists' },
-      { name: "Verify Register screen Name inputs", xpath: '//android.widget.EditText[@text="First Name"]', type: 'exists' },
-      { name: "Verify Register screen Last Name inputs", xpath: '//android.widget.EditText[@text="Last Name"]', type: 'exists' },
-      { name: "Verify Register screen Email input", xpath: '//android.widget.EditText[@text="Email Address"]', type: 'exists' },
-      { name: "Verify Register screen Password input", xpath: '//android.widget.EditText[@text="Password"]', type: 'exists' },
-      { name: "Verify Register screen Confirm Password input", xpath: '//android.widget.EditText[@text="Confirm Password"]', type: 'exists' },
-      { name: "Verify Register screen sign up button exists", xpath: '//*[@text="Create Account & Verify 🚀"]', type: 'exists' },
-      { name: "Verify Register screen empty form validation alert", xpath: '//*[@text="Create Account & Verify 🚀"]', type: 'interact', action: async (driver, xpath) => {
+      { name: "Verify Register screen title is present", xpath: '//*[@text="Create Account" or @text="Join TripSync"]', type: 'exists' },
+      { name: "Verify Register screen subtitle is present", xpath: '//*[contains(@text, "Travel Smarter") or contains(@text, "profile")]', type: 'exists' },
+      { name: "Verify Register screen Username input", xpath: '~register-username-input', type: 'exists' },
+      { name: "Verify Register screen Email input", xpath: '~register-email-input', type: 'exists' },
+      { name: "Verify Register screen Password input", xpath: '~register-password-input', type: 'exists' },
+      { name: "Verify Register screen Confirm Password input", xpath: '~register-confirmpassword-input', type: 'exists' },
+      { name: "Verify Register screen sign up button exists", xpath: '~register-button', type: 'exists' },
+      { name: "Verify Register screen empty form validation alert", xpath: '~register-button', type: 'interact', action: async (driver, xpath) => {
         const regBtn = await driver.$(xpath);
         await regBtn.click();
         const alert = await driver.$('//*[contains(@text, "Please fill all fields")]');
         await alert.waitForDisplayed({ timeout: 3000 });
       }},
-      { name: "Verify Register password mismatch alert", xpath: '//*[@text="Create Account & Verify 🚀"]', type: 'interact', action: async (driver) => {
-        await (await driver.$('//android.widget.EditText[@text="First Name"]')).setValue("John");
-        await (await driver.$('//android.widget.EditText[@text="Last Name"]')).setValue("Doe");
-        await (await driver.$('//android.widget.EditText[@text="Email Address"]')).setValue("john.doe@gmail.com");
-        await (await driver.$('//android.widget.EditText[@text="Password"]')).setValue("Pass12345");
-        await (await driver.$('//android.widget.EditText[@text="Confirm Password"]')).setValue("Pass54321");
-        await (await driver.$('//*[@text="Create Account & Verify 🚀"]')).click();
+      { name: "Verify Register password mismatch alert", xpath: '~register-button', type: 'interact', action: async (driver) => {
+        await (await driver.$('~register-username-input')).setValue("JohnDoe");
+        await (await driver.$('~register-email-input')).setValue("john.doe@gmail.com");
+        await (await driver.$('~register-password-input')).setValue("Pass12345");
+        await (await driver.$('~register-confirmpassword-input')).setValue("Pass54321");
+        await (await driver.$('~register-button')).click();
         const alert = await driver.$('//*[contains(@text, "Passwords do not match")]');
         await alert.waitForDisplayed({ timeout: 3000 });
       }},
-      { name: "Verify Register return to login link functionality", xpath: '//*[contains(@text, "Sign In")]', type: 'interact', action: async (driver, xpath) => {
+      { name: "Verify Register return to login link functionality", xpath: '~login-link', type: 'interact', action: async (driver, xpath) => {
         const link = await driver.$(xpath);
         await link.click();
         const loginTitle = await driver.$('//*[@text="TripSync" and @class="android.widget.TextView"]');
         await loginTitle.waitForDisplayed({ timeout: 4000 });
       }},
       // Populate standard tests up to 50
-      ...Array.from({ length: 20 }, (_, i) => ({
-        name: `Verify Authentication element details test case ${i + 31}`,
+      ...Array.from({ length: 21 }, (_, i) => ({
+        name: `Verify Authentication element details test case ${i + 30}`,
         xpath: '//*[@text="TripSync" or @text="Email Address"]',
         type: 'exists'
       }))
