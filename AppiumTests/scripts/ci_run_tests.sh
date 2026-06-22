@@ -78,6 +78,9 @@ else
 fi
 
 # 4. START APPIUM SERVER
+echo "🔥 Installing Appium UiAutomator2 Driver..."
+npx appium driver install uiautomator2 || true
+
 echo "🔥 Starting Appium Server on port 4723..."
 npx appium --port 4723 --allow-insecure chromedriver_autodownload > test-results/appium.log 2>&1 &
 APPIUM_PID=$!
