@@ -219,7 +219,6 @@ export default function LoginScreen() {
       <View style={styles.inputWrapper}>
         <Ionicons name="mail-outline" size={20} color="#94A3B8" style={styles.inputIcon} />
         <TextInput
-          testID="login-email-input"
           placeholder="Email Address"
           placeholderTextColor="#94A3B8"
           value={email}
@@ -266,7 +265,6 @@ export default function LoginScreen() {
       <View style={styles.inputWrapper}>
         <Ionicons name="lock-closed-outline" size={20} color="#94A3B8" style={styles.inputIcon} />
         <TextInput
-          testID="login-password-input"
           placeholder="Password"
           placeholderTextColor="#94A3B8"
           secureTextEntry={!showPassword}
@@ -286,12 +284,11 @@ export default function LoginScreen() {
         </TouchableOpacity>
       </View>
 
-      <TouchableOpacity testID="login-forgot-password-btn" onPress={handleForgotPassword} style={styles.forgotBtn}>
+      <TouchableOpacity onPress={handleForgotPassword} style={styles.forgotBtn}>
         <Text style={styles.forgotText}>Forgot Password?</Text>
       </TouchableOpacity>
 
       <TouchableOpacity
-        testID="login-submit-btn"
         onPress={handleLogin}
         style={[styles.loginBtn, loading && { opacity: 0.8 }]}
         disabled={loading}
@@ -304,7 +301,6 @@ export default function LoginScreen() {
       </TouchableOpacity>
 
       <TouchableOpacity
-        testID="login-register-link"
         onPress={() => router.replace("/register")}
         style={styles.registerLink}
       >

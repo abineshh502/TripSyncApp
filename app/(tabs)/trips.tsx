@@ -147,7 +147,6 @@ export default function TripsScreen() {
           <Text style={styles.headerSub}>{counts.all} total adventures</Text>
         </View>
         <TouchableOpacity
-          testID="trips-create-btn"
           onPress={() => router.push("/create-trip")}
           style={styles.createBtn}
         >
@@ -169,7 +168,6 @@ export default function TripsScreen() {
           return (
             <TouchableOpacity
               key={f}
-              testID={`trips-filter-${f}`}
               onPress={() => setFilter(f)}
               style={[
                 styles.filterTab,
@@ -240,7 +238,6 @@ export default function TripsScreen() {
             return (
               <TouchableOpacity
                 key={trip.id}
-                testID={`trip-card-${trip.id}`}
                 onPress={() =>
                   router.push({
                     pathname: "/trip-details",

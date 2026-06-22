@@ -206,7 +206,6 @@ export default function RegisterScreen() {
       <View style={styles.inputWrapper}>
         <Ionicons name="person-outline" size={20} color="#94A3B8" style={styles.inputIcon} />
         <TextInput
-          testID="register-username-input"
           placeholder="Username"
           placeholderTextColor="#94A3B8"
           value={username}
@@ -220,7 +219,6 @@ export default function RegisterScreen() {
       <View style={styles.inputWrapper}>
         <Ionicons name="mail-outline" size={20} color="#94A3B8" style={styles.inputIcon} />
         <TextInput
-          testID="register-email-input"
           placeholder="Email Address"
           placeholderTextColor="#94A3B8"
           value={email}
@@ -235,7 +233,6 @@ export default function RegisterScreen() {
       <View style={styles.inputWrapper}>
         <Ionicons name="lock-closed-outline" size={20} color="#94A3B8" style={styles.inputIcon} />
         <TextInput
-          testID="register-password-input"
           placeholder="Password"
           placeholderTextColor="#94A3B8"
           secureTextEntry={!showPassword}
@@ -252,7 +249,6 @@ export default function RegisterScreen() {
       <View style={styles.inputWrapper}>
         <Ionicons name="shield-checkmark-outline" size={20} color="#94A3B8" style={styles.inputIcon} />
         <TextInput
-          testID="register-confirm-password-input"
           placeholder="Confirm Password"
           placeholderTextColor="#94A3B8"
           secureTextEntry={!showConfirm}
@@ -292,7 +288,6 @@ export default function RegisterScreen() {
 
       {/* Register Button */}
       <TouchableOpacity
-        testID="register-submit-btn"
         onPress={handleRegister}
         style={[styles.registerBtn, loading && { opacity: 0.7 }]}
         disabled={loading}
@@ -304,7 +299,7 @@ export default function RegisterScreen() {
         )}
       </TouchableOpacity>
 
-      <TouchableOpacity testID="register-login-link" onPress={() => router.replace("/login")} style={styles.loginLink}>
+      <TouchableOpacity onPress={() => router.replace("/login")} style={styles.loginLink}>
         <Text style={styles.loginLinkText}>
           Already have an account?{" "}
           <Text style={{ color: "#38BDF8", fontWeight: "bold" }}>Login</Text>

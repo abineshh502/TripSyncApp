@@ -198,7 +198,6 @@ export default function GroupChatScreen() {
         ) : (
           <FlatList
             ref={flatListRef}
-            testID="group-chat-message-list"
             data={messages}
             keyExtractor={(item) => item.id}
             renderItem={renderChatItem}
@@ -210,7 +209,6 @@ export default function GroupChatScreen() {
 
         <View style={styles.chatInputContainer}>
           <TextInput
-            testID="group-chat-input"
             placeholder="Type a message..."
             placeholderTextColor="#94A3B8"
             value={chatInput}
@@ -223,7 +221,7 @@ export default function GroupChatScreen() {
               }, 200);
             }}
           />
-          <TouchableOpacity testID="group-chat-send-btn" onPress={handleSendMessage} style={styles.chatSendBtn}>
+          <TouchableOpacity onPress={handleSendMessage} style={styles.chatSendBtn}>
             <Ionicons name="send" size={18} color="white" />
           </TouchableOpacity>
         </View>

@@ -263,7 +263,6 @@ export default function ProfileScreen() {
         {menuItems.map((item, index) => (
           <TouchableOpacity
             key={index}
-            testID={`profile-menu-${item.label.toLowerCase().replace(/\s+/g, "-")}`}
             onPress={() => {
               if (item.route) {
                 router.push(item.route as any);
@@ -344,7 +343,7 @@ export default function ProfileScreen() {
       </TouchableOpacity>
 
       {/* Logout */}
-      <TouchableOpacity testID="profile-logout-btn" onPress={handleLogout} style={styles.logoutBtn}>
+      <TouchableOpacity onPress={handleLogout} style={styles.logoutBtn}>
         <Ionicons name="log-out-outline" size={20} color="white" />
         <Text style={styles.logoutText}>Logout</Text>
       </TouchableOpacity>
