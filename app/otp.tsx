@@ -321,6 +321,7 @@ export default function OtpScreen() {
         {otp.map((digit, i) => (
           <TextInput
             key={i}
+            testID={`otp-input-${i}`}
             ref={(r) => { inputs.current[i] = r; }}
             value={digit}
             onChangeText={(t) => handleChange(t, i)}
@@ -343,6 +344,7 @@ export default function OtpScreen() {
 
       {/* Verify Button */}
       <TouchableOpacity
+        testID="otp-verify-btn"
         onPress={handleVerify}
         style={[styles.verifyBtn, loading && { opacity: 0.7 }]}
         disabled={loading}
@@ -354,6 +356,7 @@ export default function OtpScreen() {
 
       {/* Resend */}
       <TouchableOpacity
+        testID="otp-resend-btn"
         onPress={handleResend}
         disabled={timer > 0}
         style={[styles.resendBtn, timer > 0 && { opacity: 0.4 }]}
@@ -366,6 +369,7 @@ export default function OtpScreen() {
 
       {/* Cancel / Go Back */}
       <TouchableOpacity
+        testID="otp-cancel-btn"
         onPress={handleCancelAndLogout}
         style={styles.cancelBtn}
       >

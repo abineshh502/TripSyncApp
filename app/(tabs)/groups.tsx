@@ -254,6 +254,7 @@ export default function GroupsScreen() {
       {/* Action Buttons Row */}
       <View style={{ flexDirection: "row", justifyContent: "space-between", marginBottom: 25 }}>
         <TouchableOpacity
+          testID="groups-create-btn"
           onPress={() => setCreateVisible(true)}
           style={{
             flex: 1,
@@ -269,6 +270,7 @@ export default function GroupsScreen() {
         </TouchableOpacity>
 
         <TouchableOpacity
+          testID="groups-join-btn"
           onPress={() => setJoinVisible(true)}
           style={{
             flex: 1,
@@ -304,6 +306,7 @@ export default function GroupsScreen() {
         activeGroups.map((group) => (
           <TouchableOpacity
             key={group.id}
+            testID={`group-card-${group.id}`}
             onPress={() => {
               router.push({
                 pathname: "/group-details" as any,

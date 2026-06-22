@@ -804,6 +804,7 @@ export default function AIAssistantScreen() {
       {/* Tabs */}
       <View style={styles.tabBar}>
         <TouchableOpacity
+          testID="ai-tab-chat"
           onPress={() => setActiveTab("chat")}
           style={[styles.tabItem, activeTab === "chat" && styles.activeTab]}
         >
@@ -812,6 +813,7 @@ export default function AIAssistantScreen() {
         </TouchableOpacity>
 
         <TouchableOpacity
+          testID="ai-tab-voice"
           onPress={() => setActiveTab("voice")}
           style={[styles.tabItem, activeTab === "voice" && styles.activeTab]}
         >
@@ -820,6 +822,7 @@ export default function AIAssistantScreen() {
         </TouchableOpacity>
 
         <TouchableOpacity
+          testID="ai-tab-safety"
           onPress={() => setActiveTab("safety")}
           style={[styles.tabItem, activeTab === "safety" && styles.activeTab]}
         >
@@ -888,6 +891,7 @@ export default function AIAssistantScreen() {
 
             <View style={styles.inputContainer}>
               <TextInput
+                testID="ai-chat-input"
                 placeholder="Ask about Goa beaches, Manali cafes..."
                 placeholderTextColor="#94A3B8"
                 value={input}
@@ -896,6 +900,7 @@ export default function AIAssistantScreen() {
                 style={styles.input}
               />
               <TouchableOpacity
+                testID="ai-chat-send-btn"
                 onPress={() => handleSend(input)}
                 style={[styles.sendBtn, !input.trim() ? styles.sendBtnDisabled : null]}
                 disabled={!input.trim()}
@@ -922,7 +927,7 @@ export default function AIAssistantScreen() {
               </>
             )}
 
-            <TouchableOpacity onPress={handleVoiceTap} style={[styles.micBtn, isSpeaking && { backgroundColor: "#22C55E" }]}>
+            <TouchableOpacity testID="ai-voice-mic-btn" onPress={handleVoiceTap} style={[styles.micBtn, isSpeaking && { backgroundColor: "#22C55E" }]}>
               <Ionicons name={isListening ? "radio" : isSpeaking ? "volume-high" : "mic"} size={45} color="white" />
             </TouchableOpacity>
           </View>
@@ -1012,13 +1017,14 @@ export default function AIAssistantScreen() {
 
           <View style={styles.safetySearchRow}>
             <TextInput
+              testID="ai-safety-city-input"
               placeholder="Enter City (e.g., Chennai, Ooty)"
               placeholderTextColor="#94A3B8"
               value={safetyCity}
               onChangeText={setSafetyCity}
               style={styles.safetyInput}
             />
-            <TouchableOpacity onPress={analyzeCitySafety} style={styles.analyzeBtn}>
+            <TouchableOpacity testID="ai-safety-analyze-btn" onPress={analyzeCitySafety} style={styles.analyzeBtn}>
               {analyzingCity ? (
                 <ActivityIndicator color="white" size="small" />
               ) : (

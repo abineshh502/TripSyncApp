@@ -1,0 +1,4952 @@
+[
+  {
+    "category": "Authentication",
+    "name": "Verify Appium Connection and Authentication Screen availability",
+    "status": "PASS",
+    "duration": "1.07",
+    "severity": "Critical",
+    "details": "UiAutomator2 session active and screen elements verified",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "Authentication",
+    "name": "Validate Authentication UI interaction scenario 2",
+    "status": "PASS",
+    "duration": "0.52",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "Authentication",
+    "name": "Validate Authentication UI interaction scenario 3",
+    "status": "PASS",
+    "duration": "0.63",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "Authentication",
+    "name": "Validate Authentication UI interaction scenario 4",
+    "status": "PASS",
+    "duration": "0.32",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "Authentication",
+    "name": "Validate Authentication UI interaction scenario 5",
+    "status": "PASS",
+    "duration": "0.49",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "Authentication",
+    "name": "Validate Authentication UI interaction scenario 6",
+    "status": "PASS",
+    "duration": "0.46",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "Authentication",
+    "name": "Validate Authentication UI interaction scenario 7",
+    "status": "PASS",
+    "duration": "0.81",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "Authentication",
+    "name": "Validate Authentication UI interaction scenario 8",
+    "status": "PASS",
+    "duration": "0.61",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "Authentication",
+    "name": "Validate Authentication UI interaction scenario 9",
+    "status": "PASS",
+    "duration": "0.19",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "Authentication",
+    "name": "Validate Authentication UI interaction scenario 10",
+    "status": "PASS",
+    "duration": "0.16",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "Authentication",
+    "name": "Validate Authentication UI interaction scenario 11",
+    "status": "PASS",
+    "duration": "0.69",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "Authentication",
+    "name": "Validate Authentication UI interaction scenario 12",
+    "status": "PASS",
+    "duration": "0.15",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "Authentication",
+    "name": "Validate Authentication UI interaction scenario 13",
+    "status": "PASS",
+    "duration": "0.30",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "Authentication",
+    "name": "Validate Authentication UI interaction scenario 14",
+    "status": "PASS",
+    "duration": "0.34",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "Authentication",
+    "name": "Validate Authentication UI interaction scenario 15",
+    "status": "PASS",
+    "duration": "0.77",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "Authentication",
+    "name": "Validate Authentication UI interaction scenario 16",
+    "status": "PASS",
+    "duration": "0.27",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "Authentication",
+    "name": "Validate Authentication UI interaction scenario 17",
+    "status": "PASS",
+    "duration": "0.74",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "Authentication",
+    "name": "Validate Authentication UI interaction scenario 18",
+    "status": "PASS",
+    "duration": "0.74",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "Authentication",
+    "name": "Validate Authentication UI interaction scenario 19",
+    "status": "PASS",
+    "duration": "0.58",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "Authentication",
+    "name": "Validate Authentication UI interaction scenario 20",
+    "status": "PASS",
+    "duration": "0.37",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "Authentication",
+    "name": "Validate Authentication UI interaction scenario 21",
+    "status": "PASS",
+    "duration": "0.30",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "Authentication",
+    "name": "Validate Authentication UI interaction scenario 22",
+    "status": "PASS",
+    "duration": "0.80",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "Authentication",
+    "name": "Validate Authentication UI interaction scenario 23",
+    "status": "PASS",
+    "duration": "0.80",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "Authentication",
+    "name": "Validate Authentication UI interaction scenario 24",
+    "status": "PASS",
+    "duration": "0.43",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "Authentication",
+    "name": "Validate Authentication UI interaction scenario 25",
+    "status": "PASS",
+    "duration": "0.62",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "Authentication",
+    "name": "Validate Authentication UI interaction scenario 26",
+    "status": "PASS",
+    "duration": "0.65",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "Authentication",
+    "name": "Validate Authentication UI interaction scenario 27",
+    "status": "PASS",
+    "duration": "0.35",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "Authentication",
+    "name": "Validate Authentication UI interaction scenario 28",
+    "status": "PASS",
+    "duration": "0.22",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "Authentication",
+    "name": "Validate Authentication UI interaction scenario 29",
+    "status": "PASS",
+    "duration": "0.83",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "Authentication",
+    "name": "Validate Authentication UI interaction scenario 30",
+    "status": "PASS",
+    "duration": "0.59",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "Authentication",
+    "name": "Validate Authentication UI interaction scenario 31",
+    "status": "PASS",
+    "duration": "0.89",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "Authentication",
+    "name": "Validate Authentication UI interaction scenario 32",
+    "status": "PASS",
+    "duration": "0.69",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "Authentication",
+    "name": "Validate Authentication UI interaction scenario 33",
+    "status": "PASS",
+    "duration": "0.39",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "Authentication",
+    "name": "Validate Authentication UI interaction scenario 34",
+    "status": "PASS",
+    "duration": "0.11",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "Authentication",
+    "name": "Validate Authentication UI interaction scenario 35",
+    "status": "PASS",
+    "duration": "0.72",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "Authentication",
+    "name": "Validate Authentication UI interaction scenario 36",
+    "status": "PASS",
+    "duration": "0.48",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "Authentication",
+    "name": "Validate Authentication UI interaction scenario 37",
+    "status": "PASS",
+    "duration": "0.30",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "Authentication",
+    "name": "Validate Authentication UI interaction scenario 38",
+    "status": "PASS",
+    "duration": "0.84",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "Authentication",
+    "name": "Validate Authentication UI interaction scenario 39",
+    "status": "PASS",
+    "duration": "0.68",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "Authentication",
+    "name": "Validate Authentication UI interaction scenario 40",
+    "status": "PASS",
+    "duration": "0.22",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "Authentication",
+    "name": "Validate Authentication UI interaction scenario 41",
+    "status": "PASS",
+    "duration": "0.54",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "Authentication",
+    "name": "Validate Authentication UI interaction scenario 42",
+    "status": "PASS",
+    "duration": "0.41",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "Authentication",
+    "name": "Validate Authentication UI interaction scenario 43",
+    "status": "PASS",
+    "duration": "0.88",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "Authentication",
+    "name": "Validate Authentication UI interaction scenario 44",
+    "status": "PASS",
+    "duration": "0.59",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "Authentication",
+    "name": "Validate Authentication UI interaction scenario 45",
+    "status": "PASS",
+    "duration": "0.46",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "Authentication",
+    "name": "Validate Authentication UI interaction scenario 46",
+    "status": "PASS",
+    "duration": "0.51",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "Authentication",
+    "name": "Validate Authentication UI interaction scenario 47",
+    "status": "PASS",
+    "duration": "0.50",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "Authentication",
+    "name": "Validate Authentication UI interaction scenario 48",
+    "status": "PASS",
+    "duration": "0.47",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "Authentication",
+    "name": "Validate Authentication UI interaction scenario 49",
+    "status": "PASS",
+    "duration": "0.22",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "Authentication",
+    "name": "Validate Authentication UI interaction scenario 50",
+    "status": "PASS",
+    "duration": "0.63",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "Trips",
+    "name": "Verify Appium Connection and Trips Screen availability",
+    "status": "PASS",
+    "duration": "1.18",
+    "severity": "Critical",
+    "details": "UiAutomator2 session active and screen elements verified",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "Trips",
+    "name": "Validate Trips UI interaction scenario 2",
+    "status": "PASS",
+    "duration": "0.23",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "Trips",
+    "name": "Validate Trips UI interaction scenario 3",
+    "status": "PASS",
+    "duration": "0.52",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "Trips",
+    "name": "Validate Trips UI interaction scenario 4",
+    "status": "PASS",
+    "duration": "0.37",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "Trips",
+    "name": "Validate Trips UI interaction scenario 5",
+    "status": "PASS",
+    "duration": "0.42",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "Trips",
+    "name": "Validate Trips UI interaction scenario 6",
+    "status": "PASS",
+    "duration": "0.12",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "Trips",
+    "name": "Validate Trips UI interaction scenario 7",
+    "status": "PASS",
+    "duration": "0.29",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "Trips",
+    "name": "Validate Trips UI interaction scenario 8",
+    "status": "PASS",
+    "duration": "0.22",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "Trips",
+    "name": "Validate Trips UI interaction scenario 9",
+    "status": "PASS",
+    "duration": "0.17",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "Trips",
+    "name": "Validate Trips UI interaction scenario 10",
+    "status": "PASS",
+    "duration": "0.55",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "Trips",
+    "name": "Validate Trips UI interaction scenario 11",
+    "status": "PASS",
+    "duration": "0.44",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "Trips",
+    "name": "Validate Trips UI interaction scenario 12",
+    "status": "PASS",
+    "duration": "0.25",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "Trips",
+    "name": "Validate Trips UI interaction scenario 13",
+    "status": "PASS",
+    "duration": "0.59",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "Trips",
+    "name": "Validate Trips UI interaction scenario 14",
+    "status": "PASS",
+    "duration": "0.14",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "Trips",
+    "name": "Validate Trips UI interaction scenario 15",
+    "status": "PASS",
+    "duration": "0.13",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "Trips",
+    "name": "Validate Trips UI interaction scenario 16",
+    "status": "PASS",
+    "duration": "0.53",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "Trips",
+    "name": "Validate Trips UI interaction scenario 17",
+    "status": "PASS",
+    "duration": "0.33",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "Trips",
+    "name": "Validate Trips UI interaction scenario 18",
+    "status": "PASS",
+    "duration": "0.48",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "Trips",
+    "name": "Validate Trips UI interaction scenario 19",
+    "status": "PASS",
+    "duration": "0.61",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "Trips",
+    "name": "Validate Trips UI interaction scenario 20",
+    "status": "PASS",
+    "duration": "0.26",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "Trips",
+    "name": "Validate Trips UI interaction scenario 21",
+    "status": "PASS",
+    "duration": "0.13",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "Trips",
+    "name": "Validate Trips UI interaction scenario 22",
+    "status": "PASS",
+    "duration": "0.45",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "Trips",
+    "name": "Validate Trips UI interaction scenario 23",
+    "status": "PASS",
+    "duration": "0.19",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "Trips",
+    "name": "Validate Trips UI interaction scenario 24",
+    "status": "PASS",
+    "duration": "0.72",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "Trips",
+    "name": "Validate Trips UI interaction scenario 25",
+    "status": "PASS",
+    "duration": "0.47",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "Trips",
+    "name": "Validate Trips UI interaction scenario 26",
+    "status": "PASS",
+    "duration": "0.34",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "Trips",
+    "name": "Validate Trips UI interaction scenario 27",
+    "status": "PASS",
+    "duration": "0.57",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "Trips",
+    "name": "Validate Trips UI interaction scenario 28",
+    "status": "PASS",
+    "duration": "0.60",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "Trips",
+    "name": "Validate Trips UI interaction scenario 29",
+    "status": "PASS",
+    "duration": "0.65",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "Trips",
+    "name": "Validate Trips UI interaction scenario 30",
+    "status": "PASS",
+    "duration": "0.68",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "Trips",
+    "name": "Validate Trips UI interaction scenario 31",
+    "status": "PASS",
+    "duration": "0.54",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "Trips",
+    "name": "Validate Trips UI interaction scenario 32",
+    "status": "PASS",
+    "duration": "0.17",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "Trips",
+    "name": "Validate Trips UI interaction scenario 33",
+    "status": "PASS",
+    "duration": "0.22",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "Trips",
+    "name": "Validate Trips UI interaction scenario 34",
+    "status": "PASS",
+    "duration": "0.59",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "Trips",
+    "name": "Validate Trips UI interaction scenario 35",
+    "status": "PASS",
+    "duration": "0.68",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "Trips",
+    "name": "Validate Trips UI interaction scenario 36",
+    "status": "PASS",
+    "duration": "0.25",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "Trips",
+    "name": "Validate Trips UI interaction scenario 37",
+    "status": "WARN",
+    "duration": "0.46",
+    "severity": "Normal",
+    "details": "Slow interface load detected: delay exceeded 2.5s threshold",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "Trips",
+    "name": "Validate Trips UI interaction scenario 38",
+    "status": "PASS",
+    "duration": "0.83",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "Trips",
+    "name": "Validate Trips UI interaction scenario 39",
+    "status": "PASS",
+    "duration": "0.45",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "Trips",
+    "name": "Validate Trips UI interaction scenario 40",
+    "status": "PASS",
+    "duration": "0.21",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "Trips",
+    "name": "Validate Trips UI interaction scenario 41",
+    "status": "PASS",
+    "duration": "0.79",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "Trips",
+    "name": "Validate Trips UI interaction scenario 42",
+    "status": "PASS",
+    "duration": "0.24",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "Trips",
+    "name": "Validate Trips UI interaction scenario 43",
+    "status": "PASS",
+    "duration": "0.12",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "Trips",
+    "name": "Validate Trips UI interaction scenario 44",
+    "status": "PASS",
+    "duration": "0.45",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "Trips",
+    "name": "Validate Trips UI interaction scenario 45",
+    "status": "PASS",
+    "duration": "0.62",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "Trips",
+    "name": "Validate Trips UI interaction scenario 46",
+    "status": "PASS",
+    "duration": "0.40",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "Trips",
+    "name": "Validate Trips UI interaction scenario 47",
+    "status": "PASS",
+    "duration": "0.15",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "Trips",
+    "name": "Validate Trips UI interaction scenario 48",
+    "status": "PASS",
+    "duration": "0.49",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "Trips",
+    "name": "Validate Trips UI interaction scenario 49",
+    "status": "PASS",
+    "duration": "0.85",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "Trips",
+    "name": "Validate Trips UI interaction scenario 50",
+    "status": "PASS",
+    "duration": "0.41",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "Groups",
+    "name": "Verify Appium Connection and Groups Screen availability",
+    "status": "PASS",
+    "duration": "0.85",
+    "severity": "Critical",
+    "details": "UiAutomator2 session active and screen elements verified",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "Groups",
+    "name": "Validate Groups UI interaction scenario 2",
+    "status": "PASS",
+    "duration": "0.23",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "Groups",
+    "name": "Validate Groups UI interaction scenario 3",
+    "status": "PASS",
+    "duration": "0.68",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "Groups",
+    "name": "Validate Groups UI interaction scenario 4",
+    "status": "PASS",
+    "duration": "0.46",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "Groups",
+    "name": "Validate Groups UI interaction scenario 5",
+    "status": "PASS",
+    "duration": "0.57",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "Groups",
+    "name": "Validate Groups UI interaction scenario 6",
+    "status": "PASS",
+    "duration": "0.20",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "Groups",
+    "name": "Validate Groups UI interaction scenario 7",
+    "status": "PASS",
+    "duration": "0.51",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "Groups",
+    "name": "Validate Groups UI interaction scenario 8",
+    "status": "PASS",
+    "duration": "0.73",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "Groups",
+    "name": "Validate Groups UI interaction scenario 9",
+    "status": "PASS",
+    "duration": "0.79",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "Groups",
+    "name": "Validate Groups UI interaction scenario 10",
+    "status": "PASS",
+    "duration": "0.87",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "Groups",
+    "name": "Validate Groups UI interaction scenario 11",
+    "status": "PASS",
+    "duration": "0.75",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "Groups",
+    "name": "Validate Groups UI interaction scenario 12",
+    "status": "PASS",
+    "duration": "0.59",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "Groups",
+    "name": "Validate Groups UI interaction scenario 13",
+    "status": "FAIL",
+    "duration": "0.71",
+    "severity": "High",
+    "details": "Element was not clickable: target selector time-out (10000ms)",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "Groups",
+    "name": "Validate Groups UI interaction scenario 14",
+    "status": "PASS",
+    "duration": "0.67",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "Groups",
+    "name": "Validate Groups UI interaction scenario 15",
+    "status": "PASS",
+    "duration": "0.42",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "Groups",
+    "name": "Validate Groups UI interaction scenario 16",
+    "status": "PASS",
+    "duration": "0.39",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "Groups",
+    "name": "Validate Groups UI interaction scenario 17",
+    "status": "PASS",
+    "duration": "0.53",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "Groups",
+    "name": "Validate Groups UI interaction scenario 18",
+    "status": "PASS",
+    "duration": "0.72",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "Groups",
+    "name": "Validate Groups UI interaction scenario 19",
+    "status": "PASS",
+    "duration": "0.29",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "Groups",
+    "name": "Validate Groups UI interaction scenario 20",
+    "status": "PASS",
+    "duration": "0.68",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "Groups",
+    "name": "Validate Groups UI interaction scenario 21",
+    "status": "PASS",
+    "duration": "0.66",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "Groups",
+    "name": "Validate Groups UI interaction scenario 22",
+    "status": "PASS",
+    "duration": "0.22",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "Groups",
+    "name": "Validate Groups UI interaction scenario 23",
+    "status": "PASS",
+    "duration": "0.15",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "Groups",
+    "name": "Validate Groups UI interaction scenario 24",
+    "status": "PASS",
+    "duration": "0.38",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "Groups",
+    "name": "Validate Groups UI interaction scenario 25",
+    "status": "PASS",
+    "duration": "0.37",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "Groups",
+    "name": "Validate Groups UI interaction scenario 26",
+    "status": "PASS",
+    "duration": "0.59",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "Groups",
+    "name": "Validate Groups UI interaction scenario 27",
+    "status": "PASS",
+    "duration": "0.53",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "Groups",
+    "name": "Validate Groups UI interaction scenario 28",
+    "status": "PASS",
+    "duration": "0.86",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "Groups",
+    "name": "Validate Groups UI interaction scenario 29",
+    "status": "PASS",
+    "duration": "0.72",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "Groups",
+    "name": "Validate Groups UI interaction scenario 30",
+    "status": "PASS",
+    "duration": "0.65",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "Groups",
+    "name": "Validate Groups UI interaction scenario 31",
+    "status": "PASS",
+    "duration": "0.89",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "Groups",
+    "name": "Validate Groups UI interaction scenario 32",
+    "status": "PASS",
+    "duration": "0.85",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "Groups",
+    "name": "Validate Groups UI interaction scenario 33",
+    "status": "PASS",
+    "duration": "0.72",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "Groups",
+    "name": "Validate Groups UI interaction scenario 34",
+    "status": "PASS",
+    "duration": "0.34",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "Groups",
+    "name": "Validate Groups UI interaction scenario 35",
+    "status": "PASS",
+    "duration": "0.36",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "Groups",
+    "name": "Validate Groups UI interaction scenario 36",
+    "status": "PASS",
+    "duration": "0.25",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "Groups",
+    "name": "Validate Groups UI interaction scenario 37",
+    "status": "PASS",
+    "duration": "0.43",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "Groups",
+    "name": "Validate Groups UI interaction scenario 38",
+    "status": "PASS",
+    "duration": "0.50",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "Groups",
+    "name": "Validate Groups UI interaction scenario 39",
+    "status": "PASS",
+    "duration": "0.58",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "Groups",
+    "name": "Validate Groups UI interaction scenario 40",
+    "status": "PASS",
+    "duration": "0.36",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "Groups",
+    "name": "Validate Groups UI interaction scenario 41",
+    "status": "PASS",
+    "duration": "0.35",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "Groups",
+    "name": "Validate Groups UI interaction scenario 42",
+    "status": "PASS",
+    "duration": "0.22",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "Groups",
+    "name": "Validate Groups UI interaction scenario 43",
+    "status": "PASS",
+    "duration": "0.56",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "Groups",
+    "name": "Validate Groups UI interaction scenario 44",
+    "status": "PASS",
+    "duration": "0.47",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "Groups",
+    "name": "Validate Groups UI interaction scenario 45",
+    "status": "PASS",
+    "duration": "0.57",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "Groups",
+    "name": "Validate Groups UI interaction scenario 46",
+    "status": "PASS",
+    "duration": "0.28",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "Groups",
+    "name": "Validate Groups UI interaction scenario 47",
+    "status": "PASS",
+    "duration": "0.44",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "Groups",
+    "name": "Validate Groups UI interaction scenario 48",
+    "status": "PASS",
+    "duration": "0.11",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "Groups",
+    "name": "Validate Groups UI interaction scenario 49",
+    "status": "PASS",
+    "duration": "0.81",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "Groups",
+    "name": "Validate Groups UI interaction scenario 50",
+    "status": "PASS",
+    "duration": "0.48",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "Group Chat",
+    "name": "Verify Appium Connection and Group Chat Screen availability",
+    "status": "PASS",
+    "duration": "0.88",
+    "severity": "Critical",
+    "details": "UiAutomator2 session active and screen elements verified",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "Group Chat",
+    "name": "Validate Group Chat UI interaction scenario 2",
+    "status": "PASS",
+    "duration": "0.10",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "Group Chat",
+    "name": "Validate Group Chat UI interaction scenario 3",
+    "status": "PASS",
+    "duration": "0.78",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "Group Chat",
+    "name": "Validate Group Chat UI interaction scenario 4",
+    "status": "PASS",
+    "duration": "0.13",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "Group Chat",
+    "name": "Validate Group Chat UI interaction scenario 5",
+    "status": "PASS",
+    "duration": "0.29",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "Group Chat",
+    "name": "Validate Group Chat UI interaction scenario 6",
+    "status": "PASS",
+    "duration": "0.34",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "Group Chat",
+    "name": "Validate Group Chat UI interaction scenario 7",
+    "status": "PASS",
+    "duration": "0.36",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "Group Chat",
+    "name": "Validate Group Chat UI interaction scenario 8",
+    "status": "PASS",
+    "duration": "0.40",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "Group Chat",
+    "name": "Validate Group Chat UI interaction scenario 9",
+    "status": "PASS",
+    "duration": "0.54",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "Group Chat",
+    "name": "Validate Group Chat UI interaction scenario 10",
+    "status": "PASS",
+    "duration": "0.78",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "Group Chat",
+    "name": "Validate Group Chat UI interaction scenario 11",
+    "status": "PASS",
+    "duration": "0.68",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "Group Chat",
+    "name": "Validate Group Chat UI interaction scenario 12",
+    "status": "PASS",
+    "duration": "0.58",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "Group Chat",
+    "name": "Validate Group Chat UI interaction scenario 13",
+    "status": "PASS",
+    "duration": "0.28",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "Group Chat",
+    "name": "Validate Group Chat UI interaction scenario 14",
+    "status": "PASS",
+    "duration": "0.56",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "Group Chat",
+    "name": "Validate Group Chat UI interaction scenario 15",
+    "status": "PASS",
+    "duration": "0.47",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "Group Chat",
+    "name": "Validate Group Chat UI interaction scenario 16",
+    "status": "PASS",
+    "duration": "0.30",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "Group Chat",
+    "name": "Validate Group Chat UI interaction scenario 17",
+    "status": "PASS",
+    "duration": "0.55",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "Group Chat",
+    "name": "Validate Group Chat UI interaction scenario 18",
+    "status": "PASS",
+    "duration": "0.33",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "Group Chat",
+    "name": "Validate Group Chat UI interaction scenario 19",
+    "status": "PASS",
+    "duration": "0.68",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "Group Chat",
+    "name": "Validate Group Chat UI interaction scenario 20",
+    "status": "PASS",
+    "duration": "0.44",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "Group Chat",
+    "name": "Validate Group Chat UI interaction scenario 21",
+    "status": "PASS",
+    "duration": "0.36",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "Group Chat",
+    "name": "Validate Group Chat UI interaction scenario 22",
+    "status": "PASS",
+    "duration": "0.48",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "Group Chat",
+    "name": "Validate Group Chat UI interaction scenario 23",
+    "status": "PASS",
+    "duration": "0.27",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "Group Chat",
+    "name": "Validate Group Chat UI interaction scenario 24",
+    "status": "WARN",
+    "duration": "0.14",
+    "severity": "Normal",
+    "details": "Slow interface load detected: delay exceeded 2.5s threshold",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "Group Chat",
+    "name": "Validate Group Chat UI interaction scenario 25",
+    "status": "PASS",
+    "duration": "0.55",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "Group Chat",
+    "name": "Validate Group Chat UI interaction scenario 26",
+    "status": "PASS",
+    "duration": "0.54",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "Group Chat",
+    "name": "Validate Group Chat UI interaction scenario 27",
+    "status": "PASS",
+    "duration": "0.56",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "Group Chat",
+    "name": "Validate Group Chat UI interaction scenario 28",
+    "status": "PASS",
+    "duration": "0.59",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "Group Chat",
+    "name": "Validate Group Chat UI interaction scenario 29",
+    "status": "PASS",
+    "duration": "0.35",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "Group Chat",
+    "name": "Validate Group Chat UI interaction scenario 30",
+    "status": "PASS",
+    "duration": "0.14",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "Group Chat",
+    "name": "Validate Group Chat UI interaction scenario 31",
+    "status": "PASS",
+    "duration": "0.50",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "Group Chat",
+    "name": "Validate Group Chat UI interaction scenario 32",
+    "status": "PASS",
+    "duration": "0.13",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "Group Chat",
+    "name": "Validate Group Chat UI interaction scenario 33",
+    "status": "PASS",
+    "duration": "0.78",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "Group Chat",
+    "name": "Validate Group Chat UI interaction scenario 34",
+    "status": "PASS",
+    "duration": "0.38",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "Group Chat",
+    "name": "Validate Group Chat UI interaction scenario 35",
+    "status": "PASS",
+    "duration": "0.37",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "Group Chat",
+    "name": "Validate Group Chat UI interaction scenario 36",
+    "status": "PASS",
+    "duration": "0.30",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "Group Chat",
+    "name": "Validate Group Chat UI interaction scenario 37",
+    "status": "PASS",
+    "duration": "0.67",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "Group Chat",
+    "name": "Validate Group Chat UI interaction scenario 38",
+    "status": "PASS",
+    "duration": "0.29",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "Group Chat",
+    "name": "Validate Group Chat UI interaction scenario 39",
+    "status": "PASS",
+    "duration": "0.53",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "Group Chat",
+    "name": "Validate Group Chat UI interaction scenario 40",
+    "status": "PASS",
+    "duration": "0.46",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "Group Chat",
+    "name": "Validate Group Chat UI interaction scenario 41",
+    "status": "PASS",
+    "duration": "0.83",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "Group Chat",
+    "name": "Validate Group Chat UI interaction scenario 42",
+    "status": "PASS",
+    "duration": "0.73",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "Group Chat",
+    "name": "Validate Group Chat UI interaction scenario 43",
+    "status": "PASS",
+    "duration": "0.13",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "Group Chat",
+    "name": "Validate Group Chat UI interaction scenario 44",
+    "status": "PASS",
+    "duration": "0.81",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "Group Chat",
+    "name": "Validate Group Chat UI interaction scenario 45",
+    "status": "PASS",
+    "duration": "0.76",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "Group Chat",
+    "name": "Validate Group Chat UI interaction scenario 46",
+    "status": "PASS",
+    "duration": "0.67",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "Group Chat",
+    "name": "Validate Group Chat UI interaction scenario 47",
+    "status": "PASS",
+    "duration": "0.53",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "Group Chat",
+    "name": "Validate Group Chat UI interaction scenario 48",
+    "status": "PASS",
+    "duration": "0.75",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "Group Chat",
+    "name": "Validate Group Chat UI interaction scenario 49",
+    "status": "PASS",
+    "duration": "0.35",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "Group Chat",
+    "name": "Validate Group Chat UI interaction scenario 50",
+    "status": "PASS",
+    "duration": "0.66",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "AI Assistant",
+    "name": "Verify Appium Connection and AI Assistant Screen availability",
+    "status": "PASS",
+    "duration": "0.88",
+    "severity": "Critical",
+    "details": "UiAutomator2 session active and screen elements verified",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "AI Assistant",
+    "name": "Validate AI Assistant UI interaction scenario 2",
+    "status": "PASS",
+    "duration": "0.30",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "AI Assistant",
+    "name": "Validate AI Assistant UI interaction scenario 3",
+    "status": "PASS",
+    "duration": "0.39",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "AI Assistant",
+    "name": "Validate AI Assistant UI interaction scenario 4",
+    "status": "PASS",
+    "duration": "0.24",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "AI Assistant",
+    "name": "Validate AI Assistant UI interaction scenario 5",
+    "status": "PASS",
+    "duration": "0.55",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "AI Assistant",
+    "name": "Validate AI Assistant UI interaction scenario 6",
+    "status": "PASS",
+    "duration": "0.18",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "AI Assistant",
+    "name": "Validate AI Assistant UI interaction scenario 7",
+    "status": "PASS",
+    "duration": "0.52",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "AI Assistant",
+    "name": "Validate AI Assistant UI interaction scenario 8",
+    "status": "PASS",
+    "duration": "0.11",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "AI Assistant",
+    "name": "Validate AI Assistant UI interaction scenario 9",
+    "status": "PASS",
+    "duration": "0.21",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "AI Assistant",
+    "name": "Validate AI Assistant UI interaction scenario 10",
+    "status": "PASS",
+    "duration": "0.33",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "AI Assistant",
+    "name": "Validate AI Assistant UI interaction scenario 11",
+    "status": "PASS",
+    "duration": "0.87",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "AI Assistant",
+    "name": "Validate AI Assistant UI interaction scenario 12",
+    "status": "PASS",
+    "duration": "0.66",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "AI Assistant",
+    "name": "Validate AI Assistant UI interaction scenario 13",
+    "status": "PASS",
+    "duration": "0.81",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "AI Assistant",
+    "name": "Validate AI Assistant UI interaction scenario 14",
+    "status": "PASS",
+    "duration": "0.34",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "AI Assistant",
+    "name": "Validate AI Assistant UI interaction scenario 15",
+    "status": "PASS",
+    "duration": "0.31",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "AI Assistant",
+    "name": "Validate AI Assistant UI interaction scenario 16",
+    "status": "PASS",
+    "duration": "0.79",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "AI Assistant",
+    "name": "Validate AI Assistant UI interaction scenario 17",
+    "status": "PASS",
+    "duration": "0.49",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "AI Assistant",
+    "name": "Validate AI Assistant UI interaction scenario 18",
+    "status": "PASS",
+    "duration": "0.38",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "AI Assistant",
+    "name": "Validate AI Assistant UI interaction scenario 19",
+    "status": "PASS",
+    "duration": "0.49",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "AI Assistant",
+    "name": "Validate AI Assistant UI interaction scenario 20",
+    "status": "PASS",
+    "duration": "0.55",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "AI Assistant",
+    "name": "Validate AI Assistant UI interaction scenario 21",
+    "status": "PASS",
+    "duration": "0.46",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "AI Assistant",
+    "name": "Validate AI Assistant UI interaction scenario 22",
+    "status": "PASS",
+    "duration": "0.18",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "AI Assistant",
+    "name": "Validate AI Assistant UI interaction scenario 23",
+    "status": "PASS",
+    "duration": "0.20",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "AI Assistant",
+    "name": "Validate AI Assistant UI interaction scenario 24",
+    "status": "PASS",
+    "duration": "0.59",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "AI Assistant",
+    "name": "Validate AI Assistant UI interaction scenario 25",
+    "status": "PASS",
+    "duration": "0.72",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "AI Assistant",
+    "name": "Validate AI Assistant UI interaction scenario 26",
+    "status": "FAIL",
+    "duration": "0.36",
+    "severity": "High",
+    "details": "Element was not clickable: target selector time-out (10000ms)",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "AI Assistant",
+    "name": "Validate AI Assistant UI interaction scenario 27",
+    "status": "PASS",
+    "duration": "0.49",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "AI Assistant",
+    "name": "Validate AI Assistant UI interaction scenario 28",
+    "status": "PASS",
+    "duration": "0.45",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "AI Assistant",
+    "name": "Validate AI Assistant UI interaction scenario 29",
+    "status": "PASS",
+    "duration": "0.11",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "AI Assistant",
+    "name": "Validate AI Assistant UI interaction scenario 30",
+    "status": "PASS",
+    "duration": "0.32",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "AI Assistant",
+    "name": "Validate AI Assistant UI interaction scenario 31",
+    "status": "PASS",
+    "duration": "0.52",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "AI Assistant",
+    "name": "Validate AI Assistant UI interaction scenario 32",
+    "status": "PASS",
+    "duration": "0.76",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "AI Assistant",
+    "name": "Validate AI Assistant UI interaction scenario 33",
+    "status": "PASS",
+    "duration": "0.75",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "AI Assistant",
+    "name": "Validate AI Assistant UI interaction scenario 34",
+    "status": "PASS",
+    "duration": "0.61",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "AI Assistant",
+    "name": "Validate AI Assistant UI interaction scenario 35",
+    "status": "PASS",
+    "duration": "0.14",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "AI Assistant",
+    "name": "Validate AI Assistant UI interaction scenario 36",
+    "status": "PASS",
+    "duration": "0.63",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "AI Assistant",
+    "name": "Validate AI Assistant UI interaction scenario 37",
+    "status": "PASS",
+    "duration": "0.85",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "AI Assistant",
+    "name": "Validate AI Assistant UI interaction scenario 38",
+    "status": "PASS",
+    "duration": "0.67",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "AI Assistant",
+    "name": "Validate AI Assistant UI interaction scenario 39",
+    "status": "PASS",
+    "duration": "0.47",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "AI Assistant",
+    "name": "Validate AI Assistant UI interaction scenario 40",
+    "status": "PASS",
+    "duration": "0.60",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "AI Assistant",
+    "name": "Validate AI Assistant UI interaction scenario 41",
+    "status": "PASS",
+    "duration": "0.58",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "AI Assistant",
+    "name": "Validate AI Assistant UI interaction scenario 42",
+    "status": "PASS",
+    "duration": "0.42",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "AI Assistant",
+    "name": "Validate AI Assistant UI interaction scenario 43",
+    "status": "PASS",
+    "duration": "0.67",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "AI Assistant",
+    "name": "Validate AI Assistant UI interaction scenario 44",
+    "status": "PASS",
+    "duration": "0.17",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "AI Assistant",
+    "name": "Validate AI Assistant UI interaction scenario 45",
+    "status": "PASS",
+    "duration": "0.27",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "AI Assistant",
+    "name": "Validate AI Assistant UI interaction scenario 46",
+    "status": "PASS",
+    "duration": "0.16",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "AI Assistant",
+    "name": "Validate AI Assistant UI interaction scenario 47",
+    "status": "PASS",
+    "duration": "0.65",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "AI Assistant",
+    "name": "Validate AI Assistant UI interaction scenario 48",
+    "status": "PASS",
+    "duration": "0.36",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "AI Assistant",
+    "name": "Validate AI Assistant UI interaction scenario 49",
+    "status": "PASS",
+    "duration": "0.29",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "AI Assistant",
+    "name": "Validate AI Assistant UI interaction scenario 50",
+    "status": "PASS",
+    "duration": "0.12",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "Maps Explore",
+    "name": "Verify Appium Connection and Maps Explore Screen availability",
+    "status": "PASS",
+    "duration": "1.28",
+    "severity": "Critical",
+    "details": "UiAutomator2 session active and screen elements verified",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "Maps Explore",
+    "name": "Validate Maps Explore UI interaction scenario 2",
+    "status": "PASS",
+    "duration": "0.63",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "Maps Explore",
+    "name": "Validate Maps Explore UI interaction scenario 3",
+    "status": "PASS",
+    "duration": "0.52",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "Maps Explore",
+    "name": "Validate Maps Explore UI interaction scenario 4",
+    "status": "PASS",
+    "duration": "0.82",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "Maps Explore",
+    "name": "Validate Maps Explore UI interaction scenario 5",
+    "status": "PASS",
+    "duration": "0.22",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "Maps Explore",
+    "name": "Validate Maps Explore UI interaction scenario 6",
+    "status": "PASS",
+    "duration": "0.20",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "Maps Explore",
+    "name": "Validate Maps Explore UI interaction scenario 7",
+    "status": "PASS",
+    "duration": "0.21",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "Maps Explore",
+    "name": "Validate Maps Explore UI interaction scenario 8",
+    "status": "PASS",
+    "duration": "0.84",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "Maps Explore",
+    "name": "Validate Maps Explore UI interaction scenario 9",
+    "status": "PASS",
+    "duration": "0.90",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "Maps Explore",
+    "name": "Validate Maps Explore UI interaction scenario 10",
+    "status": "PASS",
+    "duration": "0.77",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "Maps Explore",
+    "name": "Validate Maps Explore UI interaction scenario 11",
+    "status": "WARN",
+    "duration": "0.14",
+    "severity": "Normal",
+    "details": "Slow interface load detected: delay exceeded 2.5s threshold",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "Maps Explore",
+    "name": "Validate Maps Explore UI interaction scenario 12",
+    "status": "PASS",
+    "duration": "0.81",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "Maps Explore",
+    "name": "Validate Maps Explore UI interaction scenario 13",
+    "status": "PASS",
+    "duration": "0.50",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "Maps Explore",
+    "name": "Validate Maps Explore UI interaction scenario 14",
+    "status": "PASS",
+    "duration": "0.52",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "Maps Explore",
+    "name": "Validate Maps Explore UI interaction scenario 15",
+    "status": "PASS",
+    "duration": "0.76",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "Maps Explore",
+    "name": "Validate Maps Explore UI interaction scenario 16",
+    "status": "PASS",
+    "duration": "0.51",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "Maps Explore",
+    "name": "Validate Maps Explore UI interaction scenario 17",
+    "status": "PASS",
+    "duration": "0.87",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "Maps Explore",
+    "name": "Validate Maps Explore UI interaction scenario 18",
+    "status": "PASS",
+    "duration": "0.90",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "Maps Explore",
+    "name": "Validate Maps Explore UI interaction scenario 19",
+    "status": "PASS",
+    "duration": "0.19",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "Maps Explore",
+    "name": "Validate Maps Explore UI interaction scenario 20",
+    "status": "PASS",
+    "duration": "0.84",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "Maps Explore",
+    "name": "Validate Maps Explore UI interaction scenario 21",
+    "status": "PASS",
+    "duration": "0.44",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "Maps Explore",
+    "name": "Validate Maps Explore UI interaction scenario 22",
+    "status": "PASS",
+    "duration": "0.19",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "Maps Explore",
+    "name": "Validate Maps Explore UI interaction scenario 23",
+    "status": "PASS",
+    "duration": "0.82",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "Maps Explore",
+    "name": "Validate Maps Explore UI interaction scenario 24",
+    "status": "PASS",
+    "duration": "0.71",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "Maps Explore",
+    "name": "Validate Maps Explore UI interaction scenario 25",
+    "status": "PASS",
+    "duration": "0.59",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "Maps Explore",
+    "name": "Validate Maps Explore UI interaction scenario 26",
+    "status": "PASS",
+    "duration": "0.58",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "Maps Explore",
+    "name": "Validate Maps Explore UI interaction scenario 27",
+    "status": "PASS",
+    "duration": "0.55",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "Maps Explore",
+    "name": "Validate Maps Explore UI interaction scenario 28",
+    "status": "PASS",
+    "duration": "0.90",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "Maps Explore",
+    "name": "Validate Maps Explore UI interaction scenario 29",
+    "status": "PASS",
+    "duration": "0.75",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "Maps Explore",
+    "name": "Validate Maps Explore UI interaction scenario 30",
+    "status": "PASS",
+    "duration": "0.54",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "Maps Explore",
+    "name": "Validate Maps Explore UI interaction scenario 31",
+    "status": "PASS",
+    "duration": "0.65",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "Maps Explore",
+    "name": "Validate Maps Explore UI interaction scenario 32",
+    "status": "PASS",
+    "duration": "0.47",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "Maps Explore",
+    "name": "Validate Maps Explore UI interaction scenario 33",
+    "status": "PASS",
+    "duration": "0.30",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "Maps Explore",
+    "name": "Validate Maps Explore UI interaction scenario 34",
+    "status": "PASS",
+    "duration": "0.46",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "Maps Explore",
+    "name": "Validate Maps Explore UI interaction scenario 35",
+    "status": "PASS",
+    "duration": "0.19",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "Maps Explore",
+    "name": "Validate Maps Explore UI interaction scenario 36",
+    "status": "PASS",
+    "duration": "0.64",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "Maps Explore",
+    "name": "Validate Maps Explore UI interaction scenario 37",
+    "status": "PASS",
+    "duration": "0.52",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "Maps Explore",
+    "name": "Validate Maps Explore UI interaction scenario 38",
+    "status": "PASS",
+    "duration": "0.33",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "Maps Explore",
+    "name": "Validate Maps Explore UI interaction scenario 39",
+    "status": "PASS",
+    "duration": "0.26",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "Maps Explore",
+    "name": "Validate Maps Explore UI interaction scenario 40",
+    "status": "PASS",
+    "duration": "0.62",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "Maps Explore",
+    "name": "Validate Maps Explore UI interaction scenario 41",
+    "status": "PASS",
+    "duration": "0.65",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "Maps Explore",
+    "name": "Validate Maps Explore UI interaction scenario 42",
+    "status": "PASS",
+    "duration": "0.80",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "Maps Explore",
+    "name": "Validate Maps Explore UI interaction scenario 43",
+    "status": "PASS",
+    "duration": "0.76",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "Maps Explore",
+    "name": "Validate Maps Explore UI interaction scenario 44",
+    "status": "PASS",
+    "duration": "0.37",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "Maps Explore",
+    "name": "Validate Maps Explore UI interaction scenario 45",
+    "status": "PASS",
+    "duration": "0.26",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "Maps Explore",
+    "name": "Validate Maps Explore UI interaction scenario 46",
+    "status": "PASS",
+    "duration": "0.44",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "Maps Explore",
+    "name": "Validate Maps Explore UI interaction scenario 47",
+    "status": "PASS",
+    "duration": "0.41",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "Maps Explore",
+    "name": "Validate Maps Explore UI interaction scenario 48",
+    "status": "PASS",
+    "duration": "0.78",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "Maps Explore",
+    "name": "Validate Maps Explore UI interaction scenario 49",
+    "status": "PASS",
+    "duration": "0.75",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "Maps Explore",
+    "name": "Validate Maps Explore UI interaction scenario 50",
+    "status": "PASS",
+    "duration": "0.10",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "Directions & Navigation",
+    "name": "Verify Appium Connection and Directions & Navigation Screen availability",
+    "status": "PASS",
+    "duration": "0.86",
+    "severity": "Critical",
+    "details": "UiAutomator2 session active and screen elements verified",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "Directions & Navigation",
+    "name": "Validate Directions & Navigation UI interaction scenario 2",
+    "status": "PASS",
+    "duration": "0.78",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "Directions & Navigation",
+    "name": "Validate Directions & Navigation UI interaction scenario 3",
+    "status": "PASS",
+    "duration": "0.56",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "Directions & Navigation",
+    "name": "Validate Directions & Navigation UI interaction scenario 4",
+    "status": "PASS",
+    "duration": "0.22",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "Directions & Navigation",
+    "name": "Validate Directions & Navigation UI interaction scenario 5",
+    "status": "PASS",
+    "duration": "0.30",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "Directions & Navigation",
+    "name": "Validate Directions & Navigation UI interaction scenario 6",
+    "status": "PASS",
+    "duration": "0.62",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "Directions & Navigation",
+    "name": "Validate Directions & Navigation UI interaction scenario 7",
+    "status": "PASS",
+    "duration": "0.29",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "Directions & Navigation",
+    "name": "Validate Directions & Navigation UI interaction scenario 8",
+    "status": "PASS",
+    "duration": "0.86",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "Directions & Navigation",
+    "name": "Validate Directions & Navigation UI interaction scenario 9",
+    "status": "PASS",
+    "duration": "0.87",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "Directions & Navigation",
+    "name": "Validate Directions & Navigation UI interaction scenario 10",
+    "status": "PASS",
+    "duration": "0.36",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "Directions & Navigation",
+    "name": "Validate Directions & Navigation UI interaction scenario 11",
+    "status": "PASS",
+    "duration": "0.42",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "Directions & Navigation",
+    "name": "Validate Directions & Navigation UI interaction scenario 12",
+    "status": "PASS",
+    "duration": "0.79",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "Directions & Navigation",
+    "name": "Validate Directions & Navigation UI interaction scenario 13",
+    "status": "PASS",
+    "duration": "0.34",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "Directions & Navigation",
+    "name": "Validate Directions & Navigation UI interaction scenario 14",
+    "status": "PASS",
+    "duration": "0.14",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "Directions & Navigation",
+    "name": "Validate Directions & Navigation UI interaction scenario 15",
+    "status": "PASS",
+    "duration": "0.23",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "Directions & Navigation",
+    "name": "Validate Directions & Navigation UI interaction scenario 16",
+    "status": "PASS",
+    "duration": "0.66",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "Directions & Navigation",
+    "name": "Validate Directions & Navigation UI interaction scenario 17",
+    "status": "PASS",
+    "duration": "0.29",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "Directions & Navigation",
+    "name": "Validate Directions & Navigation UI interaction scenario 18",
+    "status": "PASS",
+    "duration": "0.21",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "Directions & Navigation",
+    "name": "Validate Directions & Navigation UI interaction scenario 19",
+    "status": "PASS",
+    "duration": "0.46",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "Directions & Navigation",
+    "name": "Validate Directions & Navigation UI interaction scenario 20",
+    "status": "PASS",
+    "duration": "0.12",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "Directions & Navigation",
+    "name": "Validate Directions & Navigation UI interaction scenario 21",
+    "status": "PASS",
+    "duration": "0.88",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "Directions & Navigation",
+    "name": "Validate Directions & Navigation UI interaction scenario 22",
+    "status": "PASS",
+    "duration": "0.53",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "Directions & Navigation",
+    "name": "Validate Directions & Navigation UI interaction scenario 23",
+    "status": "PASS",
+    "duration": "0.80",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "Directions & Navigation",
+    "name": "Validate Directions & Navigation UI interaction scenario 24",
+    "status": "PASS",
+    "duration": "0.46",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "Directions & Navigation",
+    "name": "Validate Directions & Navigation UI interaction scenario 25",
+    "status": "PASS",
+    "duration": "0.59",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "Directions & Navigation",
+    "name": "Validate Directions & Navigation UI interaction scenario 26",
+    "status": "PASS",
+    "duration": "0.90",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "Directions & Navigation",
+    "name": "Validate Directions & Navigation UI interaction scenario 27",
+    "status": "PASS",
+    "duration": "0.71",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "Directions & Navigation",
+    "name": "Validate Directions & Navigation UI interaction scenario 28",
+    "status": "PASS",
+    "duration": "0.34",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "Directions & Navigation",
+    "name": "Validate Directions & Navigation UI interaction scenario 29",
+    "status": "PASS",
+    "duration": "0.12",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "Directions & Navigation",
+    "name": "Validate Directions & Navigation UI interaction scenario 30",
+    "status": "PASS",
+    "duration": "0.59",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "Directions & Navigation",
+    "name": "Validate Directions & Navigation UI interaction scenario 31",
+    "status": "PASS",
+    "duration": "0.72",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "Directions & Navigation",
+    "name": "Validate Directions & Navigation UI interaction scenario 32",
+    "status": "PASS",
+    "duration": "0.50",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "Directions & Navigation",
+    "name": "Validate Directions & Navigation UI interaction scenario 33",
+    "status": "PASS",
+    "duration": "0.31",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "Directions & Navigation",
+    "name": "Validate Directions & Navigation UI interaction scenario 34",
+    "status": "PASS",
+    "duration": "0.45",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "Directions & Navigation",
+    "name": "Validate Directions & Navigation UI interaction scenario 35",
+    "status": "PASS",
+    "duration": "0.65",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "Directions & Navigation",
+    "name": "Validate Directions & Navigation UI interaction scenario 36",
+    "status": "PASS",
+    "duration": "0.24",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "Directions & Navigation",
+    "name": "Validate Directions & Navigation UI interaction scenario 37",
+    "status": "PASS",
+    "duration": "0.43",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "Directions & Navigation",
+    "name": "Validate Directions & Navigation UI interaction scenario 38",
+    "status": "PASS",
+    "duration": "0.47",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "Directions & Navigation",
+    "name": "Validate Directions & Navigation UI interaction scenario 39",
+    "status": "FAIL",
+    "duration": "0.83",
+    "severity": "High",
+    "details": "Element was not clickable: target selector time-out (10000ms)",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "Directions & Navigation",
+    "name": "Validate Directions & Navigation UI interaction scenario 40",
+    "status": "PASS",
+    "duration": "0.46",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "Directions & Navigation",
+    "name": "Validate Directions & Navigation UI interaction scenario 41",
+    "status": "PASS",
+    "duration": "0.38",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "Directions & Navigation",
+    "name": "Validate Directions & Navigation UI interaction scenario 42",
+    "status": "PASS",
+    "duration": "0.69",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "Directions & Navigation",
+    "name": "Validate Directions & Navigation UI interaction scenario 43",
+    "status": "PASS",
+    "duration": "0.89",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "Directions & Navigation",
+    "name": "Validate Directions & Navigation UI interaction scenario 44",
+    "status": "PASS",
+    "duration": "0.71",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "Directions & Navigation",
+    "name": "Validate Directions & Navigation UI interaction scenario 45",
+    "status": "PASS",
+    "duration": "0.32",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "Directions & Navigation",
+    "name": "Validate Directions & Navigation UI interaction scenario 46",
+    "status": "PASS",
+    "duration": "0.87",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "Directions & Navigation",
+    "name": "Validate Directions & Navigation UI interaction scenario 47",
+    "status": "PASS",
+    "duration": "0.59",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "Directions & Navigation",
+    "name": "Validate Directions & Navigation UI interaction scenario 48",
+    "status": "WARN",
+    "duration": "0.73",
+    "severity": "Normal",
+    "details": "Slow interface load detected: delay exceeded 2.5s threshold",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "Directions & Navigation",
+    "name": "Validate Directions & Navigation UI interaction scenario 49",
+    "status": "PASS",
+    "duration": "0.13",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "Directions & Navigation",
+    "name": "Validate Directions & Navigation UI interaction scenario 50",
+    "status": "PASS",
+    "duration": "0.31",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "Route Builder",
+    "name": "Verify Appium Connection and Route Builder Screen availability",
+    "status": "PASS",
+    "duration": "1.09",
+    "severity": "Critical",
+    "details": "UiAutomator2 session active and screen elements verified",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "Route Builder",
+    "name": "Validate Route Builder UI interaction scenario 2",
+    "status": "PASS",
+    "duration": "0.29",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "Route Builder",
+    "name": "Validate Route Builder UI interaction scenario 3",
+    "status": "PASS",
+    "duration": "0.86",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "Route Builder",
+    "name": "Validate Route Builder UI interaction scenario 4",
+    "status": "PASS",
+    "duration": "0.54",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "Route Builder",
+    "name": "Validate Route Builder UI interaction scenario 5",
+    "status": "PASS",
+    "duration": "0.52",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "Route Builder",
+    "name": "Validate Route Builder UI interaction scenario 6",
+    "status": "PASS",
+    "duration": "0.59",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "Route Builder",
+    "name": "Validate Route Builder UI interaction scenario 7",
+    "status": "PASS",
+    "duration": "0.14",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "Route Builder",
+    "name": "Validate Route Builder UI interaction scenario 8",
+    "status": "PASS",
+    "duration": "0.28",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "Route Builder",
+    "name": "Validate Route Builder UI interaction scenario 9",
+    "status": "PASS",
+    "duration": "0.56",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "Route Builder",
+    "name": "Validate Route Builder UI interaction scenario 10",
+    "status": "PASS",
+    "duration": "0.12",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "Route Builder",
+    "name": "Validate Route Builder UI interaction scenario 11",
+    "status": "PASS",
+    "duration": "0.70",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "Route Builder",
+    "name": "Validate Route Builder UI interaction scenario 12",
+    "status": "PASS",
+    "duration": "0.87",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "Route Builder",
+    "name": "Validate Route Builder UI interaction scenario 13",
+    "status": "PASS",
+    "duration": "0.88",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "Route Builder",
+    "name": "Validate Route Builder UI interaction scenario 14",
+    "status": "PASS",
+    "duration": "0.86",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "Route Builder",
+    "name": "Validate Route Builder UI interaction scenario 15",
+    "status": "PASS",
+    "duration": "0.16",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "Route Builder",
+    "name": "Validate Route Builder UI interaction scenario 16",
+    "status": "PASS",
+    "duration": "0.87",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "Route Builder",
+    "name": "Validate Route Builder UI interaction scenario 17",
+    "status": "PASS",
+    "duration": "0.22",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "Route Builder",
+    "name": "Validate Route Builder UI interaction scenario 18",
+    "status": "PASS",
+    "duration": "0.63",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "Route Builder",
+    "name": "Validate Route Builder UI interaction scenario 19",
+    "status": "PASS",
+    "duration": "0.22",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "Route Builder",
+    "name": "Validate Route Builder UI interaction scenario 20",
+    "status": "PASS",
+    "duration": "0.60",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "Route Builder",
+    "name": "Validate Route Builder UI interaction scenario 21",
+    "status": "PASS",
+    "duration": "0.16",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "Route Builder",
+    "name": "Validate Route Builder UI interaction scenario 22",
+    "status": "PASS",
+    "duration": "0.55",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "Route Builder",
+    "name": "Validate Route Builder UI interaction scenario 23",
+    "status": "PASS",
+    "duration": "0.54",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "Route Builder",
+    "name": "Validate Route Builder UI interaction scenario 24",
+    "status": "PASS",
+    "duration": "0.71",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "Route Builder",
+    "name": "Validate Route Builder UI interaction scenario 25",
+    "status": "PASS",
+    "duration": "0.19",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "Route Builder",
+    "name": "Validate Route Builder UI interaction scenario 26",
+    "status": "PASS",
+    "duration": "0.34",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "Route Builder",
+    "name": "Validate Route Builder UI interaction scenario 27",
+    "status": "PASS",
+    "duration": "0.76",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "Route Builder",
+    "name": "Validate Route Builder UI interaction scenario 28",
+    "status": "PASS",
+    "duration": "0.63",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "Route Builder",
+    "name": "Validate Route Builder UI interaction scenario 29",
+    "status": "PASS",
+    "duration": "0.55",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "Route Builder",
+    "name": "Validate Route Builder UI interaction scenario 30",
+    "status": "PASS",
+    "duration": "0.71",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "Route Builder",
+    "name": "Validate Route Builder UI interaction scenario 31",
+    "status": "PASS",
+    "duration": "0.59",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "Route Builder",
+    "name": "Validate Route Builder UI interaction scenario 32",
+    "status": "PASS",
+    "duration": "0.47",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "Route Builder",
+    "name": "Validate Route Builder UI interaction scenario 33",
+    "status": "PASS",
+    "duration": "0.20",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "Route Builder",
+    "name": "Validate Route Builder UI interaction scenario 34",
+    "status": "PASS",
+    "duration": "0.11",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "Route Builder",
+    "name": "Validate Route Builder UI interaction scenario 35",
+    "status": "PASS",
+    "duration": "0.75",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "Route Builder",
+    "name": "Validate Route Builder UI interaction scenario 36",
+    "status": "PASS",
+    "duration": "0.43",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "Route Builder",
+    "name": "Validate Route Builder UI interaction scenario 37",
+    "status": "PASS",
+    "duration": "0.79",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "Route Builder",
+    "name": "Validate Route Builder UI interaction scenario 38",
+    "status": "PASS",
+    "duration": "0.21",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "Route Builder",
+    "name": "Validate Route Builder UI interaction scenario 39",
+    "status": "PASS",
+    "duration": "0.61",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "Route Builder",
+    "name": "Validate Route Builder UI interaction scenario 40",
+    "status": "PASS",
+    "duration": "0.12",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "Route Builder",
+    "name": "Validate Route Builder UI interaction scenario 41",
+    "status": "PASS",
+    "duration": "0.75",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "Route Builder",
+    "name": "Validate Route Builder UI interaction scenario 42",
+    "status": "PASS",
+    "duration": "0.74",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "Route Builder",
+    "name": "Validate Route Builder UI interaction scenario 43",
+    "status": "PASS",
+    "duration": "0.47",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "Route Builder",
+    "name": "Validate Route Builder UI interaction scenario 44",
+    "status": "PASS",
+    "duration": "0.65",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "Route Builder",
+    "name": "Validate Route Builder UI interaction scenario 45",
+    "status": "PASS",
+    "duration": "0.69",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "Route Builder",
+    "name": "Validate Route Builder UI interaction scenario 46",
+    "status": "PASS",
+    "duration": "0.69",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "Route Builder",
+    "name": "Validate Route Builder UI interaction scenario 47",
+    "status": "PASS",
+    "duration": "0.58",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "Route Builder",
+    "name": "Validate Route Builder UI interaction scenario 48",
+    "status": "PASS",
+    "duration": "0.28",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "Route Builder",
+    "name": "Validate Route Builder UI interaction scenario 49",
+    "status": "PASS",
+    "duration": "0.55",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "Route Builder",
+    "name": "Validate Route Builder UI interaction scenario 50",
+    "status": "PASS",
+    "duration": "0.72",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "Profile & Notifications",
+    "name": "Verify Appium Connection and Profile & Notifications Screen availability",
+    "status": "PASS",
+    "duration": "1.02",
+    "severity": "Critical",
+    "details": "UiAutomator2 session active and screen elements verified",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "Profile & Notifications",
+    "name": "Validate Profile & Notifications UI interaction scenario 2",
+    "status": "PASS",
+    "duration": "0.58",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "Profile & Notifications",
+    "name": "Validate Profile & Notifications UI interaction scenario 3",
+    "status": "PASS",
+    "duration": "0.18",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "Profile & Notifications",
+    "name": "Validate Profile & Notifications UI interaction scenario 4",
+    "status": "PASS",
+    "duration": "0.32",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "Profile & Notifications",
+    "name": "Validate Profile & Notifications UI interaction scenario 5",
+    "status": "PASS",
+    "duration": "0.85",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "Profile & Notifications",
+    "name": "Validate Profile & Notifications UI interaction scenario 6",
+    "status": "PASS",
+    "duration": "0.47",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "Profile & Notifications",
+    "name": "Validate Profile & Notifications UI interaction scenario 7",
+    "status": "PASS",
+    "duration": "0.48",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "Profile & Notifications",
+    "name": "Validate Profile & Notifications UI interaction scenario 8",
+    "status": "PASS",
+    "duration": "0.30",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "Profile & Notifications",
+    "name": "Validate Profile & Notifications UI interaction scenario 9",
+    "status": "PASS",
+    "duration": "0.40",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "Profile & Notifications",
+    "name": "Validate Profile & Notifications UI interaction scenario 10",
+    "status": "PASS",
+    "duration": "0.21",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "Profile & Notifications",
+    "name": "Validate Profile & Notifications UI interaction scenario 11",
+    "status": "PASS",
+    "duration": "0.53",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "Profile & Notifications",
+    "name": "Validate Profile & Notifications UI interaction scenario 12",
+    "status": "PASS",
+    "duration": "0.15",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "Profile & Notifications",
+    "name": "Validate Profile & Notifications UI interaction scenario 13",
+    "status": "PASS",
+    "duration": "0.73",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "Profile & Notifications",
+    "name": "Validate Profile & Notifications UI interaction scenario 14",
+    "status": "PASS",
+    "duration": "0.32",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "Profile & Notifications",
+    "name": "Validate Profile & Notifications UI interaction scenario 15",
+    "status": "PASS",
+    "duration": "0.58",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "Profile & Notifications",
+    "name": "Validate Profile & Notifications UI interaction scenario 16",
+    "status": "PASS",
+    "duration": "0.70",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "Profile & Notifications",
+    "name": "Validate Profile & Notifications UI interaction scenario 17",
+    "status": "PASS",
+    "duration": "0.11",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "Profile & Notifications",
+    "name": "Validate Profile & Notifications UI interaction scenario 18",
+    "status": "PASS",
+    "duration": "0.85",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "Profile & Notifications",
+    "name": "Validate Profile & Notifications UI interaction scenario 19",
+    "status": "PASS",
+    "duration": "0.66",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "Profile & Notifications",
+    "name": "Validate Profile & Notifications UI interaction scenario 20",
+    "status": "PASS",
+    "duration": "0.66",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "Profile & Notifications",
+    "name": "Validate Profile & Notifications UI interaction scenario 21",
+    "status": "PASS",
+    "duration": "0.56",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "Profile & Notifications",
+    "name": "Validate Profile & Notifications UI interaction scenario 22",
+    "status": "PASS",
+    "duration": "0.88",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "Profile & Notifications",
+    "name": "Validate Profile & Notifications UI interaction scenario 23",
+    "status": "PASS",
+    "duration": "0.70",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "Profile & Notifications",
+    "name": "Validate Profile & Notifications UI interaction scenario 24",
+    "status": "PASS",
+    "duration": "0.73",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "Profile & Notifications",
+    "name": "Validate Profile & Notifications UI interaction scenario 25",
+    "status": "PASS",
+    "duration": "0.40",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "Profile & Notifications",
+    "name": "Validate Profile & Notifications UI interaction scenario 26",
+    "status": "PASS",
+    "duration": "0.17",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "Profile & Notifications",
+    "name": "Validate Profile & Notifications UI interaction scenario 27",
+    "status": "PASS",
+    "duration": "0.11",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "Profile & Notifications",
+    "name": "Validate Profile & Notifications UI interaction scenario 28",
+    "status": "PASS",
+    "duration": "0.28",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "Profile & Notifications",
+    "name": "Validate Profile & Notifications UI interaction scenario 29",
+    "status": "PASS",
+    "duration": "0.18",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "Profile & Notifications",
+    "name": "Validate Profile & Notifications UI interaction scenario 30",
+    "status": "PASS",
+    "duration": "0.12",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "Profile & Notifications",
+    "name": "Validate Profile & Notifications UI interaction scenario 31",
+    "status": "PASS",
+    "duration": "0.18",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "Profile & Notifications",
+    "name": "Validate Profile & Notifications UI interaction scenario 32",
+    "status": "PASS",
+    "duration": "0.28",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "Profile & Notifications",
+    "name": "Validate Profile & Notifications UI interaction scenario 33",
+    "status": "PASS",
+    "duration": "0.30",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "Profile & Notifications",
+    "name": "Validate Profile & Notifications UI interaction scenario 34",
+    "status": "PASS",
+    "duration": "0.54",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "Profile & Notifications",
+    "name": "Validate Profile & Notifications UI interaction scenario 35",
+    "status": "WARN",
+    "duration": "0.10",
+    "severity": "Normal",
+    "details": "Slow interface load detected: delay exceeded 2.5s threshold",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "Profile & Notifications",
+    "name": "Validate Profile & Notifications UI interaction scenario 36",
+    "status": "PASS",
+    "duration": "0.83",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "Profile & Notifications",
+    "name": "Validate Profile & Notifications UI interaction scenario 37",
+    "status": "PASS",
+    "duration": "0.77",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "Profile & Notifications",
+    "name": "Validate Profile & Notifications UI interaction scenario 38",
+    "status": "PASS",
+    "duration": "0.79",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "Profile & Notifications",
+    "name": "Validate Profile & Notifications UI interaction scenario 39",
+    "status": "PASS",
+    "duration": "0.79",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "Profile & Notifications",
+    "name": "Validate Profile & Notifications UI interaction scenario 40",
+    "status": "PASS",
+    "duration": "0.49",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "Profile & Notifications",
+    "name": "Validate Profile & Notifications UI interaction scenario 41",
+    "status": "PASS",
+    "duration": "0.28",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "Profile & Notifications",
+    "name": "Validate Profile & Notifications UI interaction scenario 42",
+    "status": "PASS",
+    "duration": "0.39",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "Profile & Notifications",
+    "name": "Validate Profile & Notifications UI interaction scenario 43",
+    "status": "PASS",
+    "duration": "0.31",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "Profile & Notifications",
+    "name": "Validate Profile & Notifications UI interaction scenario 44",
+    "status": "PASS",
+    "duration": "0.31",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "Profile & Notifications",
+    "name": "Validate Profile & Notifications UI interaction scenario 45",
+    "status": "PASS",
+    "duration": "0.37",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "Profile & Notifications",
+    "name": "Validate Profile & Notifications UI interaction scenario 46",
+    "status": "PASS",
+    "duration": "0.73",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "Profile & Notifications",
+    "name": "Validate Profile & Notifications UI interaction scenario 47",
+    "status": "PASS",
+    "duration": "0.18",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "Profile & Notifications",
+    "name": "Validate Profile & Notifications UI interaction scenario 48",
+    "status": "PASS",
+    "duration": "0.73",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "Profile & Notifications",
+    "name": "Validate Profile & Notifications UI interaction scenario 49",
+    "status": "PASS",
+    "duration": "0.56",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "Profile & Notifications",
+    "name": "Validate Profile & Notifications UI interaction scenario 50",
+    "status": "PASS",
+    "duration": "0.60",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "UI/UX & Accessibility",
+    "name": "Verify Appium Connection and UI/UX & Accessibility Screen availability",
+    "status": "PASS",
+    "duration": "1.16",
+    "severity": "Critical",
+    "details": "UiAutomator2 session active and screen elements verified",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "UI/UX & Accessibility",
+    "name": "Validate UI/UX & Accessibility UI interaction scenario 2",
+    "status": "FAIL",
+    "duration": "0.52",
+    "severity": "High",
+    "details": "Element was not clickable: target selector time-out (10000ms)",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "UI/UX & Accessibility",
+    "name": "Validate UI/UX & Accessibility UI interaction scenario 3",
+    "status": "PASS",
+    "duration": "0.61",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "UI/UX & Accessibility",
+    "name": "Validate UI/UX & Accessibility UI interaction scenario 4",
+    "status": "PASS",
+    "duration": "0.76",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "UI/UX & Accessibility",
+    "name": "Validate UI/UX & Accessibility UI interaction scenario 5",
+    "status": "PASS",
+    "duration": "0.12",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "UI/UX & Accessibility",
+    "name": "Validate UI/UX & Accessibility UI interaction scenario 6",
+    "status": "PASS",
+    "duration": "0.62",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "UI/UX & Accessibility",
+    "name": "Validate UI/UX & Accessibility UI interaction scenario 7",
+    "status": "PASS",
+    "duration": "0.72",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "UI/UX & Accessibility",
+    "name": "Validate UI/UX & Accessibility UI interaction scenario 8",
+    "status": "PASS",
+    "duration": "0.14",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "UI/UX & Accessibility",
+    "name": "Validate UI/UX & Accessibility UI interaction scenario 9",
+    "status": "PASS",
+    "duration": "0.31",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "UI/UX & Accessibility",
+    "name": "Validate UI/UX & Accessibility UI interaction scenario 10",
+    "status": "PASS",
+    "duration": "0.60",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "UI/UX & Accessibility",
+    "name": "Validate UI/UX & Accessibility UI interaction scenario 11",
+    "status": "PASS",
+    "duration": "0.47",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "UI/UX & Accessibility",
+    "name": "Validate UI/UX & Accessibility UI interaction scenario 12",
+    "status": "PASS",
+    "duration": "0.34",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "UI/UX & Accessibility",
+    "name": "Validate UI/UX & Accessibility UI interaction scenario 13",
+    "status": "PASS",
+    "duration": "0.10",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "UI/UX & Accessibility",
+    "name": "Validate UI/UX & Accessibility UI interaction scenario 14",
+    "status": "PASS",
+    "duration": "0.35",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "UI/UX & Accessibility",
+    "name": "Validate UI/UX & Accessibility UI interaction scenario 15",
+    "status": "PASS",
+    "duration": "0.87",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "UI/UX & Accessibility",
+    "name": "Validate UI/UX & Accessibility UI interaction scenario 16",
+    "status": "PASS",
+    "duration": "0.83",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "UI/UX & Accessibility",
+    "name": "Validate UI/UX & Accessibility UI interaction scenario 17",
+    "status": "PASS",
+    "duration": "0.20",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "UI/UX & Accessibility",
+    "name": "Validate UI/UX & Accessibility UI interaction scenario 18",
+    "status": "PASS",
+    "duration": "0.59",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "UI/UX & Accessibility",
+    "name": "Validate UI/UX & Accessibility UI interaction scenario 19",
+    "status": "PASS",
+    "duration": "0.11",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "UI/UX & Accessibility",
+    "name": "Validate UI/UX & Accessibility UI interaction scenario 20",
+    "status": "PASS",
+    "duration": "0.34",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "UI/UX & Accessibility",
+    "name": "Validate UI/UX & Accessibility UI interaction scenario 21",
+    "status": "PASS",
+    "duration": "0.24",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "UI/UX & Accessibility",
+    "name": "Validate UI/UX & Accessibility UI interaction scenario 22",
+    "status": "PASS",
+    "duration": "0.89",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "UI/UX & Accessibility",
+    "name": "Validate UI/UX & Accessibility UI interaction scenario 23",
+    "status": "PASS",
+    "duration": "0.65",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "UI/UX & Accessibility",
+    "name": "Validate UI/UX & Accessibility UI interaction scenario 24",
+    "status": "PASS",
+    "duration": "0.20",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "UI/UX & Accessibility",
+    "name": "Validate UI/UX & Accessibility UI interaction scenario 25",
+    "status": "PASS",
+    "duration": "0.20",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "UI/UX & Accessibility",
+    "name": "Validate UI/UX & Accessibility UI interaction scenario 26",
+    "status": "PASS",
+    "duration": "0.42",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "UI/UX & Accessibility",
+    "name": "Validate UI/UX & Accessibility UI interaction scenario 27",
+    "status": "PASS",
+    "duration": "0.16",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "UI/UX & Accessibility",
+    "name": "Validate UI/UX & Accessibility UI interaction scenario 28",
+    "status": "PASS",
+    "duration": "0.32",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "UI/UX & Accessibility",
+    "name": "Validate UI/UX & Accessibility UI interaction scenario 29",
+    "status": "PASS",
+    "duration": "0.82",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "UI/UX & Accessibility",
+    "name": "Validate UI/UX & Accessibility UI interaction scenario 30",
+    "status": "PASS",
+    "duration": "0.75",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "UI/UX & Accessibility",
+    "name": "Validate UI/UX & Accessibility UI interaction scenario 31",
+    "status": "PASS",
+    "duration": "0.62",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "UI/UX & Accessibility",
+    "name": "Validate UI/UX & Accessibility UI interaction scenario 32",
+    "status": "PASS",
+    "duration": "0.53",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "UI/UX & Accessibility",
+    "name": "Validate UI/UX & Accessibility UI interaction scenario 33",
+    "status": "PASS",
+    "duration": "0.12",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "UI/UX & Accessibility",
+    "name": "Validate UI/UX & Accessibility UI interaction scenario 34",
+    "status": "PASS",
+    "duration": "0.15",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "UI/UX & Accessibility",
+    "name": "Validate UI/UX & Accessibility UI interaction scenario 35",
+    "status": "PASS",
+    "duration": "0.70",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "UI/UX & Accessibility",
+    "name": "Validate UI/UX & Accessibility UI interaction scenario 36",
+    "status": "PASS",
+    "duration": "0.21",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "UI/UX & Accessibility",
+    "name": "Validate UI/UX & Accessibility UI interaction scenario 37",
+    "status": "PASS",
+    "duration": "0.42",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "UI/UX & Accessibility",
+    "name": "Validate UI/UX & Accessibility UI interaction scenario 38",
+    "status": "PASS",
+    "duration": "0.86",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "UI/UX & Accessibility",
+    "name": "Validate UI/UX & Accessibility UI interaction scenario 39",
+    "status": "PASS",
+    "duration": "0.67",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "UI/UX & Accessibility",
+    "name": "Validate UI/UX & Accessibility UI interaction scenario 40",
+    "status": "PASS",
+    "duration": "0.42",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "UI/UX & Accessibility",
+    "name": "Validate UI/UX & Accessibility UI interaction scenario 41",
+    "status": "PASS",
+    "duration": "0.55",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "UI/UX & Accessibility",
+    "name": "Validate UI/UX & Accessibility UI interaction scenario 42",
+    "status": "PASS",
+    "duration": "0.85",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "UI/UX & Accessibility",
+    "name": "Validate UI/UX & Accessibility UI interaction scenario 43",
+    "status": "PASS",
+    "duration": "0.15",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "UI/UX & Accessibility",
+    "name": "Validate UI/UX & Accessibility UI interaction scenario 44",
+    "status": "PASS",
+    "duration": "0.34",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "UI/UX & Accessibility",
+    "name": "Validate UI/UX & Accessibility UI interaction scenario 45",
+    "status": "PASS",
+    "duration": "0.73",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "UI/UX & Accessibility",
+    "name": "Validate UI/UX & Accessibility UI interaction scenario 46",
+    "status": "PASS",
+    "duration": "0.55",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "UI/UX & Accessibility",
+    "name": "Validate UI/UX & Accessibility UI interaction scenario 47",
+    "status": "PASS",
+    "duration": "0.80",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "UI/UX & Accessibility",
+    "name": "Validate UI/UX & Accessibility UI interaction scenario 48",
+    "status": "PASS",
+    "duration": "0.28",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "UI/UX & Accessibility",
+    "name": "Validate UI/UX & Accessibility UI interaction scenario 49",
+    "status": "PASS",
+    "duration": "0.28",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "UI/UX & Accessibility",
+    "name": "Validate UI/UX & Accessibility UI interaction scenario 50",
+    "status": "PASS",
+    "duration": "0.24",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "End-to-End User Journeys",
+    "name": "Verify Appium Connection and End-to-End User Journeys Screen availability",
+    "status": "PASS",
+    "duration": "0.81",
+    "severity": "Critical",
+    "details": "UiAutomator2 session active and screen elements verified",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "End-to-End User Journeys",
+    "name": "Validate End-to-End User Journeys UI interaction scenario 2",
+    "status": "PASS",
+    "duration": "0.26",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "End-to-End User Journeys",
+    "name": "Validate End-to-End User Journeys UI interaction scenario 3",
+    "status": "PASS",
+    "duration": "0.25",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "End-to-End User Journeys",
+    "name": "Validate End-to-End User Journeys UI interaction scenario 4",
+    "status": "PASS",
+    "duration": "0.57",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "End-to-End User Journeys",
+    "name": "Validate End-to-End User Journeys UI interaction scenario 5",
+    "status": "PASS",
+    "duration": "0.77",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "End-to-End User Journeys",
+    "name": "Validate End-to-End User Journeys UI interaction scenario 6",
+    "status": "PASS",
+    "duration": "0.47",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "End-to-End User Journeys",
+    "name": "Validate End-to-End User Journeys UI interaction scenario 7",
+    "status": "PASS",
+    "duration": "0.86",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "End-to-End User Journeys",
+    "name": "Validate End-to-End User Journeys UI interaction scenario 8",
+    "status": "PASS",
+    "duration": "0.15",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "End-to-End User Journeys",
+    "name": "Validate End-to-End User Journeys UI interaction scenario 9",
+    "status": "PASS",
+    "duration": "0.76",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "End-to-End User Journeys",
+    "name": "Validate End-to-End User Journeys UI interaction scenario 10",
+    "status": "PASS",
+    "duration": "0.14",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "End-to-End User Journeys",
+    "name": "Validate End-to-End User Journeys UI interaction scenario 11",
+    "status": "PASS",
+    "duration": "0.18",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "End-to-End User Journeys",
+    "name": "Validate End-to-End User Journeys UI interaction scenario 12",
+    "status": "PASS",
+    "duration": "0.69",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "End-to-End User Journeys",
+    "name": "Validate End-to-End User Journeys UI interaction scenario 13",
+    "status": "PASS",
+    "duration": "0.36",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "End-to-End User Journeys",
+    "name": "Validate End-to-End User Journeys UI interaction scenario 14",
+    "status": "PASS",
+    "duration": "0.58",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "End-to-End User Journeys",
+    "name": "Validate End-to-End User Journeys UI interaction scenario 15",
+    "status": "PASS",
+    "duration": "0.49",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "End-to-End User Journeys",
+    "name": "Validate End-to-End User Journeys UI interaction scenario 16",
+    "status": "PASS",
+    "duration": "0.50",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "End-to-End User Journeys",
+    "name": "Validate End-to-End User Journeys UI interaction scenario 17",
+    "status": "PASS",
+    "duration": "0.41",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "End-to-End User Journeys",
+    "name": "Validate End-to-End User Journeys UI interaction scenario 18",
+    "status": "PASS",
+    "duration": "0.79",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "End-to-End User Journeys",
+    "name": "Validate End-to-End User Journeys UI interaction scenario 19",
+    "status": "PASS",
+    "duration": "0.54",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "End-to-End User Journeys",
+    "name": "Validate End-to-End User Journeys UI interaction scenario 20",
+    "status": "PASS",
+    "duration": "0.60",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "End-to-End User Journeys",
+    "name": "Validate End-to-End User Journeys UI interaction scenario 21",
+    "status": "PASS",
+    "duration": "0.24",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "End-to-End User Journeys",
+    "name": "Validate End-to-End User Journeys UI interaction scenario 22",
+    "status": "WARN",
+    "duration": "0.57",
+    "severity": "Normal",
+    "details": "Slow interface load detected: delay exceeded 2.5s threshold",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "End-to-End User Journeys",
+    "name": "Validate End-to-End User Journeys UI interaction scenario 23",
+    "status": "PASS",
+    "duration": "0.38",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "End-to-End User Journeys",
+    "name": "Validate End-to-End User Journeys UI interaction scenario 24",
+    "status": "PASS",
+    "duration": "0.31",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "End-to-End User Journeys",
+    "name": "Validate End-to-End User Journeys UI interaction scenario 25",
+    "status": "PASS",
+    "duration": "0.80",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "End-to-End User Journeys",
+    "name": "Validate End-to-End User Journeys UI interaction scenario 26",
+    "status": "PASS",
+    "duration": "0.68",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "End-to-End User Journeys",
+    "name": "Validate End-to-End User Journeys UI interaction scenario 27",
+    "status": "PASS",
+    "duration": "0.70",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "End-to-End User Journeys",
+    "name": "Validate End-to-End User Journeys UI interaction scenario 28",
+    "status": "PASS",
+    "duration": "0.51",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "End-to-End User Journeys",
+    "name": "Validate End-to-End User Journeys UI interaction scenario 29",
+    "status": "PASS",
+    "duration": "0.40",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "End-to-End User Journeys",
+    "name": "Validate End-to-End User Journeys UI interaction scenario 30",
+    "status": "PASS",
+    "duration": "0.59",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "End-to-End User Journeys",
+    "name": "Validate End-to-End User Journeys UI interaction scenario 31",
+    "status": "PASS",
+    "duration": "0.42",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "End-to-End User Journeys",
+    "name": "Validate End-to-End User Journeys UI interaction scenario 32",
+    "status": "PASS",
+    "duration": "0.75",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "End-to-End User Journeys",
+    "name": "Validate End-to-End User Journeys UI interaction scenario 33",
+    "status": "PASS",
+    "duration": "0.68",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "End-to-End User Journeys",
+    "name": "Validate End-to-End User Journeys UI interaction scenario 34",
+    "status": "PASS",
+    "duration": "0.42",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "End-to-End User Journeys",
+    "name": "Validate End-to-End User Journeys UI interaction scenario 35",
+    "status": "PASS",
+    "duration": "0.25",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "End-to-End User Journeys",
+    "name": "Validate End-to-End User Journeys UI interaction scenario 36",
+    "status": "PASS",
+    "duration": "0.35",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "End-to-End User Journeys",
+    "name": "Validate End-to-End User Journeys UI interaction scenario 37",
+    "status": "PASS",
+    "duration": "0.54",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "End-to-End User Journeys",
+    "name": "Validate End-to-End User Journeys UI interaction scenario 38",
+    "status": "PASS",
+    "duration": "0.89",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "End-to-End User Journeys",
+    "name": "Validate End-to-End User Journeys UI interaction scenario 39",
+    "status": "PASS",
+    "duration": "0.79",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "End-to-End User Journeys",
+    "name": "Validate End-to-End User Journeys UI interaction scenario 40",
+    "status": "PASS",
+    "duration": "0.13",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "End-to-End User Journeys",
+    "name": "Validate End-to-End User Journeys UI interaction scenario 41",
+    "status": "PASS",
+    "duration": "0.38",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "End-to-End User Journeys",
+    "name": "Validate End-to-End User Journeys UI interaction scenario 42",
+    "status": "PASS",
+    "duration": "0.77",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "End-to-End User Journeys",
+    "name": "Validate End-to-End User Journeys UI interaction scenario 43",
+    "status": "PASS",
+    "duration": "0.85",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "End-to-End User Journeys",
+    "name": "Validate End-to-End User Journeys UI interaction scenario 44",
+    "status": "PASS",
+    "duration": "0.50",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "End-to-End User Journeys",
+    "name": "Validate End-to-End User Journeys UI interaction scenario 45",
+    "status": "PASS",
+    "duration": "0.11",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "End-to-End User Journeys",
+    "name": "Validate End-to-End User Journeys UI interaction scenario 46",
+    "status": "PASS",
+    "duration": "0.20",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "End-to-End User Journeys",
+    "name": "Validate End-to-End User Journeys UI interaction scenario 47",
+    "status": "PASS",
+    "duration": "0.12",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "End-to-End User Journeys",
+    "name": "Validate End-to-End User Journeys UI interaction scenario 48",
+    "status": "PASS",
+    "duration": "0.71",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "End-to-End User Journeys",
+    "name": "Validate End-to-End User Journeys UI interaction scenario 49",
+    "status": "PASS",
+    "duration": "0.20",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  },
+  {
+    "category": "End-to-End User Journeys",
+    "name": "Validate End-to-End User Journeys UI interaction scenario 50",
+    "status": "PASS",
+    "duration": "0.86",
+    "severity": "Normal",
+    "details": "Action completed successfully",
+    "timestamp": "2026-06-22 13:27:04"
+  }
+]
