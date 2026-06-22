@@ -27,7 +27,7 @@ jobs:
 
       - name: Install Node Dependencies
         run: |
-          npm ci
+          npm install
 
       - name: Run Expo Prebuild
         run: |
