@@ -236,7 +236,7 @@ export default function ProfileScreen() {
           </View>
         </TouchableOpacity>
 
-        <Text style={styles.profileName}>{name}</Text>
+        <Text testID="profile-username" style={styles.profileName}>{name}</Text>
         <Text style={styles.profileEmail}>{email}</Text>
         <Text style={styles.profileBio}>{bio}</Text>
       </View>
@@ -262,6 +262,7 @@ export default function ProfileScreen() {
         <Text style={styles.menuSectionTitle}>ACCOUNT</Text>
         {menuItems.map((item, index) => (
           <TouchableOpacity
+            testID={`profile-menu-${item.label.toLowerCase().replace(/ /g, "-")}`}
             key={index}
             onPress={() => {
               if (item.route) {
@@ -343,7 +344,7 @@ export default function ProfileScreen() {
       </TouchableOpacity>
 
       {/* Logout */}
-      <TouchableOpacity onPress={handleLogout} style={styles.logoutBtn}>
+      <TouchableOpacity testID="profile-logout-btn" onPress={handleLogout} style={styles.logoutBtn}>
         <Ionicons name="log-out-outline" size={20} color="white" />
         <Text style={styles.logoutText}>Logout</Text>
       </TouchableOpacity>

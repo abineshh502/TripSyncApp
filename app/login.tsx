@@ -173,11 +173,12 @@ export default function LoginScreen() {
               
               <View style={styles.otpDisplayContainer}>
                 <Text style={styles.otpDisplayLabel}>Your OTP is:</Text>
-                <Text style={styles.otpDisplayValue}>{modalOtp}</Text>
+                <Text testID="otp-display-value" style={styles.otpDisplayValue}>{modalOtp}</Text>
               </View>
             </View>
 
             <TouchableOpacity
+              testID="otp-modal-ok-button"
               onPress={() => {
                 setModalVisible(false);
                 router.replace({ pathname: "/otp", params: { email: email.trim(), isLogin: "true" } });
@@ -219,6 +220,7 @@ export default function LoginScreen() {
       <View style={styles.inputWrapper}>
         <Ionicons name="mail-outline" size={20} color="#94A3B8" style={styles.inputIcon} />
         <TextInput
+          testID="email-input"
           placeholder="Email Address"
           placeholderTextColor="#94A3B8"
           value={email}
@@ -265,6 +267,7 @@ export default function LoginScreen() {
       <View style={styles.inputWrapper}>
         <Ionicons name="lock-closed-outline" size={20} color="#94A3B8" style={styles.inputIcon} />
         <TextInput
+          testID="password-input"
           placeholder="Password"
           placeholderTextColor="#94A3B8"
           secureTextEntry={!showPassword}
@@ -289,6 +292,7 @@ export default function LoginScreen() {
       </TouchableOpacity>
 
       <TouchableOpacity
+        testID="login-button"
         onPress={handleLogin}
         style={[styles.loginBtn, loading && { opacity: 0.8 }]}
         disabled={loading}
@@ -301,6 +305,7 @@ export default function LoginScreen() {
       </TouchableOpacity>
 
       <TouchableOpacity
+        testID="register-link"
         onPress={() => router.replace("/register")}
         style={styles.registerLink}
       >
@@ -318,7 +323,7 @@ export default function LoginScreen() {
 
       <View style={styles.featuresRow}>
         {["🗺️ Maps", "🤖 AI Planner", "👥 Groups", "🌦️ Live Weather"].map((f, i) => (
-          <View key={i} style={styles.featureBadge}>
+          <View key={i} testID={`feature-badge-${i}`} style={styles.featureBadge}>
             <Text style={styles.featureText}>{f}</Text>
           </View>
         ))}

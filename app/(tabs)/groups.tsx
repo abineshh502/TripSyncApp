@@ -254,6 +254,7 @@ export default function GroupsScreen() {
       {/* Action Buttons Row */}
       <View style={{ flexDirection: "row", justifyContent: "space-between", marginBottom: 25 }}>
         <TouchableOpacity
+          testID="new-group-button"
           onPress={() => setCreateVisible(true)}
           style={{
             flex: 1,
@@ -269,6 +270,7 @@ export default function GroupsScreen() {
         </TouchableOpacity>
 
         <TouchableOpacity
+          testID="groups-join-btn"
           onPress={() => setJoinVisible(true)}
           style={{
             flex: 1,
@@ -515,6 +517,7 @@ export default function GroupsScreen() {
             </Text>
 
             <TextInput
+              testID="group-name-input"
               placeholder="Group Trip Name (e.g. Riders, Goa squad)"
               placeholderTextColor="#94A3B8"
               value={groupName}
@@ -531,6 +534,7 @@ export default function GroupsScreen() {
             />
 
             <TextInput
+              testID="group-destination-input"
               placeholder="Destination Location"
               placeholderTextColor="#94A3B8"
               value={destination}
@@ -547,6 +551,7 @@ export default function GroupsScreen() {
             />
 
             <TextInput
+              testID="group-budget-input"
               placeholder="Overall Budget (₹)"
               placeholderTextColor="#94A3B8"
               value={budget}
@@ -564,6 +569,7 @@ export default function GroupsScreen() {
             />
 
             <TextInput
+              testID="group-start-date-input"
               placeholder="Start Date (e.g., 10 June)"
               placeholderTextColor="#94A3B8"
               value={startDate}
@@ -580,6 +586,7 @@ export default function GroupsScreen() {
             />
 
             <TextInput
+              testID="group-end-date-input"
               placeholder="End Date (e.g., 15 June)"
               placeholderTextColor="#94A3B8"
               value={endDate}
@@ -596,6 +603,7 @@ export default function GroupsScreen() {
             />
 
             <TouchableOpacity
+              testID="group-submit-btn"
               onPress={handleCreateGroup}
               style={{
                 backgroundColor: "#38BDF8",
