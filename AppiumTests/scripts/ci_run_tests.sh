@@ -106,8 +106,9 @@ fi
 
 # 6. EXECUTE WDIO E2E TESTS
 echo "🧪 Running WebdriverIO Test Suite..."
+export APK_PATH="$(pwd)/android/app/build/outputs/apk/debug/app-debug.apk"
+echo "📍 Resolved absolute APK path: $APK_PATH"
 cd AppiumTests
-export APK_PATH="../android/app/build/outputs/apk/debug/app-debug.apk"
 npx wdio run wdio.conf.js
 TEST_EXIT_CODE=$?
 
