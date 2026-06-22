@@ -33,6 +33,7 @@ function generateHtmlReport(jsonlPath, outputPath) {
     let activeActivity = '.MainActivity';
     let deviceName = 'Android Emulator';
     let androidVersion = 'Android 10';
+    let sessionId = 'N/A';
     
     const metadataPath = path.join(__dirname, '../../test-results/session-metadata.json');
     if (fs.existsSync(metadataPath)) {
@@ -42,6 +43,7 @@ function generateHtmlReport(jsonlPath, outputPath) {
             activeActivity = meta.activityName || activeActivity;
             deviceName = meta.deviceName || deviceName;
             androidVersion = meta.platformVersion ? `Android ${meta.platformVersion}` : androidVersion;
+            sessionId = meta.sessionId || sessionId;
         } catch (e) {
             console.warn('[HTML Reporter] Could not parse session metadata, using defaults:', e.message);
         }
@@ -684,6 +686,7 @@ function generateHtmlReport(jsonlPath, outputPath) {
 * **Android Version:** ${androidVersion}
 * **Active Package:** \`${activePackage}\`
 * **Active Activity:** \`${activeActivity}\`
+* **Appium Session ID:** \`${sessionId}\`
 `;
         fs.writeFileSync(process.env.GITHUB_STEP_SUMMARY, summaryMarkdown);
         console.log('[HTML Reporter] Saved GHA step summary.');

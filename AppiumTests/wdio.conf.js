@@ -35,8 +35,10 @@ exports.config = {
             const currentDriver = typeof driver !== 'undefined' ? driver : browser;
             const pkg = await currentDriver.getCurrentPackage();
             const act = await currentDriver.getCurrentActivity();
+            const sessionId = currentDriver.sessionId || 'N/A';
             console.log(`✓ Active Package: ${pkg}`);
             console.log(`✓ Active Activity: ${act}`);
+            console.log(`✓ Appium Session ID: ${sessionId}`);
             if (!pkg || !act) {
                 throw new Error('Active Package or Activity is empty');
             }
@@ -47,6 +49,7 @@ exports.config = {
             const platformVersion = caps.platformVersion || caps['appium:platformVersion'] || '10';
             
             const metadata = {
+                sessionId: sessionId,
                 packageName: pkg,
                 activityName: act,
                 deviceName: deviceName,
