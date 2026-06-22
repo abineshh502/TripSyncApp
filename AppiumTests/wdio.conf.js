@@ -15,8 +15,8 @@ exports.config = {
     maxInstances: 1,
     capabilities: [{
         platformName: 'Android',
-        'appium:deviceName': 'Android Emulator',
         'appium:automationName': 'UiAutomator2',
+        'appium:deviceName': 'Android Emulator',
         'appium:app': process.env.APK_PATH || path.join(__dirname, '../android/app/build/outputs/apk/debug/app-debug.apk'),
         'appium:appPackage': 'com.kondajeswanth.TripSyncApp',
         'appium:appActivity': '.MainActivity',
@@ -34,23 +34,38 @@ exports.config = {
         console.log('====================================================');
         console.log('🔍 VERIFYING APPIUM SESSION CREATION...');
         try {
-            const pkg = await browser.getCurrentPackage();
-            const act = await browser.getCurrentActivity();
+            const currentDriver = typeof driver !== 'undefined' ? driver : browser;
+            const pkg = await currentDriver.getCurrentPackage();
+            const act = await currentDriver.getCurrentActivity();
             console.log(`✓ Active Package: ${pkg}`);
             console.log(`✓ Active Activity: ${act}`);
             if (!pkg || !act) {
                 throw new Error('Active Package or Activity is empty');
             }
+            // Save session metadata for reports
+            const caps = currentDriver.capabilities || {};
+            const deviceName = caps.deviceName || caps['appium:deviceName'] || 'emulator-5554';
+            const platformVersion = caps.platformVersion || caps['appium:platformVersion'] || 'Android 10';
+            const metadata = {
+                packageName: pkg,
+                activityName: act,
+                deviceName: deviceName,
+                platformVersion: platformVersion
+            };
+            const metadataPath = path.join(__dirname, '../test-results/session-metadata.json');
+            fs.writeFileSync(metadataPath, JSON.stringify(metadata, null, 2));
+            console.log(`✓ Session metadata saved to ${metadataPath}`);
         } catch (e) {
             console.error('❌ ERROR: Appium session verification failed:', e.message);
+            console.error('Appium session creation failed');
             process.exit(1);
         }
         console.log('====================================================');
     },
     waitforTimeout: 10000,
-    connectionRetryTimeout: 120000,
-    connectionRetryCount: 3,
-    services: ['appium'],
+    connectionRetryTimeout: 240000,
+    connectionRetryCount: 0,
+    services: [],
     framework: 'mocha',
     reporters: ['spec'],
     mochaOpts: {

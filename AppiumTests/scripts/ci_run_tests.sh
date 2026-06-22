@@ -8,65 +8,50 @@ echo "===================================================="
 # Ensure test-results folder exists
 mkdir -p test-results
 
-# Helper to verify adb device online state
-verify_adb_device() {
-    for attempt in {1..10}; do
-        echo "🔍 Checking adb device state (Attempt $attempt/10)..."
-        adb wait-for-device
-        
-        # Check if the device is showing offline
+# Helper to verify adb device online state and boot completion
+verify_emulator_ready() {
+    echo "⏳ Checking emulator state..."
+    for i in {1..40}; do
+        # Get status of emulator-5554 or first emulator
         device_status=$(adb devices | grep -E "emulator-5554|emulator" | head -n 1 | awk '{print $2}' | tr -d '\r')
-        echo "Device status reported as: '$device_status'"
+        echo "Attempt $i/40: Emulator status: '$device_status'"
         
-        if [ "$device_status" = "offline" ] || [ -z "$device_status" ]; then
-            echo "⚠️ Device is offline or undetected. Restarting ADB server..."
+        if [ "$device_status" = "offline" ]; then
+            echo "⚠️ Device is offline. Restarting ADB server..."
             adb kill-server
             adb start-server
             sleep 5
+            continue
+        elif [ -z "$device_status" ]; then
+            echo "⚠️ No emulator detected. Waiting..."
+            sleep 5
+            continue
         elif [ "$device_status" = "device" ]; then
-            echo "✓ Device is online and ready!"
-            return 0
-        else
-            echo "⚠️ Device status is '$device_status', waiting..."
-            sleep 3
+            # Check sys.boot_completed
+            boot_status=$(adb shell getprop sys.boot_completed 2>/dev/null | tr -d '\r')
+            echo "sys.boot_completed: '$boot_status'"
+            if [ "$boot_status" = "1" ]; then
+                echo "✓ Emulator is fully booted and online (device)!"
+                return 0
+            fi
         fi
+        sleep 5
     done
-    
-    echo "❌ ERROR: ADB device is not ready or still offline."
+    echo "❌ ERROR: Emulator failed to boot or remains offline."
     return 1
 }
 
-# 1. VERIFY EMULATOR BOOT COMPLETION
-echo "⏳ Waiting for Android emulator boot completion..."
-adb wait-for-device
-boot_completed=false
-for i in {1..60}; do
-    status=$(adb shell getprop sys.boot_completed 2>/dev/null | tr -d '\r')
-    if [ "$status" = "1" ]; then
-        echo "✓ Emulator is fully booted (sys.boot_completed=1)!"
-        boot_completed=true
-        break
-    fi
-    echo "  - Waiting for sys.boot_completed... ($i/60 seconds)"
-    sleep 2
-done
-
-if [ "$boot_completed" = false ]; then
-    echo "❌ ERROR: Emulator failed to boot within time limit."
-    exit 1
-fi
-
-# 2. VERIFY ADB DEVICES ONLINE
-verify_adb_device
+# 1. VERIFY EMULATOR BOOT AND ONLINE STATUS
+verify_emulator_ready
 if [ $? -ne 0 ]; then
-    echo "❌ ERROR: Emulator device is offline or unavailable."
+    echo "❌ ERROR: Emulator device is not online or ready."
     exit 1
 fi
 
 echo "📱 Connected ADB Devices:"
 adb devices
 
-# 3. APK INSTALLATION
+# 2. APK INSTALLATION
 APK_PATH="android/app/build/outputs/apk/debug/app-debug.apk"
 echo "📦 Installing APK from: $APK_PATH..."
 if [ -f "$APK_PATH" ]; then
@@ -82,7 +67,7 @@ else
     exit 1
 fi
 
-# 4. VERIFY PACKAGE INSTALLED
+# 3. VERIFY PACKAGE INSTALLED
 echo "🔍 Checking installed packages on device..."
 installed_packages=$(adb shell pm list packages | grep "com.kondajeswanth.TripSyncApp" | tr -d '\r')
 if [[ -z "$installed_packages" ]]; then
@@ -92,11 +77,12 @@ else
     echo "✓ Verified package is present: $installed_packages"
 fi
 
-# 5. START APPIUM SERVER
+# 4. START APPIUM SERVER
 echo "🔥 Starting Appium Server on port 4723..."
 npx appium --port 4723 --allow-insecure chromedriver_autodownload > test-results/appium.log 2>&1 &
 APPIUM_PID=$!
 
+# 5. VERIFY APPIUM STATUS ENDPOINT
 echo "⏳ Waiting for Appium Server to accept connections..."
 appium_ready=false
 for i in {1..30}; do
@@ -118,7 +104,6 @@ fi
 # 6. EXECUTE WDIO E2E TESTS
 echo "🧪 Running WebdriverIO Test Suite..."
 cd AppiumTests
-npm install
 APK_PATH="../android/app/build/outputs/apk/debug/app-debug.apk" npx wdio run wdio.conf.js
 TEST_EXIT_CODE=$?
 

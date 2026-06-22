@@ -11,6 +11,37 @@ function generateReports() {
     }
 
     const testResults = JSON.parse(fs.readFileSync(rawResultsPath, 'utf8'));
+    if (!testResults || testResults.length === 0) {
+        console.error("❌ ERROR: No E2E tests were executed. Failing workflow immediately.");
+        process.exit(1);
+    }
+
+    // Read session metadata
+    const metadataPath = path.join(__dirname, '../../test-results/session-metadata.json');
+    if (!fs.existsSync(metadataPath)) {
+        console.error("❌ ERROR: Real Appium session metadata is missing. Failing workflow immediately.");
+        process.exit(1);
+    }
+
+    let activePackage = '';
+    let activeActivity = '';
+    let deviceName = '';
+    let androidVersion = '';
+    try {
+        const meta = JSON.parse(fs.readFileSync(metadataPath, 'utf8'));
+        activePackage = meta.packageName;
+        activeActivity = meta.activityName;
+        deviceName = meta.deviceName;
+        androidVersion = meta.platformVersion ? `Android ${meta.platformVersion}` : 'Android 10';
+        
+        if (!activePackage || !activeActivity) {
+            throw new Error("Invalid session metadata values");
+        }
+    } catch (e) {
+        console.error("❌ ERROR: Failed to read session metadata:", e.message);
+        process.exit(1);
+    }
+
     console.log(`Processing ${testResults.length} test results...`);
 
     // Metadata details
@@ -26,8 +57,6 @@ function generateReports() {
         }
     }
 
-    const deviceName = 'Android Emulator (x86_64)';
-    const androidVersion = 'Android 10 (API 29)';
     const appVersion = '1.0.0-Beta';
 
     // Summary calculations
@@ -113,7 +142,9 @@ function generateReports() {
         ['Execution Date:', executionDate],
         ['Device Name:', deviceName],
         ['Android Version:', androidVersion],
-        ['App Version:', appVersion]
+        ['App Version:', appVersion],
+        ['Active Package:', activePackage],
+        ['Active Activity:', activeActivity]
     ];
     metaLabels.forEach((val, idx) => {
         const row = 6 + idx;
@@ -948,6 +979,8 @@ function generateReports() {
 * **Commit SHA:** \`${commitSha}\`
 * **Device Name:** ${deviceName}
 * **Android Version:** ${androidVersion}
+* **Active Package:** \`${activePackage}\`
+* **Active Activity:** \`${activeActivity}\`
 `;
         fs.writeFileSync(process.env.GITHUB_STEP_SUMMARY, summaryMarkdown);
         console.log('Saved GHA step summary.');
