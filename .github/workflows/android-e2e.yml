@@ -35,7 +35,7 @@ jobs:
 
       - name: Configure Bundle in Debug
         run: |
-          sed -i 's/react {/react {\n    bundleInDebug = true/' android/app/build.gradle
+          sed -i 's/react {/react {\n    debuggableVariants = []/' android/app/build.gradle
 
       - name: Build APK with Gradle
         run: |
