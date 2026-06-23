@@ -14,12 +14,13 @@ exports.config = {
     maxInstances: 1,
     capabilities: [{
         platformName: 'Android',
+        'appium:udid': '3085584598000GN',
+        'appium:platformName': 'Android',
         'appium:automationName': 'UiAutomator2',
-        'appium:deviceName': 'Android Emulator',
+        'appium:noReset': true,
         'appium:appPackage': 'com.kondajeswanth.TripSyncApp',
         'appium:appActivity': '.MainActivity',
         'appium:autoGrantPermissions': true,
-        'appium:noReset': true,
         'appium:newCommandTimeout': 300,
         'appium:adbExecTimeout': 120000,
         'appium:androidInstallTimeout': 180000,
@@ -46,7 +47,7 @@ exports.config = {
             
             // Save session metadata for reports
             const caps = currentDriver.capabilities || {};
-            const deviceName = caps.deviceName || caps['appium:deviceName'] || process.env.ANDROID_DEVICE_SERIAL || 'Android Emulator';
+            const deviceName = caps.deviceName || caps['appium:deviceName'] || process.env.ANDROID_DEVICE_SERIAL || 'Real Android Device';
             const platformVersion = caps.platformVersion || caps['appium:platformVersion'] || '10';
             
             const metadata = {

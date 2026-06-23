@@ -5,28 +5,11 @@ on:
 
 jobs:
   e2e-test:
-    runs-on: ubuntu-latest
+    runs-on: [self-hosted, Windows, android]
 
     steps:
       - name: Checkout Code
         uses: actions/checkout@v4
-
-      - name: Free Disk Space
-        run: |
-          echo "=== Disk space before cleanup ==="
-          df -h
-          # Remove large pre-installed tool sets that are not needed
-          sudo rm -rf /usr/local/lib/android/sdk/ndk
-          sudo rm -rf /usr/local/lib/android/sdk/build-tools
-          sudo rm -rf /usr/local/share/powershell
-          sudo rm -rf /usr/share/dotnet
-          sudo rm -rf /usr/local/.ghcup
-          sudo rm -rf /opt/hostedtoolcache/CodeQL
-          sudo rm -rf /opt/hostedtoolcache/go
-          sudo rm -rf /opt/hostedtoolcache/PyPy
-          sudo apt-get clean -y
-          echo "=== Disk space after cleanup ==="
-          df -h
 
       - name: Set up Java (JDK 17)
         uses: actions/setup-java@v4
@@ -44,12 +27,14 @@ jobs:
       - name: Install Node Dependencies
         run: |
           npm install
+        shell: bash
 
       - name: Run Expo Prebuild
         env:
           EXPO_PUBLIC_E2E_MODE: "true"
         run: |
           npx expo prebuild --platform android --no-install
+        shell: bash
 
       - name: Inject bundleInDebug in build.gradle
         run: |
@@ -65,6 +50,7 @@ jobs:
             console.log('⚠️ Could not find bundleCommand or bundleInDebug already exists');
           }
           "
+        shell: bash
 
       - name: Build APK with JS Bundle (bundleInDebug=true)
         env:
@@ -73,6 +59,7 @@ jobs:
           cd android
           chmod +x gradlew
           ./gradlew assembleDebug -PbundleInDebug=true
+        shell: bash
 
       - name: Verify APK Generated
         run: |
@@ -84,31 +71,13 @@ jobs:
             echo "❌ ERROR: Debug APK was not generated!"
             exit 1
           fi
+        shell: bash
 
-      - name: Free Disk Space Before Emulator
+      - name: Run E2E Tests on Real Device
         run: |
-          echo "=== Disk space before emulator setup ==="
-          df -h
-          # Remove Gradle build caches to free space for emulator system image
-          rm -rf ~/.gradle/caches
-          rm -rf android/.gradle
-          rm -rf android/app/build/intermediates
-          rm -rf android/app/build/tmp
-          echo "=== Disk space after build cache cleanup ==="
-          df -h
-
-      - name: Start Android Emulator & Run E2E Tests
-        uses: reactivecircus/android-emulator-runner@v2
-        with:
-          api-level: 29
-          target: default
-          arch: x86_64
-          force-avd-creation: false
-          emulator-options: -no-window -gpu swiftshader_indirect -noaudio -no-boot-anim -camera-back none
-          disable-animations: true
-          script: |
-            chmod +x AppiumTests/scripts/ci_run_tests.sh
-            ./AppiumTests/scripts/ci_run_tests.sh
+          chmod +x AppiumTests/scripts/ci_run_tests.sh
+          ./AppiumTests/scripts/ci_run_tests.sh
+        shell: bash
 
       - name: Upload Test Report Artifacts
         uses: actions/upload-artifact@v4
