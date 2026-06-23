@@ -33,6 +33,10 @@ jobs:
         run: |
           npx expo prebuild --platform android --no-install
 
+      - name: Configure Bundle in Debug
+        run: |
+          sed -i 's/react {/react {\n    bundleInDebug = true/' android/app/build.gradle
+
       - name: Build APK with Gradle
         run: |
           cd android

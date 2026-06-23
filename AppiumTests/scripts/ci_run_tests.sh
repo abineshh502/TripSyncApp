@@ -71,10 +71,12 @@ dismiss_system_dialogs_loop() {
     echo "🕵️ Starting background system dialog and ANR dismisser daemon..."
     while true; do
         focus=$(adb shell dumpsys window | grep -E 'mCurrentFocus|mFocusedApp' 2>/dev/null)
-        if [[ "$focus" == *"Application Not Responding"* ]] || [[ "$focus" == *"com.android.systemui"* ]] || [[ "$focus" == *"Crash"* ]]; then
+        if [[ "$focus" == *"Application Not Responding"* ]] || [[ "$focus" == *"Crash"* ]] || [[ "$focus" == *"stopped"* ]] || [[ "$focus" == *"not responding"* ]]; then
             echo "⚠️ System ANR or dialog detected: $focus"
-            echo "⚙️ Force-stopping com.android.systemui to clear ANR..."
-            adb shell am force-stop com.android.systemui 2>/dev/null
+            if [[ "$focus" == *"com.android.systemui"* ]]; then
+                echo "⚙️ Force-stopping com.android.systemui to clear ANR..."
+                adb shell am force-stop com.android.systemui 2>/dev/null
+            fi
             
             echo "⚙️ Sending CLOSE_SYSTEM_DIALOGS broadcast..."
             adb shell am broadcast -a android.intent.action.CLOSE_SYSTEM_DIALOGS 2>/dev/null
