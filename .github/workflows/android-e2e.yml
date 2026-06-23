@@ -51,6 +51,21 @@ jobs:
         run: |
           npx expo prebuild --platform android --no-install
 
+      - name: Inject bundleInDebug in build.gradle
+        run: |
+          node -e "
+          const fs = require('fs');
+          const file = 'android/app/build.gradle';
+          let content = fs.readFileSync(file, 'utf8');
+          if (content.includes('bundleCommand =') && !content.includes('bundleInDebug =')) {
+            content = content.replace('bundleCommand = \"export:embed\"', 'bundleCommand = \"export:embed\"\n    bundleInDebug = true');
+            fs.writeFileSync(file, content, 'utf8');
+            console.log('✓ Successfully injected bundleInDebug = true into build.gradle');
+          } else {
+            console.log('⚠️ Could not find bundleCommand or bundleInDebug already exists');
+          }
+          "
+
       - name: Build APK with JS Bundle (bundleInDebug=true)
         env:
           EXPO_PUBLIC_E2E_MODE: "true"
