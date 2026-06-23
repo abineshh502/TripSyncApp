@@ -11,26 +11,32 @@ const delay = async () => {
 
 describe('TripSync Android Appium E2E - 550 Test Suite', () => {
     before(async () => {
-        console.log('⏳ Handling startup permission dialogs...');
-        const selectors = [
-            'id:com.android.permissioncontroller:id/permission_allow_foreground_only_button',
-            'id:com.android.permissioncontroller:id/permission_allow_button',
-            'id:com.android.packageinstaller:id/permission_allow_button',
-            '//*[@text="ALLOW ONLY WHILE USING THE APP"]',
-            '//*[@text="Allow"]',
-            '//*[@text="ALLOW"]'
-        ];
+        console.log('⏳ Checking for system permission dialogs...');
+        const permissionSelector = '//*[' +
+            'contains(@text, "Allow only while using the app") or ' +
+            'contains(@text, "ALLOW ONLY WHILE USING THE APP") or ' +
+            '@resource-id="com.android.permissioncontroller:id/permission_allow_foreground_only_button" or ' +
+            '@resource-id="com.android.permissioncontroller:id/permission_allow_button" or ' +
+            '@resource-id="com.android.packageinstaller:id/permission_allow_button" or ' +
+            '@text="Allow" or ' +
+            '@text="ALLOW" or ' +
+            'contains(@text, "Allow")' +
+            ']';
+            
         for (let attempt = 0; attempt < 3; attempt++) {
-            for (const sel of selectors) {
-                try {
-                    const btn = await $(sel);
-                    if (await btn.isExisting() && await btn.isDisplayed()) {
-                        await btn.click();
-                        console.log(`✓ Accepted permission dialog using: ${sel}`);
-                        await new Promise(resolve => setTimeout(resolve, 1500));
-                        break;
-                    }
-                } catch (e) {}
+            try {
+                const btn = await $(permissionSelector);
+                await btn.waitForExist({ timeout: 2000 });
+                if (await btn.isDisplayed()) {
+                    await btn.click();
+                    console.log(`✓ Accepted permission dialog on attempt ${attempt + 1}`);
+                    await new Promise(resolve => setTimeout(resolve, 1500));
+                } else {
+                    break;
+                }
+            } catch (e) {
+                console.log(`No active permission dialog found on attempt ${attempt + 1}`);
+                break;
             }
         }
 
