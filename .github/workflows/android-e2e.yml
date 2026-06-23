@@ -2,6 +2,12 @@ name: Android E2E Tests
 
 on:
   workflow_dispatch:
+    inputs:
+      force_rebuild:
+        description: 'Force clean APK rebuild'
+        required: false
+        default: false
+        type: boolean
 
 jobs:
   e2e-test:
@@ -28,21 +34,53 @@ jobs:
         run: npm install
         shell: powershell
 
+      - name: Check APK Cache
+        id: check-cache
+        run: |
+          $force = "${{ github.event.inputs.force_rebuild }}"
+          if ($force -eq "true") {
+            Write-Host "Force rebuild requested. Deleting existing APK if any."
+            if (Test-Path "android/app/build/outputs/apk/debug/app-debug.apk") {
+              Remove-Item "android/app/build/outputs/apk/debug/app-debug.apk" -Force
+            }
+            if (Test-Path "android") {
+              try {
+                Remove-Item "android" -Recurse -Force -ErrorAction Stop
+              } catch {
+                Write-Host "Warning: could not delete android folder cleanly: $_. Will continue with prebuild overwrite."
+              }
+            }
+            echo "cache-hit=false" >> $env:GITHUB_OUTPUT
+          } else {
+            if (Test-Path "android/app/build/outputs/apk/debug/app-debug.apk") {
+              Write-Host "Found cached APK at android/app/build/outputs/apk/debug/app-debug.apk"
+              echo "cache-hit=true" >> $env:GITHUB_OUTPUT
+            } else {
+              Write-Host "Cached APK not found."
+              echo "cache-hit=false" >> $env:GITHUB_OUTPUT
+            }
+          }
+        shell: powershell
+
       - name: Run Expo Prebuild
+        if: ${{ github.event.inputs.force_rebuild == 'true' || steps.check-cache.outputs.cache-hit != 'true' }}
         env:
           EXPO_PUBLIC_E2E_MODE: "true"
         run: npx expo prebuild --platform android --no-install
         shell: powershell
 
       - name: Configure Android SDK Path
+        if: ${{ github.event.inputs.force_rebuild == 'true' || steps.check-cache.outputs.cache-hit != 'true' }}
         run: node scripts/setup-android-sdk.js
         shell: powershell
 
       - name: Inject bundleInDebug in build.gradle
+        if: ${{ github.event.inputs.force_rebuild == 'true' || steps.check-cache.outputs.cache-hit != 'true' }}
         run: node scripts/inject-bundle-in-debug.js
         shell: powershell
 
       - name: Build APK with JS Bundle (bundleInDebug=true)
+        if: ${{ github.event.inputs.force_rebuild == 'true' || steps.check-cache.outputs.cache-hit != 'true' }}
         env:
           EXPO_PUBLIC_E2E_MODE: "true"
         run: |
