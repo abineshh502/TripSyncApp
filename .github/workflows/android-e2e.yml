@@ -25,59 +25,41 @@ jobs:
           cache-dependency-path: 'package-lock.json'
 
       - name: Install Node Dependencies
-        run: |
-          npm install
-        shell: bash
+        run: npm install
+        shell: powershell
 
       - name: Run Expo Prebuild
         env:
           EXPO_PUBLIC_E2E_MODE: "true"
-        run: |
-          npx expo prebuild --platform android --no-install
-        shell: bash
+        run: npx expo prebuild --platform android --no-install
+        shell: powershell
 
       - name: Inject bundleInDebug in build.gradle
-        run: |
-          node -e "
-          const fs = require('fs');
-          const file = 'android/app/build.gradle';
-          let content = fs.readFileSync(file, 'utf8');
-          if (content.includes('bundleCommand =') && !content.includes('bundleInDebug =')) {
-            content = content.replace('bundleCommand = \"export:embed\"', 'bundleCommand = \"export:embed\"\n    bundleInDebug = true');
-            fs.writeFileSync(file, content, 'utf8');
-            console.log('✓ Successfully injected bundleInDebug = true into build.gradle');
-          } else {
-            console.log('⚠️ Could not find bundleCommand or bundleInDebug already exists');
-          }
-          "
-        shell: bash
+        run: node scripts/inject-bundle-in-debug.js
+        shell: powershell
 
       - name: Build APK with JS Bundle (bundleInDebug=true)
         env:
           EXPO_PUBLIC_E2E_MODE: "true"
         run: |
           cd android
-          chmod +x gradlew
-          ./gradlew assembleDebug -PbundleInDebug=true
-        shell: bash
+          .\gradlew.bat assembleDebug -PbundleInDebug=true
+        shell: powershell
 
       - name: Verify APK Generated
         run: |
-          APK_PATH="android/app/build/outputs/apk/debug/app-debug.apk"
-          if [ -f "$APK_PATH" ]; then
-            echo "✓ APK build verified successfully at $APK_PATH"
-            ls -lh "$APK_PATH"
-          else
-            echo "❌ ERROR: Debug APK was not generated!"
+          if (Test-Path "android/app/build/outputs/apk/debug/app-debug.apk") {
+            Write-Host "✓ APK build verified successfully"
+            Get-Item "android/app/build/outputs/apk/debug/app-debug.apk"
+          } else {
+            Write-Error "❌ ERROR: Debug APK was not generated!"
             exit 1
-          fi
-        shell: bash
+          }
+        shell: powershell
 
       - name: Run E2E Tests on Real Device
-        run: |
-          chmod +x AppiumTests/scripts/ci_run_tests.sh
-          ./AppiumTests/scripts/ci_run_tests.sh
-        shell: bash
+        run: node AppiumTests/scripts/ci_run_tests.js
+        shell: powershell
 
       - name: Upload Test Report Artifacts
         uses: actions/upload-artifact@v4
