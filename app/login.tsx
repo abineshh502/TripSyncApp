@@ -173,12 +173,13 @@ export default function LoginScreen() {
               
               <View style={styles.otpDisplayContainer}>
                 <Text style={styles.otpDisplayLabel}>Your OTP is:</Text>
-                <Text testID="otp-display-value" style={styles.otpDisplayValue}>{modalOtp}</Text>
+                <Text testID="otp-display-value" accessibilityLabel="otp-display-value" style={styles.otpDisplayValue}>{modalOtp}</Text>
               </View>
             </View>
 
             <TouchableOpacity
               testID="otp-modal-ok-button"
+              accessibilityLabel="otp-modal-ok-button"
               onPress={() => {
                 setModalVisible(false);
                 router.replace({ pathname: "/otp", params: { email: email.trim(), isLogin: "true" } });
@@ -221,6 +222,7 @@ export default function LoginScreen() {
         <Ionicons name="mail-outline" size={20} color="#94A3B8" style={styles.inputIcon} />
         <TextInput
           testID="email-input"
+          accessibilityLabel="email-input"
           placeholder="Email Address"
           placeholderTextColor="#94A3B8"
           value={email}
@@ -268,6 +270,7 @@ export default function LoginScreen() {
         <Ionicons name="lock-closed-outline" size={20} color="#94A3B8" style={styles.inputIcon} />
         <TextInput
           testID="password-input"
+          accessibilityLabel="password-input"
           placeholder="Password"
           placeholderTextColor="#94A3B8"
           secureTextEntry={!showPassword}
@@ -293,6 +296,7 @@ export default function LoginScreen() {
 
       <TouchableOpacity
         testID="login-button"
+        accessibilityLabel="login-button"
         onPress={handleLogin}
         style={[styles.loginBtn, loading && { opacity: 0.8 }]}
         disabled={loading}
@@ -306,6 +310,7 @@ export default function LoginScreen() {
 
       <TouchableOpacity
         testID="register-link"
+        accessibilityLabel="register-link"
         onPress={() => router.replace("/register")}
         style={styles.registerLink}
       >
@@ -323,7 +328,7 @@ export default function LoginScreen() {
 
       <View style={styles.featuresRow}>
         {["🗺️ Maps", "🤖 AI Planner", "👥 Groups", "🌦️ Live Weather"].map((f, i) => (
-          <View key={i} testID={`feature-badge-${i}`} style={styles.featureBadge}>
+          <View key={i} testID={`feature-badge-${i}`} accessibilityLabel={`feature-badge-${i}`} style={styles.featureBadge}>
             <Text style={styles.featureText}>{f}</Text>
           </View>
         ))}

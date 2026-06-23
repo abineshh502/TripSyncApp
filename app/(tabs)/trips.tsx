@@ -148,6 +148,7 @@ export default function TripsScreen() {
         </View>
         <TouchableOpacity
           testID="new-trip-button"
+          accessibilityLabel="new-trip-button"
           onPress={() => router.push("/create-trip")}
           style={styles.createBtn}
         >
@@ -169,6 +170,7 @@ export default function TripsScreen() {
           return (
             <TouchableOpacity
               testID={`trips-filter-${f}`}
+              accessibilityLabel={`trips-filter-${f}`}
               key={f}
               onPress={() => setFilter(f)}
               style={[

@@ -508,6 +508,7 @@ export default function ExploreScreen() {
               <Ionicons name="location-outline" size={20} color="#94A3B8" />
               <TextInput
                 testID="map-search-input"
+                accessibilityLabel="map-search-input"
                 placeholder="Enter city or place..."
                 placeholderTextColor="#94A3B8"
                 value={place}
@@ -573,6 +574,7 @@ export default function ExploreScreen() {
           </View>
           <TouchableOpacity
             testID="map-search-btn"
+            accessibilityLabel="map-search-btn"
             onPress={() => {
               setSuggestions([]);
               setShowSuggestions(false);

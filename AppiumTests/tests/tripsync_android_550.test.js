@@ -1,14 +1,6 @@
 const { expect } = require('@wdio/globals');
 
-// Override global $ to map Accessibility ID (~) to Android resource-id
-const original$ = global.$;
-global.$ = function(selector) {
-    if (typeof selector === 'string' && selector.startsWith('~')) {
-        const testId = selector.substring(1);
-        return original$(`//*[@resource-id="${testId}" or contains(@resource-id, ":id/${testId}")]`);
-    }
-    return original$.apply(this, arguments);
-};
+
 
 // Helper to prevent 0ms execution durations
 const delay = async () => {

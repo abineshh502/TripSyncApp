@@ -805,6 +805,7 @@ export default function AIAssistantScreen() {
       <View style={styles.tabBar}>
         <TouchableOpacity
           testID="ai-tab-chat"
+          accessibilityLabel="ai-tab-chat"
           onPress={() => setActiveTab("chat")}
           style={[styles.tabItem, activeTab === "chat" && styles.activeTab]}
         >
@@ -814,6 +815,7 @@ export default function AIAssistantScreen() {
 
         <TouchableOpacity
           testID="ai-tab-voice"
+          accessibilityLabel="ai-tab-voice"
           onPress={() => setActiveTab("voice")}
           style={[styles.tabItem, activeTab === "voice" && styles.activeTab]}
         >
@@ -823,6 +825,7 @@ export default function AIAssistantScreen() {
 
         <TouchableOpacity
           testID="ai-tab-safety"
+          accessibilityLabel="ai-tab-safety"
           onPress={() => setActiveTab("safety")}
           style={[styles.tabItem, activeTab === "safety" && styles.activeTab]}
         >
@@ -892,6 +895,7 @@ export default function AIAssistantScreen() {
             <View style={styles.inputContainer}>
               <TextInput
                 testID="ai-chat-input"
+                accessibilityLabel="ai-chat-input"
                 placeholder="Ask about Goa beaches, Manali cafes..."
                 placeholderTextColor="#94A3B8"
                 value={input}
@@ -901,6 +905,7 @@ export default function AIAssistantScreen() {
               />
               <TouchableOpacity
                 testID="ai-chat-send-btn"
+                accessibilityLabel="ai-chat-send-btn"
                 onPress={() => handleSend(input)}
                 style={[styles.sendBtn, !input.trim() ? styles.sendBtnDisabled : null]}
                 disabled={!input.trim()}

@@ -330,6 +330,7 @@ export default function OtpScreen() {
             style={[styles.otpBox, digit ? styles.otpBoxFilled : null]}
             selectionColor="#38BDF8"
             testID={`otp-input-${i}`}
+            accessibilityLabel={`otp-input-${i}`}
           />
         ))}
       </Animated.View>
@@ -345,6 +346,7 @@ export default function OtpScreen() {
       {/* Verify Button */}
       <TouchableOpacity
         testID="verify-button"
+        accessibilityLabel="verify-button"
         onPress={handleVerify}
         style={[styles.verifyBtn, loading && { opacity: 0.7 }]}
         disabled={loading}
@@ -369,6 +371,7 @@ export default function OtpScreen() {
       {/* Cancel / Go Back */}
       <TouchableOpacity
         testID="cancel-button"
+        accessibilityLabel="cancel-button"
         onPress={handleCancelAndLogout}
         style={styles.cancelBtn}
       >
