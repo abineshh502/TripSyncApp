@@ -46,7 +46,7 @@ exports.config = {
             
             // Save session metadata for reports
             const caps = currentDriver.capabilities || {};
-            const deviceName = caps.deviceName || caps['appium:deviceName'] || 'emulator-5554';
+            const deviceName = caps.deviceName || caps['appium:deviceName'] || process.env.ANDROID_DEVICE_SERIAL || 'Android Emulator';
             const platformVersion = caps.platformVersion || caps['appium:platformVersion'] || '10';
             
             const metadata = {

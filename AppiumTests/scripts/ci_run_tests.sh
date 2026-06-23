@@ -11,15 +11,16 @@ mkdir -p test-results
 # Helper to verify adb device online state and boot completion
 verify_emulator_ready() {
     echo "⏳ Checking emulator state..."
-    for i in {1..40}; do
-        # Get status of emulator-5554 or first emulator
-        device_status=$(adb devices | grep -E "emulator-5554|emulator" | head -n 1 | awk '{print $2}' | tr -d '\r')
-        echo "Attempt $i/40: Emulator status: '$device_status'"
+    for i in {1..20}; do
+        # Get status of the first detected emulator
+        temp_device=$(command adb devices | awk '/emulator/{print $1; exit}')
+        device_status=$(command adb devices | grep -E "emulator" | head -n 1 | awk '{print $2}' | tr -d '\r')
+        echo "Attempt $i/20: Emulator ($temp_device) status: '$device_status'"
         
         if [ "$device_status" = "offline" ]; then
             echo "⚠️ Device is offline. Restarting ADB server..."
-            adb kill-server
-            adb start-server
+            command adb kill-server
+            command adb start-server
             sleep 5
             continue
         elif [ -z "$device_status" ]; then
@@ -28,7 +29,7 @@ verify_emulator_ready() {
             continue
         elif [ "$device_status" = "device" ]; then
             # Check sys.boot_completed
-            boot_status=$(adb shell getprop sys.boot_completed 2>/dev/null | tr -d '\r')
+            boot_status=$(command adb -s "$temp_device" shell getprop sys.boot_completed 2>/dev/null | tr -d '\r')
             echo "sys.boot_completed: '$boot_status'"
             if [ "$boot_status" = "1" ]; then
                 echo "✓ Emulator is fully booted and online (device)!"
@@ -38,17 +39,17 @@ verify_emulator_ready() {
                 
                 # Disable animations to speed up rendering and save CPU resources
                 echo "⚙️ Disabling animations..."
-                adb shell settings put global window_animation_scale 0.0
-                adb shell settings put global transition_animation_scale 0.0
-                adb shell settings put global animator_duration_scale 0.0
+                command adb -s "$temp_device" shell settings put global window_animation_scale 0.0
+                command adb -s "$temp_device" shell settings put global transition_animation_scale 0.0
+                command adb -s "$temp_device" shell settings put global animator_duration_scale 0.0
                 
                 # Disable ANR dialogs
                 echo "⚙️ Disabling system ANR dialogs..."
-                adb shell settings put global show_anr_dialogs 0
+                command adb -s "$temp_device" shell settings put global show_anr_dialogs 0
                 
                 # Dismiss any leftover crash/ANR/first-run dialogs
                 echo "⚙️ Dismissing potential system dialogs..."
-                adb shell input keyevent 4
+                command adb -s "$temp_device" shell input keyevent 4
                 
                 return 0
             fi
@@ -62,9 +63,63 @@ verify_emulator_ready() {
 # 1. VERIFY EMULATOR BOOT AND ONLINE STATUS
 verify_emulator_ready
 if [ $? -ne 0 ]; then
-    echo "❌ ERROR: Emulator device is not online or ready."
+    echo "❌ ERROR: Emulator device is not online or ready after 20 attempts."
     exit 1
 fi
+
+# Dynamically resolve emulator serial
+DEVICE=$(command adb devices | awk '/emulator/{print $1; exit}')
+if [ -z "$DEVICE" ]; then
+    echo "❌ ERROR: No emulator found after boot verification!"
+    exit 1
+fi
+
+export ANDROID_DEVICE_SERIAL="$DEVICE"
+echo "Resolved Emulator Serial: $DEVICE"
+
+# Log to GitHub Step Summary
+if [ -n "$GITHUB_STEP_SUMMARY" ]; then
+    echo "### 📱 Resolved Emulator Serial" >> "$GITHUB_STEP_SUMMARY"
+    echo "- **Serial:** \`$DEVICE\`" >> "$GITHUB_STEP_SUMMARY"
+    echo "" >> "$GITHUB_STEP_SUMMARY"
+    echo "#### ADB Devices Output" >> "$GITHUB_STEP_SUMMARY"
+    echo "\`\`\`text" >> "$GITHUB_STEP_SUMMARY"
+    command adb devices >> "$GITHUB_STEP_SUMMARY"
+    echo "\`\`\`" >> "$GITHUB_STEP_SUMMARY"
+fi
+
+# Define adb wrapper function to target the resolved device and check connection
+adb() {
+    # Bypass verification/device targeting for server controls and device lists
+    if [[ "$1" == "devices" ]] || [[ "$1" == "kill-server" ]] || [[ "$1" == "start-server" ]]; then
+        command adb "$@"
+        return $?
+    fi
+
+    # Before every adb command verify adb devices contains our emulator in device state
+    if ! command adb devices | grep -w "$DEVICE" | grep -q "device"; then
+        echo "❌ ERROR: Emulator '$DEVICE' disappeared during execution!"
+        echo "=== Current ADB Devices ==="
+        command adb devices
+        
+        # Log failure to GitHub Step Summary
+        if [ -n "$GITHUB_STEP_SUMMARY" ]; then
+            echo "### ❌ E2E Workflow Failure" >> "$GITHUB_STEP_SUMMARY"
+            echo "Emulator \`$DEVICE\` disappeared during test execution." >> "$GITHUB_STEP_SUMMARY"
+            echo "#### ADB Devices Output:" >> "$GITHUB_STEP_SUMMARY"
+            echo "\`\`\`text" >> "$GITHUB_STEP_SUMMARY"
+            command adb devices >> "$GITHUB_STEP_SUMMARY"
+            echo "\`\`\`" >> "$GITHUB_STEP_SUMMARY"
+        fi
+        
+        # Terminate main workflow process immediately
+        kill -s TERM $$ 2>/dev/null
+        exit 1
+    fi
+
+    # Execute command targeting the resolved emulator
+    command adb -s "$DEVICE" "$@"
+}
 
 # Start background system dialog and ANR dismisser daemon
 dismiss_system_dialogs_loop() {
@@ -162,14 +217,14 @@ APPIUM_PID=$!
 # 5. VERIFY APPIUM STATUS ENDPOINT
 echo "⏳ Waiting for Appium Server to accept connections..."
 appium_ready=false
-for i in {1..30}; do
+for i in {1..20}; do
     curl -s http://127.0.0.1:4723/status > /dev/null
     if [ $? -eq 0 ]; then
         echo "✓ Appium Server is healthy and running!"
         appium_ready=true
         break
     fi
-    sleep 2
+    sleep 3
 done
 
 if [ "$appium_ready" = false ]; then
