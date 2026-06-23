@@ -33,21 +33,18 @@ jobs:
         run: |
           npx expo prebuild --platform android --no-install
 
-      - name: Configure Bundle in Debug
-        run: |
-          sed -i 's/react {/react {\n    debuggableVariants = []/' android/app/build.gradle
-
-      - name: Build APK with Gradle
+      - name: Build APK with JS Bundle (bundleInDebug=true)
         run: |
           cd android
           chmod +x gradlew
-          ./gradlew assembleDebug
+          ./gradlew assembleDebug -PbundleInDebug=true --no-daemon
 
       - name: Verify APK Generated
         run: |
           APK_PATH="android/app/build/outputs/apk/debug/app-debug.apk"
           if [ -f "$APK_PATH" ]; then
             echo "✓ APK build verified successfully at $APK_PATH"
+            ls -lh "$APK_PATH"
           else
             echo "❌ ERROR: Debug APK was not generated!"
             exit 1

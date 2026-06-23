@@ -123,6 +123,34 @@ else
     echo "✓ Verified package is present: $installed_packages"
 fi
 
+# 3b. LAUNCH APP AND VERIFY REACT NATIVE BUNDLE IS LOADED
+echo "🚀 Launching TripSync app and waiting for React Native JS bundle to load..."
+adb shell am start -n com.kondajeswanth.TripSyncApp/.MainActivity
+
+echo "⏳ Waiting up to 90s for React Native JS thread to initialize..."
+rn_ready=false
+for i in {1..18}; do
+    # Check if the app process is alive and check for RN thread startup signal
+    rn_signal=$(adb shell logcat -d -t 500 2>/dev/null | grep -E '(Running application|ReactInstanceManager|js_thread|jsinspector|AppRegistry)' | tail -5)
+    if [[ -n "$rn_signal" ]]; then
+        echo "✓ React Native JS thread signal detected: $rn_signal"
+        rn_ready=true
+        break
+    fi
+    echo "Attempt $i/18: Waiting for React Native JS thread... (5s)"
+    sleep 5
+done
+
+if [ "$rn_ready" = false ]; then
+    echo "⚠️ React Native JS thread signal not detected in logcat. The JS bundle may not have loaded."
+    echo "📋 Recent logcat output:"
+    adb shell logcat -d -t 100 2>/dev/null | tail -30
+    echo "Continuing anyway - Appium waitForDisplayed will handle the timeout."
+else
+    echo "✓ App is rendering. Waiting 10s more for UI to stabilize..."
+    sleep 10
+fi
+
 # 4. START APPIUM SERVER
 echo "🔥 Installing Appium UiAutomator2 Driver..."
 npx appium driver install uiautomator2 || true
