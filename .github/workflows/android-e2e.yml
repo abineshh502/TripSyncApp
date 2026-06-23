@@ -53,10 +53,10 @@ jobs:
       - name: Verify APK Generated
         run: |
           if (Test-Path "android/app/build/outputs/apk/debug/app-debug.apk") {
-            Write-Host "✓ APK build verified successfully"
+            Write-Host "[OK] APK build verified successfully"
             Get-Item "android/app/build/outputs/apk/debug/app-debug.apk"
           } else {
-            Write-Error "❌ ERROR: Debug APK was not generated!"
+            Write-Error "[ERROR] Debug APK was not generated!"
             exit 1
           }
         shell: powershell
