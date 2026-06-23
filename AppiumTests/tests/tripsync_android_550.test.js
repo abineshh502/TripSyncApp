@@ -1,6 +1,6 @@
 const { expect } = require('@wdio/globals');
-
-
+const path = require('path');
+const fs = require('fs');
 
 // Helper to prevent 0ms execution durations
 const delay = async () => {
@@ -11,6 +11,30 @@ const delay = async () => {
 
 describe('TripSync Android Appium E2E - 550 Test Suite', () => {
     before(async () => {
+        const currentDriver = typeof driver !== 'undefined' ? driver : browser;
+        
+        console.log('📸 CAPTURING STARTUP DIAGNOSTICS...');
+        try {
+            const pkg = await currentDriver.getCurrentPackage().catch(() => 'N/A');
+            const act = await currentDriver.getCurrentActivity().catch(() => 'N/A');
+            console.log(`Current Package: ${pkg}`);
+            console.log(`Current Activity: ${act}`);
+            
+            const pageSource = await currentDriver.getPageSource();
+            console.log('=================================== PAGE SOURCE (STARTUP) ===================================');
+            console.log(pageSource);
+            console.log('=============================================================================================');
+            
+            const tempDir = path.join(__dirname, '../../test-results/screenshots');
+            if (!fs.existsSync(tempDir)) {
+                fs.mkdirSync(tempDir, { recursive: true });
+            }
+            await currentDriver.saveScreenshot(path.join(tempDir, 'startup_screen.png'));
+            console.log('✓ Startup screenshot saved!');
+        } catch (e) {
+            console.error('❌ Failed to capture startup diagnostics:', e.message);
+        }
+
         console.log('⏳ Checking for system permission dialogs...');
         const permissionSelector = '//*[' +
             'contains(@text, "Allow only while using the app") or ' +
