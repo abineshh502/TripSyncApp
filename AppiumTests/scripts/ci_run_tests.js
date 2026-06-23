@@ -3,6 +3,47 @@ const http = require('http');
 const fs = require('fs');
 const path = require('path');
 
+// 0. AUTO-DETECT ANDROID SDK AND CONFIGURE PATH
+const possiblePaths = [
+  process.env.ANDROID_HOME,
+  process.env.ANDROID_SDK_ROOT,
+  path.join(process.env.USERPROFILE || '', 'AppData/Local/Android/Sdk'),
+  path.join(process.env.HOME || '', 'Library/Android/sdk'),
+  path.join(process.env.HOME || '', 'Android/Sdk'),
+  'C:/Users/konda/AppData/Local/Android/Sdk',
+  'C:/Android/Sdk',
+  '/usr/lib/android-sdk',
+  '/Library/Android/sdk'
+].filter(Boolean);
+
+let sdkPath = null;
+for (const p of possiblePaths) {
+  if (fs.existsSync(p)) {
+    sdkPath = p;
+    break;
+  }
+}
+
+if (!sdkPath) {
+  console.error("❌ ERROR: Android SDK path could not be resolved.");
+  process.exit(1);
+}
+console.log(`✓ Resolved Android SDK Path: ${sdkPath}`);
+
+const platformToolsDir = path.join(sdkPath, 'platform-tools');
+if (!fs.existsSync(platformToolsDir)) {
+  console.error(`❌ ERROR: platform-tools directory not found at: ${platformToolsDir}`);
+  process.exit(1);
+}
+
+const isWindows = process.platform === 'win32';
+if (isWindows) {
+    process.env.PATH = `${platformToolsDir};${process.env.PATH}`;
+} else {
+    process.env.PATH = `${platformToolsDir}:${process.env.PATH}`;
+}
+console.log(`✓ Prepended platform-tools to PATH: ${platformToolsDir}`);
+
 console.log("====================================================");
 console.log("🚀 STARTING TRIPSYNC APPIUM E2E TESTING PIPELINE");
 console.log("====================================================");
