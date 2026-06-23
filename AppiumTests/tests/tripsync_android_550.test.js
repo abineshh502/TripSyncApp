@@ -10,6 +10,12 @@ const delay = async () => {
 };
 
 describe('TripSync Android Appium E2E - 550 Test Suite', () => {
+    before(async () => {
+        console.log('⏳ Waiting for application to load and email-input to be displayed...');
+        const emailInput = await $('~email-input');
+        await emailInput.waitForDisplayed({ timeout: 60000 });
+        console.log('✓ Application is loaded and ready!');
+    });
 
     // ----------------------------------------------------
     // CATEGORY 1: AUTHENTICATION (50 Tests)

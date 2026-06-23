@@ -32,6 +32,24 @@ verify_emulator_ready() {
             echo "sys.boot_completed: '$boot_status'"
             if [ "$boot_status" = "1" ]; then
                 echo "✓ Emulator is fully booted and online (device)!"
+                
+                echo "⏳ Let the emulator settle down (sleep 30s)..."
+                sleep 30
+                
+                # Disable animations to speed up rendering and save CPU resources
+                echo "⚙️ Disabling animations..."
+                adb shell settings put global window_animation_scale 0.0
+                adb shell settings put global transition_animation_scale 0.0
+                adb shell settings put global animator_duration_scale 0.0
+                
+                # Disable ANR dialogs
+                echo "⚙️ Disabling system ANR dialogs..."
+                adb shell settings put global show_anr_dialogs 0
+                
+                # Dismiss any leftover crash/ANR/first-run dialogs
+                echo "⚙️ Dismissing potential system dialogs..."
+                adb shell input keyevent 4
+                
                 return 0
             fi
         fi

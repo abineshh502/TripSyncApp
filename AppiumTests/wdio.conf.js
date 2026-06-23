@@ -24,6 +24,7 @@ exports.config = {
         'appium:adbExecTimeout': 120000,
         'appium:androidInstallTimeout': 180000,
         'appium:uiautomator2ServerInstallTimeout': 180000,
+        'appium:uiautomator2ServerLaunchTimeout': 120000,
         'appium:ignoreHiddenApiPolicyError': true
     }],
     logLevel: 'info',
@@ -66,8 +67,8 @@ exports.config = {
         console.log('====================================================');
     },
     waitforTimeout: 10000,
-    connectionRetryTimeout: 240000,
-    connectionRetryCount: 0,
+    connectionRetryTimeout: 300000,
+    connectionRetryCount: 3,
     services: [],
     framework: 'mocha',
     reporters: ['spec'],
@@ -76,6 +77,13 @@ exports.config = {
         timeout: 900000 // Large timeout for 550 tests
     },
     onPrepare: function (config, capabilities) {
+        // Validate APK path before starting
+        const apkPath = path.join(__dirname, '../android/app/build/outputs/apk/debug/app-debug.apk');
+        if (!fs.existsSync(apkPath)) {
+            throw new Error(`❌ ERROR: Pre-built APK not found at: ${apkPath}. Please build the APK before running tests.`);
+        }
+        console.log(`✓ APK verified at: ${apkPath}`);
+
         // Ensure test-results directory exists
         const dir = path.join(__dirname, '../test-results');
         if (!fs.existsSync(dir)){
