@@ -27,7 +27,16 @@ export default function RootLayout() {
   const [otpVerified, setOtpVerified] = useState(false);
   const [pendingRouteId, setPendingRouteId] = useState<string | null>(null);
 
+  // CI / E2E mode: skip Firebase auth and go straight to login
+  const isE2EMode = process.env.EXPO_PUBLIC_E2E_MODE === 'true';
+
   useEffect(() => {
+    if (isE2EMode) {
+      // In E2E test mode, bypass Firebase and navigate directly to login
+      setIsInitializing(false);
+      return;
+    }
+
     // Check initial URL
     Linking.getInitialURL().then((url) => {
       if (url) {
@@ -70,6 +79,11 @@ export default function RootLayout() {
 
   useEffect(() => {
     if (isInitializing) return;
+    if (isE2EMode) {
+      // In E2E mode, always navigate to login
+      router.replace("/login");
+      return;
+    }
 
     const evaluateRoute = async () => {
       const verified = await AsyncStorage.getItem("is_otp_verified");
@@ -137,7 +151,7 @@ export default function RootLayout() {
 
   if (isInitializing) {
     return (
-      <View style={{ flex: 1, backgroundColor: "#0F172A", justifyContent: "center", alignItems: "center" }}>
+      <View testID="app-loading-spinner" style={{ flex: 1, backgroundColor: "#0F172A", justifyContent: "center", alignItems: "center" }}>
         <ActivityIndicator size="large" color="#38BDF8" />
       </View>
     );

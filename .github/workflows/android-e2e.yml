@@ -46,10 +46,14 @@ jobs:
           npm install
 
       - name: Run Expo Prebuild
+        env:
+          EXPO_PUBLIC_E2E_MODE: "true"
         run: |
           npx expo prebuild --platform android --no-install
 
       - name: Build APK with JS Bundle (bundleInDebug=true)
+        env:
+          EXPO_PUBLIC_E2E_MODE: "true"
         run: |
           cd android
           chmod +x gradlew
