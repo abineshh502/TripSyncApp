@@ -66,6 +66,32 @@ if [ $? -ne 0 ]; then
     exit 1
 fi
 
+# Start background system dialog and ANR dismisser daemon
+dismiss_system_dialogs_loop() {
+    echo "🕵️ Starting background system dialog and ANR dismisser daemon..."
+    while true; do
+        focus=$(adb shell dumpsys window | grep -E 'mCurrentFocus|mFocusedApp' 2>/dev/null)
+        if [[ "$focus" == *"Application Not Responding"* ]] || [[ "$focus" == *"com.android.systemui"* ]] || [[ "$focus" == *"Crash"* ]]; then
+            echo "⚠️ System ANR or dialog detected: $focus"
+            echo "⚙️ Force-stopping com.android.systemui to clear ANR..."
+            adb shell am force-stop com.android.systemui 2>/dev/null
+            
+            echo "⚙️ Sending CLOSE_SYSTEM_DIALOGS broadcast..."
+            adb shell am broadcast -a android.intent.action.CLOSE_SYSTEM_DIALOGS 2>/dev/null
+            
+            echo "⚙️ Pressing BACK key..."
+            adb shell input keyevent 4 2>/dev/null
+            
+            echo "⚙️ Sending DPAD_RIGHT and ENTER to dismiss dialog..."
+            adb shell input keyevent 22 2>/dev/null
+            adb shell input keyevent 66 2>/dev/null
+        fi
+        sleep 5
+    done
+}
+dismiss_system_dialogs_loop &
+DISMISSER_PID=$!
+
 echo "📱 Connected ADB Devices:"
 adb devices
 
@@ -143,6 +169,9 @@ adb pull /sdcard/emulator_screen.png ../test-results/screenshots/emulator_screen
 echo "===================================================="
 echo "🏁 E2E Suite finished with Exit Code: $TEST_EXIT_CODE"
 echo "===================================================="
+
+# Kill background dismisser process
+kill $DISMISSER_PID 2>/dev/null
 
 # Kill Appium background process
 kill $APPIUM_PID 2>/dev/null

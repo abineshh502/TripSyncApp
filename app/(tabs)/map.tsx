@@ -2433,7 +2433,12 @@ export default function MapScreen() {
                 <Text style={styles.toolbarBtnText}>Share</Text>
               </TouchableOpacity>
               {routeItems.length > 2 && (
-                <TouchableOpacity onPress={handleOptimizeRoute} style={[styles.toolbarBtn, { backgroundColor: "#EAB308" }]}>
+                <TouchableOpacity 
+                  testID="map-optimize-route-btn"
+                  accessibilityLabel="map-optimize-route-btn"
+                  onPress={handleOptimizeRoute} 
+                  style={[styles.toolbarBtn, { backgroundColor: "#EAB308" }]}
+                >
                   <Ionicons name="flash-outline" size={14} color="#0F172A" />
                   <Text style={[styles.toolbarBtnText, { color: "#0F172A" }]}>Optimize</Text>
                 </TouchableOpacity>

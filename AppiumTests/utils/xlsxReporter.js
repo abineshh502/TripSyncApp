@@ -28,6 +28,20 @@ function recordTest(testData) {
 }
 
 function generateReport(outputPath) {
+    const jsonlPath = path.join(__dirname, '../../.wdio-results.jsonl');
+    if (fs.existsSync(jsonlPath)) {
+        try {
+            const fileContent = fs.readFileSync(jsonlPath, 'utf8').trim();
+            if (fileContent) {
+                testResults = fileContent
+                    .split('\n')
+                    .filter(line => line.trim().length > 0)
+                    .map(line => JSON.parse(line));
+            }
+        } catch (e) {
+            console.error('[XLSX Reporter] Error loading test results from JSONL:', e.message);
+        }
+    }
     console.log(`[XLSX Reporter] Generating styled Excel report with ${testResults.length} tests...`);
     
     const outputDir = path.dirname(outputPath);
