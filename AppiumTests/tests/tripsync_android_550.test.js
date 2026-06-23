@@ -11,6 +11,29 @@ const delay = async () => {
 
 describe('TripSync Android Appium E2E - 550 Test Suite', () => {
     before(async () => {
+        console.log('⏳ Handling startup permission dialogs...');
+        const selectors = [
+            'id:com.android.permissioncontroller:id/permission_allow_foreground_only_button',
+            'id:com.android.permissioncontroller:id/permission_allow_button',
+            'id:com.android.packageinstaller:id/permission_allow_button',
+            '//*[@text="ALLOW ONLY WHILE USING THE APP"]',
+            '//*[@text="Allow"]',
+            '//*[@text="ALLOW"]'
+        ];
+        for (let attempt = 0; attempt < 3; attempt++) {
+            for (const sel of selectors) {
+                try {
+                    const btn = await $(sel);
+                    if (await btn.isExisting() && await btn.isDisplayed()) {
+                        await btn.click();
+                        console.log(`✓ Accepted permission dialog using: ${sel}`);
+                        await new Promise(resolve => setTimeout(resolve, 1500));
+                        break;
+                    }
+                } catch (e) {}
+            }
+        }
+
         console.log('⏳ Waiting for application to load and email-input to be displayed...');
         const emailInput = await $('~email-input');
         await emailInput.waitForDisplayed({ timeout: 60000 });
