@@ -32,9 +32,9 @@ export default function RootLayout() {
 
   useEffect(() => {
     if (isE2EMode) {
-      // In E2E test mode, bypass Firebase and navigate directly to login
-      setIsInitializing(false);
-      return;
+      // In E2E test mode, clear state on startup to ensure a clean login screen
+      auth.signOut().catch((e) => console.log("E2E signout error:", e));
+      AsyncStorage.removeItem("is_otp_verified").catch((e) => console.log("E2E storage clear error:", e));
     }
 
     // Check initial URL
@@ -79,11 +79,6 @@ export default function RootLayout() {
 
   useEffect(() => {
     if (isInitializing) return;
-    if (isE2EMode) {
-      // In E2E mode, always navigate to login
-      router.replace("/login");
-      return;
-    }
 
     const evaluateRoute = async () => {
       const verified = await AsyncStorage.getItem("is_otp_verified");

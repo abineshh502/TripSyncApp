@@ -9,10 +9,24 @@ if (!fs.existsSync(file)) {
 }
 
 let content = fs.readFileSync(file, 'utf8');
-if (content.includes('bundleCommand =') && !content.includes('bundleInDebug =')) {
-  content = content.replace('bundleCommand = "export:embed"', 'bundleCommand = "export:embed"\n    bundleInDebug = true');
-  fs.writeFileSync(file, content, 'utf8');
-  console.log('✓ Successfully injected bundleInDebug = true into build.gradle');
-} else {
-  console.log('⚠️ Could not find bundleCommand or bundleInDebug already exists');
+let modified = false;
+
+// Remove legacy bundleInDebug if present
+if (content.includes('bundleInDebug = true')) {
+  content = content.replace(/\s*bundleInDebug\s*=\s*true/, '');
+  modified = true;
 }
+
+// Inject debuggableVariants = [] if not present
+if (content.includes('bundleCommand =') && !content.includes('debuggableVariants = []')) {
+  content = content.replace('bundleCommand = "export:embed"', 'bundleCommand = "export:embed"\n    debuggableVariants = []');
+  modified = true;
+}
+
+if (modified) {
+  fs.writeFileSync(file, content, 'utf8');
+  console.log('✓ Successfully configured build.gradle with debuggableVariants = []');
+} else {
+  console.log('⚠️ No modifications needed or build.gradle is already configured.');
+}
+

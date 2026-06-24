@@ -36,6 +36,10 @@ if (!fs.existsSync(platformToolsDir)) {
   process.exit(1);
 }
 
+process.env.ANDROID_HOME = sdkPath;
+process.env.ANDROID_SDK_ROOT = sdkPath;
+console.log(`✓ Exported ANDROID_HOME and ANDROID_SDK_ROOT: ${sdkPath}`);
+
 const isWindows = process.platform === 'win32';
 if (isWindows) {
     process.env.PATH = `${platformToolsDir};${process.env.PATH}`;
