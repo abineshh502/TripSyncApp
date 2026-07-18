@@ -32,7 +32,7 @@ const RESULTS_DIR = path.resolve(__dirname, "../../test-results");
 const APPIUM_LOG = path.join(RESULTS_DIR, "appium.log");
 const WDIO_CONF = path.resolve(__dirname, "../wdio.conf.js");
 const AVD_NAME = process.env.AVD_NAME || "Pixel_6_API_30";
-const ADB = process.env.ADB_PATH || "adb";
+let ADB = process.env.ADB_PATH || "adb";
 const APPIUM_BIN = path.resolve(__dirname, "../../node_modules/.bin/appium");
 const WDIO_BIN = path.resolve(__dirname, "../../node_modules/.bin/wdio");
 
@@ -95,6 +95,7 @@ async function detectOrBootEmulator() {
     const emulatorId = lines[0].split("\t")[0].trim();
     log("✅", `Reusing existing emulator: ${emulatorId}`);
     process.env.DEVICE_NAME = emulatorId;
+    ADB = `adb -s ${emulatorId}`; // dynamically target the correct emulator ID
     return emulatorId;
   }
 
@@ -111,12 +112,13 @@ async function detectOrBootEmulator() {
     const booted = runSilent(`${ADB} shell getprop sys.boot_completed`).trim();
     if (booted === "1") {
       log("✅", "Emulator boot completed.");
-      const newDevices = runSilent(`${ADB} devices`);
+      const newDevices = runSilent(`adb devices`); // use raw adb to list devices
       const newLine = newDevices.split("\n").find(
         (l) => l.includes("emulator") && l.includes("device")
       );
       const emId = newLine ? newLine.split("\t")[0].trim() : "emulator-5554";
       process.env.DEVICE_NAME = emId;
+      ADB = `adb -s ${emId}`; // dynamically target the correct emulator ID
       return emId;
     }
     log("⏳", `Still booting... (${(i + 1) * 5}s elapsed)`);
