@@ -33,6 +33,15 @@ jobs:
         uses: actions/checkout@v4
 
       # ----------------------------------------------------
+      # 1b. SET UP JAVA 21 (Gradle 8.x requires Java 8-21; system Java 25 breaks it)
+      # ----------------------------------------------------
+      - name: Set up Java 21
+        uses: actions/setup-java@v4
+        with:
+          java-version: '21'
+          distribution: 'temurin'
+
+      # ----------------------------------------------------
       # 2. VERIFY DEPENDENCIES (Intelligent -- skip if unchanged)
       # ----------------------------------------------------
       - name: Set up Node.js
@@ -413,6 +422,7 @@ jobs:
           } catch { Write-Host "[WARN] logcat skipped: $_" }
 
           Write-Host "[OK] ADB diagnostics collected."
+          exit 0
 
       # ----------------------------------------------------
       # 16. VERIFY REPORTS GENERATED
