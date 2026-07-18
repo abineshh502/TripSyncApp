@@ -37,6 +37,91 @@ const specPattern = process.env.WDIO_CI_SPEC
   ? path.resolve(__dirname, process.env.WDIO_CI_SPEC)
   : path.resolve(__dirname, "tests/**/*.test.js");
 
+function getSpecFiles() {
+  const testsDir = path.resolve(__dirname, "tests");
+  if (process.env.WDIO_CI_SPEC) {
+    const resolved = path.resolve(__dirname, process.env.WDIO_CI_SPEC);
+    if (fs.existsSync(resolved)) {
+      return [resolved];
+    }
+    const base = path.basename(process.env.WDIO_CI_SPEC);
+    const candidate = path.join(testsDir, base);
+    if (fs.existsSync(candidate)) {
+      return [candidate];
+    }
+  }
+  return fs.readdirSync(testsDir)
+    .filter((f) => f.endsWith(".test.js"))
+    .map((f) => path.join(testsDir, f));
+}
+
+function discoverTests(specFiles) {
+  const discovered = [];
+  const catMap = {
+    "authentication": "Authentication",
+    "trips": "Trips",
+    "groups": "Groups",
+    "groupChat": "Group Chat",
+    "aiAssistant": "AI Assistant",
+    "mapsExplore": "Maps Explore",
+    "navigation": "Directions & Navigation",
+    "routeBuilder": "Route Builder",
+    "profileNotifications": "Profile & Notifications",
+    "accessibility": "UI UX & Accessibility",
+    "endToEnd": "End-to-End User Journeys",
+  };
+
+  specFiles.forEach((filePath) => {
+    const fileBasename = path.basename(filePath);
+    let category = "Uncategorized";
+    for (const [key, val] of Object.entries(catMap)) {
+      if (fileBasename.includes(key)) {
+        category = val;
+        break;
+      }
+    }
+
+    const content = fs.readFileSync(filePath, "utf-8");
+    const lines = content.split("\n");
+
+    let currentSuite = "Unknown Suite";
+    let inCommentBlock = false;
+
+    lines.forEach((line) => {
+      const trimmed = line.trim();
+      if (trimmed.startsWith("/*")) {
+        inCommentBlock = true;
+      }
+      if (inCommentBlock) {
+        if (trimmed.endsWith("*/") || trimmed.includes("*/")) {
+          inCommentBlock = false;
+        }
+        return;
+      }
+      if (trimmed.startsWith("//")) {
+        return;
+      }
+
+      const descMatch = trimmed.match(/describe\s*\(\s*["'`](.*?)["'`]/);
+      if (descMatch) {
+        currentSuite = descMatch[1];
+      }
+
+      const itMatch = trimmed.match(/it\s*\(\s*["'`](.*?)["'`]/);
+      if (itMatch) {
+        discovered.push({
+          specFile: fileBasename,
+          suiteName: currentSuite,
+          testName: itMatch[1],
+          category: category,
+        });
+      }
+    });
+  });
+
+  return discovered;
+}
+
 exports.config = {
   // ─── Runner ───
   runner: "local",
@@ -117,6 +202,21 @@ exports.config = {
     console.log("[wdio] TripSync Android E2E — Starting Test Run");
     console.log(`[wdio] Specs: ${specPattern}`);
     console.log("[wdio] ─────────────────────────────────────────────\n");
+
+    // Perform Dynamic Discovery
+    const specFiles = getSpecFiles();
+    const discovered = discoverTests(specFiles);
+    
+    // Calculate and log specs/suites/tests as requested
+    const uniqueSuites = [...new Set(discovered.map(d => d.suiteName))].length;
+    console.log("Expected Specs : " + specFiles.length);
+    console.log("Expected Suites : " + uniqueSuites);
+    console.log("Expected Tests : " + discovered.length);
+    console.log("");
+
+    // Store discovered expected tests to JSON for parent process in onComplete
+    const expectedPath = path.resolve(RESULTS_DIR, "all-discovered-tests.json");
+    fs.writeFileSync(expectedPath, JSON.stringify(discovered, null, 2), "utf-8");
 
     // Verify Appium /status endpoint
     const http = require("http");
@@ -257,7 +357,7 @@ exports.config = {
     }
 
     // Determine category from spec file name
-    const specFile = test.file || "";
+    const specFile = test.file ? path.basename(test.file) : "Unknown Spec";
     let category = "Uncategorized";
     const catMap = {
       "authentication": "Authentication",
@@ -277,6 +377,8 @@ exports.config = {
     }
 
     const record = {
+      suite: test.parent ? test.parent.title : "Unknown Suite",
+      specFile,
       name: test.title,
       category,
       status,
@@ -286,6 +388,7 @@ exports.config = {
       failureReason: result.error ? (result.error.message || String(result.error)) : "",
       screenshotPath,
       timestamp: new Date().toISOString(),
+      retryCount: 0,
     };
 
     // Write to JSONL for CI
@@ -306,25 +409,73 @@ exports.config = {
     console.log("\n[wdio] Generating reports...");
 
     // Read all results from JSONL
-    let allResults = [];
+    let executedResults = [];
     if (fs.existsSync(JSONL_PATH)) {
       const lines = fs.readFileSync(JSONL_PATH, "utf-8").trim().split("\n").filter(Boolean);
-      allResults = lines.map((l) => {
+      executedResults = lines.map((l) => {
         try { return JSON.parse(l); } catch (_) { return null; }
       }).filter(Boolean);
     }
 
+    // Read all expected tests from discovery
+    let expectedTests = [];
+    const expectedPath = path.resolve(RESULTS_DIR, "all-discovered-tests.json");
+    if (fs.existsSync(expectedPath)) {
+      expectedTests = JSON.parse(fs.readFileSync(expectedPath, "utf-8"));
+    }
+
+    // Reconcile expected vs executed
+    const allResults = expectedTests.map((expected) => {
+      // Find matching executed test
+      const executed = executedResults.find(
+        (e) => e.name === expected.testName && e.category === expected.category
+      );
+
+      if (executed) {
+        return {
+          suite: expected.suiteName,
+          specFile: expected.specFile,
+          name: expected.testName,
+          category: expected.category,
+          status: executed.status,
+          durationMs: executed.durationMs,
+          device: executed.device || runMeta.device,
+          androidVersion: executed.androidVersion || runMeta.androidVersion,
+          failureReason: executed.failureReason || "",
+          screenshotPath: executed.screenshotPath || "",
+          timestamp: executed.timestamp || new Date().toISOString(),
+          retryCount: executed.retryCount || 0,
+        };
+      } else {
+        return {
+          suite: expected.suiteName,
+          specFile: expected.specFile,
+          name: expected.testName,
+          category: expected.category,
+          status: "NOT EXECUTED",
+          durationMs: 0,
+          device: runMeta.device,
+          androidVersion: runMeta.androidVersion,
+          failureReason: "Not executed (suite aborted or not reached due to earlier failure / bail)",
+          screenshotPath: "",
+          timestamp: new Date().toISOString(),
+          retryCount: 0,
+        };
+      }
+    });
+
     // Update run meta with actual device info
     try {
-      if (allResults.length > 0) {
-        runMeta.device = allResults[0].device || runMeta.device;
-        runMeta.androidVersion = allResults[0].androidVersion || runMeta.androidVersion;
+      const firstExecuted = executedResults.find((r) => r.device);
+      if (firstExecuted) {
+        runMeta.device = firstExecuted.device || runMeta.device;
+        runMeta.androidVersion = firstExecuted.androidVersion || runMeta.androidVersion;
       }
     } catch (_) {}
 
     // Generate Excel report
     try {
-      await xlsxReporter.generateReport(EXCEL_PATH);
+      await xlsxReporter.generateReport(allResults, runMeta, EXCEL_PATH);
       console.log(`[wdio] ✅ Excel report: ${EXCEL_PATH}`);
     } catch (e) {
       console.error("[wdio] ⚠️ Excel report generation failed:", e.message);
@@ -341,14 +492,31 @@ exports.config = {
     const total = allResults.length;
     const passed = allResults.filter((r) => r.status === "PASSED").length;
     const failed = allResults.filter((r) => r.status === "FAILED").length;
+    const skipped = allResults.filter((r) => r.status === "SKIPPED" || r.status === "NOT EXECUTED").length;
     const passRate = total > 0 ? ((passed / total) * 100).toFixed(1) : "0.0";
 
     console.log("\n[wdio] ═══════════════════════════════════════════════");
-    console.log(`[wdio] Run Complete: ${total} tests | ✅ ${passed} passed | ❌ ${failed} failed | ${passRate}% pass rate`);
+    console.log(`[wdio] Run Complete: ${total} tests | ✅ ${passed} passed | ❌ ${failed} failed | 🚫 ${skipped} skipped/unrun | ${passRate}% pass rate`);
     console.log(`[wdio] Duration: ${Math.round(totalDurationMs / 1000)}s`);
     console.log("[wdio] ═══════════════════════════════════════════════\n");
 
-    // Fail CI if session never established
+    // Validation
+    const expectedCount = expectedTests.length;
+    const reportedCount = allResults.length;
+    const expectedSpecsCount = [...new Set(expectedTests.map(t => t.specFile))].length;
+    const reportedSpecsCount = [...new Set(allResults.map(t => t.specFile))].length;
+
+    console.log("📊 Final Report Validation:");
+    console.log(`  - Expected Specs: ${expectedSpecsCount} | Reported Specs: ${reportedSpecsCount}`);
+    console.log(`  - Expected Tests: ${expectedCount} | Reported Tests: ${reportedCount}`);
+
+    if (expectedCount !== reportedCount || expectedSpecsCount !== reportedSpecsCount) {
+      console.error(`[wdio] ❌ VALIDATION FAILED: Mismatch between discovered and reported counts!`);
+      throw new Error(`Report validation failed: Expected = ${expectedCount}, Reported = ${reportedCount}`);
+    } else {
+      console.log(`[wdio] ✅ VALIDATION SUCCESSFUL: All tests represented.`);
+    }
+
     if (total === 0) {
       throw new Error(
         "[wdio] FATAL: No tests were executed. Appium session may have failed to establish. Aborting."

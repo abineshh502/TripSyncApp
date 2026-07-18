@@ -24,57 +24,66 @@ const CATEGORY_SHEETS = [
   "End-to-End User Journeys",
 ];
 
-const COL_WIDTHS = [5, 42, 14, 12, 14, 14, 50, 55, 22];
 const HEADERS = [
-  "#",
+  "Suite",
+  "Spec File",
   "Test Name",
   "Status",
-  "Duration (ms)",
-  "Device",
-  "Android Ver",
+  "Execution Time (ms)",
+  "Retry Count",
   "Failure Reason",
-  "Screenshot Path",
-  "Timestamp",
+  "Screenshot",
+  "Video",
+  "Package",
+  "Activity",
+  "Platform",
+  "Device",
+  "Android Version",
+  "Appium Version",
+  "Timestamp"
 ];
 
-// In-memory store
+const COL_WIDTHS = [22, 22, 42, 14, 18, 12, 50, 45, 12, 28, 42, 12, 18, 15, 15, 22];
+
+// In-memory store (kept for backwards compatibility but generateReport uses parameters)
 let runMeta = {};
 let allResults = [];
 let runStartTime = null;
 
-/**
- * Call at the start of a WDIO run.
- * @param {object} meta - { device, androidVersion, buildNumber, appVersion }
- */
 function startRun(meta) {
   runStartTime = Date.now();
   runMeta = meta || {};
   allResults = [];
 }
 
-/**
- * Record a single test result.
- * @param {object} result - { name, category, status, durationMs, failureReason, screenshotPath }
- */
 function recordTest(result) {
   allResults.push({
+    suite: result.suite || "Unknown Suite",
+    specFile: result.specFile || "Unknown Spec",
     name: result.name || "Unnamed Test",
     category: result.category || "Uncategorized",
     status: result.status || "FAILED",
-    durationMs: result.durationMs != null ? result.durationMs : Math.round(Math.random() * 16 + 5),
+    durationMs: result.durationMs != null ? result.durationMs : 0,
     device: result.device || runMeta.device || "Unknown",
     androidVersion: result.androidVersion || runMeta.androidVersion || "Unknown",
     failureReason: result.failureReason || "",
     screenshotPath: result.screenshotPath || "",
     timestamp: result.timestamp || new Date().toISOString(),
+    retryCount: result.retryCount || 0,
   });
 }
 
 /**
  * Generate the Excel report file.
- * @param {string} outputPath - absolute path where .xlsx should be saved
+ * @param {object[]} results - reconciled list of all tests
+ * @param {object} meta - run metadata
+ * @param {string} outputPath - output filepath
  */
-async function generateReport(outputPath) {
+async function generateReport(results, meta, outputPath) {
+  const finalResults = results || allResults || [];
+  const finalMeta = meta || runMeta || {};
+  const finalStartTime = runStartTime || Date.now();
+
   if (!outputPath) {
     outputPath = path.resolve(__dirname, "../../test-results/TripSync_Android_TestReport.xlsx");
   }
@@ -108,40 +117,42 @@ async function generateReport(outputPath) {
       cell.alignment = { vertical: "middle", horizontal: "center", wrapText: false };
     });
     row.height = 22;
-    sheet.getColumn(1).width = COL_WIDTHS[0];
-    sheet.getColumn(2).width = COL_WIDTHS[1];
-    sheet.getColumn(3).width = COL_WIDTHS[2];
-    sheet.getColumn(4).width = COL_WIDTHS[3];
-    sheet.getColumn(5).width = COL_WIDTHS[4];
-    sheet.getColumn(6).width = COL_WIDTHS[5];
-    sheet.getColumn(7).width = COL_WIDTHS[6];
-    sheet.getColumn(8).width = COL_WIDTHS[7];
-    sheet.getColumn(9).width = COL_WIDTHS[8];
+    HEADERS.forEach((_, i) => {
+      sheet.getColumn(i + 1).width = COL_WIDTHS[i] || 15;
+    });
     sheet.views = [{ state: "frozen", ySplit: 1 }];
   }
 
   function addResultRow(sheet, rowNum, r) {
     const row = sheet.getRow(rowNum);
-    row.getCell(1).value = rowNum - 1;
-    row.getCell(2).value = r.name;
-    row.getCell(3).value = r.status;
-    row.getCell(4).value = r.durationMs;
-    row.getCell(5).value = r.device;
-    row.getCell(6).value = r.androidVersion;
-    row.getCell(7).value = r.failureReason;
-    row.getCell(8).value = r.screenshotPath;
-    row.getCell(9).value = r.timestamp;
+    row.getCell(1).value = r.suite || "Unknown Suite";
+    row.getCell(2).value = r.specFile || "Unknown Spec";
+    row.getCell(3).value = r.name || "Unnamed Test";
+    row.getCell(4).value = r.status;
+    row.getCell(5).value = r.durationMs;
+    row.getCell(6).value = r.retryCount || 0;
+    row.getCell(7).value = r.failureReason || "";
+    row.getCell(8).value = r.screenshotPath || "N/A";
+    row.getCell(9).value = r.videoPath || "N/A";
+    row.getCell(10).value = "com.kondajeswanth.TripSyncApp";
+    row.getCell(11).value = "com.kondajeswanth.TripSyncApp.MainActivity";
+    row.getCell(12).value = "Android";
+    row.getCell(13).value = r.device || finalMeta.device || "Unknown";
+    row.getCell(14).value = r.androidVersion || finalMeta.androidVersion || "Unknown";
+    row.getCell(15).value = finalMeta.appiumVersion || "2.x";
+    row.getCell(16).value = r.timestamp || new Date().toISOString();
 
-    const statusCell = row.getCell(3);
+    const statusCell = row.getCell(4);
     if (r.status === "PASSED") statusCell.style = passStyle;
     else if (r.status === "FAILED") statusCell.style = failStyle;
-    else statusCell.style = skipStyle;
+    else if (r.status === "SKIPPED") statusCell.style = skipStyle;
+    else statusCell.style = skipStyle; // For NOT EXECUTED
 
-    [1, 2, 3, 4, 5, 6, 7, 8, 9].forEach((c) => {
-      const cell = row.getCell(c);
+    HEADERS.forEach((_, c) => {
+      const cell = row.getCell(c + 1);
       cell.border = allBorders;
       if (!cell.style) cell.style = {};
-      cell.alignment = { vertical: "top", wrapText: c === 7 || c === 8 };
+      cell.alignment = { vertical: "top", wrapText: c + 1 === 7 || c + 1 === 8 };
     });
     row.height = 18;
     row.commit();
@@ -151,29 +162,31 @@ async function generateReport(outputPath) {
   const summarySheet = workbook.addWorksheet("Executive Summary");
   summarySheet.columns = [{ width: 30 }, { width: 25 }];
 
-  const totalDuration = Date.now() - (runStartTime || Date.now());
-  const totalTests = allResults.length;
-  const passed = allResults.filter((r) => r.status === "PASSED").length;
-  const failed = allResults.filter((r) => r.status === "FAILED").length;
-  const skipped = allResults.filter((r) => r.status === "SKIPPED").length;
+  const totalDuration = Date.now() - finalStartTime;
+  const totalTests = finalResults.length;
+  const passed = finalResults.filter((r) => r.status === "PASSED").length;
+  const failed = finalResults.filter((r) => r.status === "FAILED").length;
+  const skipped = finalResults.filter((r) => r.status === "SKIPPED").length;
+  const notExecuted = finalResults.filter((r) => r.status === "NOT EXECUTED").length;
   const passRate = totalTests > 0 ? ((passed / totalTests) * 100).toFixed(1) : "0.0";
 
   const summaryData = [
     ["TripSync Android E2E Test Report", ""],
     [""],
     ["Run Date", new Date().toLocaleString()],
-    ["Total Tests", totalTests],
+    ["Total Discovered Tests", totalTests],
     ["Passed ✅", passed],
     ["Failed ❌", failed],
     ["Skipped ⚠️", skipped],
-    ["Pass Rate", `${passRate}%`],
+    ["Not Executed 🚫", notExecuted],
+    ["Overall Pass Rate", `${passRate}%`],
     ["Total Duration", `${Math.round(totalDuration / 1000)}s`],
     [""],
-    ["Device", runMeta.device || "N/A"],
-    ["Android Version", runMeta.androidVersion || "N/A"],
-    ["App Version", runMeta.appVersion || "1.0.0"],
-    ["Build Number", runMeta.buildNumber || "N/A"],
-    ["Appium Version", runMeta.appiumVersion || "2.x"],
+    ["Device", finalMeta.device || "N/A"],
+    ["Android Version", finalMeta.androidVersion || "N/A"],
+    ["App Version", finalMeta.appVersion || "1.0.0"],
+    ["Build Number", finalMeta.buildNumber || "N/A"],
+    ["Appium Version", finalMeta.appiumVersion || "2.x"],
     [""],
     ["Category Breakdown", ""],
   ];
@@ -191,7 +204,7 @@ async function generateReport(outputPath) {
 
   // Category summary
   CATEGORY_SHEETS.forEach((cat) => {
-    const catResults = allResults.filter((r) => r.category === cat);
+    const catResults = finalResults.filter((r) => r.category === cat);
     const catPassed = catResults.filter((r) => r.status === "PASSED").length;
     const catFailed = catResults.filter((r) => r.status === "FAILED").length;
     const catRate = catResults.length > 0 ? ((catPassed / catResults.length) * 100).toFixed(0) : "0";
@@ -207,14 +220,14 @@ async function generateReport(outputPath) {
   CATEGORY_SHEETS.forEach((cat) => {
     const sheet = workbook.addWorksheet(cat.substring(0, 31)); // Excel 31 char limit
     applyHeaderRow(sheet);
-    const catResults = allResults.filter((r) => r.category === cat);
+    const catResults = finalResults.filter((r) => r.category === cat);
     catResults.forEach((r, i) => addResultRow(sheet, i + 2, r));
   });
 
   // ── ALL RESULTS SHEET ──
   const allSheet = workbook.addWorksheet("All Results");
   applyHeaderRow(allSheet);
-  allResults.forEach((r, i) => addResultRow(allSheet, i + 2, r));
+  finalResults.forEach((r, i) => addResultRow(allSheet, i + 2, r));
 
   await workbook.xlsx.writeFile(outputPath);
   console.log(`[xlsxReporter] Report saved: ${outputPath}`);
