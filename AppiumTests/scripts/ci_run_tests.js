@@ -53,7 +53,38 @@ console.log("🚀 STARTING TRIPSYNC APPIUM E2E TESTING PIPELINE");
 console.log("====================================================");
 
 const TARGET_UDID = "3085584598000GN";
-const APK_PATH = path.join(__dirname, "../../android/app/build/outputs/apk/debug/app-debug.apk");
+
+// Helper to recursively find the newest APK file
+function getNewestApk(dir) {
+    let newestApk = null;
+    let newestTime = 0;
+
+    function search(currentDir) {
+        if (!fs.existsSync(currentDir)) return;
+        const files = fs.readdirSync(currentDir);
+        for (const file of files) {
+            const filePath = path.join(currentDir, file);
+            const stat = fs.statSync(filePath);
+            if (stat.isDirectory()) {
+                search(filePath);
+            } else if (file.endsWith('.apk')) {
+                if (stat.mtimeMs > newestTime) {
+                    newestTime = stat.mtimeMs;
+                    newestApk = filePath;
+                }
+            }
+        }
+    }
+
+    search(dir);
+    return newestApk;
+}
+
+const apkSearchDir = path.join(__dirname, "../../android/app/build/outputs/apk");
+const detectedApk = getNewestApk(apkSearchDir);
+const APK_PATH = detectedApk || path.join(__dirname, "../../android/app/build/outputs/apk/debug/app-debug.apk");
+console.log(`🔍 Auto-detected newest APK: ${APK_PATH}`);
+
 const screenshotsDir = path.join(__dirname, "../../test-results/screenshots");
 
 // Helper to run commands synchronously and log output
@@ -123,14 +154,12 @@ const testResultsDir = path.join(__dirname, '../../test-results');
 if (!fs.existsSync(testResultsDir)) {
     fs.mkdirSync(testResultsDir, { recursive: true });
 }
-const logStream = fs.createWriteStream(path.join(testResultsDir, 'appium.log'), { flags: 'a' });
-const appiumProcess = spawn('npx', ['appium', '--port', '4723', '--allow-insecure', 'chromedriver_autodownload'], {
-    shell: true,
+const logFd = fs.openSync(path.join(testResultsDir, 'appium.log'), 'a');
+const appiumPath = path.join(__dirname, '../../node_modules/appium/index.js');
+const appiumProcess = spawn('node', [appiumPath, '--port', '4723', '--allow-insecure', 'chromedriver_autodownload'], {
+    stdio: ['ignore', logFd, logFd],
     detached: false
 });
-
-appiumProcess.stdout.pipe(logStream);
-appiumProcess.stderr.pipe(logStream);
 
 appiumProcess.on('error', (err) => {
     console.error('❌ Failed to start Appium process:', err);

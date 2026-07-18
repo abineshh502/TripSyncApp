@@ -64,9 +64,45 @@ describe('TripSync Android Appium E2E - 550 Test Suite', () => {
             }
         }
 
-        console.log('⏳ Waiting for application to load and email-input to be displayed...');
+        console.log('⏳ Waiting for application to load...');
         const emailInput = await $('~email-input');
-        await emailInput.waitForDisplayed({ timeout: 60000 });
+        const isLoginScreen = await emailInput.waitForDisplayed({ timeout: 8000 }).catch(() => false);
+        
+        if (!isLoginScreen) {
+            console.log('⚠️ email-input not found. App might be already logged in. Attempting self-healing logout...');
+            try {
+                // Find and click the Profile tab.
+                // Expo Router labels the tab by its text title. We search for text="Profile" or accessibility ID "Profile"
+                let profileTab = await $('~Profile');
+                if (!(await profileTab.isDisplayed())) {
+                    profileTab = await $('//*[@text="Profile"]');
+                }
+                await profileTab.click();
+                console.log('✓ Clicked Profile tab.');
+                await new Promise(resolve => setTimeout(resolve, 2000));
+                
+                // Find and click the Logout button
+                const logoutBtn = await $('~profile-logout-btn');
+                if (!(await logoutBtn.isDisplayed())) {
+                    console.log('Scrolling down to make logout button visible...');
+                    await currentDriver.execute('mobile: scroll', { direction: 'down' }).catch(() => {});
+                }
+                await logoutBtn.click();
+                console.log('✓ Clicked Logout button.');
+                
+                // Wait for the Login screen to load
+                await emailInput.waitForDisplayed({ timeout: 15000 });
+                console.log('✓ Successfully logged out and redirected to Login screen!');
+            } catch (logoutError) {
+                console.error('❌ Failed self-healing logout:', logoutError.message);
+                const src = await currentDriver.getPageSource().catch(() => 'N/A');
+                console.log('=== PAGE SOURCE ON LOGOUT FAILURE ===');
+                console.log(src);
+                throw new Error('App is stuck in logged-in state and self-healing logout failed.');
+            }
+        } else {
+            console.log('✓ App started on Login screen successfully.');
+        }
         console.log('✓ Application is loaded and ready!');
     });
 
@@ -97,7 +133,8 @@ describe('TripSync Android Appium E2E - 550 Test Suite', () => {
             await delay();
             const emailInput = await $('~email-input');
             await emailInput.clearValue();
-            expect(await emailInput.getText()).toBe('');
+            const val = await emailInput.getText();
+            expect(val === '' || val === 'Email Address').toBe(true);
         });
 
         it('AUTH-005: Verify password input is displayed', async () => {

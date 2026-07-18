@@ -354,12 +354,13 @@ function generateReport(outputPath) {
     });
 
     // Save Workbook
-    workbook.xlsx.writeFile(outputPath)
+    return workbook.xlsx.writeFile(outputPath)
         .then(() => {
             console.log(`[XLSX Reporter] Excel report saved to ${outputPath}`);
         })
         .catch(err => {
             console.error('[XLSX Reporter] Error saving Excel report:', err);
+            throw err;
         });
 }
 

@@ -18,6 +18,9 @@ exports.config = {
         'appium:platformName': 'Android',
         'appium:automationName': 'UiAutomator2',
         'appium:noReset': true,
+        'appium:unicodeKeyboard': true,
+        'appium:resetKeyboard': true,
+        'appium:settings[waitForIdleTimeout]': 0,
         'appium:appPackage': 'com.kondajeswanth.TripSyncApp',
         'appium:appActivity': '.MainActivity',
         'appium:autoGrantPermissions': true,
@@ -145,7 +148,7 @@ exports.config = {
         // Record in Excel reporter
         xlsxReporter.recordTest(testData);
     },
-    onComplete: function(exitCode, config, capabilities, results) {
+    onComplete: async function(exitCode, config, capabilities, results) {
         console.log('====================================================');
         console.log('⚙️ GENERATING EXCEL AND HTML REPORTS...');
         
@@ -160,7 +163,9 @@ exports.config = {
         }
 
         // Generate Excel report
-        xlsxReporter.generateReport(excelPath);
+        await xlsxReporter.generateReport(excelPath).catch(err => {
+            console.error('❌ Failed to write Excel report:', err.message);
+        });
 
         // Generate HTML report
         htmlReportGenerator.generateHtmlReport(jsonlPath, htmlPath);

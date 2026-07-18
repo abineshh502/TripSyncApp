@@ -12,6 +12,9 @@ on:
 jobs:
   e2e-test:
     runs-on: [self-hosted, Windows, android]
+    defaults:
+      run:
+        working-directory: TripSyncApp
 
     steps:
       - name: Checkout Code
@@ -28,7 +31,7 @@ jobs:
         with:
           node-version: '20'
           cache: 'npm'
-          cache-dependency-path: 'package-lock.json'
+          cache-dependency-path: 'TripSyncApp/package-lock.json'
 
       - name: Install Node Dependencies
         run: npm install
@@ -109,8 +112,8 @@ jobs:
         with:
           name: TripSync-Android-E2E-Reports
           path: |
-            test-results/TripSync_Android_TestReport.xlsx
-            test-results/html/execution-report.html
-            test-results/appium.log
-            test-results/screenshots/
+            TripSyncApp/test-results/TripSync_Android_TestReport.xlsx
+            TripSyncApp/test-results/html/execution-report.html
+            TripSyncApp/test-results/appium.log
+            TripSyncApp/test-results/screenshots/
           if-no-files-found: warn
