@@ -352,10 +352,10 @@ jobs:
         run: |
           $devices = adb devices 2>&1
           Write-Host "ADB Devices output:`n$devices"
-          $emulatorLines = $devices -split "`n" | Where-Object { $_ -match "emulator.*device" }
+          $match = [System.Text.RegularExpressions.Regex]::Match($devices, "(emulator-\d+|127\.0\.0\.1:\d+)")
 
-          if ($emulatorLines.Count -gt 0) {
-            $emulatorId = ($emulatorLines[0] -split "`t")[0].Trim()
+          if ($match.Success) {
+            $emulatorId = $match.Value
             Write-Host "[REUSE] Emulator already running: $emulatorId"
             echo "running=true" >> $env:GITHUB_OUTPUT
             echo "device-id=$emulatorId" >> $env:GITHUB_OUTPUT
