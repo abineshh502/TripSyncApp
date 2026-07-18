@@ -393,58 +393,152 @@ jobs:
           Add-Content -Path $env:GITHUB_ENV -Value "ANDROID_VERSION=$androidVer"
 
       # ----------------------------------------------------
-      # 10. VERIFY INSTALLED APK (Intelligent -- reuse if installed)
+      # 10. FORCE INSTALL APK (always reinstall — never skip)
+      # ROOT CAUSE FIX: The old step reused the installed APK by package name,
+      # which left a stale June 22 dev-mode APK (no JS bundle) on the emulator.
+      # We now ALWAYS reinstall using -r (replace) and -d (allow downgrade).
       # ----------------------------------------------------
-      - name: Check App Installation
-        id: app-install-check
+      - name: Force Install APK
         shell: powershell
         run: |
-          $pkg = "com.kondajeswanth.TripSyncApp"
-          $installed = adb -s $env:DEVICE_NAME shell pm list packages $pkg 2>&1
-          Write-Host "Package check: $installed"
+          $pkg    = "com.kondajeswanth.TripSyncApp"
+          $apkPath = "android\app\build\outputs\apk\debug\app-debug.apk"
 
-          if ($installed -match $pkg) {
-            Write-Host "[REUSE] App already installed. Force-stopping for clean state."
-            adb -s $env:DEVICE_NAME shell am force-stop $pkg
-            Start-Sleep -Seconds 2
-            echo "installed=true" >> $env:GITHUB_OUTPUT
-            Add-Content -Path $env:GITHUB_ENV -Value "INSTALL_STATUS=Reused (Already Installed)"
-          } else {
-            Write-Host "[INSTALL] App not installed. Installing APK..."
-            echo "installed=false" >> $env:GITHUB_OUTPUT
-            Add-Content -Path $env:GITHUB_ENV -Value "INSTALL_STATUS=Newly Installed"
+          if (-not (Test-Path $apkPath)) {
+            Write-Error "[FAIL] APK not found at $apkPath"
+            exit 1
           }
 
-      - name: Install APK (if not installed)
-        if: steps.app-install-check.outputs.installed == 'false'
-        shell: powershell
-        run: |
-          $apkPath = "android\app\build\outputs\apk\debug\app-debug.apk"
-          Write-Host "Installing APK: $apkPath"
-          adb -s $env:DEVICE_NAME install -r "$apkPath"
+          $sizeMB = [math]::Round((Get-Item $apkPath).Length / 1MB, 1)
+          Write-Host "APK path : $apkPath"
+          Write-Host "APK size : $sizeMB MB"
+
+          # --- Verify APK contains embedded JS bundle using aapt ---
+          $aaptBin = $null
+          $buildToolsBase = Join-Path $env:ANDROID_HOME "build-tools"
+          if (Test-Path $buildToolsBase) {
+            $versions = Get-ChildItem $buildToolsBase | Sort-Object Name -Descending
+            foreach ($v in $versions) {
+              $candidate = Join-Path $v.FullName "aapt.exe"
+              if (Test-Path $candidate) { $aaptBin = $candidate; break }
+            }
+          }
+
+          if ($aaptBin) {
+            Write-Host "Using aapt: $aaptBin"
+            $apkContents = & $aaptBin list "$apkPath" 2>&1
+            if ($apkContents -match "assets/index.android.bundle") {
+              Write-Host "[OK] APK contains assets/index.android.bundle (JS bundle embedded). Safe to install."
+            } else {
+              Write-Error "[FAIL] APK is missing assets/index.android.bundle!"
+              Write-Error "This APK was built WITHOUT bundleInDebug=true. The app WILL crash with 'Unable to load script'."
+              Write-Error "Re-run with force_rebuild=true to rebuild the APK correctly."
+              exit 1
+            }
+          } else {
+            Write-Host "[WARN] aapt not found. Skipping bundle verification. Proceeding with install."
+          }
+
+          # Force-stop before reinstall
+          Write-Host "Force-stopping app before reinstall..."
+          adb -s $env:DEVICE_NAME shell am force-stop $pkg
+          Start-Sleep -Seconds 1
+
+          # Install with -r (replace) and -d (allow version downgrade)
+          Write-Host "[INSTALL] Running: adb install -r -d $apkPath"
+          $installResult = adb -s $env:DEVICE_NAME install -r -d "$apkPath" 2>&1
+          Write-Host "Install result: $installResult"
+
+          if ($LASTEXITCODE -ne 0) {
+            Write-Error "[FAIL] adb install failed with exit code $LASTEXITCODE"
+            exit 1
+          }
+
           Start-Sleep -Seconds 3
 
           # Verify installation
-          $installed = adb -s $env:DEVICE_NAME shell pm list packages com.kondajeswanth.TripSyncApp 2>&1
-          if ($installed -notmatch "com.kondajeswanth.TripSyncApp") {
-            Write-Error "APK installation verification FAILED."
+          $installed = adb -s $env:DEVICE_NAME shell pm list packages $pkg 2>&1
+          if ($installed -notmatch $pkg) {
+            Write-Error "[FAIL] APK installation verification failed. Package not found after install."
             exit 1
           }
-          Write-Host "[OK] APK installation verified."
+          Write-Host "[OK] APK installed and verified."
+          Add-Content -Path $env:GITHUB_ENV -Value "INSTALL_STATUS=Force Reinstalled"
 
       # ----------------------------------------------------
-      # 11. LAUNCH APP
+      # 11. LAUNCH APP AND VERIFY FOREGROUND
+      # ROOT CAUSE FIX: Previously we just sent 'am start' and assumed success.
+      # Now we poll dumpsys activity to confirm the app is in the foreground.
+      # If not, we FAIL IMMEDIATELY and save diagnostic artifacts.
       # ----------------------------------------------------
-      - name: Launch App
+      - name: Launch App and Verify Foreground
         shell: powershell
         run: |
-          $pkg = "com.kondajeswanth.TripSyncApp"
+          $pkg      = "com.kondajeswanth.TripSyncApp"
           $activity = "${pkg}.MainActivity"
-          Write-Host "Launching: $activity"
-          adb -s $env:DEVICE_NAME shell am start -n "${pkg}/${activity}"
-          Start-Sleep -Seconds 3
-          Write-Host "[OK] App launch command sent."
+          $device   = $env:DEVICE_NAME
 
+          Write-Host "=== Step 1: Resolve actual launch activity ==="
+          $resolved = adb -s $device shell cmd package resolve-activity --brief $pkg 2>&1
+          Write-Host "Resolved activity: $resolved"
+
+          Write-Host "`n=== Step 2: Clear app data for clean login state ==="
+          adb -s $device shell pm clear $pkg
+          Start-Sleep -Seconds 1
+
+          Write-Host "`n=== Step 3: Launch app with -W (wait for activity) ==="
+          $startResult = adb -s $device shell am start -W -n "${pkg}/${activity}" 2>&1
+          Write-Host "am start result:`n$startResult"
+
+          if ($startResult -match "Error") {
+            Write-Error "[FAIL] am start returned an error: $startResult"
+            exit 1
+          }
+
+          Write-Host "`n=== Step 4: Poll for foreground activity (up to 30s) ==="
+          $appInForeground = $false
+          for ($i = 1; $i -le 10; $i++) {
+            Start-Sleep -Seconds 3
+            $dump    = adb -s $device shell dumpsys activity activities 2>&1
+            $topLine = ($dump -split "`n" | Where-Object { $_ -match "topResumedActivity" } | Select-Object -First 1)
+            Write-Host "  Poll $i/10 top activity: $topLine"
+
+            if ($topLine -match [regex]::Escape($pkg)) {
+              Write-Host "[OK] TripSync app is in the foreground."
+              $appInForeground = $true
+              break
+            }
+          }
+
+          Write-Host "`n=== Step 5: Screenshot for diagnostics ==="
+          adb -s $device shell screencap -p /sdcard/post_launch_screen.png
+          adb -s $device pull /sdcard/post_launch_screen.png test-results\post_launch_screen.png 2>&1
+          Write-Host "Screenshot saved to test-results\post_launch_screen.png"
+
+          if (-not $appInForeground) {
+            Write-Host "`n=== FAILURE DIAGNOSTICS ==="
+            Write-Host "--- Activity dump ---"
+            adb -s $device shell dumpsys activity activities | Select-Object -First 50
+            Write-Host "--- Recent logcat (ReactNative errors) ---"
+            adb -s $device logcat -d -v brief ReactNativeJS:V AndroidRuntime:E *:S 2>&1 | Select-Object -Last 50
+            Write-Error "[FAIL] TripSync app is NOT in the foreground after 30s. App likely crashed (missing JS bundle / ANR). DO NOT proceed to WDIO."
+            exit 1
+          }
+
+          Write-Host "[OK] App launch verified. Waiting 5s for React Native to fully render..."
+          Start-Sleep -Seconds 5
+
+          # Final foreground check after RN render delay
+          $finalDump    = adb -s $device shell dumpsys activity activities 2>&1
+          $finalTopLine = ($finalDump -split "`n" | Where-Object { $_ -match "topResumedActivity" } | Select-Object -First 1)
+          Write-Host "Final top activity: $finalTopLine"
+
+          if ($finalTopLine -notmatch [regex]::Escape($pkg)) {
+            Write-Error "[FAIL] App left foreground during React Native init. Possible crash. Aborting."
+            exit 1
+          }
+
+          Write-Host "[OK] App is visible and ready for WDIO test execution."
 
 
       # ----------------------------------------------------

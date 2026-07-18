@@ -55,16 +55,24 @@ exports.config = {
       "appium:automationName": "UiAutomator2",
       "appium:deviceName": process.env.DEVICE_NAME || "emulator-5554",
       "appium:udid": process.env.DEVICE_NAME || "emulator-5554",
+      // Package and activity verified via: adb shell cmd package resolve-activity --brief com.kondajeswanth.TripSyncApp
       "appium:appPackage": "com.kondajeswanth.TripSyncApp",
       "appium:appActivity": "com.kondajeswanth.TripSyncApp.MainActivity",
+      // Wildcard wait: tolerate any sub-activity during RN init splash
+      "appium:appWaitActivity": "com.kondajeswanth.TripSyncApp.*",
+      "appium:appWaitDuration": 45000,
       "appium:adbExecTimeout": 120000,
       "appium:androidInstallTimeout": 120000,
       "appium:uiautomator2ServerInstallTimeout": 120000,
       "appium:autoGrantPermissions": true,
-      "appium:noReset": false,
+      // noReset: true — DO NOT run pm clear; the app was already data-cleared and
+      // relaunched by ci_run_tests.js. pm clear in Appium can cause ANR on slow emulators.
+      "appium:noReset": true,
       "appium:fullReset": false,
-      "appium:newCommandTimeout": 300,
+      // 600s command timeout: our longest tests involve network + OTP waits
+      "appium:newCommandTimeout": 600,
       "appium:ignoreHiddenApiPolicyError": true,
+      "appium:skipUnlock": true,
     },
   ],
 
@@ -147,26 +155,84 @@ exports.config = {
   },
 
   /**
-   * before: Called before each spec suite (spec file) starts.
-   * Force-stops and relaunches the app so each worker gets a clean login screen.
+   * before: Called before each spec suite starts.
+   * Verifies the app is in the foreground and the login screen can be reached.
+   * Restarts the app if needed, then confirms it is visible within 30s.
+   * FAILS IMMEDIATELY if the app is not visible — never lets WDIO enter an infinite retry loop.
    */
   async before(_caps, _specs) {
     const { execSync } = require("child_process");
-    const appPackage = "com.kondajeswanth.TripSyncApp";
+    const appPackage  = "com.kondajeswanth.TripSyncApp";
     const appActivity = "com.kondajeswanth.TripSyncApp.MainActivity";
-    const adb = process.env.ADB_PATH || "adb";
+    const adbBin  = process.env.ADB_PATH || "adb";
+    const device  = process.env.DEVICE_NAME || "emulator-5554";
+    const adb     = `${adbBin} -s ${device}`;
 
-    try {
-      console.log("[wdio] Force-stopping app for clean launch...");
-      execSync(`${adb} shell am force-stop ${appPackage}`, { stdio: "pipe", timeout: 10000 });
-      await browser.pause(1000);
-      console.log("[wdio] Relaunching app...");
-      execSync(`${adb} shell am start -n "${appPackage}/${appActivity}"`, { stdio: "pipe", timeout: 10000 });
-      await browser.pause(5000);
-      console.log("[wdio] App relaunched. Waiting for login screen...");
-    } catch (err) {
-      console.warn("[wdio] ⚠️ App relaunch warning:", err.message);
+    function adbSilent(cmd) {
+      try { return execSync(cmd, { encoding: "utf-8", stdio: "pipe", timeout: 10000 }); }
+      catch (_) { return ""; }
     }
+
+    // Log current focused activity
+    const dumpBefore = adbSilent(`${adb} shell dumpsys activity activities`);
+    const topBefore  = dumpBefore.split("\n").find((l) => l.includes("topResumedActivity")) || "(unknown)";
+    console.log(`[wdio] [before] Current top activity: ${topBefore.trim()}`);
+
+    // If app is not in foreground, restart it
+    if (!topBefore.includes(appPackage)) {
+      console.log("[wdio] [before] App not in foreground. Force-stopping and relaunching...");
+      adbSilent(`${adb} shell am force-stop ${appPackage}`);
+      await browser.pause(1500);
+
+      // Clear data so we always land on login screen
+      adbSilent(`${adb} shell pm clear ${appPackage}`);
+      await browser.pause(1000);
+
+      adbSilent(`${adb} shell am start -W -n "${appPackage}/${appActivity}"`);
+      await browser.pause(8000);
+    }
+
+    // Confirm the app is now in the foreground (poll up to 30s)
+    let appVisible = false;
+    for (let i = 0; i < 10; i++) {
+      const dump   = adbSilent(`${adb} shell dumpsys activity activities`);
+      const topAct = dump.split("\n").find((l) => l.includes("topResumedActivity")) || "";
+      console.log(`[wdio] [before] Poll ${i + 1}/10 top activity: ${topAct.trim()}`);
+      if (topAct.includes(appPackage)) {
+        appVisible = true;
+        break;
+      }
+      await browser.pause(3000);
+    }
+
+    // Save screenshot and page source for diagnostics (always)
+    try {
+      const screenshotPath = require("path").join(
+        require("path").resolve(__dirname, "../../test-results"),
+        `before-hook-${Date.now()}.png`
+      );
+      adbSilent(`${adb} shell screencap -p /sdcard/before_hook.png`);
+      adbSilent(`${adb} pull /sdcard/before_hook.png "${screenshotPath}"`);
+      console.log(`[wdio] [before] Screenshot saved: ${screenshotPath}`);
+    } catch (_) {}
+
+    if (!appVisible) {
+      // Save logcat for diagnosis
+      const logcat = adbSilent(`${adb} logcat -d -v threadtime ReactNativeJS:V *:W`).substring(0, 100000);
+      const logPath = require("path").join(
+        require("path").resolve(__dirname, "../../test-results"),
+        `before-hook-logcat-${Date.now()}.txt`
+      );
+      require("fs").writeFileSync(logPath, logcat, "utf-8");
+
+      throw new Error(
+        `[wdio] FATAL: TripSync app is NOT in the foreground after 30s. ` +
+        `Aborting spec — WDIO will not enter an infinite loop. ` +
+        `Logcat saved at: ${logPath}`
+      );
+    }
+
+    console.log("[wdio] [before] App verified in foreground. Proceeding with spec.");
   },
 
   /**
