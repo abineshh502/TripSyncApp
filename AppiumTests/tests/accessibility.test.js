@@ -125,6 +125,9 @@ describe("UI/UX & Accessibility", () => {
   });
 
   it("A11Y-015: Profile logout button has accessibilityLabel", async () => {
+    try {
+      await h.scrollDown(driver, 2);
+    } catch (_) {}
     const el = await driver.$("~profile-logout-btn");
     expect(await el.isDisplayed()).toBe(true);
     await h.testEnd();
