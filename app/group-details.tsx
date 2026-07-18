@@ -9,17 +9,13 @@ import {
   ActivityIndicator,
   StyleSheet,
   Image,
-  Dimensions,
-  FlatList,
-  KeyboardAvoidingView,
-  Platform,
   BackHandler,
 } from "react-native";
 import { useEffect, useState, useRef } from "react";
 import { useLocalSearchParams, router } from "expo-router";
-import { getFirestore, doc, onSnapshot, updateDoc, arrayUnion, deleteDoc, collection, query, orderBy, addDoc } from "firebase/firestore";
+import { getFirestore, doc, onSnapshot, updateDoc, arrayUnion, deleteDoc, collection, query, orderBy } from "firebase/firestore";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import { Ionicons, FontAwesome5, MaterialIcons } from "@expo/vector-icons";
+import { Ionicons, FontAwesome5 } from "@expo/vector-icons";
 import MapView, { Marker, Polyline } from "react-native-maps";
 import * as ImagePicker from "expo-image-picker";
 import * as Location from "expo-location";
@@ -133,7 +129,7 @@ export default function GroupDetailsScreen() {
   const [currentLocation, setCurrentLocation] = useState<{ latitude: number; longitude: number } | null>(null);
   const [liveDistanceKm, setLiveDistanceKm] = useState<number | null>(null);
   const [liveEtaMin, setLiveEtaMin] = useState<number | null>(null);
-  const [arrivedAtStop, setArrivedAtStop] = useState<string | null>(null);
+  const [_arrivedAtStop, setArrivedAtStop] = useState<string | null>(null);
   const locationWatcherRef = useRef<any>(null);
   const navIndexRef = useRef<number>(0); // track navDestIndex in location callback
 
@@ -141,7 +137,7 @@ export default function GroupDetailsScreen() {
   const [routeSteps, setRouteSteps] = useState<any[]>([]);
 
   // Chat States
-  const [messages, setMessages] = useState<any[]>([]);
+  const [_messages, setMessages] = useState<any[]>([]);
   const [unreadCount, setUnreadCount] = useState(0);
   const activeTabRef = useRef(activeTab);
 
@@ -218,6 +214,7 @@ export default function GroupDetailsScreen() {
     );
 
     return () => unsubscribe();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [id]);
 
   // Synchronize navigation day selection
@@ -225,6 +222,7 @@ export default function GroupDetailsScreen() {
     if (group && group.navigationActive && group.navDayIndex !== undefined) {
       setSelectedDayMap(group.navDayIndex);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [group?.navigationActive, group?.navDayIndex]);
 
   // Synchronize follower status from navigator's Firestore writes
@@ -244,6 +242,7 @@ export default function GroupDetailsScreen() {
         }
       }
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [group?.navigationActive, group?.navDestIndex, group?.liveDistanceKm, group?.liveEtaMin, group?.navigatorUid]);
 
   // Pan camera to follow the active navigator (for followers)
@@ -255,6 +254,7 @@ export default function GroupDetailsScreen() {
         1000
       );
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [group?.navigatorCoords, group?.navigationActive, group?.navigatorUid]);
 
   useEffect(() => {
@@ -291,6 +291,7 @@ export default function GroupDetailsScreen() {
     );
 
     return () => unsubscribe();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [id]);
 
   // Dynamic Route calculations whenever selectedDayMap or group itinerary changes
@@ -319,6 +320,7 @@ export default function GroupDetailsScreen() {
     } else {
       setGroupRouteCoords([]);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [selectedDayMap, group?.itinerary, group?.navigationActive, group?.navigatorCoords?.latitude, group?.navigatorCoords?.longitude, group?.navDestIndex]);
 
   const fetchOSRMRoute = async (spots: any[]) => {
@@ -496,7 +498,7 @@ export default function GroupDetailsScreen() {
       setAmount("");
       setDescription("");
       setReceiptUri(null);
-    } catch (e) {
+    } catch (_e) {
       Alert.alert("Error", "Could not log expense.");
     }
   };
@@ -519,7 +521,7 @@ export default function GroupDetailsScreen() {
 
       setEditItineraryModalVisible(false);
       Alert.alert("Itinerary Synced! 🗓️", `Day ${selectedDayIndex + 1} plan updated.`);
-    } catch (e) {
+    } catch (_e) {
       Alert.alert("Error", "Could not update itinerary.");
     }
   };
@@ -543,7 +545,7 @@ export default function GroupDetailsScreen() {
         }));
         setMapSearchResults(mapped);
       }
-    } catch (e) {
+    } catch (_e) {
       Alert.alert("Error", "Could not query map locations.");
     } finally {
       setMapSearching(false);
@@ -579,7 +581,7 @@ export default function GroupDetailsScreen() {
       setMapSearchText("");
       setMapSearchResults([]);
       Alert.alert("Spot Added! 📍", `"${spot.name}" added to Day ${selectedDayMap + 1}.`);
-    } catch (e) {
+    } catch (_e) {
       Alert.alert("Error", "Could not save spot to day plan.");
     }
   };
@@ -600,7 +602,7 @@ export default function GroupDetailsScreen() {
       });
 
       Alert.alert("Deleted 🗑️", "Destination removed from group schedule.");
-    } catch (e) {
+    } catch (_e) {
       Alert.alert("Error", "Could not delete spot.");
     }
   };
@@ -723,7 +725,7 @@ export default function GroupDetailsScreen() {
                 setRouteDurationS(rd.routes[0].duration);
               }
             }
-          } catch (e) {}
+          } catch (_e) {}
           setTimeout(() => setArrivedAtStop(null), 4000);
         }
       }
@@ -1006,29 +1008,6 @@ export default function GroupDetailsScreen() {
         </View>
       </View>
     );
-  };
-
-  const sendChatNotification = async (messageText: string) => {
-    try {
-      const otherMemberUids = (group.memberUids || []).filter((uid: string) => uid !== currentUserUid);
-      
-      const batchPromises = otherMemberUids.map((uid: string) => {
-        return addDoc(collection(db, "notifications"), {
-          recipientUid: uid,
-          senderUid: currentUserUid,
-          type: "group",
-          title: group.groupName || "Group Chat",
-          body: `${currentUserName}: ${messageText}`,
-          timestamp: new Date().toISOString(),
-          unread: true,
-          route: `/group-details?id=${id}`,
-        });
-      });
-      
-      await Promise.all(batchPromises);
-    } catch (e) {
-      console.log("Error sending chat notifications:", e);
-    }
   };
 
 

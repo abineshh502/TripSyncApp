@@ -51,7 +51,6 @@ export default function GroupsScreen() {
   const [budget, setBudget] = useState("");
   const [startDate, setStartDate] = useState("");
   const [endDate, setEndDate] = useState("");
-  const [memberCount, setMemberCount] = useState("1");
 
   // Join Code state
   const [joinCode, setJoinCode] = useState("");
@@ -92,6 +91,7 @@ export default function GroupsScreen() {
     );
 
     return () => unsubscribe();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const activeGroups = groups.filter((g) => !isTripCompleted(g));
@@ -216,7 +216,6 @@ export default function GroupsScreen() {
     setBudget("");
     setStartDate("");
     setEndDate("");
-    setMemberCount("1");
   };
 
   return (

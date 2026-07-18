@@ -7,9 +7,8 @@ import {
   StyleSheet,
   ActivityIndicator,
   Alert,
-  Platform,
 } from "react-native";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import {
   getFirestore,
   collection,
@@ -24,7 +23,7 @@ import {
 import app, { auth } from "../firebaseConfig";
 import { router } from "expo-router";
 import { Ionicons } from "@expo/vector-icons";
-import Constants from "expo-constants";
+
 
 const getApiBase = () => {
   const envUrl = process.env.EXPO_PUBLIC_API_URL || "https://tripsyncbackend-production-37a2.up.railway.app";
@@ -68,7 +67,7 @@ export default function AITripScreen() {
   const [travelStyle, setTravelStyle] = useState("mid-range"); // 'budget', 'mid-range', 'luxury'
   const [groupSoloMode, setGroupSoloMode] = useState("solo"); // 'solo', 'group'
   const [loading, setLoading] = useState(false);
-  const [saving, setSaving] = useState(false);
+  const [saving, _setSaving] = useState(false);
   const [result, setResult] = useState("");
   const [parsedDays, setParsedDays] = useState<DaySchedule[]>([]);
   const [autocompleteTimer, setAutocompleteTimer] = useState<any>(null);
@@ -102,7 +101,7 @@ export default function AITripScreen() {
           );
           setShowDestSuggestions(true);
         }
-      } catch (e) {}
+      } catch (_e) {}
     }, 350);
     setAutocompleteTimer(t);
   };
@@ -200,7 +199,7 @@ export default function AITripScreen() {
           mapLink: "",
         };
       });
-    } catch (error) {
+    } catch (_error) {
       // Interest-aware local fallback
       const interestMap: Record<string, string[]> = {
         historical: ["Historic Fort & Heritage Museum Visit", "Ancient Ruins Guided Walk", "Archaeological Site Tour"],
@@ -296,7 +295,7 @@ export default function AITripScreen() {
           }
         }
       ]);
-    } catch (e) {
+    } catch (_e) {
       setLoading(false);
       Alert.alert("Save Error", "Generated itinerary but failed to save to Firebase.");
     }

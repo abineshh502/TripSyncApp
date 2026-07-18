@@ -4,12 +4,10 @@ import {
   TextInput,
   TouchableOpacity,
   ScrollView,
-  FlatList,
   StyleSheet,
   Modal,
   ActivityIndicator,
   Alert,
-  Animated,
 } from "react-native";
 import { useState, useEffect, useRef } from "react";
 import { useLocalSearchParams, router } from "expo-router";
@@ -120,7 +118,6 @@ export default function ExploreScreen() {
       return () => clearTimeout(timer);
     }
   }, [toastMessage]);
-  const slideAnim = useRef(new Animated.Value(0)).current;
 
   // Autocomplete suggestions & custom categories
   const [suggestions, setSuggestions] = useState<any[]>([]);
@@ -195,6 +192,7 @@ export default function ExploreScreen() {
       setShowSuggestions(false);
       fetchPlaces(params.searchCity, selectedCategory);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [params.searchCity]);
 
   // Fetch autocomplete suggestions with debounce
@@ -269,7 +267,7 @@ export default function ExploreScreen() {
           setSuggestions(mapped);
           setShowSuggestions(mapped.length > 0);
         }
-      } catch (e) {
+      } catch (_e) {
         // silently fail autocomplete
       } finally {
         setAutocompleteLoading(false);
@@ -423,7 +421,7 @@ export default function ExploreScreen() {
         userId: currentUser.uid,
       });
       Alert.alert("Saved! ❤️", `${selectedPlace.name} added to your favorites.`);
-    } catch (e) {
+    } catch (_e) {
       Alert.alert("Error", "Could not save to favorites.");
     }
     setAddingFav(false);
@@ -464,7 +462,7 @@ export default function ExploreScreen() {
       });
       setToastMessage("Added to Visited Places");
       setModalVisible(false);
-    } catch (e) {
+    } catch (_e) {
       Alert.alert("Error", "Could not mark as visited.");
     }
     setAddingVisit(false);

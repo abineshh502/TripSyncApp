@@ -148,6 +148,7 @@ export default function CreateTripScreen() {
 
   return (
     <ScrollView
+      testID="create-trip-screen"
       contentContainerStyle={styles.container}
       showsVerticalScrollIndicator={false}
       keyboardShouldPersistTaps="handled"
@@ -175,6 +176,8 @@ export default function CreateTripScreen() {
           <View style={styles.inputBox}>
             <Ionicons name="bookmark-outline" size={18} color="#94A3B8" style={styles.inputIcon} />
             <TextInput
+              testID="trip-name-input"
+              accessibilityLabel="trip-name-input"
               placeholder="e.g., Goa Adventure 2024"
               placeholderTextColor="#94A3B8"
               value={tripName}
@@ -189,6 +192,8 @@ export default function CreateTripScreen() {
           <View style={styles.inputBox}>
             <Ionicons name="location-outline" size={18} color="#94A3B8" style={styles.inputIcon} />
             <TextInput
+              testID="trip-destination-input"
+              accessibilityLabel="trip-destination-input"
               placeholder="e.g., Goa, India"
               placeholderTextColor="#94A3B8"
               value={destination}
@@ -203,6 +208,8 @@ export default function CreateTripScreen() {
           <View style={styles.inputBox}>
             <Ionicons name="wallet-outline" size={18} color="#94A3B8" style={styles.inputIcon} />
             <TextInput
+              testID="trip-budget-input"
+              accessibilityLabel="trip-budget-input"
               placeholder="e.g., 25000"
               placeholderTextColor="#94A3B8"
               value={budget}
@@ -219,6 +226,8 @@ export default function CreateTripScreen() {
             <View style={styles.inputBox}>
               <Ionicons name="calendar-outline" size={16} color="#94A3B8" style={styles.inputIcon} />
               <TextInput
+                testID="trip-start-date-input"
+                accessibilityLabel="trip-start-date-input"
                 placeholder="YYYY-MM-DD"
                 placeholderTextColor="#94A3B8"
                 value={startDate}
@@ -232,6 +241,8 @@ export default function CreateTripScreen() {
             <View style={styles.inputBox}>
               <Ionicons name="calendar-outline" size={16} color="#94A3B8" style={styles.inputIcon} />
               <TextInput
+                testID="trip-end-date-input"
+                accessibilityLabel="trip-end-date-input"
                 placeholder="YYYY-MM-DD"
                 placeholderTextColor="#94A3B8"
                 value={endDate}
@@ -242,7 +253,7 @@ export default function CreateTripScreen() {
           </View>
         </View>
 
-        <TouchableOpacity onPress={generateDays} style={styles.genBtn}>
+        <TouchableOpacity testID="generate-days-btn" accessibilityLabel="generate-days-btn" onPress={generateDays} style={styles.genBtn}>
           <Ionicons name="list-outline" size={20} color="#38BDF8" />
           <Text style={styles.genBtnText}>
             {daysGenerated ? `Regenerate ${days.length} Day Schedule` : "Generate Day Schedule"}

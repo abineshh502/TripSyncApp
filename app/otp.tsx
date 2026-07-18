@@ -17,12 +17,9 @@ import { Ionicons } from "@expo/vector-icons";
 import {
   signInWithEmailAndPassword,
   createUserWithEmailAndPassword,
-  sendEmailVerification,
 } from "firebase/auth";
 import { getFirestore, doc, setDoc } from "firebase/firestore";
-import { auth } from "../firebaseConfig";
-import app from "../firebaseConfig";
-import Constants from "expo-constants";
+import app, { auth } from "../firebaseConfig";
 
 const getBackendUrl = () => {
   const envUrl = process.env.EXPO_PUBLIC_API_URL || "https://tripsyncbackend-production-37a2.up.railway.app";
@@ -222,7 +219,7 @@ export default function OtpScreen() {
           setMessageType("error");
         }
       }
-    } catch (e) {
+    } catch (_e) {
       setMessage("❌ Verification error. Try again.");
       setMessageType("error");
     }
@@ -246,7 +243,7 @@ export default function OtpScreen() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email, otp: newOtp }),
       });
-    } catch (e) {
+    } catch (_e) {
       console.log("Backend OTP resend failed, OTP stored locally:", newOtp);
     }
 

@@ -13,8 +13,7 @@ import { router } from "expo-router";
 import * as ImagePicker from "expo-image-picker";
 import { getFirestore, doc, getDoc, setDoc } from "firebase/firestore";
 import { updateProfile } from "firebase/auth";
-import { auth } from "../firebaseConfig";
-import app from "../firebaseConfig";
+import app, { auth } from "../firebaseConfig";
 
 export default function EditProfileScreen() {
   const db = getFirestore(app);
@@ -45,6 +44,7 @@ export default function EditProfileScreen() {
       }
     };
     loadProfile();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const pickImage = async () => {

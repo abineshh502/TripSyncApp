@@ -1,6 +1,5 @@
 import { router } from "expo-router";
 import {
-  View,
   Text,
   ScrollView,
   TouchableOpacity,
@@ -13,7 +12,6 @@ import {
   collection,
   getDocs,
   query,
-  orderBy,
   where,
 } from "firebase/firestore";
 
@@ -30,6 +28,7 @@ export default function MyTripsScreen() {
 
     fetchTrips();
 
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const fetchTrips = async () => {

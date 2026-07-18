@@ -63,6 +63,7 @@ export default function FavoritesScreen() {
     );
 
     return () => unsubscribe();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const removeFavorite = async (id: string, name: string) => {

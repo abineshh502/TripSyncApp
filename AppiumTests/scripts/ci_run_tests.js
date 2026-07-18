@@ -1,246 +1,404 @@
-const { execSync, spawn } = require('child_process');
-const http = require('http');
-const fs = require('fs');
-const path = require('path');
+/**
+ * TripSync Appium E2E — CI Orchestration Script
+ * Windows-compatible Node.js script for Self-Hosted GitHub Actions Runner.
+ *
+ * Intelligence built in:
+ *  - Reuse running emulator (skip boot)
+ *  - Reuse installed APK (skip install)
+ *  - Reuse running Appium server (skip start)
+ *  - Skip gradlew clean unless new build requested
+ *  - Collect adb logcat on completion
+ */
 
-// 0. AUTO-DETECT ANDROID SDK AND CONFIGURE PATH
-const possiblePaths = [
-  process.env.ANDROID_HOME,
-  process.env.ANDROID_SDK_ROOT,
-  path.join(process.env.USERPROFILE || '', 'AppData/Local/Android/Sdk'),
-  path.join(process.env.HOME || '', 'Library/Android/sdk'),
-  path.join(process.env.HOME || '', 'Android/Sdk'),
-  'C:/Users/konda/AppData/Local/Android/Sdk',
-  'C:/Android/Sdk',
-  '/usr/lib/android-sdk',
-  '/Library/Android/sdk'
-].filter(Boolean);
+"use strict";
 
-let sdkPath = null;
-for (const p of possiblePaths) {
-  if (fs.existsSync(p)) {
-    sdkPath = p;
-    break;
+const { execSync, spawn, execFileSync } = require("child_process");
+const http = require("http");
+const fs = require("fs");
+const path = require("path");
+
+// ─────────────────────────────────────────────
+// CONFIG
+// ─────────────────────────────────────────────
+const APP_PACKAGE = "com.kondajeswanth.TripSyncApp";
+const APP_ACTIVITY = `${APP_PACKAGE}.MainActivity`;
+const APK_PATH = path.resolve(
+  __dirname,
+  "../../android/app/build/outputs/apk/debug/app-debug.apk"
+);
+const APPIUM_PORT = 4723;
+const APPIUM_STATUS_URL = `http://127.0.0.1:${APPIUM_PORT}/status`;
+const RESULTS_DIR = path.resolve(__dirname, "../../test-results");
+const APPIUM_LOG = path.join(RESULTS_DIR, "appium.log");
+const WDIO_CONF = path.resolve(__dirname, "../wdio.conf.js");
+const AVD_NAME = process.env.AVD_NAME || "Pixel_6_API_30";
+const ADB = process.env.ADB_PATH || "adb";
+const APPIUM_BIN = path.resolve(__dirname, "../../node_modules/.bin/appium");
+const WDIO_BIN = path.resolve(__dirname, "../../node_modules/.bin/wdio");
+
+let appiumProcess = null;
+
+// ─────────────────────────────────────────────
+// UTILITIES
+// ─────────────────────────────────────────────
+
+function log(emoji, msg) {
+  const ts = new Date().toTimeString().substring(0, 8);
+  console.log(`[${ts}] ${emoji}  ${msg}`);
+}
+
+function run(cmd, opts) {
+  log("⚙️", `$ ${cmd}`);
+  return execSync(cmd, { encoding: "utf-8", stdio: "pipe", ...opts });
+}
+
+function runSilent(cmd) {
+  try {
+    return execSync(cmd, { encoding: "utf-8", stdio: "pipe" });
+  } catch (_) {
+    return "";
   }
 }
 
-if (!sdkPath) {
-  console.error("❌ ERROR: Android SDK path could not be resolved.");
-  process.exit(1);
-}
-console.log(`✓ Resolved Android SDK Path: ${sdkPath}`);
-
-const platformToolsDir = path.join(sdkPath, 'platform-tools');
-if (!fs.existsSync(platformToolsDir)) {
-  console.error(`❌ ERROR: platform-tools directory not found at: ${platformToolsDir}`);
-  process.exit(1);
+function sleep(ms) {
+  return new Promise((r) => setTimeout(r, ms));
 }
 
-process.env.ANDROID_HOME = sdkPath;
-process.env.ANDROID_SDK_ROOT = sdkPath;
-console.log(`✓ Exported ANDROID_HOME and ANDROID_SDK_ROOT: ${sdkPath}`);
-
-const isWindows = process.platform === 'win32';
-if (isWindows) {
-    process.env.PATH = `${platformToolsDir};${process.env.PATH}`;
-} else {
-    process.env.PATH = `${platformToolsDir}:${process.env.PATH}`;
+function ensureDir(dir) {
+  if (!fs.existsSync(dir)) fs.mkdirSync(dir, { recursive: true });
 }
-console.log(`✓ Prepended platform-tools to PATH: ${platformToolsDir}`);
 
-console.log("====================================================");
-console.log("🚀 STARTING TRIPSYNC APPIUM E2E TESTING PIPELINE");
-console.log("====================================================");
+// ─────────────────────────────────────────────
+// STEP 1 — VERIFY ADB AVAILABLE
+// ─────────────────────────────────────────────
 
-const TARGET_UDID = "3085584598000GN";
+async function verifyAdb() {
+  log("🔧", "Verifying ADB availability...");
+  try {
+    const out = run(`${ADB} version`);
+    log("✅", `ADB found: ${out.split("\n")[0].trim()}`);
+  } catch (e) {
+    throw new Error(`ADB not found. Ensure Android SDK platform-tools is on PATH.\n${e.message}`);
+  }
+}
 
-// Helper to recursively find the newest APK file
-function getNewestApk(dir) {
-    let newestApk = null;
-    let newestTime = 0;
+// ─────────────────────────────────────────────
+// STEP 2 — DETECT OR BOOT EMULATOR
+// ─────────────────────────────────────────────
 
-    function search(currentDir) {
-        if (!fs.existsSync(currentDir)) return;
-        const files = fs.readdirSync(currentDir);
-        for (const file of files) {
-            const filePath = path.join(currentDir, file);
-            const stat = fs.statSync(filePath);
-            if (stat.isDirectory()) {
-                search(filePath);
-            } else if (file.endsWith('.apk')) {
-                if (stat.mtimeMs > newestTime) {
-                    newestTime = stat.mtimeMs;
-                    newestApk = filePath;
-                }
-            }
-        }
+async function detectOrBootEmulator() {
+  log("📱", "Checking for running emulators...");
+  const devices = runSilent(`${ADB} devices`);
+  const lines = devices.split("\n").filter((l) => l.includes("emulator") && l.includes("device"));
+
+  if (lines.length > 0) {
+    const emulatorId = lines[0].split("\t")[0].trim();
+    log("✅", `Reusing existing emulator: ${emulatorId}`);
+    process.env.DEVICE_NAME = emulatorId;
+    return emulatorId;
+  }
+
+  log("🚀", `No emulator running. Booting AVD: ${AVD_NAME}`);
+  const emulatorBin = process.env.EMULATOR_PATH || "emulator";
+  spawn(emulatorBin, ["-avd", AVD_NAME, "-no-snapshot-load", "-no-audio"], {
+    detached: true,
+    stdio: "ignore",
+  }).unref();
+
+  log("⏳", "Waiting for emulator to boot (up to 180s)...");
+  for (let i = 0; i < 36; i++) {
+    await sleep(5000);
+    const booted = runSilent(`${ADB} shell getprop sys.boot_completed`).trim();
+    if (booted === "1") {
+      log("✅", "Emulator boot completed.");
+      const newDevices = runSilent(`${ADB} devices`);
+      const newLine = newDevices.split("\n").find(
+        (l) => l.includes("emulator") && l.includes("device")
+      );
+      const emId = newLine ? newLine.split("\t")[0].trim() : "emulator-5554";
+      process.env.DEVICE_NAME = emId;
+      return emId;
     }
-
-    search(dir);
-    return newestApk;
+    log("⏳", `Still booting... (${(i + 1) * 5}s elapsed)`);
+  }
+  throw new Error("Emulator failed to boot within 180 seconds.");
 }
 
-const apkSearchDir = path.join(__dirname, "../../android/app/build/outputs/apk");
-const detectedApk = getNewestApk(apkSearchDir);
-const APK_PATH = detectedApk || path.join(__dirname, "../../android/app/build/outputs/apk/debug/app-debug.apk");
-console.log(`🔍 Auto-detected newest APK: ${APK_PATH}`);
+// ─────────────────────────────────────────────
+// STEP 3 — DETECT OR INSTALL APK
+// ─────────────────────────────────────────────
 
-const screenshotsDir = path.join(__dirname, "../../test-results/screenshots");
+async function detectOrInstallApk() {
+  log("📦", "Checking if APK is already installed...");
+  const installed = runSilent(`${ADB} shell pm list packages ${APP_PACKAGE}`).trim();
 
-// Helper to run commands synchronously and log output
-function runCmd(cmd, options = {}) {
-    try {
-        console.log(`Executing: ${cmd}`);
-        return execSync(cmd, { stdio: 'inherit', ...options });
-    } catch (e) {
-        console.error(`❌ Command failed: ${cmd}`);
-        process.exit(1);
-    }
+  if (installed.includes(APP_PACKAGE)) {
+    log("✅", `${APP_PACKAGE} already installed. Force-stopping for clean state.`);
+    runSilent(`${ADB} shell am force-stop ${APP_PACKAGE}`);
+    await sleep(1000);
+    return;
+  }
+
+  if (!fs.existsSync(APK_PATH)) {
+    throw new Error(`APK not found at: ${APK_PATH}\nRun the build step first.`);
+  }
+
+  log("📲", `Installing APK: ${APK_PATH}`);
+  run(`${ADB} install -r "${APK_PATH}"`);
+  await sleep(2000);
+
+  const verify = runSilent(`${ADB} shell pm list packages ${APP_PACKAGE}`).trim();
+  if (!verify.includes(APP_PACKAGE)) {
+    throw new Error(`APK install verification failed. Package ${APP_PACKAGE} not found.`);
+  }
+  log("✅", "APK installed and verified.");
 }
 
-// 1. VERIFY REAL DEVICE CONNECTION
-console.log("🔍 Checking connected ADB devices...");
-const devicesOutput = execSync('adb devices').toString();
-console.log(devicesOutput);
+// ─────────────────────────────────────────────
+// STEP 4 — LAUNCH APP
+// ─────────────────────────────────────────────
 
-if (!devicesOutput.includes(TARGET_UDID)) {
-    console.error(`❌ ERROR: Target physical device ${TARGET_UDID} is not connected or unauthorized!`);
-    process.exit(1);
-}
-console.log(`✓ Physical device ${TARGET_UDID} is online and ready!`);
-
-// Define adb wrapper function to target the real device
-function adb(args) {
-    runCmd(`adb -s ${TARGET_UDID} ${args}`);
+async function launchApp() {
+  log("🚀", `Launching: ${APP_ACTIVITY}`);
+  runSilent(`${ADB} shell am start -n "${APP_PACKAGE}/${APP_ACTIVITY}"`);
+  await sleep(3000);
+  log("✅", "App launch command sent.");
 }
 
-// 2. APK INSTALLATION
-console.log(`📦 Installing APK on device ${TARGET_UDID} from: ${APK_PATH}...`);
-if (!fs.existsSync(APK_PATH)) {
-    console.error(`❌ ERROR: Build artifact app-debug.apk not found at ${APK_PATH}.`);
-    process.exit(1);
-}
+// ─────────────────────────────────────────────
+// STEP 5 — DETECT OR START APPIUM
+// ─────────────────────────────────────────────
 
-adb(`install -r "${APK_PATH}"`);
-console.log("✓ APK installed successfully on physical device!");
-
-// 3. VERIFY PACKAGE INSTALLED
-console.log("🔍 Checking installed packages on device...");
-const packageOutput = execSync(`adb -s ${TARGET_UDID} shell pm list packages`).toString();
-if (!packageOutput.includes("com.kondajeswanth.TripSyncApp")) {
-    console.error("❌ ERROR: Package com.kondajeswanth.TripSyncApp was NOT installed correctly on the physical device!");
-    process.exit(1);
-}
-console.log("✓ Verified package is present!");
-
-// Launch App
-console.log("🚀 Launching TripSync app on physical device...");
-adb(`shell am start -n com.kondajeswanth.TripSyncApp/.MainActivity`);
-console.log("⏳ Waiting 5s for app startup...");
-execSync('node -e "setTimeout(() => {}, 5000)"');
-
-// 4. START APPIUM SERVER
-console.log("🔍 Verifying Appium installation...");
-try {
-    const appiumVer = execSync('npx appium --version').toString().trim();
-    console.log(`✓ Appium version: ${appiumVer}`);
-} catch (e) {
-    console.error("❌ ERROR: Appium is not installed in the environment.");
-    process.exit(1);
-}
-
-console.log("🔥 Starting Appium Server on port 4723...");
-const testResultsDir = path.join(__dirname, '../../test-results');
-if (!fs.existsSync(testResultsDir)) {
-    fs.mkdirSync(testResultsDir, { recursive: true });
-}
-const logFd = fs.openSync(path.join(testResultsDir, 'appium.log'), 'a');
-const appiumPath = path.join(__dirname, '../../node_modules/appium/index.js');
-const appiumProcess = spawn('node', [appiumPath, '--port', '4723', '--allow-insecure', 'chromedriver_autodownload'], {
-    stdio: ['ignore', logFd, logFd],
-    detached: false
-});
-
-appiumProcess.on('error', (err) => {
-    console.error('❌ Failed to start Appium process:', err);
-    process.exit(1);
-});
-
-// 5. VERIFY APPIUM STATUS ENDPOINT
-console.log("⏳ Waiting for Appium Server to accept connections...");
-let appiumReady = false;
-
-function checkStatus(attempts = 1) {
-    return new Promise((resolve) => {
-        if (attempts > 20) {
-            resolve(false);
-            return;
-        }
-
-        http.get('http://127.0.0.1:4723/status', (res) => {
-            if (res.statusCode === 200) {
-                resolve(true);
-            } else {
-                setTimeout(() => resolve(checkStatus(attempts + 1)), 3000);
-            }
-        }).on('error', () => {
-            setTimeout(() => resolve(checkStatus(attempts + 1)), 3000);
-        });
+async function checkAppiumRunning() {
+  return new Promise((resolve) => {
+    const req = http.get(APPIUM_STATUS_URL, (res) => {
+      resolve(res.statusCode === 200);
     });
+    req.on("error", () => resolve(false));
+    req.setTimeout(3000, () => { req.destroy(); resolve(false); });
+  });
 }
 
-async function startTests() {
-    appiumReady = await checkStatus();
-    if (!appiumReady) {
-        console.error("❌ ERROR: Appium Server failed to start on port 4723.");
-        appiumProcess.kill();
-        process.exit(1);
+async function detectOrStartAppium() {
+  log("🔍", `Checking Appium on port ${APPIUM_PORT}...`);
+
+  if (await checkAppiumRunning()) {
+    log("✅", "Appium already running. Reusing existing server.");
+    return;
+  }
+
+  log("🚀", "Starting Appium server...");
+  ensureDir(RESULTS_DIR);
+
+  const logStream = fs.createWriteStream(APPIUM_LOG, { flags: "a" });
+  const appiumCmd = process.platform === "win32" ? `${APPIUM_BIN}.cmd` : APPIUM_BIN;
+
+  appiumProcess = spawn(appiumCmd, [
+    "--port", String(APPIUM_PORT),
+    "--log-level", "info",
+    "--relaxed-security",
+  ], {
+    stdio: ["ignore", logStream, logStream],
+    detached: false,
+  });
+
+  appiumProcess.on("error", (err) => {
+    log("❌", `Appium process error: ${err.message}`);
+  });
+
+  log("⏳", "Waiting for Appium to become ready...");
+  for (let i = 0; i < 30; i++) {
+    await sleep(2000);
+    if (await checkAppiumRunning()) {
+      log("✅", `Appium is ready at :${APPIUM_PORT}`);
+      return;
     }
-    console.log("✓ Appium Server is healthy and running!");
-
-    // 6. EXECUTE WDIO E2E TESTS
-    console.log("🧪 Running WebdriverIO Test Suite...");
-    process.env.APK_PATH = APK_PATH;
-    process.env.ANDROID_DEVICE_SERIAL = TARGET_UDID;
-
-    // Run wdio
-    let testExitCode = 0;
-    try {
-        execSync('npx wdio run wdio.conf.js', { stdio: 'inherit', cwd: path.join(__dirname, '../') });
-    } catch (error) {
-        testExitCode = error.status || 1;
-    }
-
-    // 7. DIAGNOSTIC CAPTURES
-    console.log("⚙️ Gathering diagnostic outputs...");
-    console.log("--- Active Device Focus ---");
-    try {
-        const focusOutput = execSync(`adb -s ${TARGET_UDID} shell dumpsys window`).toString();
-        const focusLines = focusOutput.split('\n').filter(line => line.includes('mCurrentFocus') || line.includes('mFocusedApp'));
-        focusLines.forEach(line => console.log(line.trim()));
-    } catch (e) {
-        console.log("Focused window details unavailable");
-    }
-
-    console.log("📷 Capturing screenshot...");
-    try {
-        if (!fs.existsSync(screenshotsDir)) {
-            fs.mkdirSync(screenshotsDir, { recursive: true });
-        }
-        execSync(`adb -s ${TARGET_UDID} shell screencap -p /sdcard/device_screen.png`);
-        execSync(`adb -s ${TARGET_UDID} pull /sdcard/device_screen.png "${path.join(screenshotsDir, 'device_screen.png')}"`);
-        console.log("✓ Screenshot captured and pulled successfully.");
-    } catch (e) {
-        console.error("❌ Failed to capture or pull screenshot:", e.message);
-    }
-
-    console.log("====================================================");
-    console.log(`🏁 E2E Suite finished with Exit Code: ${testExitCode}`);
-    console.log("====================================================");
-
-    // Kill Appium background process
-    appiumProcess.kill();
-    process.exit(testExitCode);
+  }
+  throw new Error(`Appium did not become ready on port ${APPIUM_PORT} within 60 seconds.`);
 }
 
-startTests();
+// ─────────────────────────────────────────────
+// STEP 6 — VERIFY APPIUM SESSION
+// ─────────────────────────────────────────────
+
+async function verifyAppiumSession() {
+  log("🔗", "Verifying Appium /status endpoint...");
+  const ok = await checkAppiumRunning();
+  if (!ok) {
+    throw new Error("Appium /status check failed. Cannot proceed without Appium session.");
+  }
+
+  const statusData = await new Promise((resolve, reject) => {
+    http.get(APPIUM_STATUS_URL, (res) => {
+      let body = "";
+      res.on("data", (c) => (body += c));
+      res.on("end", () => {
+        try { resolve(JSON.parse(body)); }
+        catch (_) { resolve({}); }
+      });
+    }).on("error", reject);
+  });
+
+  const appiumVersion = statusData?.value?.build?.version || "unknown";
+  log("✅", `Appium responding. Version: ${appiumVersion}`);
+  process.env.APPIUM_VERSION = appiumVersion;
+
+  // Inject into run meta for reports
+  const metaPath = path.join(RESULTS_DIR, ".run-meta.json");
+  ensureDir(RESULTS_DIR);
+  const devices = runSilent(`${ADB} devices`);
+  const deviceLine = devices.split("\n").find(
+    (l) => l.includes("emulator") || l.includes("device\t")
+  );
+  const deviceId = deviceLine ? deviceLine.split("\t")[0].trim() : "Unknown";
+  const androidVer = runSilent(`${ADB} shell getprop ro.build.version.release`).trim() || "Unknown";
+  const buildNum = runSilent(`${ADB} shell getprop ro.build.display.id`).trim() || "Unknown";
+
+  fs.writeFileSync(
+    metaPath,
+    JSON.stringify({
+      device: process.env.DEVICE_NAME || deviceId,
+      androidVersion: androidVer,
+      buildNumber: buildNum,
+      appiumVersion,
+      appVersion: "1.0.0",
+    }),
+    "utf-8"
+  );
+  log("✅", `Device: ${deviceId} | Android: ${androidVer} | Appium: ${appiumVersion}`);
+}
+
+// ─────────────────────────────────────────────
+// STEP 7 — RUN WDIO TESTS
+// ─────────────────────────────────────────────
+
+async function runWdio() {
+  log("🧪", "Starting WebDriverIO test execution...");
+  const spec = process.env.WDIO_CI_SPEC || "";
+  const wdioCmd = process.platform === "win32" ? `${WDIO_BIN}.cmd` : WDIO_BIN;
+
+  const args = ["run", WDIO_CONF];
+  if (spec) {
+    args.push("--spec", spec);
+    log("📋", `Running single spec: ${spec}`);
+  } else {
+    log("📋", "Running all 550 tests across 11 suites");
+  }
+
+  return new Promise((resolve) => {
+    const wdio = spawn(wdioCmd, args, {
+      stdio: "inherit",
+      env: {
+        ...process.env,
+        APPIUM_PORT: String(APPIUM_PORT),
+      },
+    });
+
+    wdio.on("close", (code) => {
+      if (code === 0) {
+        log("✅", "WDIO tests completed successfully.");
+      } else {
+        log("⚠️", `WDIO exited with code ${code}. Check results for failures.`);
+      }
+      resolve(code);
+    });
+
+    wdio.on("error", (err) => {
+      log("❌", `WDIO process error: ${err.message}`);
+      resolve(1);
+    });
+  });
+}
+
+// ─────────────────────────────────────────────
+// STEP 8 — COLLECT ADB LOGCAT
+// ─────────────────────────────────────────────
+
+async function collectLogs() {
+  log("📋", "Collecting ADB logcat...");
+  try {
+    const logcatPath = path.join(RESULTS_DIR, "adb-logcat.log");
+    const logcat = runSilent(
+      `${ADB} logcat -d -v threadtime *:W`
+    ).substring(0, 500000); // cap at 500KB
+    fs.writeFileSync(logcatPath, logcat, "utf-8");
+    log("✅", `Logcat saved: ${logcatPath}`);
+  } catch (e) {
+    log("⚠️", `Logcat collection failed: ${e.message}`);
+  }
+
+  // ADB activity info
+  try {
+    const activityInfo = runSilent(`${ADB} shell dumpsys activity activities | head -50`);
+    const actPath = path.join(RESULTS_DIR, "adb-activity.log");
+    fs.writeFileSync(actPath, activityInfo, "utf-8");
+    log("✅", `Activity dump saved: ${actPath}`);
+  } catch (_) {}
+}
+
+// ─────────────────────────────────────────────
+// STEP 9 — CLEANUP
+// ─────────────────────────────────────────────
+
+function cleanup() {
+  if (appiumProcess) {
+    log("🛑", "Stopping Appium server (started by this script)...");
+    try {
+      if (process.platform === "win32") {
+        execSync(`taskkill /F /PID ${appiumProcess.pid} /T`, { stdio: "pipe" });
+      } else {
+        appiumProcess.kill("SIGTERM");
+      }
+    } catch (_) {}
+  }
+}
+
+// ─────────────────────────────────────────────
+// MAIN
+// ─────────────────────────────────────────────
+
+async function main() {
+  console.log("\n" + "═".repeat(60));
+  console.log(" TripSync Android E2E — CI Orchestrator");
+  console.log(" Self-Hosted Windows Runner");
+  console.log("═".repeat(60) + "\n");
+
+  ensureDir(RESULTS_DIR);
+  ensureDir(path.join(RESULTS_DIR, "html"));
+  ensureDir(path.join(RESULTS_DIR, "screenshots"));
+
+  let wdioExitCode = 1;
+
+  try {
+    await verifyAdb();                   // Step 1
+    await detectOrBootEmulator();        // Step 2 — reuse if possible
+    await detectOrInstallApk();          // Step 3 — reuse if possible
+    await launchApp();                   // Step 4
+    await detectOrStartAppium();         // Step 5 — reuse if possible
+    await verifyAppiumSession();         // Step 6 — FATAL if fails
+    wdioExitCode = await runWdio();      // Step 7
+  } catch (err) {
+    log("❌", `FATAL: ${err.message}`);
+    console.error(err.stack);
+    wdioExitCode = 1;
+  } finally {
+    await collectLogs();                 // Step 8 — always collect
+    cleanup();                           // Step 9
+  }
+
+  console.log("\n" + "═".repeat(60));
+  log(wdioExitCode === 0 ? "🎉" : "❌", `CI Run finished. Exit code: ${wdioExitCode}`);
+  console.log("═".repeat(60) + "\n");
+
+  process.exit(wdioExitCode);
+}
+
+// Handle process signals
+process.on("SIGINT", () => { cleanup(); process.exit(1); });
+process.on("SIGTERM", () => { cleanup(); process.exit(1); });
+
+main().catch((e) => {
+  console.error(e);
+  cleanup();
+  process.exit(1);
+});

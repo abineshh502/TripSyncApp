@@ -40,6 +40,7 @@ export default function GroupChatScreen() {
         setGroup(snap.data());
       }
     });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [id]);
 
   // Sync / Load real-time messages
@@ -79,6 +80,7 @@ export default function GroupChatScreen() {
     );
 
     return () => unsubscribe();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [id]);
 
   // Auto scroll to latest message when messages array updates
@@ -129,7 +131,7 @@ export default function GroupChatScreen() {
       });
 
       await sendChatNotification(text);
-    } catch (e) {
+    } catch (_e) {
       Alert.alert("Error", "Could not send message.");
     }
   };
@@ -141,7 +143,7 @@ export default function GroupChatScreen() {
       try {
         const date = new Date(item.timestamp);
         timeStr = date.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" });
-      } catch (e) {}
+      } catch (_e) {}
     }
 
     return (

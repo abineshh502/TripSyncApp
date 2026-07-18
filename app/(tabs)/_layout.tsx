@@ -68,7 +68,7 @@ export default function TabLayout() {
         name="groups"
         options={{
           title: "Groups",
-          tabBarIcon: ({ color, focused }) => (
+          tabBarIcon: ({ color }) => (
             <FontAwesome5 name="users" size={20} color={color} />
           ),
         }}

@@ -5,18 +5,15 @@ import {
   TouchableOpacity,
   ScrollView,
   StyleSheet,
-  Animated,
   ActivityIndicator,
-  Platform,
   Modal,
 } from "react-native";
 import { router } from "expo-router";
-import { useEffect, useState, useRef } from "react";
-import { signInWithEmailAndPassword, onAuthStateChanged } from "firebase/auth";
+import { useEffect, useState } from "react";
+import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth, authVerification } from "../firebaseConfig";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { Ionicons } from "@expo/vector-icons";
-import Constants from "expo-constants";
 
 const getBackendUrl = () => {
   const envUrl = process.env.EXPO_PUBLIC_API_URL || "https://tripsyncbackend-production-37a2.up.railway.app";
@@ -86,7 +83,7 @@ export default function LoginScreen() {
       authVerification.isVerifying = true;
       
       // 1. Verify credentials by signing in
-      const userCredential = await signInWithEmailAndPassword(auth, email.trim(), password);
+      const _userCredential = await signInWithEmailAndPassword(auth, email.trim(), password);
 
       // 2. Immediately sign out so there is no active session on Firebase until OTP is verified
       await auth.signOut();
@@ -108,7 +105,7 @@ export default function LoginScreen() {
       );
 
       // 5. Send real OTP email via Python FastAPI backend
-      const emailRes = await sendOtpEmail(email.trim(), otp);
+      const _emailRes = await sendOtpEmail(email.trim(), otp);
 
       // 6. Save account credentials
       const updatedAccounts = [
@@ -192,7 +189,7 @@ export default function LoginScreen() {
         </View>
       </Modal>
 
-      {/* Logo Section */}
+      {/* Logo Section — testID for Appium screen detection */}
       <View style={styles.logoSection}>
         <View style={styles.logoCircle}>
           <Text style={{ fontSize: 40 }}>✈️</Text>
@@ -290,7 +287,7 @@ export default function LoginScreen() {
         </TouchableOpacity>
       </View>
 
-      <TouchableOpacity onPress={handleForgotPassword} style={styles.forgotBtn}>
+      <TouchableOpacity testID="forgot-password-btn" accessibilityLabel="forgot-password-btn" onPress={handleForgotPassword} style={styles.forgotBtn}>
         <Text style={styles.forgotText}>Forgot Password?</Text>
       </TouchableOpacity>
 

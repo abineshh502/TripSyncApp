@@ -75,6 +75,7 @@ export default function RootLayout() {
       sub.remove();
       unsubscribe();
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
@@ -132,6 +133,7 @@ export default function RootLayout() {
     };
 
     evaluateRoute();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [user, segments, isInitializing, otpVerified]);
 
   const seg0 = segments[0] as string;

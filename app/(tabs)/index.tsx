@@ -6,7 +6,6 @@ import {
   TextInput,
   StyleSheet,
   ActivityIndicator,
-  FlatList,
   Alert,
 } from "react-native";
 import { useState, useEffect, useRef } from "react";
@@ -21,8 +20,7 @@ import {
 } from "firebase/firestore";
 import { onAuthStateChanged } from "firebase/auth";
 import { Ionicons } from "@expo/vector-icons";
-import { auth } from "../../firebaseConfig";
-import app from "../../firebaseConfig";
+import app, { auth } from "../../firebaseConfig";
 import { travelApiService } from "../../services/api";
 import * as Speech from "expo-speech";
 import * as Location from "expo-location";
@@ -195,6 +193,7 @@ export default function HomeScreen() {
       unsubTrips();
       unsubGroups();
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const fetchDefaultWeather = async () => {
@@ -208,7 +207,7 @@ export default function HomeScreen() {
         lat = loc.coords.latitude;
         lon = loc.coords.longitude;
       }
-    } catch (e) {
+    } catch (_e) {
       // Permission denied or GPS unavailable — use Hyderabad default
     }
     try {
@@ -217,7 +216,7 @@ export default function HomeScreen() {
       );
       const data = await res.json();
       setHomeWeather(data.current_weather);
-    } catch (e) {}
+    } catch (_e) {}
   };
 
   // Live autocomplete suggestions as user types
@@ -251,7 +250,7 @@ export default function HomeScreen() {
           setSuggestions([]);
           setShowSuggestions(false);
         }
-      } catch (e) {
+      } catch (_e) {
         setSuggestions([]);
       }
     }, 350);
@@ -277,7 +276,7 @@ export default function HomeScreen() {
         lat: suggestion.lat,
         lon: suggestion.lon,
       });
-    } catch (e) {
+    } catch (_e) {
       setWeatherResult({ error: "Could not fetch weather for this city." });
     }
     setSearchLoading(false);
@@ -313,7 +312,7 @@ export default function HomeScreen() {
         lat: f.lat,
         lon: f.lon,
       });
-    } catch (e) {
+    } catch (_e) {
       setWeatherResult({ error: "Search failed. Check your internet connection." });
     }
     setSearchLoading(false);
@@ -398,7 +397,7 @@ export default function HomeScreen() {
         ],
         { cancelable: true }
       );
-    } catch (e) {
+    } catch (_e) {
       setBriefingLoading(false);
       Alert.alert("Briefing Error", "Could not load voice briefing.");
     }
@@ -754,7 +753,6 @@ export default function HomeScreen() {
               {(() => {
                 const mainGroup = groups[0];
                 const memberCount = mainGroup.memberUids?.length || 1;
-                const dest = mainGroup.destination || "the destination";
                 const gName = mainGroup.groupName || mainGroup.name || "Group Trip";
                 const totalExpenses = mainGroup.expenses?.reduce((acc: number, exp: any) => acc + Number(exp.amount || 0), 0) || 0;
                 const expCount = mainGroup.expenses?.length || 0;

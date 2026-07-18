@@ -84,3 +84,10 @@ yarn-error.*
 *.tsbuildinfo
 
 # @end expo-cli
+
+# TripSync untracked helper files
+.wdio-results.jsonl
+index.js
+test_expo_speech.js
+window_dump.xml
+test-results/

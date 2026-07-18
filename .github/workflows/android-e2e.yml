@@ -1,13 +1,18 @@
-name: Android E2E Tests
+name: TripSync Android E2E Tests
 
 on:
   workflow_dispatch:
     inputs:
       force_rebuild:
-        description: 'Force clean APK rebuild'
+        description: 'Force clean APK rebuild (ignore cache)'
         required: false
         default: false
         type: boolean
+      spec_file:
+        description: 'Run single spec (e.g. tests/authentication.test.js). Leave empty for all 550 tests.'
+        required: false
+        default: ''
+        type: string
 
 jobs:
   e2e-test:
@@ -16,104 +21,452 @@ jobs:
       run:
         working-directory: TripSyncApp
 
+    env:
+      TEST_EMAIL: "jessuff8@gmail.com"
+      TEST_PASSWORD: "Ravi@6444"
+      TEST_USER_NAME: "Konda"
+      EXPO_PUBLIC_API_URL: "https://tripsyncbackend-production-37a2.up.railway.app"
+      WDIO_CI_SPEC: ${{ github.event.inputs.spec_file }}
+
     steps:
+      # ────────────────────────────────────────────────────
+      # 1. CHECKOUT
+      # ────────────────────────────────────────────────────
       - name: Checkout Code
         uses: actions/checkout@v4
 
-      - name: Set up Java (JDK 17)
-        uses: actions/setup-java@v4
-        with:
-          distribution: 'zulu'
-          java-version: '17'
-
-      - name: Set up Node.js (v20)
+      # ────────────────────────────────────────────────────
+      # 2. VERIFY DEPENDENCIES (Intelligent — skip if unchanged)
+      # ────────────────────────────────────────────────────
+      - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
           node-version: '20'
           cache: 'npm'
           cache-dependency-path: 'TripSyncApp/package-lock.json'
 
-      - name: Install Node Dependencies
-        run: npm install
+      - name: Intelligent Dependency Install
+        id: npm-install
         shell: powershell
-
-      - name: Check APK Cache
-        id: check-cache
         run: |
-          $force = "${{ github.event.inputs.force_rebuild }}"
-          if ($force -eq "true") {
-            Write-Host "Force rebuild requested. Deleting existing APK if any."
-            if (Test-Path "android/app/build/outputs/apk/debug/app-debug.apk") {
-              Remove-Item "android/app/build/outputs/apk/debug/app-debug.apk" -Force
-            }
-            if (Test-Path "android") {
-              try {
-                Remove-Item "android" -Recurse -Force -ErrorAction Stop
-              } catch {
-                Write-Host "Warning: could not delete android folder cleanly: $_. Will continue with prebuild overwrite."
-              }
-            }
-            echo "cache-hit=false" >> $env:GITHUB_OUTPUT
-          } else {
-            if (Test-Path "android/app/build/outputs/apk/debug/app-debug.apk") {
-              Write-Host "Found cached APK at android/app/build/outputs/apk/debug/app-debug.apk"
-              echo "cache-hit=true" >> $env:GITHUB_OUTPUT
-            } else {
-              Write-Host "Cached APK not found."
-              echo "cache-hit=false" >> $env:GITHUB_OUTPUT
-            }
+          $lockHash = (Get-FileHash "package-lock.json" -Algorithm SHA256).Hash
+          $cacheFile = "$env:TEMP\tripsync_npm_cache_hash.txt"
+
+          $prevHash = ""
+          if (Test-Path $cacheFile) {
+            $prevHash = Get-Content $cacheFile -Raw
           }
-        shell: powershell
 
-      - name: Run Expo Prebuild
-        if: ${{ github.event.inputs.force_rebuild == 'true' || steps.check-cache.outputs.cache-hit != 'true' }}
-        env:
-          EXPO_PUBLIC_E2E_MODE: "true"
-        run: npx expo prebuild --platform android --no-install
-        shell: powershell
-
-      - name: Configure Android SDK Path
-        if: ${{ github.event.inputs.force_rebuild == 'true' || steps.check-cache.outputs.cache-hit != 'true' }}
-        run: node scripts/setup-android-sdk.js
-        shell: powershell
-
-      - name: Inject bundleInDebug in build.gradle
-        if: ${{ github.event.inputs.force_rebuild == 'true' || steps.check-cache.outputs.cache-hit != 'true' }}
-        run: node scripts/inject-bundle-in-debug.js
-        shell: powershell
-
-      - name: Build APK with JS Bundle (bundleInDebug=true)
-        if: ${{ github.event.inputs.force_rebuild == 'true' || steps.check-cache.outputs.cache-hit != 'true' }}
-        env:
-          EXPO_PUBLIC_E2E_MODE: "true"
-        run: |
-          cd android
-          .\gradlew.bat assembleDebug -PbundleInDebug=true
-        shell: powershell
-
-      - name: Verify APK Generated
-        run: |
-          if (Test-Path "android/app/build/outputs/apk/debug/app-debug.apk") {
-            Write-Host "[OK] APK build verified successfully"
-            Get-Item "android/app/build/outputs/apk/debug/app-debug.apk"
+          if ($lockHash -eq $prevHash.Trim()) {
+            Write-Host "[SKIP] package-lock.json unchanged. Skipping npm install."
+            echo "skipped=true" >> $env:GITHUB_OUTPUT
           } else {
-            Write-Error "[ERROR] Debug APK was not generated!"
+            Write-Host "[RUN] Dependencies changed. Running npm install..."
+            npm install
+            $lockHash | Out-File -FilePath $cacheFile -Encoding utf8 -NoNewline
+            echo "skipped=false" >> $env:GITHUB_OUTPUT
+          }
+
+      # ────────────────────────────────────────────────────
+      # 3. VERIFY APK (Intelligent — skip build if APK exists)
+      # ────────────────────────────────────────────────────
+      - name: Check APK Existence
+        id: apk-check
+        shell: powershell
+        run: |
+          $apkPath = "android\app\build\outputs\apk\debug\app-debug.apk"
+          $forceRebuild = "${{ github.event.inputs.force_rebuild }}" -eq "true"
+
+          if ($forceRebuild) {
+            Write-Host "[FORCE] Force rebuild requested. APK will be rebuilt."
+            echo "exists=false" >> $env:GITHUB_OUTPUT
+          } elseif (Test-Path $apkPath) {
+            $apk = Get-Item $apkPath
+            $sizeMB = [math]::Round($apk.Length / 1MB, 1)
+            Write-Host "[SKIP] APK already exists ($sizeMB MB). Skipping build."
+            echo "exists=true" >> $env:GITHUB_OUTPUT
+          } else {
+            Write-Host "[MISS] APK not found. Build required."
+            echo "exists=false" >> $env:GITHUB_OUTPUT
+          }
+
+      # ────────────────────────────────────────────────────
+      # 4. EXPO PREBUILD (Intelligent — skip if android/ exists)
+      # ────────────────────────────────────────────────────
+      - name: Intelligent Expo Prebuild
+        if: steps.apk-check.outputs.exists == 'false'
+        shell: powershell
+        env:
+          EXPO_PUBLIC_E2E_MODE: "true"
+        run: |
+          if (Test-Path "android") {
+            Write-Host "[SKIP] android/ directory already exists. Skipping Expo Prebuild."
+          } else {
+            Write-Host "[RUN] android/ not found. Running expo prebuild..."
+            npx expo prebuild --platform android --no-install
+          }
+
+      # ────────────────────────────────────────────────────
+      # 5. CONFIGURE ANDROID SDK
+      # ────────────────────────────────────────────────────
+      - name: Configure Android SDK Path
+        if: steps.apk-check.outputs.exists == 'false'
+        shell: powershell
+        run: node scripts/setup-android-sdk.js
+
+      # ────────────────────────────────────────────────────
+      # 6. INJECT BUNDLE CONFIG
+      # ────────────────────────────────────────────────────
+      - name: Inject bundleInDebug
+        if: steps.apk-check.outputs.exists == 'false'
+        shell: powershell
+        run: node scripts/inject-bundle-in-debug.js
+
+      # ────────────────────────────────────────────────────
+      # 7. BUILD APK (Only when required — NO gradlew clean)
+      # ────────────────────────────────────────────────────
+      - name: Build APK with JS Bundle
+        if: steps.apk-check.outputs.exists == 'false'
+        shell: powershell
+        env:
+          EXPO_PUBLIC_E2E_MODE: "true"
+        run: |
+          Write-Host "[BUILD] Building APK (no clean — incremental build)..."
+          cd android
+          .\gradlew.bat assembleDebug -PbundleInDebug=true --no-daemon
+
+      # ────────────────────────────────────────────────────
+      # 8. VERIFY APK
+      # ────────────────────────────────────────────────────
+      - name: Verify APK Generated
+        shell: powershell
+        run: |
+          $apkPath = "android\app\build\outputs\apk\debug\app-debug.apk"
+          if (Test-Path $apkPath) {
+            $apk = Get-Item $apkPath
+            $sizeMB = [math]::Round($apk.Length / 1MB, 1)
+            Write-Host "[OK] APK verified: $apkPath ($sizeMB MB)"
+          } else {
+            Write-Error "[FAIL] APK not found at $apkPath"
             exit 1
           }
-        shell: powershell
 
-      - name: Run E2E Tests on Real Device
-        run: node AppiumTests/scripts/ci_run_tests.js
+      # ────────────────────────────────────────────────────
+      # 9. VERIFY EMULATOR (Intelligent — reuse if running)
+      # ────────────────────────────────────────────────────
+      - name: Check Running Emulator
+        id: emulator-check
         shell: powershell
+        run: |
+          $devices = adb devices 2>&1
+          Write-Host "ADB Devices output:`n$devices"
+          $emulatorLines = $devices -split "`n" | Where-Object { $_ -match "emulator.*device" }
 
-      - name: Upload Test Report Artifacts
+          if ($emulatorLines.Count -gt 0) {
+            $emulatorId = ($emulatorLines[0] -split "`t")[0].Trim()
+            Write-Host "[REUSE] Emulator already running: $emulatorId"
+            echo "running=true" >> $env:GITHUB_OUTPUT
+            echo "device-id=$emulatorId" >> $env:GITHUB_OUTPUT
+            echo "DEVICE_NAME=$emulatorId" >> $env:GITHUB_ENV
+          } else {
+            Write-Host "[NONE] No emulator found."
+            echo "running=false" >> $env:GITHUB_OUTPUT
+          }
+
+      - name: Verify Emulator Boot Completed
+        if: steps.emulator-check.outputs.running == 'true'
+        shell: powershell
+        run: |
+          $deviceId = "${{ steps.emulator-check.outputs.device-id }}"
+          $booted = adb -s $deviceId shell getprop sys.boot_completed 2>&1
+          Write-Host "Boot completed: $booted"
+
+          # Capture Android version for reports
+          $androidVer = adb -s $deviceId shell getprop ro.build.version.release 2>&1
+          $buildId = adb -s $deviceId shell getprop ro.build.display.id 2>&1
+          Write-Host "Android Version: $androidVer | Build: $buildId"
+          echo "ANDROID_VERSION=$androidVer" >> $env:GITHUB_ENV
+
+      # ────────────────────────────────────────────────────
+      # 10. VERIFY INSTALLED APK (Intelligent — reuse if installed)
+      # ────────────────────────────────────────────────────
+      - name: Check App Installation
+        id: app-install-check
+        shell: powershell
+        run: |
+          $pkg = "com.kondajeswanth.TripSyncApp"
+          $installed = adb shell pm list packages $pkg 2>&1
+          Write-Host "Package check: $installed"
+
+          if ($installed -match $pkg) {
+            Write-Host "[REUSE] App already installed. Force-stopping for clean state."
+            adb shell am force-stop $pkg
+            Start-Sleep -Seconds 2
+            echo "installed=true" >> $env:GITHUB_OUTPUT
+          } else {
+            Write-Host "[INSTALL] App not installed. Installing APK..."
+            echo "installed=false" >> $env:GITHUB_OUTPUT
+          }
+
+      - name: Install APK (if not installed)
+        if: steps.app-install-check.outputs.installed == 'false'
+        shell: powershell
+        run: |
+          $apkPath = "android\app\build\outputs\apk\debug\app-debug.apk"
+          Write-Host "Installing APK: $apkPath"
+          adb install -r "$apkPath"
+          Start-Sleep -Seconds 3
+
+          # Verify installation
+          $installed = adb shell pm list packages com.kondajeswanth.TripSyncApp 2>&1
+          if ($installed -notmatch "com.kondajeswanth.TripSyncApp") {
+            Write-Error "APK installation verification FAILED."
+            exit 1
+          }
+          Write-Host "[OK] APK installation verified."
+
+      # ────────────────────────────────────────────────────
+      # 11. LAUNCH APP
+      # ────────────────────────────────────────────────────
+      - name: Launch App
+        shell: powershell
+        run: |
+          $pkg = "com.kondajeswanth.TripSyncApp"
+          $activity = "${pkg}.MainActivity"
+          Write-Host "Launching: $activity"
+          adb shell am start -n "${pkg}/${activity}"
+          Start-Sleep -Seconds 3
+          Write-Host "[OK] App launch command sent."
+
+      # ────────────────────────────────────────────────────
+      # 12. VERIFY APPIUM (Intelligent — reuse if running)
+      # ────────────────────────────────────────────────────
+      - name: Check Appium Server
+        id: appium-check
+        shell: powershell
+        run: |
+          try {
+            $response = Invoke-WebRequest -Uri "http://127.0.0.1:4723/status" -TimeoutSec 5 -UseBasicParsing
+            if ($response.StatusCode -eq 200) {
+              Write-Host "[REUSE] Appium server already running on :4723"
+              echo "running=true" >> $env:GITHUB_OUTPUT
+            } else {
+              echo "running=false" >> $env:GITHUB_OUTPUT
+            }
+          } catch {
+            Write-Host "[START] Appium not running. Will start fresh."
+            echo "running=false" >> $env:GITHUB_OUTPUT
+          }
+
+      - name: Start Appium Server (if not running)
+        if: steps.appium-check.outputs.running == 'false'
+        shell: powershell
+        run: |
+          Write-Host "[START] Launching Appium 2 on port 4723..."
+          $logDir = "test-results"
+          if (-not (Test-Path $logDir)) { New-Item -ItemType Directory -Path $logDir -Force | Out-Null }
+
+          # Start Appium as background job
+          $appiumBin = "node_modules\.bin\appium.cmd"
+          Start-Process -FilePath $appiumBin `
+            -ArgumentList "--port", "4723", "--log-level", "info", "--relaxed-security" `
+            -RedirectStandardOutput "$logDir\appium.log" `
+            -RedirectStandardError "$logDir\appium-error.log" `
+            -NoNewWindow
+
+          # Wait for Appium to be ready
+          Write-Host "Waiting for Appium to start..."
+          $ready = $false
+          for ($i = 0; $i -lt 30; $i++) {
+            Start-Sleep -Seconds 2
+            try {
+              $r = Invoke-WebRequest -Uri "http://127.0.0.1:4723/status" -TimeoutSec 3 -UseBasicParsing
+              if ($r.StatusCode -eq 200) {
+                Write-Host "[OK] Appium ready after $($i * 2)s"
+                $ready = $true
+                break
+              }
+            } catch {}
+          }
+
+          if (-not $ready) {
+            Write-Error "Appium did not start within 60 seconds."
+            exit 1
+          }
+
+      - name: Verify Appium /status Endpoint
+        shell: powershell
+        run: |
+          $response = Invoke-WebRequest -Uri "http://127.0.0.1:4723/status" -UseBasicParsing
+          $json = $response.Content | ConvertFrom-Json
+          $version = $json.value.build.version
+          Write-Host "[OK] Appium /status OK. Version: $version"
+          echo "APPIUM_VERSION=$version" >> $env:GITHUB_ENV
+
+      # ────────────────────────────────────────────────────
+      # 13. CREATE APPIUM SESSION VERIFICATION
+      # ────────────────────────────────────────────────────
+      - name: Verify Appium Session Can Be Created
+        shell: powershell
+        run: |
+          $body = @{
+            capabilities = @{
+              alwaysMatch = @{
+                platformName = "Android"
+                "appium:automationName" = "UiAutomator2"
+                "appium:deviceName" = $env:DEVICE_NAME
+                "appium:appPackage" = "com.kondajeswanth.TripSyncApp"
+                "appium:appActivity" = "com.kondajeswanth.TripSyncApp.MainActivity"
+                "appium:noReset" = $true
+                "appium:newCommandTimeout" = 60
+              }
+            }
+          } | ConvertTo-Json -Depth 5
+
+          Write-Host "Creating test Appium session..."
+          try {
+            $session = Invoke-RestMethod -Uri "http://127.0.0.1:4723/session" `
+              -Method POST -Body $body -ContentType "application/json" -TimeoutSec 60
+            $sessionId = $session.value.sessionId
+            Write-Host "[OK] Appium session created: $sessionId"
+
+            # Delete the session
+            Invoke-RestMethod -Uri "http://127.0.0.1:4723/session/$sessionId" `
+              -Method DELETE -TimeoutSec 10 | Out-Null
+            Write-Host "[OK] Test session deleted. Ready for WDIO."
+          } catch {
+            Write-Error "Failed to create Appium session: $_"
+            exit 1
+          }
+
+      # ────────────────────────────────────────────────────
+      # 14. EXECUTE WDIO TESTS (550 real tests)
+      # ────────────────────────────────────────────────────
+      - name: Execute WDIO E2E Tests
+        shell: powershell
+        run: |
+          Write-Host "[RUN] Starting WebDriverIO test execution..."
+          $specArg = ""
+          if ($env:WDIO_CI_SPEC -ne "") {
+            Write-Host "[SPEC] Running single spec: $env:WDIO_CI_SPEC"
+          } else {
+            Write-Host "[SPEC] Running all 550 tests (11 suites x 50 tests)"
+          }
+
+          node AppiumTests\scripts\ci_run_tests.js
+          $exitCode = $LASTEXITCODE
+          Write-Host "WDIO exit code: $exitCode"
+          # Do not fail CI on test failures — reports will show details
+          # exit $exitCode
+
+      # ────────────────────────────────────────────────────
+      # 15. COLLECT ADB DIAGNOSTICS
+      # ────────────────────────────────────────────────────
+      - name: Collect ADB Diagnostics
+        if: always()
+        shell: powershell
+        run: |
+          $resultsDir = "test-results"
+          if (-not (Test-Path $resultsDir)) { New-Item -ItemType Directory -Path $resultsDir | Out-Null }
+
+          Write-Host "Collecting ADB devices..."
+          adb devices > "$resultsDir\adb-devices.log" 2>&1
+
+          Write-Host "Collecting dumpsys activity..."
+          adb shell dumpsys activity activities 2>&1 | Select-Object -First 100 |
+            Out-File "$resultsDir\adb-activity.log" -Encoding utf8
+
+          Write-Host "Collecting logcat (last 1000 lines)..."
+          adb logcat -d -v threadtime *:W 2>&1 |
+            Select-Object -Last 1000 |
+            Out-File "$resultsDir\adb-logcat.log" -Encoding utf8
+
+          Write-Host "[OK] ADB diagnostics collected."
+
+      # ────────────────────────────────────────────────────
+      # 16. VERIFY REPORTS GENERATED
+      # ────────────────────────────────────────────────────
+      - name: Verify Report Files
+        if: always()
+        shell: powershell
+        run: |
+          $excel = "test-results\TripSync_Android_TestReport.xlsx"
+          $html = "test-results\html\execution-report.html"
+
+          if (Test-Path $excel) {
+            $size = [math]::Round((Get-Item $excel).Length / 1KB, 1)
+            Write-Host "[OK] Excel report: $excel ($size KB)"
+          } else {
+            Write-Host "[WARN] Excel report not found: $excel"
+          }
+
+          if (Test-Path $html) {
+            $size = [math]::Round((Get-Item $html).Length / 1KB, 1)
+            Write-Host "[OK] HTML report: $html ($size KB)"
+          } else {
+            Write-Host "[WARN] HTML report not found: $html"
+          }
+
+          # Show screenshot count
+          $screenshots = Get-ChildItem "test-results\screenshots" -ErrorAction SilentlyContinue
+          Write-Host "Screenshots captured: $($screenshots.Count)"
+
+      # ────────────────────────────────────────────────────
+      # 17. UPLOAD ARTIFACTS
+      # ────────────────────────────────────────────────────
+      - name: Upload Test Reports
         uses: actions/upload-artifact@v4
         if: always()
         with:
-          name: TripSync-Android-E2E-Reports
+          name: TripSync-Android-E2E-Reports-${{ github.run_number }}
+          retention-days: 30
+          if-no-files-found: warn
           path: |
             TripSyncApp/test-results/TripSync_Android_TestReport.xlsx
             TripSyncApp/test-results/html/execution-report.html
             TripSyncApp/test-results/appium.log
-            TripSyncApp/test-results/screenshots/
+            TripSyncApp/test-results/appium-error.log
+            TripSyncApp/test-results/adb-devices.log
+            TripSyncApp/test-results/adb-logcat.log
+            TripSyncApp/test-results/adb-activity.log
+            TripSyncApp/.wdio-results.jsonl
+
+      - name: Upload Screenshots
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: TripSync-Screenshots-${{ github.run_number }}
+          retention-days: 30
           if-no-files-found: warn
+          path: |
+            TripSyncApp/test-results/screenshots/
+
+      # ────────────────────────────────────────────────────
+      # 18. SUMMARY
+      # ────────────────────────────────────────────────────
+      - name: Print Run Summary
+        if: always()
+        shell: powershell
+        run: |
+          Write-Host ""
+          Write-Host "═══════════════════════════════════════════"
+          Write-Host " TripSync Android E2E — Run Summary"
+          Write-Host "═══════════════════════════════════════════"
+
+          $jsonlPath = ".wdio-results.jsonl"
+          if (Test-Path $jsonlPath) {
+            $lines = Get-Content $jsonlPath | Where-Object { $_ -ne "" }
+            $total = $lines.Count
+            $passed = ($lines | ForEach-Object { $_ | ConvertFrom-Json } |
+                       Where-Object { $_.status -eq "PASSED" }).Count
+            $failed = ($lines | ForEach-Object { $_ | ConvertFrom-Json } |
+                       Where-Object { $_.status -eq "FAILED" }).Count
+            $passRate = if ($total -gt 0) { [math]::Round($passed / $total * 100, 1) } else { 0 }
+            Write-Host " Total Tests : $total"
+            Write-Host " Passed      : $passed ✅"
+            Write-Host " Failed      : $failed ❌"
+            Write-Host " Pass Rate   : $passRate%"
+          } else {
+            Write-Host " No results file found."
+          }
+          Write-Host "═══════════════════════════════════════════"

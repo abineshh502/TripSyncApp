@@ -100,13 +100,13 @@ export default function RouteDetailScreen() {
   const [navRemDistM, setNavRemDistM] = useState<number>(0);
   const [navRemDurS, setNavRemDurS] = useState<number>(0);
   const [navProgress, setNavProgress] = useState<number>(0);
-  const [navNextStop, setNavNextStop] = useState<string>("");
+  const [_navNextStop, setNavNextStop] = useState<string>("");
   const [activeStopIndex, setActiveStopIndex] = useState<number>(0);
   const [routeCoords, setRouteCoords] = useState<{ latitude: number; longitude: number }[]>([]);
   const [routeSteps, setRouteSteps] = useState<any[]>([]);
   const [routeDistanceM, setRouteDistanceM] = useState<number>(0);
   const [routeDurationS, setRouteDurationS] = useState<number>(0);
-  const [routeStats, setRouteStats] = useState<{ distance: string; duration: string } | null>(null);
+  const [_routeStats, setRouteStats] = useState<{ distance: string; duration: string } | null>(null);
 
   const fetchOSRMRoute = async (stopsList: any[], startLoc?: any) => {
     const all = [];

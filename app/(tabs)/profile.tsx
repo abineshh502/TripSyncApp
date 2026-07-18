@@ -12,11 +12,10 @@ import {
 import { useState, useEffect } from "react";
 import { router } from "expo-router";
 import * as ImagePicker from "expo-image-picker";
-import { signOut } from "firebase/auth";
+import { signOut, onAuthStateChanged } from "firebase/auth";
 import { 
   getFirestore, 
   doc, 
-  getDoc, 
   collection, 
   query, 
   where, 
@@ -24,10 +23,8 @@ import {
   deleteDoc, 
   updateDoc 
 } from "firebase/firestore";
-import { onAuthStateChanged } from "firebase/auth";
-import { auth } from "../../firebaseConfig";
-import app from "../../firebaseConfig";
-import { Ionicons, MaterialIcons, FontAwesome5 } from "@expo/vector-icons";
+import app, { auth } from "../../firebaseConfig";
+import { Ionicons } from "@expo/vector-icons";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
 export default function ProfileScreen() {
@@ -132,6 +129,7 @@ export default function ProfileScreen() {
       unsubVisited();
       unsubFavs();
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const openRoute = (routeId: string) => {
@@ -147,7 +145,7 @@ export default function ProfileScreen() {
           routeName: newName.trim(),
         });
         Alert.alert("Success", "Route renamed successfully!");
-      } catch (err) {
+      } catch (_err) {
         Alert.alert("Error", "Could not rename route.");
       }
     });
@@ -166,7 +164,7 @@ export default function ProfileScreen() {
             try {
               await deleteDoc(doc(db, "routes", routeId));
               Alert.alert("Deleted", "Route deleted successfully!");
-            } catch (err) {
+            } catch (_err) {
               Alert.alert("Error", "Could not delete route.");
             }
           },

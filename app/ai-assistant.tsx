@@ -16,7 +16,7 @@ import {
 import { useState, useRef, useEffect } from "react";
 import { Audio } from "expo-av";
 import * as Speech from "expo-speech";
-import { Ionicons, FontAwesome5 } from "@expo/vector-icons";
+import { Ionicons } from "@expo/vector-icons";
 import { router, useLocalSearchParams } from "expo-router";
 import {
   getFirestore,
@@ -27,14 +27,13 @@ import {
   doc,
 } from "firebase/firestore";
 import { onAuthStateChanged } from "firebase/auth";
-import { auth } from "../firebaseConfig";
-import app from "../firebaseConfig";
-import Constants from "expo-constants";
+import app, { auth } from "../firebaseConfig";
 
 let ExpoSpeechRecognitionModule: any = null;
 try {
+  // eslint-disable-next-line @typescript-eslint/no-require-imports
   ExpoSpeechRecognitionModule = require("expo-speech-recognition").ExpoSpeechRecognitionModule;
-} catch (e) {
+} catch (_e) {
   console.log("expo-speech-recognition is not available on this client.");
 }
 
@@ -256,6 +255,7 @@ export default function AIAssistantScreen() {
     if (activeTab === "safety" && !safetyData && safetyCity) {
       analyzeCitySafety();
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [activeTab, safetyCity]);
 
   useEffect(() => {
@@ -266,6 +266,7 @@ export default function AIAssistantScreen() {
       pulseAnim2.setValue(1);
       pulseAnim3.setValue(1);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isListening, isSpeaking]);
 
   const startPulseAnimation = () => {
@@ -321,7 +322,7 @@ export default function AIAssistantScreen() {
       if (!res.ok) throw new Error("Backend error");
       const data = await res.json();
       setMessages((prev) => [...prev, { sender: "ai", text: data.reply }]);
-    } catch (error: any) {
+    } catch (_error: any) {
       // Instant local fallback — never hits OpenAI
       const q = textToSend.toLowerCase();
       let reply = "";
@@ -632,7 +633,7 @@ export default function AIAssistantScreen() {
           const transcript = event.results[0][0].transcript;
           await processVoiceQuery(transcript);
         };
-        recognition.onerror = (e: any) => {
+        recognition.onerror = (_e: any) => {
           setIsListening(false);
           setVoiceSubtitles("Web Speech failed or mic permission denied.");
         };
@@ -669,7 +670,7 @@ export default function AIAssistantScreen() {
       if (!res.ok) throw new Error("Backend error");
       const data = await res.json();
       setSafetyData(data);
-    } catch (e) {
+    } catch (_e) {
       // Instant local fallback — never hits OpenAI
       const hash = safetyCity.length % 3;
       setSafetyData({
@@ -776,6 +777,7 @@ export default function AIAssistantScreen() {
     if (activeTab === "safety" && activeTrip) {
       analyzeTripSafety();
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [activeTab, activeTrip]);
 
   useEffect(() => {

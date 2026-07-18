@@ -48,6 +48,7 @@ export default function TripDetailsScreen() {
 
   useEffect(() => {
     loadTrip();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [params.id]);
 
   const loadTrip = async () => {
@@ -101,7 +102,7 @@ export default function TripDetailsScreen() {
           try {
             await deleteDoc(doc(db, "trips", fullTrip.id));
             router.replace("/(tabs)/trips" as any);
-          } catch (e) {
+          } catch (_e) {
             Alert.alert("Error", "Could not delete trip.");
           }
         },
@@ -136,7 +137,7 @@ export default function TripDetailsScreen() {
   const today = new Date().toISOString().split("T")[0];
 
   return (
-    <ScrollView style={styles.container} showsVerticalScrollIndicator={false}>
+    <ScrollView testID="trip-details-screen" style={styles.container} showsVerticalScrollIndicator={false}>
       {/* Header */}
       <View style={styles.header}>
         <TouchableOpacity onPress={() => router.back()} style={styles.backBtn}>
@@ -149,6 +150,8 @@ export default function TripDetailsScreen() {
           <Text style={styles.headerSub}>📍 {fullTrip.destination}</Text>
         </View>
         <TouchableOpacity
+          testID="trip-edit-btn"
+          accessibilityLabel="trip-edit-btn"
           onPress={() =>
             router.push({
               pathname: "/edit-trip",

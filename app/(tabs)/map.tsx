@@ -13,9 +13,8 @@ import {
   Platform,
   Modal,
 } from "react-native";
-import MapView, { Marker, Callout, Polyline, UrlTile } from "react-native-maps";
-import { useState, useEffect, useRef, useCallback } from "react";
-import Constants from "expo-constants";
+import MapView, { Marker, Callout, Polyline } from "react-native-maps";
+import { useState, useEffect, useRef } from "react";
 import { Ionicons } from "@expo/vector-icons";
 import * as Location from "expo-location";
 import * as Linking from "expo-linking";
@@ -101,7 +100,7 @@ export default function MapScreen() {
   const isRouteLoadingRef = useRef<boolean>(false);
 
   // Custom Category, Trips and Autocomplete states
-  const [customCategory, setCustomCategory] = useState("");
+
   const [userTrips, setUserTrips] = useState<any[]>([]);
   const [selectedTripId, setSelectedTripId] = useState<string>("");
   const [selectedDayNumber, setSelectedDayNumber] = useState<number>(1);
@@ -154,44 +153,7 @@ export default function MapScreen() {
     _setRouteDurationS(val);
   };
 
-  // Helper mappings & integrations
-  const mapCustomTypeToGeoapifyType = (customType: string): string => {
-    const norm = customType.toLowerCase().trim();
-    if (norm.includes("temple") || norm.includes("church") || norm.includes("mosque") || norm.includes("worship")) {
-      return "religion.place_of_worship";
-    }
-    if (norm.includes("museum") || norm.includes("gallery")) {
-      return "entertainment.museum";
-    }
-    if (norm.includes("zoo") || norm.includes("aquarium")) {
-      return "entertainment.zoo";
-    }
-    if (norm.includes("park") || norm.includes("garden")) {
-      return "leisure.park";
-    }
-    if (norm.includes("beach club")) {
-      return "catering.restaurant,catering.bar,natural.beach";
-    }
-    if (norm.includes("beach")) {
-      return "natural.beach";
-    }
-    if (norm.includes("bar") || norm.includes("pub") || norm.includes("club")) {
-      return "catering.bar";
-    }
-    if (norm.includes("cafe") || norm.includes("coffee")) {
-      return "catering.cafe";
-    }
-    if (norm.includes("restaurant") || norm.includes("food") || norm.includes("eat")) {
-      return "catering.restaurant";
-    }
-    if (norm.includes("hotel") || norm.includes("resort") || norm.includes("stay")) {
-      return "accommodation.hotel";
-    }
-    if (norm.includes("shop") || norm.includes("mall") || norm.includes("market")) {
-      return "commercial.shopping_mall,commercial.marketplace";
-    }
-    return "tourism.attraction";
-  };
+
 
   const updateTripDayRoute = async (tripId: string, dayNum: number, routeId: string, webLink: string, stops: any[]) => {
     try {
@@ -269,38 +231,7 @@ export default function MapScreen() {
     }
   };
 
-  const fetchMapSightsForCustomCategory = async (catName: string, lat: number, lon: number) => {
-    setLoading(true);
-    try {
-      const mappedCat = mapCustomTypeToGeoapifyType(catName);
-      const res = await fetch(
-        `https://api.geoapify.com/v2/places?categories=${mappedCat}&bias=proximity:${lon},${lat}&limit=150&apiKey=${GEOAPIFY_KEY}`
-      );
-      const data = await res.json();
-      if (data.features) {
-        const mapped = data.features
-          .filter((item: any) => item.properties.lat && item.properties.lon)
-          .map((item: any) => {
-            const name = item.properties.name || item.properties.street || "Spot";
-            const rating = (4.1 + (name.length % 9) * 0.1).toFixed(1);
-            return {
-              name,
-              type: catName.toLowerCase(),
-              pinColor: "#8B5CF6",
-              rating,
-              address: item.properties.formatted || "Nearby",
-              latitude: item.properties.lat,
-              longitude: item.properties.lon,
-            };
-          });
-        setMarkers(mapped);
-      }
-    } catch (err) {
-      console.log("Error loading custom category sights:", err);
-    } finally {
-      setLoading(false);
-    }
-  };
+
 
   const calculateDirectionsRouteDirectly = async (start: any, dest: any) => {
     if (!start || !dest) return;
@@ -368,26 +299,26 @@ export default function MapScreen() {
   const [markers, setMarkers] = useState<any[]>([]);
   const [favPlaces, setFavPlaces] = useState<any[]>([]);
   const [visitedPlaces, setVisitedPlaces] = useState<any[]>([]);
-  const [filter, setFilter] = useState("all");
+  const [filter, _setFilter] = useState("all");
 
   // Route Builder
   const [routeItems, setRouteItems] = useState<any[]>([]);
   const [routeCoords, setRouteCoords] = useState<{ latitude: number; longitude: number }[]>([]);
-  const [savingRoute, setSavingRoute] = useState(false);
+  const [_savingRoute, setSavingRoute] = useState(false);
   const [editingRouteId, setEditingRouteId] = useState<string | null>(null);
   const [editingRouteName, setEditingRouteName] = useState<string | null>(null);
 
   // Decoupled Route Builder states
   const [builderRouteCoords, setBuilderRouteCoords] = useState<{ latitude: number; longitude: number }[]>([]);
   const [builderRouteStats, setBuilderRouteStats] = useState<{ distance: string; duration: string } | null>(null);
-  const [builderRouteDistanceM, setBuilderRouteDistanceM] = useState<number>(0);
-  const [builderRouteDurationS, setBuilderRouteDurationS] = useState<number>(0);
+  const [_builderRouteDistanceM, setBuilderRouteDistanceM] = useState<number>(0);
+  const [_builderRouteDurationS, setBuilderRouteDurationS] = useState<number>(0);
 
   // Decoupled Directions states
   const [directionsRouteCoords, setDirectionsRouteCoords] = useState<{ latitude: number; longitude: number }[]>([]);
   const [directionsRouteStats, setDirectionsRouteStats] = useState<{ distance: string; duration: string } | null>(null);
-  const [directionsRouteDistanceM, setDirectionsRouteDistanceM] = useState<number>(0);
-  const [directionsRouteDurationS, setDirectionsRouteDurationS] = useState<number>(0);
+  const [_directionsRouteDistanceM, setDirectionsRouteDistanceM] = useState<number>(0);
+  const [_directionsRouteDurationS, setDirectionsRouteDurationS] = useState<number>(0);
   const [builderStartPlace, setBuilderStartPlace] = useState<any>(null);
   const [builderStartText, setBuilderStartText] = useState("");
   const [builderAddText, setBuilderAddText] = useState("");
@@ -409,7 +340,7 @@ export default function MapScreen() {
     _setActiveStopIndex(val);
   };
 
-  const [navTotalDistanceM, _setNavTotalDistanceM] = useState<number>(0);
+  const [_navTotalDistanceM, _setNavTotalDistanceM] = useState<number>(0);
   const navTotalDistanceMRef = useRef<number>(0);
   const setNavTotalDistanceM = (val: number) => {
     navTotalDistanceMRef.current = val;
@@ -428,7 +359,7 @@ export default function MapScreen() {
   const [shareModalRouteId, setShareModalRouteId] = useState<string | null>(null);
   const [shareModalRouteName, setShareModalRouteName] = useState<string | null>(null);
   const [toastMessage, setToastMessage] = useState<string | null>(null);
-  const [addingVisit, setAddingVisit] = useState(false);
+  const [_addingVisit, setAddingVisit] = useState(false);
 
   // Custom Prompt States
   const [promptVisible, setPromptVisible] = useState(false);
@@ -606,6 +537,7 @@ export default function MapScreen() {
       sub.remove();
       stopNavigation();
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   // Load user trips when mode changes to builder or on login status
@@ -619,6 +551,7 @@ export default function MapScreen() {
         setUserTrips(list);
       });
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [activeMode]);
 
   // Automatically compute directions when startPlace + destPlace change
@@ -626,6 +559,7 @@ export default function MapScreen() {
     if (activeMode === "directions" && startPlace && destPlace) {
       calculateDirectionsRoute();
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [startPlace, destPlace, activeMode]);
 
   // Deep Link Redirection to Route Viewer Page
@@ -1413,7 +1347,7 @@ export default function MapScreen() {
           await updateTripDayRoute(selectedTripId, selectedDayNumber, activeId, webLink, routeItems);
         }
         Alert.alert("Route Saved! 🌟", `Route "${defaultName}" saved successfully.`);
-      } catch (err) {
+      } catch (_err) {
         Alert.alert("Error", "Could not save route in Firebase.");
       } finally {
         setSavingRoute(false);
@@ -1430,7 +1364,7 @@ export default function MapScreen() {
           routeName: editingRouteName || defaultName,
         });
         Alert.alert("Route Saved! 🌟", `Changes to "${editingRouteName || defaultName}" saved successfully.`);
-      } catch (err) {
+      } catch (_err) {
         Alert.alert("Error", "Could not update route in Firebase.");
       } finally {
         setSavingRoute(false);
@@ -1456,7 +1390,7 @@ export default function MapScreen() {
         setEditingRouteId(docRef.id);
         setEditingRouteName(finalName);
         Alert.alert("Route Saved! 🌟", `"${finalName}" saved successfully.`);
-      } catch (err) {
+      } catch (_err) {
         Alert.alert("Error", "Could not save route.");
       } finally {
         setSavingRoute(false);
@@ -1774,9 +1708,7 @@ export default function MapScreen() {
     });
   };
 
-  const shareRouteDeepLink = async (routeId: string, name: string) => {
-    await generateRouteShare(routeId, name);
-  };
+
 
   // ─── GPS utilities ─────────────────────────────────────────────────────────
   const locateUser = async () => {
@@ -1984,9 +1916,7 @@ export default function MapScreen() {
 
   // Suggestion dropdown top — sits right below whichever input is active
   // For builder inputs, show suggestions below the mode tabs (similar to explore)
-  const suggestionsTop =
-    activeMode === "directions" ? 225 :
-    (activeInputType === "builder_start" || activeInputType === "builder_add_stop") ? 165 : 213;
+
 
   // Dynamic positioning for floating controls to avoid overlap with bottom panels
   const getFloatingControlsPosition = () => {
@@ -2927,7 +2857,7 @@ export default function MapScreen() {
                           createdAt: new Date(),
                         });
                         Alert.alert("Journey Saved ❤️", "Added to your visited places!");
-                      } catch (err) {
+                      } catch (_err) {
                         Alert.alert("Error", "Could not save journey to visited places.");
                       }
                     } else {

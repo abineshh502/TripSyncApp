@@ -33,7 +33,7 @@ const formatTimeAgo = (timestampStr: string) => {
     if (diffHours < 24) return `${diffHours}h ago`;
     const diffDays = Math.floor(diffHours / 24);
     return `${diffDays}d ago`;
-  } catch (e) {
+  } catch (_e) {
     return "recently";
   }
 };
@@ -76,6 +76,7 @@ export default function NotificationsScreen() {
     );
 
     return () => unsubscribe();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const markAllRead = async () => {

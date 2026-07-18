@@ -45,6 +45,7 @@ export default function EditTripScreen() {
 
   useEffect(() => {
     loadFullTrip();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [params.id]);
 
   const loadFullTrip = async () => {

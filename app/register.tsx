@@ -5,16 +5,14 @@ import {
   TouchableOpacity,
   ScrollView,
   StyleSheet,
-  Animated,
   ActivityIndicator,
-  Platform,
   Modal,
 } from "react-native";
 import { router } from "expo-router";
-import { useState, useRef } from "react";
+import { useState } from "react";
 import { Ionicons } from "@expo/vector-icons";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import Constants from "expo-constants";
+
 
 const getBackendUrl = () => {
   const envUrl = process.env.EXPO_PUBLIC_API_URL || "https://tripsyncbackend-production-37a2.up.railway.app";
@@ -113,14 +111,14 @@ export default function RegisterScreen() {
       );
 
       // Send real OTP email via Python FastAPI backend
-      const emailRes = await sendOtpEmail(email.trim(), otp);
+      const _emailRes = await sendOtpEmail(email.trim(), otp);
 
       setMessage("✅ OTP sent! Check your inbox.");
       setMessageType("success");
       setModalOtp(otp);
       setModalVisible(true);
       setLoading(false);
-    } catch (error: any) {
+    } catch (_error: any) {
       setMessage("❌ Registration failed. Try again.");
       setMessageType("error");
       setLoading(false);

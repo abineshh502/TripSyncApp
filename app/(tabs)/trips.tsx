@@ -16,7 +16,6 @@ import {
   deleteDoc,
   doc,
   query,
-  orderBy,
   where,
 } from "firebase/firestore";
 import { Ionicons } from "@expo/vector-icons";
@@ -99,6 +98,7 @@ export default function TripsScreen() {
       }
     );
     return () => unsubscribe();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const tripsWithStatus = trips.map((t) => ({ ...t, status: getTripStatus(t) }));
@@ -130,7 +130,7 @@ export default function TripsScreen() {
         onPress: async () => {
           try {
             await deleteDoc(doc(db, "trips", id));
-          } catch (e) {
+          } catch (_e) {
             Alert.alert("Error", "Could not delete trip.");
           }
         },
@@ -139,7 +139,7 @@ export default function TripsScreen() {
   };
 
   return (
-    <View style={styles.container}>
+    <View testID="trips-screen" style={styles.container}>
       {/* Header */}
       <View style={styles.header}>
         <View>
@@ -242,6 +242,8 @@ export default function TripsScreen() {
             return (
               <TouchableOpacity
                 key={trip.id}
+                testID={`trip-card-${trip.id}`}
+                accessibilityLabel={`trip-card-${trip.id}`}
                 onPress={() =>
                   router.push({
                     pathname: "/trip-details",

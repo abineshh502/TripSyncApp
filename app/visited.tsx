@@ -67,6 +67,7 @@ export default function VisitedScreen() {
     );
 
     return () => unsubscribe();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const saveMemory = async (id: string) => {
