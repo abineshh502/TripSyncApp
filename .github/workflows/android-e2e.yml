@@ -17,9 +17,6 @@ on:
 jobs:
   e2e-test:
     runs-on: [self-hosted, Windows, android]
-    defaults:
-      run:
-        working-directory: TripSyncApp
 
     env:
       TEST_EMAIL: "jessuff8@gmail.com"
@@ -43,7 +40,7 @@ jobs:
         with:
           node-version: '20'
           cache: 'npm'
-          cache-dependency-path: 'TripSyncApp/package-lock.json'
+          cache-dependency-path: 'package-lock.json'
 
       - name: Intelligent Dependency Install
         id: npm-install
@@ -422,14 +419,14 @@ jobs:
           retention-days: 30
           if-no-files-found: warn
           path: |
-            TripSyncApp/test-results/TripSync_Android_TestReport.xlsx
-            TripSyncApp/test-results/html/execution-report.html
-            TripSyncApp/test-results/appium.log
-            TripSyncApp/test-results/appium-error.log
-            TripSyncApp/test-results/adb-devices.log
-            TripSyncApp/test-results/adb-logcat.log
-            TripSyncApp/test-results/adb-activity.log
-            TripSyncApp/.wdio-results.jsonl
+            test-results/TripSync_Android_TestReport.xlsx
+            test-results/html/execution-report.html
+            test-results/appium.log
+            test-results/appium-error.log
+            test-results/adb-devices.log
+            test-results/adb-logcat.log
+            test-results/adb-activity.log
+            .wdio-results.jsonl
 
       - name: Upload Screenshots
         uses: actions/upload-artifact@v4
@@ -439,7 +436,7 @@ jobs:
           retention-days: 30
           if-no-files-found: warn
           path: |
-            TripSyncApp/test-results/screenshots/
+            test-results/screenshots/
 
       # ────────────────────────────────────────────────────
       # 18. SUMMARY
