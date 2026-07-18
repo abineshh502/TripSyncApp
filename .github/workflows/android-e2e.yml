@@ -474,7 +474,8 @@ jobs:
           $logDir = "test-results"
           if (-not (Test-Path $logDir)) { New-Item -ItemType Directory -Path $logDir -Force | Out-Null }
 
-          # Start Appium as background job
+          # Start Appium as background job (bypass GHA process killer)
+          $env:RUNNER_TRACKING_ID = ""
           $appiumBin = "node_modules\.bin\appium.cmd"
           Start-Process -FilePath $appiumBin `
             -ArgumentList "--port", "4723", "--log-level", "info", "--relaxed-security" `
