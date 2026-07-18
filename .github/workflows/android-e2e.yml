@@ -92,33 +92,82 @@ jobs:
           }
 
       # ----------------------------------------------------
-      # 3. VERIFY APK (Intelligent -- skip build if APK exists)
+      # 3. VALIDATE APK CACHE (skip build if source unchanged)
       # ----------------------------------------------------
-      - name: Check APK Existence
+      - name: Validate APK Cache
         id: apk-check
         shell: powershell
         run: |
-          $apkPath = "android\app\build\outputs\apk\debug\app-debug.apk"
+          $apkPath  = "android\app\build\outputs\apk\debug\app-debug.apk"
+          $hashFile = "$env:TEMP\tripsync_apk_source_hash.txt"
           $forceRebuild = "${{ github.event.inputs.force_rebuild }}" -eq "true"
 
           if ($forceRebuild) {
-            Write-Host "[FORCE] Force rebuild requested. APK will be rebuilt."
-            echo "exists=false" >> $env:GITHUB_OUTPUT
-          } elseif (Test-Path $apkPath) {
-            $apk = Get-Item $apkPath
-            $sizeMB = [math]::Round($apk.Length / 1MB, 1)
-            Write-Host "[SKIP] APK already exists ($sizeMB MB). Skipping build."
-            echo "exists=true" >> $env:GITHUB_OUTPUT
-          } else {
-            Write-Host "[MISS] APK not found. Build required."
-            echo "exists=false" >> $env:GITHUB_OUTPUT
+            Write-Host "[FORCE] force_rebuild=true -- skipping cache check."
+            echo "apk-valid=false" >> $env:GITHUB_OUTPUT
+            exit 0
           }
+
+          if (-not (Test-Path $apkPath)) {
+            Write-Host "[MISS] APK not found. Build required."
+            echo "apk-valid=false" >> $env:GITHUB_OUTPUT
+            exit 0
+          }
+
+          # APK exists -- validate source hash
+          $apk = Get-Item $apkPath
+          $sizeMB = [math]::Round($apk.Length / 1MB, 1)
+          Write-Host "[FOUND] APK found: $apkPath ($sizeMB MB)"
+
+          # Hash key source files
+          $sourceFiles = @(
+            "package.json",
+            "package-lock.json",
+            "android\build.gradle",
+            "android\settings.gradle",
+            "android\app\build.gradle",
+            "android\gradle.properties",
+            "android\gradle\wrapper\gradle-wrapper.properties"
+          )
+          $combined = ""
+          foreach ($f in $sourceFiles) {
+            if (Test-Path $f) {
+              $combined += (Get-FileHash $f -Algorithm SHA256).Hash
+            }
+          }
+          # Hash all app/ JS/TS source files
+          Get-ChildItem "app" -Recurse -File -Include "*.js","*.ts","*.tsx","*.jsx","*.json" `
+            -ErrorAction SilentlyContinue | Sort-Object FullName | ForEach-Object {
+              $combined += (Get-FileHash $_.FullName -Algorithm SHA256).Hash
+            }
+
+          # Produce final hash
+          $bytes    = [System.Text.Encoding]::UTF8.GetBytes($combined)
+          $sha      = [System.Security.Cryptography.SHA256CryptoServiceProvider]::new()
+          $curHash  = [BitConverter]::ToString($sha.ComputeHash($bytes)).Replace("-","")
+
+          $prevHash = ""
+          if (Test-Path $hashFile) { $prevHash = (Get-Content $hashFile -Raw).Trim() }
+
+          if ($curHash -eq $prevHash) {
+            Write-Host "[OK] APK Validation Passed -- source hash unchanged."
+            Write-Host "[SKIP] Existing APK is valid. Skipping APK build."
+            Write-Host "Estimated Time Saved: ~15 minutes (Gradle + JS bundle skipped)"
+            Write-Host "Continuing with next stage."
+            echo "apk-valid=true" >> $env:GITHUB_OUTPUT
+          } else {
+            Write-Host "[CHANGE] Source has changed since last build. Rebuild required."
+            Write-Host "  Current hash : $($curHash.Substring(0,16))..."
+            Write-Host "  Previous hash: $(if ($prevHash) { $prevHash.Substring(0,16) + '...' } else { '(none)' })"
+            echo "apk-valid=false" >> $env:GITHUB_OUTPUT
+          }
+
 
       # ----------------------------------------------------
       # 4. EXPO PREBUILD (Intelligent -- skip if android/ exists)
       # ----------------------------------------------------
       - name: Intelligent Expo Prebuild
-        if: steps.apk-check.outputs.exists == 'false'
+        if: steps.apk-check.outputs.apk-valid != 'true'
         shell: powershell
         env:
           EXPO_PUBLIC_E2E_MODE: "true"
@@ -141,7 +190,7 @@ jobs:
       # 5. CONFIGURE ANDROID SDK
       # ----------------------------------------------------
       - name: Configure Android SDK Path
-        if: steps.apk-check.outputs.exists == 'false'
+        if: steps.apk-check.outputs.apk-valid != 'true'
         shell: powershell
         run: node scripts/setup-android-sdk.js
 
@@ -149,7 +198,7 @@ jobs:
       # 6. INJECT BUNDLE CONFIG
       # ----------------------------------------------------
       - name: Inject bundleInDebug
-        if: steps.apk-check.outputs.exists == 'false'
+        if: steps.apk-check.outputs.apk-valid != 'true'
         shell: powershell
         run: node scripts/inject-bundle-in-debug.js
 
@@ -165,6 +214,25 @@ jobs:
           Write-Host "[BUILD] Building APK (no clean -- incremental build)..."
           cd android
           .\gradlew.bat assembleDebug -PbundleInDebug=true --no-daemon
+
+          # Save source hash so next run can skip rebuild if source unchanged
+          $hashFile = "$env:TEMP\tripsync_apk_source_hash.txt"
+          $sourceFiles = @(
+            "..\package.json", "..\package-lock.json",
+            "build.gradle", "settings.gradle", "app\build.gradle",
+            "gradle.properties", "gradle\wrapper\gradle-wrapper.properties"
+          )
+          $combined = ""
+          foreach ($f in $sourceFiles) { if (Test-Path $f) { $combined += (Get-FileHash $f -Algorithm SHA256).Hash } }
+          Get-ChildItem "..\app" -Recurse -File -Include "*.js","*.ts","*.tsx","*.jsx","*.json" `
+            -ErrorAction SilentlyContinue | Sort-Object FullName | ForEach-Object {
+              $combined += (Get-FileHash $_.FullName -Algorithm SHA256).Hash
+            }
+          $bytes = [System.Text.Encoding]::UTF8.GetBytes($combined)
+          $sha = [System.Security.Cryptography.SHA256CryptoServiceProvider]::new()
+          $newHash = [BitConverter]::ToString($sha.ComputeHash($bytes)).Replace("-","")
+          $newHash | Out-File $hashFile -Encoding utf8 -NoNewline
+          Write-Host "[OK] APK source hash saved for next run."
 
       # ----------------------------------------------------
       # 8. VERIFY APK
@@ -209,14 +277,31 @@ jobs:
         shell: powershell
         run: |
           $deviceId = "${{ steps.emulator-check.outputs.device-id }}"
-          $booted = adb -s $deviceId shell getprop sys.boot_completed 2>&1
-          Write-Host "Boot completed: $booted"
+          Write-Host "Verifying boot for device: $deviceId"
 
-          # Capture Android version for reports
-          $androidVer = adb -s $deviceId shell getprop ro.build.version.release 2>&1
-          $buildId = adb -s $deviceId shell getprop ro.build.display.id 2>&1
+          # Retry up to 60 seconds for the emulator to finish booting
+          $maxWait = 60
+          $waited  = 0
+          $booted  = ""
+          do {
+            $booted = (adb -s $deviceId shell getprop sys.boot_completed 2>$null).Trim()
+            if ($booted -eq "1") { break }
+            Start-Sleep -Seconds 5
+            $waited += 5
+            Write-Host "  Still booting... ($waited / $maxWait s)"
+          } while ($waited -lt $maxWait)
+
+          if ($booted -eq "1") {
+            Write-Host "[OK] Emulator fully booted."
+          } else {
+            Write-Host "[WARN] Emulator boot_completed='$booted' after ${maxWait}s. Proceeding anyway."
+          }
+
+          # Capture Android version safely (strip newlines for GITHUB_ENV)
+          $androidVer = (adb -s $deviceId shell getprop ro.build.version.release 2>$null).Trim() -replace '[\r\n]',''
+          $buildId    = (adb -s $deviceId shell getprop ro.build.display.id       2>$null).Trim() -replace '[\r\n]',''
           Write-Host "Android Version: $androidVer | Build: $buildId"
-          echo "ANDROID_VERSION=$androidVer" >> $env:GITHUB_ENV
+          Add-Content -Path $env:GITHUB_ENV -Value "ANDROID_VERSION=$androidVer"
 
       # ----------------------------------------------------
       # 10. VERIFY INSTALLED APK (Intelligent -- reuse if installed)
