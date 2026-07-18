@@ -145,18 +145,9 @@ jobs:
           # Calculate current source hash
           $sourceFiles = @(
             "package.json",
-            "package-lock.json"
+            "package-lock.json",
+            "app.json"
           )
-          # Add gradle config files if android exists
-          if (Test-Path "android") {
-            $sourceFiles += @(
-              "android\build.gradle",
-              "android\settings.gradle",
-              "android\app\build.gradle",
-              "android\gradle.properties",
-              "android\gradle\wrapper\gradle-wrapper.properties"
-            )
-          }
 
           $combined = ""
           foreach ($f in $sourceFiles) {
@@ -284,11 +275,7 @@ jobs:
             $sourceFiles = @(
               "..\package.json",
               "..\package-lock.json",
-              "build.gradle",
-              "settings.gradle",
-              "app\build.gradle",
-              "gradle.properties",
-              "gradle\wrapper\gradle-wrapper.properties"
+              "..\app.json"
             )
             $combined = ""
             foreach ($f in $sourceFiles) {
