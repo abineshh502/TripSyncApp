@@ -147,6 +147,29 @@ exports.config = {
   },
 
   /**
+   * before: Called before each spec suite (spec file) starts.
+   * Force-stops and relaunches the app so each worker gets a clean login screen.
+   */
+  async before(_caps, _specs) {
+    const { execSync } = require("child_process");
+    const appPackage = "com.kondajeswanth.TripSyncApp";
+    const appActivity = "com.kondajeswanth.TripSyncApp.MainActivity";
+    const adb = process.env.ADB_PATH || "adb";
+
+    try {
+      console.log("[wdio] Force-stopping app for clean launch...");
+      execSync(`${adb} shell am force-stop ${appPackage}`, { stdio: "pipe", timeout: 10000 });
+      await browser.pause(1000);
+      console.log("[wdio] Relaunching app...");
+      execSync(`${adb} shell am start -n "${appPackage}/${appActivity}"`, { stdio: "pipe", timeout: 10000 });
+      await browser.pause(5000);
+      console.log("[wdio] App relaunched. Waiting for login screen...");
+    } catch (err) {
+      console.warn("[wdio] ⚠️ App relaunch warning:", err.message);
+    }
+  },
+
+  /**
    * afterTest: Called after every individual test.
    * Records the result into JSONL and the Excel/HTML reporters.
    */

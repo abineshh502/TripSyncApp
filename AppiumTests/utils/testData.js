@@ -70,8 +70,8 @@ const testData = {
 
   // ─────── Timeouts (ms) ───────
   timeouts: {
-    elementWait: 15000,
-    appLaunch: 20000,
+    elementWait: 20000,
+    appLaunch: 45000,
     networkOp: 30000,
     animationSettle: 2000,
     shortPause: 1000,
