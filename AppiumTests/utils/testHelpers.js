@@ -153,16 +153,34 @@ async function logoutUser(driver) {
  * Navigate to a named tab by accessibility label.
  */
 async function goToTab(driver, tabName) {
-  try {
-    const el = await driver.$(`~${tabName}`);
-    await el.click();
-    await driver.pause(testData.timeouts.animationSettle);
-  } catch (_) {
-    // Try by text
-    const el = await driver.$(`android=new UiSelector().text("${tabName}")`);
-    await el.click();
-    await driver.pause(testData.timeouts.animationSettle);
+  const nameLower = tabName.toLowerCase();
+  const nameCap = nameLower.charAt(0).toUpperCase() + nameLower.slice(1);
+  
+  const selectors = [
+    `~${nameCap}`,
+    `~${nameLower}`,
+    `android=new UiSelector().text("${nameCap}")`,
+    `android=new UiSelector().text("${nameLower}")`,
+    `android=new UiSelector().description("${nameCap}")`,
+    `android=new UiSelector().description("${nameLower}")`,
+    `android=new UiSelector().descriptionMatches("(?i)${nameLower}, tab,.*")`
+  ];
+
+  let error = null;
+  for (const sel of selectors) {
+    try {
+      const el = await driver.$(sel);
+      if (await el.isDisplayed()) {
+        await el.click();
+        await driver.pause(testData.timeouts.animationSettle);
+        return;
+      }
+    } catch (e) {
+      error = e;
+    }
   }
+
+  throw new Error(`Can't navigate to tab "${tabName}". Checked selectors: ${selectors.join(", ")}. Last error: ${error ? error.message : "None"}`);
 }
 
 /**

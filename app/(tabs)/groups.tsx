@@ -495,7 +495,7 @@ export default function GroupsScreen() {
       )}
 
       {/* CREATE MODAL */}
-      <Modal visible={createVisible} animationType="slide" transparent>
+      <Modal visible={createVisible} animationType="slide" transparent onRequestClose={() => { setCreateVisible(false); resetCreateForm(); }}>
         <View
           style={{
             flex: 1,
@@ -653,7 +653,7 @@ export default function GroupsScreen() {
       </Modal>
 
       {/* JOIN MODAL */}
-      <Modal visible={joinVisible} animationType="slide" transparent>
+      <Modal visible={joinVisible} animationType="slide" transparent onRequestClose={() => { setJoinVisible(false); setJoinCode(""); }}>
         <View
           style={{
             flex: 1,

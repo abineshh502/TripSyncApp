@@ -1437,7 +1437,7 @@ export default function GroupDetailsScreen() {
       </ScrollView>
 
       {/* ADD EXPENSE MODAL */}
-      <Modal visible={expenseModalVisible} animationType="slide" transparent>
+      <Modal visible={expenseModalVisible} animationType="slide" transparent onRequestClose={() => { setExpenseModalVisible(false); }}>
         <View style={styles.modalBg}>
           <ScrollView contentContainerStyle={{ paddingVertical: 40 }} showsVerticalScrollIndicator={false}>
             <View style={styles.modalContent}>
@@ -1553,7 +1553,7 @@ export default function GroupDetailsScreen() {
       </Modal>
 
       {/* EDIT ITINERARY MODAL */}
-      <Modal visible={editItineraryModalVisible} animationType="slide" transparent>
+      <Modal visible={editItineraryModalVisible} animationType="slide" transparent onRequestClose={() => { setEditItineraryModalVisible(false); }}>
         <View style={styles.modalBg}>
           <View style={styles.modalContent}>
             <Text style={styles.modalHeader}>Edit Global Itinerary Plan 🗓️</Text>
@@ -1587,7 +1587,7 @@ export default function GroupDetailsScreen() {
       </Modal>
 
       {/* RECEIPT IMAGE VIEWER MODAL */}
-      <Modal visible={receiptViewerVisible} animationType="fade" transparent>
+      <Modal visible={receiptViewerVisible} animationType="fade" transparent onRequestClose={() => { setReceiptViewerVisible(false); }}>
         <View style={styles.receiptViewerBg}>
           <TouchableOpacity onPress={() => setReceiptViewerVisible(false)} style={styles.viewerCloseBtn}>
             <Ionicons name="close" size={32} color="white" />
