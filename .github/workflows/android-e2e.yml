@@ -398,12 +398,12 @@ jobs:
         shell: powershell
         run: |
           $pkg = "com.kondajeswanth.TripSyncApp"
-          $installed = adb shell pm list packages $pkg 2>&1
+          $installed = adb -s $env:DEVICE_NAME shell pm list packages $pkg 2>&1
           Write-Host "Package check: $installed"
 
           if ($installed -match $pkg) {
             Write-Host "[REUSE] App already installed. Force-stopping for clean state."
-            adb shell am force-stop $pkg
+            adb -s $env:DEVICE_NAME shell am force-stop $pkg
             Start-Sleep -Seconds 2
             echo "installed=true" >> $env:GITHUB_OUTPUT
             Add-Content -Path $env:GITHUB_ENV -Value "INSTALL_STATUS=Reused (Already Installed)"
@@ -419,11 +419,11 @@ jobs:
         run: |
           $apkPath = "android\app\build\outputs\apk\debug\app-debug.apk"
           Write-Host "Installing APK: $apkPath"
-          adb install -r "$apkPath"
+          adb -s $env:DEVICE_NAME install -r "$apkPath"
           Start-Sleep -Seconds 3
 
           # Verify installation
-          $installed = adb shell pm list packages com.kondajeswanth.TripSyncApp 2>&1
+          $installed = adb -s $env:DEVICE_NAME shell pm list packages com.kondajeswanth.TripSyncApp 2>&1
           if ($installed -notmatch "com.kondajeswanth.TripSyncApp") {
             Write-Error "APK installation verification FAILED."
             exit 1
@@ -439,7 +439,7 @@ jobs:
           $pkg = "com.kondajeswanth.TripSyncApp"
           $activity = "${pkg}.MainActivity"
           Write-Host "Launching: $activity"
-          adb shell am start -n "${pkg}/${activity}"
+          adb -s $env:DEVICE_NAME shell am start -n "${pkg}/${activity}"
           Start-Sleep -Seconds 3
           Write-Host "[OK] App launch command sent."
 
