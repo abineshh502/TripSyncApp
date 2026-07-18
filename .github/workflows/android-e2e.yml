@@ -65,11 +65,18 @@ jobs:
             $prevHash = Get-Content $cacheFile -Raw
           }
 
-          if ($lockHash -eq $prevHash.Trim()) {
-            Write-Host "[SKIP] package-lock.json unchanged. Skipping npm install."
+          # Also verify node_modules/expo exists (workspace may be stale)
+          $nmReady = (Test-Path "node_modules\expo") -and (Test-Path "node_modules\.bin\expo")
+
+          if ($lockHash -eq $prevHash.Trim() -and $nmReady) {
+            Write-Host "[SKIP] package-lock.json unchanged and node_modules ready. Skipping npm install."
             echo "skipped=true" >> $env:GITHUB_OUTPUT
           } else {
-            Write-Host "[RUN] Dependencies changed. Running npm install..."
+            if (-not $nmReady) {
+              Write-Host "[RUN] node_modules not ready (expo missing). Running npm install..."
+            } else {
+              Write-Host "[RUN] Dependencies changed. Running npm install..."
+            }
             npm install
             $lockHash | Out-File -FilePath $cacheFile -Encoding utf8 -NoNewline
             echo "skipped=false" >> $env:GITHUB_OUTPUT
@@ -110,8 +117,15 @@ jobs:
           if (Test-Path "android") {
             Write-Host "[SKIP] android/ directory already exists. Skipping Expo Prebuild."
           } else {
-            Write-Host "[RUN] android/ not found. Running expo prebuild..."
-            npx expo prebuild --platform android --no-install
+            Write-Host "[RUN] android/ not found. Running expo prebuild via local binary..."
+            # Use local expo binary to avoid npx downloading a mismatched CLI version
+            $expoLocal = ".\node_modules\.bin\expo"
+            if (Test-Path $expoLocal) {
+              & $expoLocal prebuild --platform android --no-install
+            } else {
+              Write-Host "[WARN] Local expo binary not found, falling back to npx..."
+              npx expo prebuild --platform android --no-install
+            }
           }
 
       # ----------------------------------------------------
@@ -377,17 +391,26 @@ jobs:
           $resultsDir = "test-results"
           if (-not (Test-Path $resultsDir)) { New-Item -ItemType Directory -Path $resultsDir | Out-Null }
 
+          # Determine ADB target: use DEVICE_NAME if set, else target emulator with -e
+          $adbTarget = if ($env:DEVICE_NAME) { @("-s", $env:DEVICE_NAME) } else { @("-e") }
+          Write-Host "ADB target args: $adbTarget"
+
           Write-Host "Collecting ADB devices..."
-          adb devices > "$resultsDir\adb-devices.log" 2>&1
+          adb devices 2>&1 | Out-File "$resultsDir\adb-devices.log" -Encoding utf8
 
           Write-Host "Collecting dumpsys activity..."
-          adb shell dumpsys activity activities 2>&1 | Select-Object -First 100 |
-            Out-File "$resultsDir\adb-activity.log" -Encoding utf8
+          try {
+            & adb @adbTarget shell dumpsys activity activities 2>&1 |
+              Select-Object -First 100 |
+              Out-File "$resultsDir\adb-activity.log" -Encoding utf8
+          } catch { Write-Host "[WARN] dumpsys skipped: $_" }
 
           Write-Host "Collecting logcat (last 1000 lines)..."
-          adb logcat -d -v threadtime *:W 2>&1 |
-            Select-Object -Last 1000 |
-            Out-File "$resultsDir\adb-logcat.log" -Encoding utf8
+          try {
+            & adb @adbTarget logcat -d -v threadtime *:W 2>&1 |
+              Select-Object -Last 1000 |
+              Out-File "$resultsDir\adb-logcat.log" -Encoding utf8
+          } catch { Write-Host "[WARN] logcat skipped: $_" }
 
           Write-Host "[OK] ADB diagnostics collected."
 
