@@ -65,7 +65,23 @@ describe("End-to-End User Journeys", () => {
       // Handle OTP modal
       const okBtn = await driver.$("~otp-modal-ok-button");
       if (await okBtn.isDisplayed()) {
+        let otpText = "";
+        try {
+          const otpValEl = await driver.$("~otp-display-value");
+          otpText = (await otpValEl.getText()).trim();
+        } catch (_) {}
+
         await okBtn.click();
+        await driver.pause(td.timeouts.animationSettle);
+
+        if (otpText && otpText.length === 6) {
+          const digits = otpText.split("");
+          for (let i = 0; i < 6; i++) {
+            await h.typeInto(driver, `otp-input-${i}`, digits[i]);
+          }
+        }
+        
+        await h.tapElement(driver, "verify-button");
         await driver.pause(td.timeouts.animationSettle);
       }
     } catch (_) {}

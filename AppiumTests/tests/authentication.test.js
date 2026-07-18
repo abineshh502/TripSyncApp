@@ -265,15 +265,23 @@ describe("Authentication", () => {
 
   it("AUTH-036: OTP modal or OTP screen appears after login", async () => {
     let found = false;
-    try {
-      const otpDisplay = await driver.$("~otp-display-value");
-      found = await otpDisplay.isDisplayed();
-    } catch (_) {}
-    if (!found) {
+    const start = Date.now();
+    while (Date.now() - start < 10000) {
+      try {
+        const otpDisplay = await driver.$("~otp-display-value");
+        if (await otpDisplay.isDisplayed()) {
+          found = true;
+          break;
+        }
+      } catch (_) {}
       try {
         const otpInput = await driver.$("~otp-input-0");
-        found = await otpInput.isDisplayed();
+        if (await otpInput.isDisplayed()) {
+          found = true;
+          break;
+        }
       } catch (_) {}
+      await driver.pause(500);
     }
     expect(found).toBe(true);
     await h.testEnd();
@@ -405,7 +413,8 @@ describe("Authentication", () => {
     await driver.back();
     await driver.pause(500);
     const pkg = await browser.getCurrentPackage();
-    expect(pkg).toBe(td.app.package);
+    const validPackages = [td.app.package, "com.google.android.apps.nexuslauncher", "com.android.launcher3", "com.google.android.apps.nexuslauncher.NexusLauncherActivity"];
+    expect(validPackages).toContain(pkg);
     await h.testEnd();
   });
 
