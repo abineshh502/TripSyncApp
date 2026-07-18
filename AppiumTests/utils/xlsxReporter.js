@@ -155,7 +155,6 @@ async function generateReport(results, meta, outputPath) {
       cell.alignment = { vertical: "top", wrapText: c + 1 === 7 || c + 1 === 8 };
     });
     row.height = 18;
-    row.commit();
   }
 
   // ── EXECUTIVE SUMMARY ──

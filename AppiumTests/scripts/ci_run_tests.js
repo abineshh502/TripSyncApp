@@ -30,7 +30,7 @@ const APK_PATH = path.resolve(
   __dirname,
   "../../android/app/build/outputs/apk/debug/app-debug.apk"
 );
-const APK_INFO_PATH     = "C:\\Users\\konda\\OneDrive\\Desktop\\TripSync\\TripSyncCache\\apk-info.json";
+const APK_INFO_PATH     = path.resolve(path.dirname(APK_PATH), "../../../../TripSyncCache/apk-info.json");
 const APPIUM_PORT       = 4723;
 const APPIUM_STATUS_URL = `http://127.0.0.1:${APPIUM_PORT}/status`;
 const RESULTS_DIR       = path.resolve(__dirname, "../../test-results");
@@ -123,14 +123,15 @@ async function verifyAdb() {
 
 async function detectOrBootEmulator() {
   log("📱", "Checking for running emulators...");
-  const devices = runSilent("adb devices");
+  const adbBin = process.env.ADB_PATH || "adb";
+  const devices = runSilent(`${adbBin} devices`);
   const lines = devices.split("\n").filter((l) => l.includes("emulator") && l.includes("device"));
 
   if (lines.length > 0) {
     const emulatorId = lines[0].split("\t")[0].trim();
     log("✅", `Reusing existing emulator: ${emulatorId}`);
     process.env.DEVICE_NAME = emulatorId;
-    ADB = `adb -s ${emulatorId}`;
+    ADB = `${adbBin} -s ${emulatorId}`;
     return emulatorId;
   }
 
@@ -144,16 +145,17 @@ async function detectOrBootEmulator() {
   log("⏳", "Waiting for emulator to boot (up to 180s)...");
   for (let i = 0; i < 36; i++) {
     await sleep(5000);
-    const booted = runSilent(`${ADB} shell getprop sys.boot_completed`).trim();
+    // Use -e to explicitly target emulator (not a physical device on the same host)
+    const booted = runSilent(`${adbBin} -e shell getprop sys.boot_completed`).trim();
     if (booted === "1") {
       log("✅", "Emulator boot completed.");
-      const newDevices = runSilent("adb devices");
+      const newDevices = runSilent(`${adbBin} devices`);
       const newLine = newDevices.split("\n").find(
         (l) => l.includes("emulator") && l.includes("device")
       );
       const emId = newLine ? newLine.split("\t")[0].trim() : "emulator-5554";
       process.env.DEVICE_NAME = emId;
-      ADB = `adb -s ${emId}`;
+      ADB = `${adbBin} -s ${emId}`;
       return emId;
     }
     log("⏳", `Still booting... (${(i + 1) * 5}s elapsed)`);
@@ -657,6 +659,15 @@ async function main() {
     await launchAppAndVerify();      // Step 5 — am start & Poll dumpsys for visibility
     await detectOrStartAppium();     // Step 6 — Appium server startup/reuse
     await verifyAppiumSession();     // Step 7 — Session sanity check
+    
+    // Seed test user in Firebase Auth before starting tests
+    try {
+      log("🔑", "Seeding Firebase Auth test user...");
+      execSync(`node "${path.resolve(__dirname, "seed_firebase_user.js")}"`, { stdio: "inherit" });
+    } catch (e) {
+      log("⚠️", `Firebase Auth user seeding failed: ${e.message}`);
+    }
+
     exitCode = await runWdio();      // Step 8 — Execute WDIO test runner
   } catch (err) {
     log("❌", `FATAL: ${err.message}`);

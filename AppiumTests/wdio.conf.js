@@ -132,7 +132,7 @@ exports.config = {
 
   // ─── Parallelism ───
   maxInstances: 1,
-  bail: 1,
+  bail: 0,
 
   // ─── Capabilities ───
   capabilities: [
@@ -180,7 +180,6 @@ exports.config = {
 
   // ─── Reporters ───
   reporters: [
-    "spec",
     [
       "spec",
       {
@@ -206,7 +205,7 @@ exports.config = {
     // Perform Dynamic Discovery
     const specFiles = getSpecFiles();
     const discovered = discoverTests(specFiles);
-    
+
     // Calculate and log specs/suites/tests as requested
     const uniqueSuites = [...new Set(discovered.map(d => d.suiteName))].length;
     console.log("Expected Specs : " + specFiles.length);
@@ -263,77 +262,110 @@ exports.config = {
    */
   async before(_caps, _specs) {
     const { execSync } = require("child_process");
-    const appPackage  = "com.kondajeswanth.TripSyncApp";
+    const appPackage = "com.kondajeswanth.TripSyncApp";
     const appActivity = "com.kondajeswanth.TripSyncApp.MainActivity";
-    const adbBin  = process.env.ADB_PATH || "adb";
-    const device  = process.env.DEVICE_NAME || "emulator-5554";
-    const adb     = `${adbBin} -s ${device}`;
+    const adbBin = process.env.ADB_PATH || "adb";
+    const device = process.env.DEVICE_NAME || "emulator-5554";
+    const adb = `${adbBin} -s ${device}`;
 
     function adbSilent(cmd) {
-      try { return execSync(cmd, { encoding: "utf-8", stdio: "pipe", timeout: 10000 }); }
+      try { return execSync(cmd, { encoding: "utf-8", stdio: "pipe", timeout: 15000 }); }
       catch (_) { return ""; }
     }
 
-    // Log current focused activity
-    const dumpBefore = adbSilent(`${adb} shell dumpsys activity activities`);
-    const topBefore  = dumpBefore.split("\n").find((l) => l.includes("topResumedActivity")) || "(unknown)";
-    console.log(`[wdio] [before] Current top activity: ${topBefore.trim()}`);
+    console.log(`[wdio] [before] Resetting app state to clean logged-out state for spec...`);
 
-    // If app is not in foreground, restart it
-    if (!topBefore.includes(appPackage)) {
-      console.log("[wdio] [before] App not in foreground. Force-stopping and relaunching...");
-      adbSilent(`${adb} shell am force-stop ${appPackage}`);
-      await browser.pause(1500);
+    // Always force stop the app
+    adbSilent(`${adb} shell am force-stop ${appPackage}`);
+    await browser.pause(1000);
 
-      // Clear data so we always land on login screen
-      adbSilent(`${adb} shell pm clear ${appPackage}`);
-      await browser.pause(1000);
+    // Clear data so we always land on login screen
+    adbSilent(`${adb} shell pm clear ${appPackage}`);
+    await browser.pause(1000);
 
-      adbSilent(`${adb} shell am start -W -n "${appPackage}/${appActivity}"`);
-      await browser.pause(8000);
-    }
+    // Grant Location & Notification permissions to avoid system prompts
+    adbSilent(`${adb} shell pm grant ${appPackage} android.permission.ACCESS_FINE_LOCATION`);
+    adbSilent(`${adb} shell pm grant ${appPackage} android.permission.ACCESS_COARSE_LOCATION`);
+    adbSilent(`${adb} shell pm grant ${appPackage} android.permission.POST_NOTIFICATIONS`);
+    await browser.pause(500);
+
+    // StartMainActivity
+    adbSilent(`${adb} shell am start -W -n "${appPackage}/${appActivity}"`);
+    await browser.pause(5000);
 
     // Confirm the app is now in the foreground (poll up to 30s)
     let appVisible = false;
-    for (let i = 0; i < 10; i++) {
-      const dump   = adbSilent(`${adb} shell dumpsys activity activities`);
-      const topAct = dump.split("\n").find((l) => l.includes("topResumedActivity")) || "";
-      console.log(`[wdio] [before] Poll ${i + 1}/10 top activity: ${topAct.trim()}`);
+    for (let i = 0; i < 15; i++) {
+      const dump = adbSilent(`${adb} shell dumpsys activity activities`);
+      const topAct = dump.split("\n").find((l) => l.includes("topResumedActivity") || l.includes("mFocusedActivity")) || "";
+      console.log(`[wdio] [before] Poll ${i + 1}/15 top activity: ${topAct.trim()}`);
       if (topAct.includes(appPackage)) {
         appVisible = true;
         break;
       }
-      await browser.pause(3000);
+      
+      // Auto-bypass permission controller if displayed
+      if (topAct.includes("com.google.android.permissioncontroller")) {
+        console.log("[wdio] [before] Permission controller detected. Auto-bypassing via input keyevent 66 (Enter)...");
+        adbSilent(`${adb} shell input keyevent 66`);
+      }
+      
+      await browser.pause(2000);
     }
 
-    // Save screenshot and page source for diagnostics (always)
+    // Save screenshot for diagnostics (always)
     try {
       const screenshotPath = require("path").join(
-        require("path").resolve(__dirname, "../../test-results"),
+        RESULTS_DIR,
+        "screenshots",
         `before-hook-${Date.now()}.png`
       );
       adbSilent(`${adb} shell screencap -p /sdcard/before_hook.png`);
       adbSilent(`${adb} pull /sdcard/before_hook.png "${screenshotPath}"`);
       console.log(`[wdio] [before] Screenshot saved: ${screenshotPath}`);
-    } catch (_) {}
+    } catch (_) { }
 
     if (!appVisible) {
       // Save logcat for diagnosis
       const logcat = adbSilent(`${adb} logcat -d -v threadtime ReactNativeJS:V *:W`).substring(0, 100000);
       const logPath = require("path").join(
-        require("path").resolve(__dirname, "../../test-results"),
+        RESULTS_DIR,
         `before-hook-logcat-${Date.now()}.txt`
       );
       require("fs").writeFileSync(logPath, logcat, "utf-8");
 
       throw new Error(
-        `[wdio] FATAL: TripSync app is NOT in the foreground after 30s. ` +
+        `[wdio] FATAL: TripSync app is NOT in the foreground after reset & start. ` +
         `Aborting spec — WDIO will not enter an infinite loop. ` +
         `Logcat saved at: ${logPath}`
       );
     }
 
-    console.log("[wdio] [before] App verified in foreground. Proceeding with spec.");
+    console.log("[wdio] [before] App verified in foreground. Waiting for React Native login screen to render...");
+    try {
+      const emailInput = await browser.$("~email-input");
+      await emailInput.waitForDisplayed({ timeout: 45000 });
+      console.log("[wdio] [before] React Native login screen elements are now visible. Proceeding to tests...");
+    } catch (e) {
+      console.error("[wdio] [before] ❌ FATAL: email-input not visible after 45s. Capturing diagnostics...");
+      try {
+        const source = await browser.getPageSource();
+        const srcPath = require("path").join(RESULTS_DIR, `before-hook-page-source-fail-${Date.now()}.xml`);
+        require("fs").writeFileSync(srcPath, source, "utf-8");
+        console.error(`[wdio] [before] Diagnostic page source saved: ${srcPath}`);
+      } catch (_) {}
+      try {
+        const pkg = await browser.getCurrentPackage();
+        const act = await browser.getCurrentActivity();
+        console.error(`[wdio] [before] Diagnostic current package: ${pkg} | activity: ${act}`);
+      } catch (_) {}
+      try {
+        const screenshotPath = require("path").join(RESULTS_DIR, "screenshots", `before-hook-element-fail-${Date.now()}.png`);
+        await browser.saveScreenshot(screenshotPath);
+        console.error(`[wdio] [before] Diagnostic screenshot saved: ${screenshotPath}`);
+      } catch (_) {}
+      throw e;
+    }
   },
 
   /**
@@ -344,7 +376,7 @@ exports.config = {
     const status = result.passed ? "PASSED" : "FAILED";
     const durationMs = result.duration != null && result.duration > 0
       ? result.duration
-      : Math.round(Math.random() * 16 + 5);
+      : 0;
 
     // Capture screenshot on failure
     let screenshotPath = "";
@@ -353,7 +385,7 @@ exports.config = {
         const safeName = test.title.replace(/[^a-zA-Z0-9_-]/g, "_").substring(0, 60);
         screenshotPath = path.join(RESULTS_DIR, "screenshots", `FAIL_${safeName}_${Date.now()}.png`);
         await browser.saveScreenshot(screenshotPath);
-      } catch (_) {}
+      } catch (_) { }
     }
 
     // Determine category from spec file name
@@ -424,12 +456,21 @@ exports.config = {
       expectedTests = JSON.parse(fs.readFileSync(expectedPath, "utf-8"));
     }
 
+    // Build O(1) lookup map keyed by "category::testName"
+    // This is collision-safe because (category, testName) pairs are verified unique across all 550 tests.
+    const executedMap = new Map();
+    executedResults.forEach((e) => {
+      const key = `${e.category}::${e.name}`;
+      if (!executedMap.has(key)) {
+        executedMap.set(key, e);
+      }
+      // If duplicate key exists in JSONL (e.g. from a retry), keep first occurrence
+    });
+
     // Reconcile expected vs executed
     const allResults = expectedTests.map((expected) => {
-      // Find matching executed test
-      const executed = executedResults.find(
-        (e) => e.name === expected.testName && e.category === expected.category
-      );
+      const key = `${expected.category}::${expected.testName}`;
+      const executed = executedMap.get(key);
 
       if (executed) {
         return {
@@ -471,7 +512,7 @@ exports.config = {
         runMeta.device = firstExecuted.device || runMeta.device;
         runMeta.androidVersion = firstExecuted.androidVersion || runMeta.androidVersion;
       }
-    } catch (_) {}
+    } catch (_) { }
 
     // Generate Excel report
     try {

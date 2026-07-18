@@ -312,10 +312,10 @@ function generateReport(results, meta, outputPath) {
           <circle r="1" cx="0" cy="0" fill="#EAB308" />
           
           <!-- segment for passed -->
-          ${passed > 0 ? `<path d="M 0 0 L 1 0 A 1 1 0 ${passed / total > 0.5 ? 1 : 0} 1 ${getCoordinatesForPercent(passed / total)[0]} ${getCoordinatesForPercent(passed / total)[1]} Z" fill="#22C55E" transform="rotate(0)" />` : ""}
+          ${(passed > 0 && total > 0) ? `<path d="M 0 0 L 1 0 A 1 1 0 ${passed / total > 0.5 ? 1 : 0} 1 ${getCoordinatesForPercent(passed / total)[0]} ${getCoordinatesForPercent(passed / total)[1]} Z" fill="#22C55E" transform="rotate(0)" />` : ""}
           
           <!-- segment for failed -->
-          ${failed > 0 ? `
+          ${(failed > 0 && total > 0) ? `
             <path d="M 0 0 L ${getCoordinatesForPercent(passed / total)[0]} ${getCoordinatesForPercent(passed / total)[1]} A 1 1 0 ${failed / total > 0.5 ? 1 : 0} 1 ${getCoordinatesForPercent((passed + failed) / total)[0]} ${getCoordinatesForPercent((passed + failed) / total)[1]} Z" fill="#EF4444" />
           ` : ""}
           
@@ -325,15 +325,15 @@ function generateReport(results, meta, outputPath) {
         <div class="chart-legend">
           <div class="legend-item">
             <div><span class="legend-color" style="background:#22C55E"></span>Passed</div>
-            <strong>${passed} (${((passed / total) * 100).toFixed(0)}%)</strong>
+            <strong>${passed} (${total > 0 ? ((passed / total) * 100).toFixed(0) : 0}%)</strong>
           </div>
           <div class="legend-item">
             <div><span class="legend-color" style="background:#EF4444"></span>Failed</div>
-            <strong>${failed} (${((failed / total) * 100).toFixed(0)}%)</strong>
+            <strong>${failed} (${total > 0 ? ((failed / total) * 100).toFixed(0) : 0}%)</strong>
           </div>
           <div class="legend-item">
             <div><span class="legend-color" style="background:#EAB308"></span>Skipped / Unrun</div>
-            <strong>${totalSkipped} (${((totalSkipped / total) * 100).toFixed(0)}%)</strong>
+            <strong>${totalSkipped} (${total > 0 ? ((totalSkipped / total) * 100).toFixed(0) : 0}%)</strong>
           </div>
         </div>
       </div>

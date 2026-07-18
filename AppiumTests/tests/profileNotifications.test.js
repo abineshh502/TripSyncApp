@@ -245,8 +245,13 @@ describe("Profile & Notifications", () => {
       // Dismiss
       try { await driver.dismissAlert(); } catch (_) {}
       try {
-        const cancelBtn = await driver.$('android=new UiSelector().text("Cancel")');
-        if (await cancelBtn.isDisplayed()) await cancelBtn.click();
+        const cancelBtn = await driver.$('android=new UiSelector().resourceId("android:id/button2")');
+        if (await cancelBtn.isDisplayed()) {
+          await cancelBtn.click();
+        } else {
+          const cancelTxt = await driver.$('android=new UiSelector().text("CANCEL")');
+          if (await cancelTxt.isDisplayed()) await cancelTxt.click();
+        }
       } catch (_) {}
     } catch (_) {}
     await h.testEnd();

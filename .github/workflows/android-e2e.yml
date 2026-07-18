@@ -416,8 +416,7 @@ jobs:
           node AppiumTests\scripts\ci_run_tests.js
           $exitCode = $LASTEXITCODE
           Write-Host "WDIO exit code: $exitCode"
-          # Do not fail CI on test failures -- reports will show details
-          # exit $exitCode
+          exit $exitCode
 
       # ----------------------------------------------------
       # 15. COLLECT ADB DIAGNOSTICS

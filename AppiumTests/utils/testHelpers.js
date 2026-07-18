@@ -190,8 +190,18 @@ async function logoutUser(driver) {
       await driver.acceptAlert();
     } catch (_) {
       try {
-        const confirmBtn = await driver.$('android=new UiSelector().textMatches("(?i)Logout")');
-        await confirmBtn.click();
+        const confirmBtn = await driver.$('android=new UiSelector().resourceId("android:id/button1")');
+        if (await confirmBtn.isDisplayed()) {
+          await confirmBtn.click();
+        } else {
+          const btnTxt = await driver.$('android=new UiSelector().text("LOGOUT")');
+          if (await btnTxt.isDisplayed()) {
+            await btnTxt.click();
+          } else {
+            const fallbackBtn = await driver.$('android=new UiSelector().textMatches("(?i)Logout")');
+            await fallbackBtn.click();
+          }
+        }
       } catch (_) {}
     }
     await driver.pause(testData.timeouts.animationSettle);
@@ -263,9 +273,7 @@ async function takeScreenshot(driver, name) {
  * Must be called at the end of every test.
  */
 async function testEnd() {
-  await new Promise((resolve) =>
-    setTimeout(resolve, Math.random() * 16 + 5)
-  );
+  // No-op: real test durations are measured by Mocha/WDIO from the actual test execution time.
 }
 
 /**
