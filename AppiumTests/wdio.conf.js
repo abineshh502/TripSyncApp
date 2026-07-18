@@ -428,6 +428,21 @@ exports.config = {
 
     // Record to Excel reporter
     xlsxReporter.recordTest(record);
+
+    // Self-healing: if the app is no longer in the foreground, relaunch it!
+    try {
+      const pkg = await browser.getCurrentPackage();
+      if (pkg !== "com.kondajeswanth.TripSyncApp") {
+        console.warn(`[wdio] [afterTest] App backgrounded/exited (current package: ${pkg}). Relaunching...`);
+        const { execSync } = require("child_process");
+        const adbBin = process.env.ADB_PATH || "adb";
+        const device = process.env.DEVICE_NAME || "emulator-5554";
+        const adb = `${adbBin} -s ${device}`;
+        const appActivity = "com.kondajeswanth.TripSyncApp.MainActivity";
+        execSync(`${adb} shell am start -n "com.kondajeswanth.TripSyncApp/${appActivity}"`, { stdio: "pipe" });
+        await browser.pause(3000);
+      }
+    } catch (_) {}
   },
 
   /**
