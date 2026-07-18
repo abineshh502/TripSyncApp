@@ -113,19 +113,23 @@ export default function AIAssistantScreen() {
 
   useEffect(() => {
     if (ExpoSpeechRecognitionModule) {
-      ExpoSpeechRecognitionModule.isSpeechRecognitionAvailableAsync()
-        .then((avail: boolean) => {
-          setUseNativeSpeech(avail);
-        })
-        .catch(() => {
-          setUseNativeSpeech(false);
-        });
+      try {
+        const avail = ExpoSpeechRecognitionModule.isRecognitionAvailable();
+        setUseNativeSpeech(avail);
+      } catch (e) {
+        console.log("Speech recognition check failed:", e);
+        setUseNativeSpeech(false);
+      }
     }
     return () => {
       nativeSubscriptionsRef.current.forEach(sub => sub.remove());
       nativeSubscriptionsRef.current = [];
       if (ExpoSpeechRecognitionModule) {
-        ExpoSpeechRecognitionModule.stop().catch(() => {});
+        try {
+          ExpoSpeechRecognitionModule.stop();
+        } catch (e) {
+          console.log("Error stopping speech recognition:", e);
+        }
       }
     };
   }, []);

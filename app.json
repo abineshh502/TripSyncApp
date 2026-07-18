@@ -27,7 +27,12 @@
         "android.permission.RECORD_AUDIO",
         "android.permission.RECORD_AUDIO"
       ],
-      "package": "com.kondajeswanth.TripSyncApp"
+      "package": "com.kondajeswanth.TripSyncApp",
+      "config": {
+        "googleMaps": {
+          "apiKey": "AIzaSyDummyKeyToAvoidCrashForTripSync"
+        }
+      }
     },
     "web": {
       "output": "static",
