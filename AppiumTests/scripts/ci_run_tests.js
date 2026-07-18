@@ -298,6 +298,7 @@ async function runWdio() {
         ...process.env,
         APPIUM_PORT: String(APPIUM_PORT),
       },
+      shell: true,
     });
 
     wdio.on("close", (code) => {
