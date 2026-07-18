@@ -63,7 +63,9 @@ jobs:
           $emulatorDir   = "C:\Users\konda\AppData\Local\Android\Sdk\emulator"
           Add-Content -Path $env:GITHUB_PATH -Value $platformTools
           Add-Content -Path $env:GITHUB_PATH -Value $emulatorDir
-          Write-Host "[OK] Android SDK paths added to PATH"
+          Add-Content -Path $env:GITHUB_ENV -Value "ANDROID_HOME=C:\Users\konda\AppData\Local\Android\Sdk"
+          Add-Content -Path $env:GITHUB_ENV -Value "ANDROID_SDK_ROOT=C:\Users\konda\AppData\Local\Android\Sdk"
+          Write-Host "[OK] Android SDK paths added to PATH and ANDROID_HOME exported"
           Write-Host "  platform-tools: $platformTools"
           Write-Host "  emulator:       $emulatorDir"
 
