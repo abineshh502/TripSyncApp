@@ -161,21 +161,29 @@ async function loginAs(driver, email, password) {
   }
 }
 
-/**
- * Logout from the app via Profile tab.
- */
 async function logoutUser(driver) {
   try {
-    // Navigate to profile tab
-    const profileTab = await driver.$('~profile');
-    if (await profileTab.isDisplayed()) {
-      await profileTab.click();
-      await driver.pause(testData.timeouts.animationSettle);
-    }
+    await goToTab(driver, "profile");
+  } catch (_) {}
+
+  // Scroll down to ensure logout button is visible on smaller device viewport
+  try {
+    await scrollDown(driver, 2);
   } catch (_) {}
 
   try {
     await tapElement(driver, "profile-logout-btn", testData.timeouts.elementWait);
+    await driver.pause(testData.timeouts.animationSettle);
+    
+    // Accept standard React Native alert dialog
+    try {
+      await driver.acceptAlert();
+    } catch (_) {
+      try {
+        const confirmBtn = await driver.$('android=new UiSelector().textMatches("(?i)Logout")');
+        await confirmBtn.click();
+      } catch (_) {}
+    }
     await driver.pause(testData.timeouts.animationSettle);
   } catch (_) {}
 }
@@ -184,6 +192,14 @@ async function logoutUser(driver) {
  * Navigate to a named tab by accessibility label.
  */
 async function goToTab(driver, tabName) {
+  // Dismiss keyboard if shown to ensure tab bar is visible
+  try {
+    if (await driver.isKeyboardShown()) {
+      await driver.hideKeyboard();
+      await driver.pause(500);
+    }
+  } catch (_) {}
+
   const nameLower = tabName.toLowerCase();
   const nameCap = nameLower.charAt(0).toUpperCase() + nameLower.slice(1);
   
@@ -254,14 +270,28 @@ async function isVisible(driver, testId) {
   }
 }
 
-/**
- * Scroll down in a scrollable container.
- */
 async function scrollDown(driver, times) {
   const count = times || 1;
   for (let i = 0; i < count; i++) {
-    await driver.execute("mobile: scroll", { direction: "down" });
-    await driver.pause(500);
+    const size = await driver.getWindowSize();
+    const x = Math.round(size.width / 2);
+    const startY = Math.round(size.height * 0.7);
+    const endY = Math.round(size.height * 0.3);
+
+    await driver.performActions([
+      {
+        type: "pointer",
+        id: "finger1",
+        parameters: { pointerType: "touch" },
+        actions: [
+          { type: "pointerMove", duration: 0, x, y: startY },
+          { type: "pointerDown", button: 0 },
+          { type: "pointerMove", duration: 600, x, y: endY },
+          { type: "pointerUp", button: 0 }
+        ]
+      }
+    ]);
+    await driver.pause(600);
   }
 }
 

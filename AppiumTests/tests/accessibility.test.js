@@ -37,13 +37,18 @@ describe("UI/UX & Accessibility", () => {
     await driver.pause(300);
     // Tap logout to verify login screen
     try {
+      await h.scrollDown(driver, 2);
       await h.tapElement(driver, "profile-logout-btn");
       await driver.pause(td.timeouts.animationSettle);
-      try { await driver.dismissAlert(); } catch (_) {}
       try {
-        const cancel = await driver.$('android=new UiSelector().text("Cancel")');
-        if (await cancel.isDisplayed()) await cancel.click();
-      } catch (_) {}
+        await driver.acceptAlert();
+      } catch (_) {
+        try {
+          const confirmBtn = await driver.$('android=new UiSelector().textMatches("(?i)Logout")');
+          await confirmBtn.click();
+        } catch (_) {}
+      }
+      await driver.pause(td.timeouts.animationSettle);
     } catch (_) {}
     const el = await driver.$("~email-input");
     expect(await el.isDisplayed()).toBe(true);
