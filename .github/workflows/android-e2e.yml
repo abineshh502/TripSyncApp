@@ -474,14 +474,13 @@ jobs:
           $logDir = "test-results"
           if (-not (Test-Path $logDir)) { New-Item -ItemType Directory -Path $logDir -Force | Out-Null }
 
-          # Start Appium as background job (bypass GHA process killer)
-          $env:RUNNER_TRACKING_ID = ""
-          $appiumBin = "node_modules\.bin\appium.cmd"
-          Start-Process -FilePath $appiumBin `
-            -ArgumentList "--port", "4723", "--log-level", "info", "--relaxed-security" `
-            -RedirectStandardOutput "$logDir\appium.log" `
-            -RedirectStandardError "$logDir\appium-error.log" `
-            -NoNewWindow
+          # Start Appium as background job outside GHA Job Object via WMI
+          $appiumPath = (Resolve-Path "node_modules\.bin\appium.cmd").Path
+          $logFile = (Resolve-Path "test-results").Path + "\appium.log"
+          $errFile = (Resolve-Path "test-results").Path + "\appium-error.log"
+          $commandLine = "cmd.exe /c `"$appiumPath`" --port 4723 --log-level info --relaxed-security > `"$logFile`" 2> `"$errFile`""
+          Write-Host "Spawning: $commandLine"
+          Invoke-WmiMethod -Class Win32_Process -Name Create -ArgumentList $commandLine | Out-Null
 
           # Wait for Appium to be ready
           Write-Host "Waiting for Appium to start..."
