@@ -202,6 +202,7 @@ async function detectOrStartAppium() {
   ], {
     stdio: ["ignore", "pipe", "pipe"],
     detached: false,
+    shell: true,
   });
 
   appiumProcess.stdout.pipe(logStream);
