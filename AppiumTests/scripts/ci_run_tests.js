@@ -192,7 +192,7 @@ async function detectOrStartAppium() {
   log("🚀", "Starting Appium server...");
   ensureDir(RESULTS_DIR);
 
-  const logFd = fs.openSync(APPIUM_LOG, "a");
+  const logStream = fs.createWriteStream(APPIUM_LOG, { flags: "a" });
   const appiumCmd = process.platform === "win32" ? `${APPIUM_BIN}.cmd` : APPIUM_BIN;
 
   appiumProcess = spawn(appiumCmd, [
@@ -200,9 +200,12 @@ async function detectOrStartAppium() {
     "--log-level", "info",
     "--relaxed-security",
   ], {
-    stdio: ["ignore", logFd, logFd],
+    stdio: ["ignore", "pipe", "pipe"],
     detached: false,
   });
+
+  appiumProcess.stdout.pipe(logStream);
+  appiumProcess.stderr.pipe(logStream);
 
   appiumProcess.on("error", (err) => {
     log("❌", `Appium process error: ${err.message}`);
