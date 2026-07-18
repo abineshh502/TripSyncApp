@@ -16,20 +16,49 @@ const SCREENSHOTS_DIR = path.resolve(__dirname, "../../test-results/screenshots"
  * Throws if not found within timeout.
  */
 async function waitForElement(driver, testId, timeout) {
-  const t = timeout || testData.timeouts.elementWait;
+  // Cap at 30 seconds if timeout is too large
+  const maxWait = 30000;
+  const t = Math.min(timeout || testData.timeouts.elementWait || 20000, maxWait);
   const selector = `~${testId}`; // accessibility ID selector
-  await driver.waitUntil(
-    async () => {
-      try {
-        const el = await driver.$(selector);
-        return await el.isDisplayed();
-      } catch (_) {
-        return false;
+
+  try {
+    await driver.waitUntil(
+      async () => {
+        try {
+          const el = await driver.$(selector);
+          return await el.isDisplayed();
+        } catch (_) {
+          return false;
+        }
+      },
+      { timeout: t, timeoutMsg: `Element '${testId}' not visible after ${t}ms` }
+    );
+    return driver.$(selector);
+  } catch (err) {
+    console.error(`\n[wdio] ❌ Element wait failed for testID: ${testId}`);
+    try {
+      if (!fs.existsSync(SCREENSHOTS_DIR)) {
+        fs.mkdirSync(SCREENSHOTS_DIR, { recursive: true });
       }
-    },
-    { timeout: t, timeoutMsg: `Element '${testId}' not visible after ${t}ms` }
-  );
-  return driver.$(selector);
+      const ts = Date.now();
+      const screenshotPath = path.join(SCREENSHOTS_DIR, `MISSING_${testId}_${ts}.png`);
+      await driver.saveScreenshot(screenshotPath);
+      console.error(`[wdio] 📸 Failure screenshot saved to: ${screenshotPath}`);
+
+      const resultsDir = path.resolve(__dirname, "../../test-results");
+      const sourcePath = path.join(resultsDir, `MISSING_${testId}_source_${ts}.xml`);
+      const source = await driver.getPageSource();
+      fs.writeFileSync(sourcePath, source, "utf-8");
+      console.error(`[wdio] 📄 Failure page source saved to: ${sourcePath}`);
+
+      const pkg = await driver.getCurrentPackage();
+      const act = await driver.getCurrentActivity();
+      console.error(`[wdio] 🎯 Failure Focused Package: ${pkg} | Activity: ${act}`);
+    } catch (diagErr) {
+      console.error(`[wdio] ⚠️ Failed to collect failure diagnostics: ${diagErr.message}`);
+    }
+    throw err;
+  }
 }
 
 /**

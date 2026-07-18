@@ -47,6 +47,7 @@ exports.config = {
 
   // ─── Parallelism ───
   maxInstances: 1,
+  bail: 1,
 
   // ─── Capabilities ───
   capabilities: [
