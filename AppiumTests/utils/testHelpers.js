@@ -100,33 +100,56 @@ async function loginAs(driver, email, password) {
   // Tap login button
   await tapElement(driver, "login-button");
 
-  // Wait for OTP modal or main app navigation
-  await driver.pause(testData.timeouts.animationSettle);
+  // Wait for OTP modal OR OTP input screen to become visible
+  let mode = null; // 'modal' or 'screen'
+  const start = Date.now();
+  const timeout = 15000; // max wait for OTP initiation
 
-  // If OTP modal appears, read and confirm
-  try {
-    const otpEl = await driver.$("~otp-display-value");
-    const visible = await otpEl.isDisplayed();
-    if (visible) {
-      await tapElement(driver, "otp-modal-ok-button");
-      await driver.pause(testData.timeouts.animationSettle);
-    }
-  } catch (_) {
-    // OTP modal did not appear — may have gone to OTP screen directly
+  while (Date.now() - start < timeout) {
+    // Check for OTP modal OK button
+    try {
+      const okBtn = await driver.$("~otp-modal-ok-button");
+      if (await okBtn.isDisplayed()) {
+        mode = "modal";
+        break;
+      }
+    } catch (_) {}
+
+    // Check for OTP input screen verify button
+    try {
+      const verifyBtn = await driver.$("~verify-button");
+      if (await verifyBtn.isDisplayed()) {
+        mode = "screen";
+        break;
+      }
+    } catch (_) {}
+
+    await driver.pause(500);
   }
 
-  // If redirected to OTP screen, fill in OTP
-  try {
-    const otpInput = await driver.$("~otp-input-0");
-    const shown = await otpInput.isDisplayed();
-    if (shown) {
-      // OTP would be retrieved from AsyncStorage in a real device test
-      // For automation, tap verify if OTP is pre-filled
-      await tapElement(driver, "verify-button");
-      await driver.pause(testData.timeouts.animationSettle);
-    }
-  } catch (_) {
-    // not on OTP screen
+  console.log(`[loginAs] Detected OTP mode: ${mode}`);
+
+  if (mode === "modal") {
+    // Read OTP value from modal for logging/debugging
+    try {
+      const otpValEl = await driver.$("~otp-display-value");
+      const otpText = await otpValEl.getText();
+      console.log(`[loginAs] Found OTP on modal: ${otpText}`);
+    } catch (_) {}
+
+    await tapElement(driver, "otp-modal-ok-button");
+    await driver.pause(testData.timeouts.animationSettle);
+    
+    // Now wait for the OTP input screen to load
+    await waitForElement(driver, "verify-button", 10000);
+    mode = "screen";
+  }
+
+  if (mode === "screen") {
+    // Wait briefly and tap verify-button (since OTP is pre-filled or handled by dev state)
+    await driver.pause(1000);
+    await tapElement(driver, "verify-button");
+    await driver.pause(testData.timeouts.animationSettle);
   }
 }
 
