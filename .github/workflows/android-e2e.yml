@@ -206,7 +206,7 @@ jobs:
       # 7. BUILD APK (Only when required -- NO gradlew clean)
       # ----------------------------------------------------
       - name: Build APK with JS Bundle
-        if: steps.apk-check.outputs.exists == 'false'
+        if: steps.apk-check.outputs.apk-valid != 'true'
         shell: powershell
         env:
           EXPO_PUBLIC_E2E_MODE: "true"
