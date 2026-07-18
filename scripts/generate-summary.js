@@ -68,11 +68,25 @@ function generateSummary() {
   }
 
   // Collect status values
+  let deviceName = process.env.DEVICE_NAME || 'emulator-5554';
+  let androidVer = process.env.ANDROID_VERSION || 'unknown';
+  let appiumVersion = 'unknown';
+
+  const metaPath = path.join(__dirname, '../test-results/.run-meta.json');
+  if (fs.existsSync(metaPath)) {
+    try {
+      const meta = JSON.parse(fs.readFileSync(metaPath, 'utf8'));
+      if (meta.device) deviceName = meta.device;
+      if (meta.androidVersion) androidVer = meta.androidVersion;
+      if (meta.appiumVersion) appiumVersion = meta.appiumVersion;
+    } catch (e) {
+      console.warn('Failed to parse .run-meta.json:', e);
+    }
+  }
+
   const apkStatus = process.env.APK_STATUS || 'Reused (Cached)';
-  const appiumStatus = process.env.APPIUM_STATUS || 'Reused (Already Running)';
+  const appiumStatus = process.env.APPIUM_STATUS || (appiumVersion !== 'unknown' ? `Active (${appiumVersion})` : 'Reused (Already Running)');
   const emulatorStatus = process.env.EMULATOR_STATUS || 'Reused (Already Running)';
-  const deviceName = process.env.DEVICE_NAME || 'emulator-5554';
-  const androidVer = process.env.ANDROID_VERSION || 'unknown';
   const buildNum = process.env.GITHUB_RUN_NUMBER || 'Local';
   const branch = process.env.GITHUB_REF_NAME || 'main';
   const commitSha = process.env.GITHUB_SHA || 'unknown';
