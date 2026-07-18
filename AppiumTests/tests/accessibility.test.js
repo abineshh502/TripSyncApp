@@ -31,25 +31,7 @@ describe("UI/UX & Accessibility", () => {
   });
 
   it("A11Y-003: Login email-input has accessibilityLabel", async () => {
-    await h.goToTab(driver, "trips");
-    await driver.pause(300);
-    await h.goToTab(driver, "profile");
-    await driver.pause(300);
-    // Tap logout to verify login screen
-    try {
-      await h.scrollDown(driver, 2);
-      await h.tapElement(driver, "profile-logout-btn");
-      await driver.pause(td.timeouts.animationSettle);
-      try {
-        await driver.acceptAlert();
-      } catch (_) {
-        try {
-          const confirmBtn = await driver.$('android=new UiSelector().textMatches("(?i)Logout")');
-          await confirmBtn.click();
-        } catch (_) {}
-      }
-      await driver.pause(td.timeouts.animationSettle);
-    } catch (_) {}
+    await h.logoutUser(driver);
     const el = await driver.$("~email-input");
     expect(await el.isDisplayed()).toBe(true);
     await h.testEnd();
@@ -124,15 +106,28 @@ describe("UI/UX & Accessibility", () => {
   it("A11Y-014: Profile screen username has accessibilityLabel", async () => {
     await h.goToTab(driver, "profile");
     await driver.pause(500);
+    try {
+      await h.scrollTop(driver, 2);
+    } catch (_) {}
     const el = await driver.$("~profile-username");
     expect(await el.isDisplayed()).toBe(true);
     await h.testEnd();
   });
 
   it("A11Y-015: Profile logout button has accessibilityLabel", async () => {
-    try {
-      await h.scrollDown(driver, 2);
-    } catch (_) {}
+    let visible = false;
+    for (let i = 0; i < 6; i++) {
+      try {
+        const el = await driver.$("~profile-logout-btn");
+        if (await el.isDisplayed()) {
+          visible = true;
+          break;
+        }
+      } catch (_) {}
+      try {
+        await h.scrollDown(driver, 1);
+      } catch (_) {}
+    }
     const el = await driver.$("~profile-logout-btn");
     expect(await el.isDisplayed()).toBe(true);
     await h.testEnd();

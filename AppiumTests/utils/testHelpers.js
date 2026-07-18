@@ -166,10 +166,20 @@ async function logoutUser(driver) {
     await goToTab(driver, "profile");
   } catch (_) {}
 
-  // Scroll down to ensure logout button is visible on smaller device viewport
-  try {
-    await scrollDown(driver, 2);
-  } catch (_) {}
+  // Scroll down iteratively until logout button is visible
+  let visible = false;
+  for (let i = 0; i < 6; i++) {
+    try {
+      const el = await driver.$("~profile-logout-btn");
+      if (await el.isDisplayed()) {
+        visible = true;
+        break;
+      }
+    } catch (_) {}
+    try {
+      await scrollDown(driver, 1);
+    } catch (_) {}
+  }
 
   try {
     await tapElement(driver, "profile-logout-btn", testData.timeouts.elementWait);
@@ -296,6 +306,34 @@ async function scrollDown(driver, times) {
 }
 
 /**
+ * Scroll up in a scrollable container (swipe finger down).
+ */
+async function scrollTop(driver, times) {
+  const count = times || 1;
+  for (let i = 0; i < count; i++) {
+    const size = await driver.getWindowSize();
+    const x = Math.round(size.width / 2);
+    const startY = Math.round(size.height * 0.3); // Swipe down
+    const endY = Math.round(size.height * 0.7);
+
+    await driver.performActions([
+      {
+        type: "pointer",
+        id: "finger1",
+        parameters: { pointerType: "touch" },
+        actions: [
+          { type: "pointerMove", duration: 0, x, y: startY },
+          { type: "pointerDown", button: 0 },
+          { type: "pointerMove", duration: 600, x, y: endY },
+          { type: "pointerUp", button: 0 }
+        ]
+      }
+    ]);
+    await driver.pause(600);
+  }
+}
+
+/**
  * Get element text safely.
  */
 async function getText(driver, testId) {
@@ -318,5 +356,6 @@ module.exports = {
   testEnd,
   isVisible,
   scrollDown,
+  scrollTop,
   getText,
 };
