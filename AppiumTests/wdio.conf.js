@@ -54,6 +54,7 @@ exports.config = {
       platformName: "Android",
       "appium:automationName": "UiAutomator2",
       "appium:deviceName": process.env.DEVICE_NAME || "emulator-5554",
+      "appium:udid": process.env.DEVICE_NAME || "emulator-5554",
       "appium:appPackage": "com.kondajeswanth.TripSyncApp",
       "appium:appActivity": "com.kondajeswanth.TripSyncApp.MainActivity",
       "appium:adbExecTimeout": 120000,
