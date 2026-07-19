@@ -1,0 +1,39 @@
+﻿2026-07-19T07:52:51.3042299Z ##[group]Run $excel = "test-results\TripSync_Android_TestReport.xlsx"
+2026-07-19T07:52:51.3043338Z [36;1m$excel = "test-results\TripSync_Android_TestReport.xlsx"[0m
+2026-07-19T07:52:51.3043946Z [36;1m$html = "test-results\html\execution-report.html"[0m
+2026-07-19T07:52:51.3044379Z [36;1m[0m
+2026-07-19T07:52:51.3044654Z [36;1mif (Test-Path $excel) {[0m
+2026-07-19T07:52:51.3045105Z [36;1m  $size = [math]::Round((Get-Item $excel).Length / 1KB, 1)[0m
+2026-07-19T07:52:51.3045674Z [36;1m  Write-Host "[OK] Excel report: $excel ($size KB)"[0m
+2026-07-19T07:52:51.3046115Z [36;1m} else {[0m
+2026-07-19T07:52:51.3046473Z [36;1m  Write-Host "[WARN] Excel report not found: $excel"[0m
+2026-07-19T07:52:51.3046905Z [36;1m}[0m
+2026-07-19T07:52:51.3047146Z [36;1m[0m
+2026-07-19T07:52:51.3047396Z [36;1mif (Test-Path $html) {[0m
+2026-07-19T07:52:51.3047838Z [36;1m  $size = [math]::Round((Get-Item $html).Length / 1KB, 1)[0m
+2026-07-19T07:52:51.3048378Z [36;1m  Write-Host "[OK] HTML report: $html ($size KB)"[0m
+2026-07-19T07:52:51.3048864Z [36;1m} else {[0m
+2026-07-19T07:52:51.3049246Z [36;1m  Write-Host "[WARN] HTML report not found: $html"[0m
+2026-07-19T07:52:51.3049702Z [36;1m}[0m
+2026-07-19T07:52:51.3049947Z [36;1m[0m
+2026-07-19T07:52:51.3050203Z [36;1m# Show screenshot count[0m
+2026-07-19T07:52:51.3051407Z [36;1m$screenshots = Get-ChildItem "test-results\screenshots" -ErrorAction SilentlyContinue[0m
+2026-07-19T07:52:51.3052245Z [36;1mWrite-Host "Screenshots captured: $($screenshots.Count)"[0m
+2026-07-19T07:52:51.3106309Z shell: C:\WINDOWS\System32\WindowsPowerShell\v1.0\powershell.EXE -command ". '{0}'"
+2026-07-19T07:52:51.3106897Z env:
+2026-07-19T07:52:51.3107118Z   TEST_EMAIL: jessuff8@gmail.com
+2026-07-19T07:52:51.3107428Z   TEST_PASSWORD: Ravi@6444
+2026-07-19T07:52:51.3107706Z   TEST_USER_NAME: Konda
+2026-07-19T07:52:51.3108189Z   EXPO_PUBLIC_API_URL: https://tripsyncbackend-production-37a2.up.railway.app
+2026-07-19T07:52:51.3108722Z   WDIO_CI_SPEC: 
+2026-07-19T07:52:51.3108979Z   JOB_START_TIME: 2026-07-19 13:17:59
+2026-07-19T07:52:51.3109504Z   JAVA_HOME: C:\actions-runner\_work\_tool\Java_Temurin-Hotspot_jdk\21.0.11-10.0.LTS\x64
+2026-07-19T07:52:51.3110263Z   JAVA_HOME_21_X64: C:\actions-runner\_work\_tool\Java_Temurin-Hotspot_jdk\21.0.11-10.0.LTS\x64
+2026-07-19T07:52:51.3110915Z   ANDROID_HOME: C:\Users\konda\AppData\Local\Android\Sdk
+2026-07-19T07:52:51.3111385Z   ANDROID_SDK_ROOT: C:\Users\konda\AppData\Local\Android\Sdk
+2026-07-19T07:52:51.3111805Z   APK_STATUS: Reused (Cached)
+2026-07-19T07:52:51.3112097Z   EMULATOR_STATUS: Offline / Missing
+2026-07-19T07:52:51.3112462Z ##[endgroup]
+2026-07-19T07:52:51.6997237Z [WARN] Excel report not found: test-results\TripSync_Android_TestReport.xlsx
+2026-07-19T07:52:51.7008999Z [WARN] HTML report not found: test-results\html\execution-report.html
+2026-07-19T07:52:51.7060096Z Screenshots captured: 0

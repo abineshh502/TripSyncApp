@@ -1,0 +1,80 @@
+﻿2026-07-19T07:47:07.9707054Z Node 20 is being deprecated. This workflow is running with Node 24 by default. If you need to temporarily use Node 20, you can set the ACTIONS_ALLOW_USE_UNSECURE_NODE_VERSION=true environment variable. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/
+2026-07-19T07:47:07.9718250Z ##[group]Run actions/checkout@v4
+2026-07-19T07:47:07.9718859Z with:
+2026-07-19T07:47:07.9719167Z   repository: abineshh502/TripSyncApp
+2026-07-19T07:47:07.9723672Z   token: ***
+2026-07-19T07:47:07.9723973Z   ssh-strict: true
+2026-07-19T07:47:07.9724258Z   ssh-user: git
+2026-07-19T07:47:07.9724547Z   persist-credentials: true
+2026-07-19T07:47:07.9724888Z   clean: true
+2026-07-19T07:47:07.9725181Z   sparse-checkout-cone-mode: true
+2026-07-19T07:47:07.9725598Z   fetch-depth: 1
+2026-07-19T07:47:07.9725877Z   fetch-tags: false
+2026-07-19T07:47:07.9726162Z   show-progress: true
+2026-07-19T07:47:07.9726458Z   lfs: false
+2026-07-19T07:47:07.9726715Z   submodules: false
+2026-07-19T07:47:07.9727043Z   set-safe-directory: true
+2026-07-19T07:47:07.9727648Z env:
+2026-07-19T07:47:07.9727924Z   TEST_EMAIL: jessuff8@gmail.com
+2026-07-19T07:47:07.9728293Z   TEST_PASSWORD: Ravi@6444
+2026-07-19T07:47:07.9728634Z   TEST_USER_NAME: Konda
+2026-07-19T07:47:07.9729192Z   EXPO_PUBLIC_API_URL: https://tripsyncbackend-production-37a2.up.railway.app
+2026-07-19T07:47:07.9729840Z   WDIO_CI_SPEC: 
+2026-07-19T07:47:07.9730108Z ##[endgroup]
+2026-07-19T07:47:08.3167260Z Syncing repository: abineshh502/TripSyncApp
+2026-07-19T07:47:08.3169261Z ##[group]Getting Git version info
+2026-07-19T07:47:08.3169987Z Working directory is 'C:\actions-runner\_work\TripSyncApp\TripSyncApp'
+2026-07-19T07:47:08.3321387Z [command]"C:\Program Files\Git\cmd\git.exe" version
+2026-07-19T07:47:08.3700645Z git version 2.54.0.windows.1
+2026-07-19T07:47:08.3745155Z ##[endgroup]
+2026-07-19T07:47:08.3758473Z Copying 'C:\Users\konda\.gitconfig' to 'C:\actions-runner\_work\_temp\6b4522de-a63c-490b-83e8-bbcc21bc198c\.gitconfig'
+2026-07-19T07:47:08.3785571Z Temporarily overriding HOME='C:\actions-runner\_work\_temp\6b4522de-a63c-490b-83e8-bbcc21bc198c' before making global git config changes
+2026-07-19T07:47:08.3786888Z Adding repository directory to the temporary git global config as a safe directory
+2026-07-19T07:47:08.3793303Z [command]"C:\Program Files\Git\cmd\git.exe" config --global --add safe.directory C:\actions-runner\_work\TripSyncApp\TripSyncApp
+2026-07-19T07:47:08.4229384Z [command]"C:\Program Files\Git\cmd\git.exe" config --local --get remote.origin.url
+2026-07-19T07:47:08.4600573Z https://github.com/abineshh502/TripSyncApp
+2026-07-19T07:47:08.4654722Z ##[group]Removing previously created refs, to avoid conflicts
+2026-07-19T07:47:08.4661349Z [command]"C:\Program Files\Git\cmd\git.exe" rev-parse --symbolic-full-name --verify --quiet HEAD
+2026-07-19T07:47:08.5046767Z refs/heads/main
+2026-07-19T07:47:08.5097183Z [command]"C:\Program Files\Git\cmd\git.exe" checkout --detach
+2026-07-19T07:47:08.5874219Z HEAD is now at bf0330e ci(workflow): fix PowerShell redirection bug in emulator check step
+2026-07-19T07:47:08.6886888Z ##[endgroup]
+2026-07-19T07:47:08.6893630Z [command]"C:\Program Files\Git\cmd\git.exe" submodule status
+2026-07-19T07:47:09.6049653Z ##[group]Cleaning the repository
+2026-07-19T07:47:09.6067647Z [command]"C:\Program Files\Git\cmd\git.exe" clean -ffdx
+2026-07-19T07:47:55.0120285Z Removing android/
+2026-07-19T07:47:55.0120693Z Removing node_modules/
+2026-07-19T07:47:55.0121004Z Removing test-results/
+2026-07-19T07:47:55.0201213Z [command]"C:\Program Files\Git\cmd\git.exe" reset --hard HEAD
+2026-07-19T07:47:55.0943811Z HEAD is now at bf0330e ci(workflow): fix PowerShell redirection bug in emulator check step
+2026-07-19T07:47:55.1000237Z ##[endgroup]
+2026-07-19T07:47:55.1000772Z ##[group]Disabling automatic garbage collection
+2026-07-19T07:47:55.1007511Z [command]"C:\Program Files\Git\cmd\git.exe" config --local gc.auto 0
+2026-07-19T07:47:55.1461605Z ##[endgroup]
+2026-07-19T07:47:55.1465933Z ##[group]Setting up auth
+2026-07-19T07:47:55.1473126Z [command]"C:\Program Files\Git\cmd\git.exe" config --local --name-only --get-regexp core\.sshCommand
+2026-07-19T07:47:55.1917226Z [command]"C:\Program Files\Git\cmd\git.exe" submodule foreach --recursive "sh -c \"git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :\""
+2026-07-19T07:47:55.9972346Z [command]"C:\Program Files\Git\cmd\git.exe" config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-07-19T07:47:56.0458746Z [command]"C:\Program Files\Git\cmd\git.exe" submodule foreach --recursive "sh -c \"git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :\""
+2026-07-19T07:47:56.9040100Z [command]"C:\Program Files\Git\cmd\git.exe" config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-07-19T07:47:56.9507580Z [command]"C:\Program Files\Git\cmd\git.exe" submodule foreach --recursive "git config --local --show-origin --name-only --get-regexp remote.origin.url"
+2026-07-19T07:47:57.7878877Z [command]"C:\Program Files\Git\cmd\git.exe" config --local http.https://github.com/.extraheader "AUTHORIZATION: basic ***"
+2026-07-19T07:47:57.8383651Z ##[endgroup]
+2026-07-19T07:47:57.8394335Z ##[group]Fetching the repository
+2026-07-19T07:47:57.8395720Z [command]"C:\Program Files\Git\cmd\git.exe" -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin +c6c442057607af697a7dd6bf4f7d64992acd9b1d:refs/remotes/origin/main
+2026-07-19T07:47:58.7539874Z From https://github.com/abineshh502/TripSyncApp
+2026-07-19T07:47:58.7540671Z  + bf0330e...c6c4420 c6c442057607af697a7dd6bf4f7d64992acd9b1d -> origin/main  (forced update)
+2026-07-19T07:47:58.7849229Z ##[endgroup]
+2026-07-19T07:47:58.7849599Z ##[group]Determining the checkout info
+2026-07-19T07:47:58.7851938Z ##[endgroup]
+2026-07-19T07:47:58.7859368Z [command]"C:\Program Files\Git\cmd\git.exe" sparse-checkout disable
+2026-07-19T07:47:58.8436296Z [command]"C:\Program Files\Git\cmd\git.exe" config --local --unset-all extensions.worktreeConfig
+2026-07-19T07:47:58.8886002Z ##[group]Checking out the ref
+2026-07-19T07:47:58.8894911Z [command]"C:\Program Files\Git\cmd\git.exe" checkout --progress --force -B main refs/remotes/origin/main
+2026-07-19T07:47:58.9692411Z Previous HEAD position was bf0330e ci(workflow): fix PowerShell redirection bug in emulator check step
+2026-07-19T07:47:58.9849824Z Switched to and reset branch 'main'
+2026-07-19T07:47:58.9899534Z branch 'main' set up to track 'origin/main'.
+2026-07-19T07:47:58.9899967Z Your branch is up to date with 'origin/main'.
+2026-07-19T07:47:58.9956416Z ##[endgroup]
+2026-07-19T07:47:59.0443251Z [command]"C:\Program Files\Git\cmd\git.exe" log -1 --format=%H
+2026-07-19T07:47:59.0852640Z c6c442057607af697a7dd6bf4f7d64992acd9b1d

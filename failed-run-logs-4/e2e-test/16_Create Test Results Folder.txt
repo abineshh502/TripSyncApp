@@ -1,0 +1,18 @@
+﻿2026-07-19T07:49:27.4655177Z ##[group]Run if (-not (Test-Path test-results)) { New-Item -ItemType Directory -Path test-results | Out-Null }
+2026-07-19T07:49:27.4656477Z [36;1mif (-not (Test-Path test-results)) { New-Item -ItemType Directory -Path test-results | Out-Null }[0m
+2026-07-19T07:49:27.4657762Z [36;1mif (-not (Test-Path test-results\screenshots)) { New-Item -ItemType Directory -Path test-results\screenshots | Out-Null }[0m
+2026-07-19T07:49:27.4705959Z shell: C:\WINDOWS\System32\WindowsPowerShell\v1.0\powershell.EXE -command ". '{0}'"
+2026-07-19T07:49:27.4706378Z env:
+2026-07-19T07:49:27.4706551Z   TEST_EMAIL: jessuff8@gmail.com
+2026-07-19T07:49:27.4706782Z   TEST_PASSWORD: Ravi@6444
+2026-07-19T07:49:27.4706985Z   TEST_USER_NAME: Konda
+2026-07-19T07:49:27.4707328Z   EXPO_PUBLIC_API_URL: https://tripsyncbackend-production-37a2.up.railway.app
+2026-07-19T07:49:27.4707710Z   WDIO_CI_SPEC: 
+2026-07-19T07:49:27.4707899Z   JOB_START_TIME: 2026-07-19 13:17:59
+2026-07-19T07:49:27.4708268Z   JAVA_HOME: C:\actions-runner\_work\_tool\Java_Temurin-Hotspot_jdk\21.0.11-10.0.LTS\x64
+2026-07-19T07:49:27.4708818Z   JAVA_HOME_21_X64: C:\actions-runner\_work\_tool\Java_Temurin-Hotspot_jdk\21.0.11-10.0.LTS\x64
+2026-07-19T07:49:27.4709240Z   ANDROID_HOME: C:\Users\konda\AppData\Local\Android\Sdk
+2026-07-19T07:49:27.4709580Z   ANDROID_SDK_ROOT: C:\Users\konda\AppData\Local\Android\Sdk
+2026-07-19T07:49:27.4716518Z   APK_STATUS: Reused (Cached)
+2026-07-19T07:49:27.4717246Z   EMULATOR_STATUS: Offline / Missing
+2026-07-19T07:49:27.4717594Z ##[endgroup]

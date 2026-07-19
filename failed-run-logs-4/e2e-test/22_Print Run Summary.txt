@@ -1,0 +1,25 @@
+﻿2026-07-19T07:52:55.7998404Z ##[group]Run node scripts/generate-summary.js
+2026-07-19T07:52:55.7998996Z [36;1mnode scripts/generate-summary.js[0m
+2026-07-19T07:52:55.8040973Z shell: C:\WINDOWS\System32\WindowsPowerShell\v1.0\powershell.EXE -command ". '{0}'"
+2026-07-19T07:52:55.8041359Z env:
+2026-07-19T07:52:55.8041515Z   TEST_EMAIL: jessuff8@gmail.com
+2026-07-19T07:52:55.8042032Z   TEST_PASSWORD: Ravi@6444
+2026-07-19T07:52:55.8042214Z   TEST_USER_NAME: Konda
+2026-07-19T07:52:55.8042517Z   EXPO_PUBLIC_API_URL: https://tripsyncbackend-production-37a2.up.railway.app
+2026-07-19T07:52:55.8042856Z   WDIO_CI_SPEC: 
+2026-07-19T07:52:55.8043022Z   JOB_START_TIME: 2026-07-19 13:17:59
+2026-07-19T07:52:55.8043356Z   JAVA_HOME: C:\actions-runner\_work\_tool\Java_Temurin-Hotspot_jdk\21.0.11-10.0.LTS\x64
+2026-07-19T07:52:55.8043843Z   JAVA_HOME_21_X64: C:\actions-runner\_work\_tool\Java_Temurin-Hotspot_jdk\21.0.11-10.0.LTS\x64
+2026-07-19T07:52:55.8044251Z   ANDROID_HOME: C:\Users\konda\AppData\Local\Android\Sdk
+2026-07-19T07:52:55.8044596Z   ANDROID_SDK_ROOT: C:\Users\konda\AppData\Local\Android\Sdk
+2026-07-19T07:52:55.8044862Z   APK_STATUS: Reused (Cached)
+2026-07-19T07:52:55.8045057Z   EMULATOR_STATUS: Offline / Missing
+2026-07-19T07:52:55.8045254Z ##[endgroup]
+2026-07-19T07:52:56.1409382Z === Generating GitHub Step Summary ===
+2026-07-19T07:52:56.1416402Z .wdio-results.jsonl not found. Standard summary defaults will be used.
+2026-07-19T07:52:56.1428435Z   Total Tests : 0
+2026-07-19T07:52:56.1428787Z   Passed      : 0
+2026-07-19T07:52:56.1429089Z   Failed      : 0
+2026-07-19T07:52:56.1429362Z   Pass Rate   : 0%
+2026-07-19T07:52:56.1429585Z   Time Elapsed: 4m 57s
+2026-07-19T07:52:56.1437748Z ✓ Successfully wrote GITHUB_STEP_SUMMARY

@@ -1,0 +1,109 @@
+﻿2026-07-19T07:49:17.9629073Z ##[group]Run $cacheDir = "C:\Users\konda\OneDrive\Desktop\TripSync\TripSyncCache"
+2026-07-19T07:49:17.9630149Z [36;1m$cacheDir = "C:\Users\konda\OneDrive\Desktop\TripSync\TripSyncCache"[0m
+2026-07-19T07:49:17.9630908Z [36;1m$cachedApk = Join-Path $cacheDir "app-debug.apk"[0m
+2026-07-19T07:49:17.9631543Z [36;1m$cachedInfo = Join-Path $cacheDir "apk-info.json"[0m
+2026-07-19T07:49:17.9632489Z [36;1m$destApk = "android\app\build\outputs\apk\debug\app-debug.apk"[0m
+2026-07-19T07:49:17.9633160Z [36;1m$forceRebuild = "" -eq "true"[0m
+2026-07-19T07:49:17.9633565Z [36;1m[0m
+2026-07-19T07:49:17.9633841Z [36;1mif ($forceRebuild) {[0m
+2026-07-19T07:49:17.9634393Z [36;1m  Write-Host "[FORCE] force_rebuild=true -- skipping cache check."[0m
+2026-07-19T07:49:17.9635110Z [36;1m  echo "apk-valid=false" >> $env:GITHUB_OUTPUT[0m
+2026-07-19T07:49:17.9635754Z [36;1m  Add-Content -Path $env:GITHUB_ENV -Value "APK_STATUS=Newly Built"[0m
+2026-07-19T07:49:17.9636378Z [36;1m  exit 0[0m
+2026-07-19T07:49:17.9636690Z [36;1m}[0m
+2026-07-19T07:49:17.9636948Z [36;1m[0m
+2026-07-19T07:49:17.9637410Z [36;1mif (-not (Test-Path $cachedApk) -or -not (Test-Path $cachedInfo)) {[0m
+2026-07-19T07:49:17.9638129Z [36;1m  Write-Host "[MISS] Persistent APK Cache not found."[0m
+2026-07-19T07:49:17.9638728Z [36;1m  echo "apk-valid=false" >> $env:GITHUB_OUTPUT[0m
+2026-07-19T07:49:17.9639370Z [36;1m  Add-Content -Path $env:GITHUB_ENV -Value "APK_STATUS=Newly Built"[0m
+2026-07-19T07:49:17.9639963Z [36;1m  exit 0[0m
+2026-07-19T07:49:17.9640244Z [36;1m}[0m
+2026-07-19T07:49:17.9640488Z [36;1m[0m
+2026-07-19T07:49:17.9640750Z [36;1m# Load apk-info.json[0m
+2026-07-19T07:49:17.9641084Z [36;1mtry {[0m
+2026-07-19T07:49:17.9641495Z [36;1m  $info = Get-Content $cachedInfo -Raw | ConvertFrom-Json[0m
+2026-07-19T07:49:17.9642006Z [36;1m} catch {[0m
+2026-07-19T07:49:17.9642479Z [36;1m  Write-Host "[WARN] Failed to parse apk-info.json. Rebuilding."[0m
+2026-07-19T07:49:17.9643136Z [36;1m  echo "apk-valid=false" >> $env:GITHUB_OUTPUT[0m
+2026-07-19T07:49:17.9643814Z [36;1m  Add-Content -Path $env:GITHUB_ENV -Value "APK_STATUS=Newly Built"[0m
+2026-07-19T07:49:17.9644420Z [36;1m  exit 0[0m
+2026-07-19T07:49:17.9644694Z [36;1m}[0m
+2026-07-19T07:49:17.9644943Z [36;1m[0m
+2026-07-19T07:49:17.9645258Z [36;1m# Verify cached APK integrity using SHA256[0m
+2026-07-19T07:49:17.9646342Z [36;1m$cachedApkHash = (Get-FileHash $cachedApk -Algorithm SHA256).Hash[0m
+2026-07-19T07:49:17.9647013Z [36;1mif ($cachedApkHash -ne $info.sha256) {[0m
+2026-07-19T07:49:17.9647685Z [36;1m  Write-Host "[WARN] Cached APK SHA256 mismatch or corrupted. Rebuilding."[0m
+2026-07-19T07:49:17.9648409Z [36;1m  echo "apk-valid=false" >> $env:GITHUB_OUTPUT[0m
+2026-07-19T07:49:17.9649076Z [36;1m  Add-Content -Path $env:GITHUB_ENV -Value "APK_STATUS=Newly Built"[0m
+2026-07-19T07:49:17.9649661Z [36;1m  exit 0[0m
+2026-07-19T07:49:17.9649938Z [36;1m}[0m
+2026-07-19T07:49:17.9650192Z [36;1m[0m
+2026-07-19T07:49:17.9650488Z [36;1m# Calculate current source hash[0m
+2026-07-19T07:49:17.9650918Z [36;1m$sourceFiles = @([0m
+2026-07-19T07:49:17.9651279Z [36;1m  "package.json",[0m
+2026-07-19T07:49:17.9651657Z [36;1m  "package-lock.json",[0m
+2026-07-19T07:49:17.9652033Z [36;1m  "app.json"[0m
+2026-07-19T07:49:17.9652339Z [36;1m)[0m
+2026-07-19T07:49:17.9652596Z [36;1m[0m
+2026-07-19T07:49:17.9652845Z [36;1m$combined = ""[0m
+2026-07-19T07:49:17.9653184Z [36;1mforeach ($f in $sourceFiles) {[0m
+2026-07-19T07:49:17.9653567Z [36;1m  if (Test-Path $f) {[0m
+2026-07-19T07:49:17.9654054Z [36;1m    $combined += (Get-FileHash $f -Algorithm SHA256).Hash[0m
+2026-07-19T07:49:17.9654568Z [36;1m  }[0m
+2026-07-19T07:49:17.9654891Z [36;1m}[0m
+2026-07-19T07:49:17.9655193Z [36;1m# Hash all app/ JS/TS source files[0m
+2026-07-19T07:49:17.9655631Z [36;1mif (Test-Path "app") {[0m
+2026-07-19T07:49:17.9656289Z [36;1m  Get-ChildItem "app" -Recurse -File -Include "*.js","*.ts","*.tsx","*.jsx","*.json" `[0m
+2026-07-19T07:49:17.9660174Z [36;1m    -ErrorAction SilentlyContinue | Sort-Object FullName | ForEach-Object {[0m
+2026-07-19T07:49:17.9661072Z [36;1m      $combined += (Get-FileHash $_.FullName -Algorithm SHA256).Hash[0m
+2026-07-19T07:49:17.9661671Z [36;1m    }[0m
+2026-07-19T07:49:17.9661943Z [36;1m}[0m
+2026-07-19T07:49:17.9662204Z [36;1m[0m
+2026-07-19T07:49:17.9662608Z [36;1m$bytes = [System.Text.Encoding]::UTF8.GetBytes($combined)[0m
+2026-07-19T07:49:17.9663442Z [36;1m$sha = [System.Security.Cryptography.SHA256CryptoServiceProvider]::new()[0m
+2026-07-19T07:49:17.9664390Z [36;1m$curHash = [BitConverter]::ToString($sha.ComputeHash($bytes)).Replace("-","")[0m
+2026-07-19T07:49:17.9665051Z [36;1m[0m
+2026-07-19T07:49:17.9665398Z [36;1mif ($curHash -eq $info.sourceHash) {[0m
+2026-07-19T07:49:17.9665988Z [36;1m  Write-Host "==========================================="[0m
+2026-07-19T07:49:17.9666599Z [36;1m  Write-Host "✅ Persistent APK Cache Found"[0m
+2026-07-19T07:49:17.9667166Z [36;1m  Write-Host "✅ APK Validation Successful"[0m
+2026-07-19T07:49:17.9667692Z [36;1m  Write-Host "⏭ Build APK Skipped"[0m
+2026-07-19T07:49:17.9668384Z [36;1m  Write-Host "Estimated Time Saved: ~15 minutes (Gradle + JS bundle skipped)"[0m
+2026-07-19T07:49:17.9669138Z [36;1m  Write-Host "Continuing with next stage."[0m
+2026-07-19T07:49:17.9669709Z [36;1m  Write-Host "==========================================="[0m
+2026-07-19T07:49:17.9670223Z [36;1m  [0m
+2026-07-19T07:49:17.9670498Z [36;1m  # Restore APK[0m
+2026-07-19T07:49:17.9670980Z [36;1m  $destDir = Split-Path $destApk -Parent[0m
+2026-07-19T07:49:17.9671827Z [36;1m  if (-not (Test-Path $destDir)) { New-Item -ItemType Directory -Path $destDir -Force | Out-Null }[0m
+2026-07-19T07:49:17.9672682Z [36;1m  Copy-Item $cachedApk $destApk -Force[0m
+2026-07-19T07:49:17.9673266Z [36;1m  Write-Host "[OK] Restored APK from cache to: $destApk"[0m
+2026-07-19T07:49:17.9673878Z [36;1m  echo "apk-valid=true" >> $env:GITHUB_OUTPUT[0m
+2026-07-19T07:49:17.9674609Z [36;1m  Add-Content -Path $env:GITHUB_ENV -Value "APK_STATUS=Reused (Cached)"[0m
+2026-07-19T07:49:17.9675367Z [36;1m} else {[0m
+2026-07-19T07:49:17.9675916Z [36;1m  Write-Host "[CHANGE] Source has changed since last build. Rebuild required."[0m
+2026-07-19T07:49:17.9676758Z [36;1m  Write-Host "  Current hash : $($curHash.Substring(0,16))..."[0m
+2026-07-19T07:49:17.9677918Z [36;1m  Write-Host "  Cached hash  : $($info.sourceHash.Substring(0,16))..."[0m
+2026-07-19T07:49:17.9678632Z [36;1m  echo "apk-valid=false" >> $env:GITHUB_OUTPUT[0m
+2026-07-19T07:49:17.9679340Z [36;1m  Add-Content -Path $env:GITHUB_ENV -Value "APK_STATUS=Newly Built"[0m
+2026-07-19T07:49:17.9679955Z [36;1m}[0m
+2026-07-19T07:49:17.9761271Z shell: C:\WINDOWS\System32\WindowsPowerShell\v1.0\powershell.EXE -command ". '{0}'"
+2026-07-19T07:49:17.9762056Z env:
+2026-07-19T07:49:17.9762360Z   TEST_EMAIL: jessuff8@gmail.com
+2026-07-19T07:49:17.9762776Z   TEST_PASSWORD: Ravi@6444
+2026-07-19T07:49:17.9763161Z   TEST_USER_NAME: Konda
+2026-07-19T07:49:17.9763774Z   EXPO_PUBLIC_API_URL: https://tripsyncbackend-production-37a2.up.railway.app
+2026-07-19T07:49:17.9764492Z   WDIO_CI_SPEC: 
+2026-07-19T07:49:17.9764817Z   JOB_START_TIME: 2026-07-19 13:17:59
+2026-07-19T07:49:17.9765500Z   JAVA_HOME: C:\actions-runner\_work\_tool\Java_Temurin-Hotspot_jdk\21.0.11-10.0.LTS\x64
+2026-07-19T07:49:17.9766509Z   JAVA_HOME_21_X64: C:\actions-runner\_work\_tool\Java_Temurin-Hotspot_jdk\21.0.11-10.0.LTS\x64
+2026-07-19T07:49:17.9767361Z   ANDROID_HOME: C:\Users\konda\AppData\Local\Android\Sdk
+2026-07-19T07:49:17.9768005Z   ANDROID_SDK_ROOT: C:\Users\konda\AppData\Local\Android\Sdk
+2026-07-19T07:49:17.9768586Z ##[endgroup]
+2026-07-19T07:49:18.9813770Z ===========================================
+2026-07-19T07:49:18.9820004Z âœ… Persistent APK Cache Found
+2026-07-19T07:49:18.9825661Z âœ… APK Validation Successful
+2026-07-19T07:49:18.9830030Z â­ Build APK Skipped
+2026-07-19T07:49:18.9834737Z Estimated Time Saved: ~15 minutes (Gradle + JS bundle skipped)
+2026-07-19T07:49:18.9839112Z Continuing with next stage.
+2026-07-19T07:49:18.9843479Z ===========================================
+2026-07-19T07:49:19.0710763Z [OK] Restored APK from cache to: android\app\build\outputs\apk\debug\app-debug.apk

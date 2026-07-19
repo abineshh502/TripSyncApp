@@ -121,6 +121,15 @@ async function verifyAdb() {
 // STEP 2 — DETECT OR BOOT EMULATOR
 // ─────────────────────────────────────────────
 
+function findEmulatorBin() {
+  const sdkRoot = process.env.ANDROID_HOME || process.env.ANDROID_SDK_ROOT || "C:\\Users\\konda\\AppData\\Local\\Android\\Sdk";
+  const candidate = path.join(sdkRoot, "emulator/emulator.exe");
+  if (fs.existsSync(candidate)) return candidate;
+  const candidateLinux = path.join(sdkRoot, "emulator/emulator");
+  if (fs.existsSync(candidateLinux)) return candidateLinux;
+  return "emulator";
+}
+
 async function detectOrBootEmulator() {
   log("📱", "Checking for running emulators...");
   const adbBin = process.env.ADB_PATH || "adb";
@@ -136,11 +145,19 @@ async function detectOrBootEmulator() {
   }
 
   log("🚀", `No emulator running. Booting AVD: ${AVD_NAME}`);
-  const emulatorBin = process.env.EMULATOR_PATH || "emulator";
-  spawn(emulatorBin, ["-avd", AVD_NAME, "-no-snapshot-load", "-no-audio"], {
+  const emulatorBin = process.env.EMULATOR_PATH || findEmulatorBin();
+  
+  // Capture spawn error to log if it fails to execute
+  const emProcess = spawn(emulatorBin, ["-avd", AVD_NAME, "-no-snapshot-load", "-no-audio"], {
     detached: true,
     stdio: "ignore",
-  }).unref();
+  });
+  
+  emProcess.on("error", (err) => {
+    log("❌", `Failed to spawn emulator process: ${err.message}`);
+  });
+  
+  emProcess.unref();
 
   log("⏳", "Waiting for emulator to boot (up to 180s)...");
   for (let i = 0; i < 36; i++) {
