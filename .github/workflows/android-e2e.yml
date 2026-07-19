@@ -342,7 +342,8 @@ jobs:
         id: emulator-check
         shell: powershell
         run: |
-          $devices = adb devices 2>&1
+          $ErrorActionPreference = "SilentlyContinue"
+          $devices = adb devices 2>$null
           Write-Host "ADB Devices output:`n$devices"
           $match = [System.Text.RegularExpressions.Regex]::Match($devices, "(emulator-\d+|127\.0\.0\.1:\d+)")
 
@@ -363,6 +364,7 @@ jobs:
         if: steps.emulator-check.outputs.running == 'true'
         shell: powershell
         run: |
+          $ErrorActionPreference = "SilentlyContinue"
           $deviceId = "${{ steps.emulator-check.outputs.device-id }}"
           Write-Host "Verifying boot for device: $deviceId"
 

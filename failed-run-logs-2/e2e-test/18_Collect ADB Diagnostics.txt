@@ -1,0 +1,51 @@
+﻿2026-07-19T07:36:31.1336388Z ##[group]Run $resultsDir = "test-results"
+2026-07-19T07:36:31.1336788Z [36;1m$resultsDir = "test-results"[0m
+2026-07-19T07:36:31.1337231Z [36;1mif (-not (Test-Path $resultsDir)) { New-Item -ItemType Directory -Path $resultsDir | Out-Null }[0m
+2026-07-19T07:36:31.1337615Z [36;1m[0m
+2026-07-19T07:36:31.1337883Z [36;1m# Determine ADB target: use DEVICE_NAME if set, else target emulator with -e[0m
+2026-07-19T07:36:31.1338331Z [36;1m$adbTarget = if ($env:DEVICE_NAME) { @("-s", $env:DEVICE_NAME) } else { @("-e") }[0m
+2026-07-19T07:36:31.1338684Z [36;1mWrite-Host "ADB target args: $adbTarget"[0m
+2026-07-19T07:36:31.1338906Z [36;1m[0m
+2026-07-19T07:36:31.1339067Z [36;1mWrite-Host "Collecting ADB devices..."[0m
+2026-07-19T07:36:31.1339396Z [36;1madb devices 2>&1 | Out-File "$resultsDir\adb-devices.log" -Encoding utf8[0m
+2026-07-19T07:36:31.1339695Z [36;1m[0m
+2026-07-19T07:36:31.1339873Z [36;1mWrite-Host "Collecting dumpsys activity..."[0m
+2026-07-19T07:36:31.1340436Z [36;1mtry {[0m
+2026-07-19T07:36:31.1340687Z [36;1m  & adb @adbTarget shell dumpsys activity activities 2>&1 |[0m
+2026-07-19T07:36:31.1340972Z [36;1m    Select-Object -First 100 |[0m
+2026-07-19T07:36:31.1341245Z [36;1m    Out-File "$resultsDir\adb-activity.log" -Encoding utf8[0m
+2026-07-19T07:36:31.1341565Z [36;1m} catch { Write-Host "[WARN] dumpsys skipped: $_" }[0m
+2026-07-19T07:36:31.1341810Z [36;1m[0m
+2026-07-19T07:36:31.1341997Z [36;1mWrite-Host "Collecting logcat (last 1000 lines)..."[0m
+2026-07-19T07:36:31.1342252Z [36;1mtry {[0m
+2026-07-19T07:36:31.1342454Z [36;1m  & adb @adbTarget logcat -d -v threadtime *:W 2>&1 |[0m
+2026-07-19T07:36:31.1342719Z [36;1m    Select-Object -Last 1000 |[0m
+2026-07-19T07:36:31.1342982Z [36;1m    Out-File "$resultsDir\adb-logcat.log" -Encoding utf8[0m
+2026-07-19T07:36:31.1343292Z [36;1m} catch { Write-Host "[WARN] logcat skipped: $_" }[0m
+2026-07-19T07:36:31.1343597Z [36;1m[0m
+2026-07-19T07:36:31.1343891Z [36;1mWrite-Host "[OK] ADB diagnostics collected."[0m
+2026-07-19T07:36:31.1344220Z [36;1mexit 0[0m
+2026-07-19T07:36:31.1384046Z shell: C:\WINDOWS\System32\WindowsPowerShell\v1.0\powershell.EXE -command ". '{0}'"
+2026-07-19T07:36:31.1384395Z env:
+2026-07-19T07:36:31.1384545Z   TEST_EMAIL: jessuff8@gmail.com
+2026-07-19T07:36:31.1384738Z   TEST_PASSWORD: Ravi@6444
+2026-07-19T07:36:31.1384910Z   TEST_USER_NAME: Konda
+2026-07-19T07:36:31.1385194Z   EXPO_PUBLIC_API_URL: https://tripsyncbackend-production-37a2.up.railway.app
+2026-07-19T07:36:31.1385509Z   WDIO_CI_SPEC: 
+2026-07-19T07:36:31.1385665Z   JOB_START_TIME: 2026-07-19 13:05:12
+2026-07-19T07:36:31.1385978Z   JAVA_HOME: C:\actions-runner\_work\_tool\Java_Temurin-Hotspot_jdk\21.0.11-10.0.LTS\x64
+2026-07-19T07:36:31.1386428Z   JAVA_HOME_21_X64: C:\actions-runner\_work\_tool\Java_Temurin-Hotspot_jdk\21.0.11-10.0.LTS\x64
+2026-07-19T07:36:31.1386805Z   ANDROID_HOME: C:\Users\konda\AppData\Local\Android\Sdk
+2026-07-19T07:36:31.1387094Z   ANDROID_SDK_ROOT: C:\Users\konda\AppData\Local\Android\Sdk
+2026-07-19T07:36:31.1387360Z   APK_STATUS: Reused (Cached)
+2026-07-19T07:36:31.1387533Z ##[endgroup]
+2026-07-19T07:36:31.5194636Z ADB target args: -e
+2026-07-19T07:36:31.5200558Z Collecting ADB devices...
+2026-07-19T07:36:33.6623692Z adb : * daemon not running; starting now at tcp:5037
+2026-07-19T07:36:33.6625315Z At C:\actions-runner\_work\_temp\8aa9458e-3e96-4096-9109-41ab7e48a2a2.ps1:10 char:1
+2026-07-19T07:36:33.6625932Z + adb devices 2>&1 | Out-File "$resultsDir\adb-devices.log" -Encoding u ...
+2026-07-19T07:36:33.6626328Z + ~~~~~~~~~~~~~~~~
+2026-07-19T07:36:33.6626786Z     + CategoryInfo          : NotSpecified: (* daemon not ru...now at tcp:5037:String) [], RemoteException
+2026-07-19T07:36:33.6627251Z     + FullyQualifiedErrorId : NativeCommandError
+2026-07-19T07:36:33.6627482Z  
+2026-07-19T07:36:33.7099684Z ##[error]Process completed with exit code 1.

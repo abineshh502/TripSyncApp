@@ -1,0 +1,27 @@
+﻿2026-07-19T07:36:37.6254935Z Node 20 is being deprecated. This workflow is running with Node 24 by default. If you need to temporarily use Node 20, you can set the ACTIONS_ALLOW_USE_UNSECURE_NODE_VERSION=true environment variable. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/
+2026-07-19T07:36:37.6256875Z ##[group]Run actions/upload-artifact@v4
+2026-07-19T07:36:37.6257253Z with:
+2026-07-19T07:36:37.6257514Z   name: TripSync-Screenshots-71
+2026-07-19T07:36:37.6257847Z   retention-days: 30
+2026-07-19T07:36:37.6258072Z   if-no-files-found: warn
+2026-07-19T07:36:37.6258383Z   path: test-results/screenshots/
+
+2026-07-19T07:36:37.6258739Z   compression-level: 6
+2026-07-19T07:36:37.6259028Z   overwrite: false
+2026-07-19T07:36:37.6259307Z   include-hidden-files: false
+2026-07-19T07:36:37.6259626Z env:
+2026-07-19T07:36:37.6259871Z   TEST_EMAIL: jessuff8@gmail.com
+2026-07-19T07:36:37.6260213Z   TEST_PASSWORD: Ravi@6444
+2026-07-19T07:36:37.6260516Z   TEST_USER_NAME: Konda
+2026-07-19T07:36:37.6261057Z   EXPO_PUBLIC_API_URL: https://tripsyncbackend-production-37a2.up.railway.app
+2026-07-19T07:36:37.6261623Z   WDIO_CI_SPEC: 
+2026-07-19T07:36:37.6261880Z   JOB_START_TIME: 2026-07-19 13:05:12
+2026-07-19T07:36:37.6262429Z   JAVA_HOME: C:\actions-runner\_work\_tool\Java_Temurin-Hotspot_jdk\21.0.11-10.0.LTS\x64
+2026-07-19T07:36:37.6263286Z   JAVA_HOME_21_X64: C:\actions-runner\_work\_tool\Java_Temurin-Hotspot_jdk\21.0.11-10.0.LTS\x64
+2026-07-19T07:36:37.6264017Z   ANDROID_HOME: C:\Users\konda\AppData\Local\Android\Sdk
+2026-07-19T07:36:37.6264556Z   ANDROID_SDK_ROOT: C:\Users\konda\AppData\Local\Android\Sdk
+2026-07-19T07:36:37.6265022Z   APK_STATUS: Reused (Cached)
+2026-07-19T07:36:37.6265334Z ##[endgroup]
+2026-07-19T07:36:37.7948367Z (node:23580) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-07-19T07:36:37.7949048Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-07-19T07:36:37.7988404Z ##[warning]No files were found with the provided path: test-results/screenshots/. No artifacts will be uploaded.

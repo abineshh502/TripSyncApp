@@ -1,0 +1,39 @@
+﻿2026-07-19T07:36:28.5438356Z ##[group]Run $devices = adb devices 2>&1
+2026-07-19T07:36:28.5440417Z [36;1m$devices = adb devices 2>&1[0m
+2026-07-19T07:36:28.5440696Z [36;1mWrite-Host "ADB Devices output:`n$devices"[0m
+2026-07-19T07:36:28.5441183Z [36;1m$match = [System.Text.RegularExpressions.Regex]::Match($devices, "(emulator-\d+|127\.0\.0\.1:\d+)")[0m
+2026-07-19T07:36:28.5441618Z [36;1m[0m
+2026-07-19T07:36:28.5441774Z [36;1mif ($match.Success) {[0m
+2026-07-19T07:36:28.5442009Z [36;1m  $emulatorId = $match.Value[0m
+2026-07-19T07:36:28.5442373Z [36;1m  Write-Host "[REUSE] Emulator already running: $emulatorId"[0m
+2026-07-19T07:36:28.5442745Z [36;1m  echo "running=true" >> $env:GITHUB_OUTPUT[0m
+2026-07-19T07:36:28.5443139Z [36;1m  echo "device-id=$emulatorId" >> $env:GITHUB_OUTPUT[0m
+2026-07-19T07:36:28.5443639Z [36;1m  Add-Content -Path $env:GITHUB_ENV -Value "DEVICE_NAME=$emulatorId"[0m
+2026-07-19T07:36:28.5444115Z [36;1m  Add-Content -Path $env:GITHUB_ENV -Value "EMULATOR_STATUS=Reused (Already Running)"[0m
+2026-07-19T07:36:28.5444541Z [36;1m} else {[0m
+2026-07-19T07:36:28.5444767Z [36;1m  Write-Host "[NONE] No emulator found."[0m
+2026-07-19T07:36:28.5445119Z [36;1m  echo "running=false" >> $env:GITHUB_OUTPUT[0m
+2026-07-19T07:36:28.5445504Z [36;1m  Add-Content -Path $env:GITHUB_ENV -Value "EMULATOR_STATUS=Offline / Missing"[0m
+2026-07-19T07:36:28.5445877Z [36;1m}[0m
+2026-07-19T07:36:28.5494576Z shell: C:\WINDOWS\System32\WindowsPowerShell\v1.0\powershell.EXE -command ". '{0}'"
+2026-07-19T07:36:28.5495096Z env:
+2026-07-19T07:36:28.5495295Z   TEST_EMAIL: jessuff8@gmail.com
+2026-07-19T07:36:28.5495543Z   TEST_PASSWORD: Ravi@6444
+2026-07-19T07:36:28.5495765Z   TEST_USER_NAME: Konda
+2026-07-19T07:36:28.5496092Z   EXPO_PUBLIC_API_URL: https://tripsyncbackend-production-37a2.up.railway.app
+2026-07-19T07:36:28.5496447Z   WDIO_CI_SPEC: 
+2026-07-19T07:36:28.5496618Z   JOB_START_TIME: 2026-07-19 13:05:12
+2026-07-19T07:36:28.5497000Z   JAVA_HOME: C:\actions-runner\_work\_tool\Java_Temurin-Hotspot_jdk\21.0.11-10.0.LTS\x64
+2026-07-19T07:36:28.5497702Z   JAVA_HOME_21_X64: C:\actions-runner\_work\_tool\Java_Temurin-Hotspot_jdk\21.0.11-10.0.LTS\x64
+2026-07-19T07:36:28.5498169Z   ANDROID_HOME: C:\Users\konda\AppData\Local\Android\Sdk
+2026-07-19T07:36:28.5498495Z   ANDROID_SDK_ROOT: C:\Users\konda\AppData\Local\Android\Sdk
+2026-07-19T07:36:28.5498902Z   APK_STATUS: Reused (Cached)
+2026-07-19T07:36:28.5499131Z ##[endgroup]
+2026-07-19T07:36:31.0645426Z adb : * daemon not running; starting now at tcp:5037
+2026-07-19T07:36:31.0646335Z At C:\actions-runner\_work\_temp\5be71211-dd98-4957-ad56-714bd495463d.ps1:2 char:12
+2026-07-19T07:36:31.0646948Z + $devices = adb devices 2>&1
+2026-07-19T07:36:31.0647371Z +            ~~~~~~~~~~~~~~~~
+2026-07-19T07:36:31.0648137Z     + CategoryInfo          : NotSpecified: (* daemon not ru...now at tcp:5037:String) [], RemoteException
+2026-07-19T07:36:31.0648940Z     + FullyQualifiedErrorId : NativeCommandError
+2026-07-19T07:36:31.0649295Z  
+2026-07-19T07:36:31.1117549Z ##[error]Process completed with exit code 1.

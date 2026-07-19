@@ -1,0 +1,661 @@
+﻿2026-07-19T07:34:14.0507972Z Current runner version: '2.335.1'
+2026-07-19T07:34:14.0562185Z Runner name: 'SIVA'
+2026-07-19T07:34:14.0562769Z Runner group name: 'Default'
+2026-07-19T07:34:14.0563400Z Machine name: 'SIVA'
+2026-07-19T07:34:14.0566145Z ##[group]GITHUB_TOKEN Permissions
+2026-07-19T07:34:14.0569388Z Contents: read
+2026-07-19T07:34:14.0569911Z Metadata: read
+2026-07-19T07:34:14.0570403Z Packages: read
+2026-07-19T07:34:14.0570903Z ##[endgroup]
+2026-07-19T07:34:14.0573401Z Secret source: Actions
+2026-07-19T07:34:14.0574068Z Prepare workflow directory
+2026-07-19T07:34:14.1953700Z Prepare all required actions
+2026-07-19T07:34:14.1990247Z Getting action download info
+2026-07-19T07:34:15.1821772Z Download action repository 'actions/checkout@v4' (SHA:34e114876b0b11c390a56381ad16ebd13914f8d5)
+2026-07-19T07:34:16.0928474Z Download action repository 'actions/setup-java@v4' (SHA:c1e323688fd81a25caa38c78aa6df2d33d3e20d9)
+2026-07-19T07:34:17.8930325Z Download action repository 'actions/setup-node@v4' (SHA:49933ea5288caeca8642d1e84afbd3f7d6820020)
+2026-07-19T07:34:20.2579625Z Download action repository 'actions/upload-artifact@v4' (SHA:ea165f8d65b6e75b540449e92b4886f43607fa02)
+2026-07-19T07:34:21.9264319Z Complete job name: e2e-test
+2026-07-19T07:34:22.0593012Z Node 20 is being deprecated. This workflow is running with Node 24 by default. If you need to temporarily use Node 20, you can set the ACTIONS_ALLOW_USE_UNSECURE_NODE_VERSION=true environment variable. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/
+2026-07-19T07:34:22.0603130Z ##[group]Run actions/checkout@v4
+2026-07-19T07:34:22.0603592Z with:
+2026-07-19T07:34:22.0603786Z   repository: abineshh502/TripSyncApp
+2026-07-19T07:34:22.0605992Z   token: ***
+2026-07-19T07:34:22.0606167Z   ssh-strict: true
+2026-07-19T07:34:22.0606326Z   ssh-user: git
+2026-07-19T07:34:22.0606492Z   persist-credentials: true
+2026-07-19T07:34:22.0606669Z   clean: true
+2026-07-19T07:34:22.0606836Z   sparse-checkout-cone-mode: true
+2026-07-19T07:34:22.0607093Z   fetch-depth: 1
+2026-07-19T07:34:22.0607302Z   fetch-tags: false
+2026-07-19T07:34:22.0607458Z   show-progress: true
+2026-07-19T07:34:22.0607613Z   lfs: false
+2026-07-19T07:34:22.0607785Z   submodules: false
+2026-07-19T07:34:22.0607947Z   set-safe-directory: true
+2026-07-19T07:34:22.0608337Z env:
+2026-07-19T07:34:22.0608501Z   TEST_EMAIL: jessuff8@gmail.com
+2026-07-19T07:34:22.0608693Z   TEST_PASSWORD: Ravi@6444
+2026-07-19T07:34:22.0609080Z   TEST_USER_NAME: Konda
+2026-07-19T07:34:22.0609677Z   EXPO_PUBLIC_API_URL: https://tripsyncbackend-production-37a2.up.railway.app
+2026-07-19T07:34:22.0610252Z   WDIO_CI_SPEC: 
+2026-07-19T07:34:22.0611004Z ##[endgroup]
+2026-07-19T07:34:22.4321230Z Syncing repository: abineshh502/TripSyncApp
+2026-07-19T07:34:22.4323080Z ##[group]Getting Git version info
+2026-07-19T07:34:22.4323676Z Working directory is 'C:\actions-runner\_work\TripSyncApp\TripSyncApp'
+2026-07-19T07:34:22.4477595Z [command]"C:\Program Files\Git\cmd\git.exe" version
+2026-07-19T07:34:22.4899072Z git version 2.54.0.windows.1
+2026-07-19T07:34:22.4949412Z ##[endgroup]
+2026-07-19T07:34:22.4966066Z Copying 'C:\Users\konda\.gitconfig' to 'C:\actions-runner\_work\_temp\c5852f81-f1c6-48ce-a21a-acec633ed1cb\.gitconfig'
+2026-07-19T07:34:22.4994299Z Temporarily overriding HOME='C:\actions-runner\_work\_temp\c5852f81-f1c6-48ce-a21a-acec633ed1cb' before making global git config changes
+2026-07-19T07:34:22.4995642Z Adding repository directory to the temporary git global config as a safe directory
+2026-07-19T07:34:22.5003965Z [command]"C:\Program Files\Git\cmd\git.exe" config --global --add safe.directory C:\actions-runner\_work\TripSyncApp\TripSyncApp
+2026-07-19T07:34:22.5559812Z [command]"C:\Program Files\Git\cmd\git.exe" config --local --get remote.origin.url
+2026-07-19T07:34:22.6134472Z https://github.com/abineshh502/TripSyncApp
+2026-07-19T07:34:22.6212745Z ##[group]Removing previously created refs, to avoid conflicts
+2026-07-19T07:34:22.6219933Z [command]"C:\Program Files\Git\cmd\git.exe" rev-parse --symbolic-full-name --verify --quiet HEAD
+2026-07-19T07:34:22.6788402Z refs/heads/main
+2026-07-19T07:34:22.6850664Z [command]"C:\Program Files\Git\cmd\git.exe" checkout --detach
+2026-07-19T07:34:22.7728032Z HEAD is now at da0d8dc ci(orchestrator): pre-install Appium APKs and skip server/device setup inside WDIO workers
+2026-07-19T07:34:22.8876102Z ##[endgroup]
+2026-07-19T07:34:22.8884930Z [command]"C:\Program Files\Git\cmd\git.exe" submodule status
+2026-07-19T07:34:23.8134786Z ##[group]Cleaning the repository
+2026-07-19T07:34:23.8146116Z [command]"C:\Program Files\Git\cmd\git.exe" clean -ffdx
+2026-07-19T07:35:07.9931505Z Removing android/
+2026-07-19T07:35:07.9931899Z Removing node_modules/
+2026-07-19T07:35:07.9932244Z Removing test-results/
+2026-07-19T07:35:08.0010386Z [command]"C:\Program Files\Git\cmd\git.exe" reset --hard HEAD
+2026-07-19T07:35:08.1105184Z HEAD is now at da0d8dc ci(orchestrator): pre-install Appium APKs and skip server/device setup inside WDIO workers
+2026-07-19T07:35:08.1149660Z ##[endgroup]
+2026-07-19T07:35:08.1161168Z ##[group]Disabling automatic garbage collection
+2026-07-19T07:35:08.1176788Z [command]"C:\Program Files\Git\cmd\git.exe" config --local gc.auto 0
+2026-07-19T07:35:08.1603050Z ##[endgroup]
+2026-07-19T07:35:08.1603678Z ##[group]Setting up auth
+2026-07-19T07:35:08.1613992Z [command]"C:\Program Files\Git\cmd\git.exe" config --local --name-only --get-regexp core\.sshCommand
+2026-07-19T07:35:08.2053800Z [command]"C:\Program Files\Git\cmd\git.exe" submodule foreach --recursive "sh -c \"git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :\""
+2026-07-19T07:35:08.9959320Z [command]"C:\Program Files\Git\cmd\git.exe" config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-07-19T07:35:09.0462338Z [command]"C:\Program Files\Git\cmd\git.exe" submodule foreach --recursive "sh -c \"git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :\""
+2026-07-19T07:35:09.9135189Z [command]"C:\Program Files\Git\cmd\git.exe" config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-07-19T07:35:09.9594202Z [command]"C:\Program Files\Git\cmd\git.exe" submodule foreach --recursive "git config --local --show-origin --name-only --get-regexp remote.origin.url"
+2026-07-19T07:35:10.7892490Z [command]"C:\Program Files\Git\cmd\git.exe" config --local http.https://github.com/.extraheader "AUTHORIZATION: basic ***"
+2026-07-19T07:35:10.8485994Z ##[endgroup]
+2026-07-19T07:35:10.8487633Z ##[group]Fetching the repository
+2026-07-19T07:35:10.8502727Z [command]"C:\Program Files\Git\cmd\git.exe" -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin +6d814749abc259442dfa1634715470a6b0aa99cb:refs/remotes/origin/main
+2026-07-19T07:35:11.8338380Z From https://github.com/abineshh502/TripSyncApp
+2026-07-19T07:35:11.8338999Z  + da0d8dc...6d81474 6d814749abc259442dfa1634715470a6b0aa99cb -> origin/main  (forced update)
+2026-07-19T07:35:11.8646718Z ##[endgroup]
+2026-07-19T07:35:11.8647110Z ##[group]Determining the checkout info
+2026-07-19T07:35:11.8649689Z ##[endgroup]
+2026-07-19T07:35:11.8661695Z [command]"C:\Program Files\Git\cmd\git.exe" sparse-checkout disable
+2026-07-19T07:35:11.9270115Z [command]"C:\Program Files\Git\cmd\git.exe" config --local --unset-all extensions.worktreeConfig
+2026-07-19T07:35:11.9724955Z ##[group]Checking out the ref
+2026-07-19T07:35:11.9736510Z [command]"C:\Program Files\Git\cmd\git.exe" checkout --progress --force -B main refs/remotes/origin/main
+2026-07-19T07:35:12.0455836Z Previous HEAD position was da0d8dc ci(orchestrator): pre-install Appium APKs and skip server/device setup inside WDIO workers
+2026-07-19T07:35:12.0610356Z Switched to and reset branch 'main'
+2026-07-19T07:35:12.0664861Z branch 'main' set up to track 'origin/main'.
+2026-07-19T07:35:12.0665487Z Your branch is up to date with 'origin/main'.
+2026-07-19T07:35:12.0715399Z ##[endgroup]
+2026-07-19T07:35:12.1189707Z [command]"C:\Program Files\Git\cmd\git.exe" log -1 --format=%H
+2026-07-19T07:35:12.1596584Z 6d814749abc259442dfa1634715470a6b0aa99cb
+2026-07-19T07:35:12.2134811Z ##[group]Run Add-Content -Path $env:GITHUB_ENV -Value "JOB_START_TIME=$(Get-Date -Format 'yyyy-MM-dd HH:mm:ss')"
+2026-07-19T07:35:12.2135974Z [36;1mAdd-Content -Path $env:GITHUB_ENV -Value "JOB_START_TIME=$(Get-Date -Format 'yyyy-MM-dd HH:mm:ss')"[0m
+2026-07-19T07:35:12.2190908Z shell: C:\WINDOWS\System32\WindowsPowerShell\v1.0\powershell.EXE -command ". '{0}'"
+2026-07-19T07:35:12.2191635Z env:
+2026-07-19T07:35:12.2191894Z   TEST_EMAIL: jessuff8@gmail.com
+2026-07-19T07:35:12.2192224Z   TEST_PASSWORD: Ravi@6444
+2026-07-19T07:35:12.2192520Z   TEST_USER_NAME: Konda
+2026-07-19T07:35:12.2193032Z   EXPO_PUBLIC_API_URL: https://tripsyncbackend-production-37a2.up.railway.app
+2026-07-19T07:35:12.2193607Z   WDIO_CI_SPEC: 
+2026-07-19T07:35:12.2193858Z ##[endgroup]
+2026-07-19T07:35:12.7027047Z Node 20 is being deprecated. This workflow is running with Node 24 by default. If you need to temporarily use Node 20, you can set the ACTIONS_ALLOW_USE_UNSECURE_NODE_VERSION=true environment variable. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/
+2026-07-19T07:35:12.7029316Z ##[group]Run actions/setup-java@v4
+2026-07-19T07:35:12.7029779Z with:
+2026-07-19T07:35:12.7030077Z   java-version: 21
+2026-07-19T07:35:12.7030419Z   distribution: temurin
+2026-07-19T07:35:12.7030806Z   java-package: jdk
+2026-07-19T07:35:12.7031157Z   check-latest: false
+2026-07-19T07:35:12.7031527Z   server-id: github
+2026-07-19T07:35:12.7031886Z   server-username: GITHUB_ACTOR
+2026-07-19T07:35:12.7032302Z   server-password: GITHUB_TOKEN
+2026-07-19T07:35:12.7032701Z   overwrite-settings: true
+2026-07-19T07:35:12.7033028Z   job-status: success
+2026-07-19T07:35:12.7036046Z   token: ***
+2026-07-19T07:35:12.7036389Z env:
+2026-07-19T07:35:12.7036847Z   TEST_EMAIL: jessuff8@gmail.com
+2026-07-19T07:35:12.7037242Z   TEST_PASSWORD: Ravi@6444
+2026-07-19T07:35:12.7037625Z   TEST_USER_NAME: Konda
+2026-07-19T07:35:12.7038196Z   EXPO_PUBLIC_API_URL: https://tripsyncbackend-production-37a2.up.railway.app
+2026-07-19T07:35:12.7038790Z   WDIO_CI_SPEC: 
+2026-07-19T07:35:12.7039124Z   JOB_START_TIME: 2026-07-19 13:05:12
+2026-07-19T07:35:12.7039521Z ##[endgroup]
+2026-07-19T07:35:13.3385602Z ##[group]Installed distributions
+2026-07-19T07:35:13.3426361Z Resolved Java 21.0.11+10.0.LTS from tool-cache
+2026-07-19T07:35:13.3427023Z Setting Java 21.0.11+10.0.LTS as the default
+2026-07-19T07:35:13.3464586Z (node:37088) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-07-19T07:35:13.3465540Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-07-19T07:35:13.3468269Z Creating toolchains.xml for JDK version 21 from temurin
+2026-07-19T07:35:13.3797891Z Overwriting existing file C:\Users\konda\.m2\toolchains.xml
+2026-07-19T07:35:13.3803819Z 
+2026-07-19T07:35:13.3804359Z Java configuration:
+2026-07-19T07:35:13.3804712Z   Distribution: temurin
+2026-07-19T07:35:13.3805109Z   Version: 21.0.11+10.0.LTS
+2026-07-19T07:35:13.3805712Z   Path: C:\actions-runner\_work\_tool\Java_Temurin-Hotspot_jdk\21.0.11-10.0.LTS\x64
+2026-07-19T07:35:13.3806180Z 
+2026-07-19T07:35:13.3806679Z ##[endgroup]
+2026-07-19T07:35:13.3914034Z Creating settings.xml with server-id: github
+2026-07-19T07:35:13.3914672Z Overwriting existing file C:\Users\konda\.m2\settings.xml
+2026-07-19T07:35:13.4382385Z Node 20 is being deprecated. This workflow is running with Node 24 by default. If you need to temporarily use Node 20, you can set the ACTIONS_ALLOW_USE_UNSECURE_NODE_VERSION=true environment variable. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/
+2026-07-19T07:35:13.4383605Z ##[group]Run actions/setup-node@v4
+2026-07-19T07:35:13.4384235Z with:
+2026-07-19T07:35:13.4384381Z   node-version: 20
+2026-07-19T07:35:13.4384529Z   cache: npm
+2026-07-19T07:35:13.4384690Z   cache-dependency-path: package-lock.json
+2026-07-19T07:35:13.4384920Z   always-auth: false
+2026-07-19T07:35:13.4385079Z   check-latest: false
+2026-07-19T07:35:13.4387072Z   token: ***
+2026-07-19T07:35:13.4387224Z env:
+2026-07-19T07:35:13.4387367Z   TEST_EMAIL: jessuff8@gmail.com
+2026-07-19T07:35:13.4387558Z   TEST_PASSWORD: Ravi@6444
+2026-07-19T07:35:13.4387729Z   TEST_USER_NAME: Konda
+2026-07-19T07:35:13.4388077Z   EXPO_PUBLIC_API_URL: https://tripsyncbackend-production-37a2.up.railway.app
+2026-07-19T07:35:13.4388644Z   WDIO_CI_SPEC: 
+2026-07-19T07:35:13.4388911Z   JOB_START_TIME: 2026-07-19 13:05:12
+2026-07-19T07:35:13.4389454Z   JAVA_HOME: C:\actions-runner\_work\_tool\Java_Temurin-Hotspot_jdk\21.0.11-10.0.LTS\x64
+2026-07-19T07:35:13.4390241Z   JAVA_HOME_21_X64: C:\actions-runner\_work\_tool\Java_Temurin-Hotspot_jdk\21.0.11-10.0.LTS\x64
+2026-07-19T07:35:13.4390797Z ##[endgroup]
+2026-07-19T07:35:14.0292305Z Found in cache @ C:\actions-runner\_work\_tool\node\20.20.2\x64
+2026-07-19T07:35:14.0302739Z (node:12928) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-07-19T07:35:14.0303281Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-07-19T07:35:14.0305976Z ##[group]Environment details
+2026-07-19T07:35:15.7015701Z node: v20.20.2
+2026-07-19T07:35:15.7015948Z npm: 10.8.2
+2026-07-19T07:35:15.7016139Z yarn: 
+2026-07-19T07:35:15.7016966Z ##[endgroup]
+2026-07-19T07:35:15.7250373Z [command]C:\WINDOWS\system32\cmd.exe /D /S /C "C:\actions-runner\_work\_tool\node\20.20.2\x64\npm.cmd config get cache"
+2026-07-19T07:35:16.1643888Z C:\Users\konda\AppData\Local\npm-cache
+2026-07-19T07:35:17.0985113Z npm cache is not found
+2026-07-19T07:35:17.1434612Z ##[group]Run $platformTools = "C:\Users\konda\AppData\Local\Android\Sdk\platform-tools"
+2026-07-19T07:35:17.1435584Z [36;1m$platformTools = "C:\Users\konda\AppData\Local\Android\Sdk\platform-tools"[0m
+2026-07-19T07:35:17.1436289Z [36;1m$emulatorDir   = "C:\Users\konda\AppData\Local\Android\Sdk\emulator"[0m
+2026-07-19T07:35:17.1436916Z [36;1mAdd-Content -Path $env:GITHUB_PATH -Value $platformTools[0m
+2026-07-19T07:35:17.1437487Z [36;1mAdd-Content -Path $env:GITHUB_PATH -Value $emulatorDir[0m
+2026-07-19T07:35:17.1438229Z [36;1mAdd-Content -Path $env:GITHUB_ENV -Value "ANDROID_HOME=C:\Users\konda\AppData\Local\Android\Sdk"[0m
+2026-07-19T07:35:17.1439196Z [36;1mAdd-Content -Path $env:GITHUB_ENV -Value "ANDROID_SDK_ROOT=C:\Users\konda\AppData\Local\Android\Sdk"[0m
+2026-07-19T07:35:17.1440091Z [36;1mWrite-Host "[OK] Android SDK paths added to PATH and ANDROID_HOME exported"[0m
+2026-07-19T07:35:17.1440723Z [36;1mWrite-Host "  platform-tools: $platformTools"[0m
+2026-07-19T07:35:17.1441222Z [36;1mWrite-Host "  emulator:       $emulatorDir"[0m
+2026-07-19T07:35:17.1491747Z shell: C:\WINDOWS\System32\WindowsPowerShell\v1.0\powershell.EXE -command ". '{0}'"
+2026-07-19T07:35:17.1492117Z env:
+2026-07-19T07:35:17.1492265Z   TEST_EMAIL: jessuff8@gmail.com
+2026-07-19T07:35:17.1492452Z   TEST_PASSWORD: Ravi@6444
+2026-07-19T07:35:17.1492615Z   TEST_USER_NAME: Konda
+2026-07-19T07:35:17.1492897Z   EXPO_PUBLIC_API_URL: https://tripsyncbackend-production-37a2.up.railway.app
+2026-07-19T07:35:17.1493209Z   WDIO_CI_SPEC: 
+2026-07-19T07:35:17.1493354Z   JOB_START_TIME: 2026-07-19 13:05:12
+2026-07-19T07:35:17.1493663Z   JAVA_HOME: C:\actions-runner\_work\_tool\Java_Temurin-Hotspot_jdk\21.0.11-10.0.LTS\x64
+2026-07-19T07:35:17.1494105Z   JAVA_HOME_21_X64: C:\actions-runner\_work\_tool\Java_Temurin-Hotspot_jdk\21.0.11-10.0.LTS\x64
+2026-07-19T07:35:17.1494436Z ##[endgroup]
+2026-07-19T07:35:17.5737571Z [OK] Android SDK paths added to PATH and ANDROID_HOME exported
+2026-07-19T07:35:17.5749696Z   platform-tools: C:\Users\konda\AppData\Local\Android\Sdk\platform-tools
+2026-07-19T07:35:17.5754898Z   emulator:       C:\Users\konda\AppData\Local\Android\Sdk\emulator
+2026-07-19T07:35:17.6510684Z ##[group]Run $lockHash = (Get-FileHash "package-lock.json" -Algorithm SHA256).Hash
+2026-07-19T07:35:17.6511440Z [36;1m$lockHash = (Get-FileHash "package-lock.json" -Algorithm SHA256).Hash[0m
+2026-07-19T07:35:17.6511819Z [36;1m$cacheFile = "$env:TEMP\tripsync_npm_cache_hash.txt"[0m
+2026-07-19T07:35:17.6512064Z [36;1m[0m
+2026-07-19T07:35:17.6512195Z [36;1m$prevHash = ""[0m
+2026-07-19T07:35:17.6512373Z [36;1mif (Test-Path $cacheFile) {[0m
+2026-07-19T07:35:17.6512602Z [36;1m  $prevHash = Get-Content $cacheFile -Raw[0m
+2026-07-19T07:35:17.6512817Z [36;1m}[0m
+2026-07-19T07:35:17.6512945Z [36;1m[0m
+2026-07-19T07:35:17.6513172Z [36;1m# Also verify node_modules/expo exists (workspace may be stale)[0m
+2026-07-19T07:35:17.6513604Z [36;1m$nmReady = (Test-Path "node_modules\expo") -and (Test-Path "node_modules\.bin\expo")[0m
+2026-07-19T07:35:17.6513937Z [36;1m[0m
+2026-07-19T07:35:17.6514138Z [36;1mif ($lockHash -eq $prevHash.Trim() -and $nmReady) {[0m
+2026-07-19T07:35:17.6515053Z [36;1m  Write-Host "[SKIP] package-lock.json unchanged and node_modules ready. Skipping npm install."[0m
+2026-07-19T07:35:17.6515757Z [36;1m  echo "skipped=true" >> $env:GITHUB_OUTPUT[0m
+2026-07-19T07:35:17.6516112Z [36;1m} else {[0m
+2026-07-19T07:35:17.6516357Z [36;1m  if (-not $nmReady) {[0m
+2026-07-19T07:35:17.6516972Z [36;1m    Write-Host "[RUN] node_modules not ready (expo missing). Running npm install..."[0m
+2026-07-19T07:35:17.6517663Z [36;1m  } else {[0m
+2026-07-19T07:35:17.6517967Z [36;1m    Write-Host "[RUN] Dependencies changed. Running npm install..."[0m
+2026-07-19T07:35:17.6518252Z [36;1m  }[0m
+2026-07-19T07:35:17.6518389Z [36;1m  npm install[0m
+2026-07-19T07:35:17.6518648Z [36;1m  $lockHash | Out-File -FilePath $cacheFile -Encoding utf8 -NoNewline[0m
+2026-07-19T07:35:17.6518970Z [36;1m  echo "skipped=false" >> $env:GITHUB_OUTPUT[0m
+2026-07-19T07:35:17.6519193Z [36;1m}[0m
+2026-07-19T07:35:17.6560920Z shell: C:\WINDOWS\System32\WindowsPowerShell\v1.0\powershell.EXE -command ". '{0}'"
+2026-07-19T07:35:17.6561270Z env:
+2026-07-19T07:35:17.6561419Z   TEST_EMAIL: jessuff8@gmail.com
+2026-07-19T07:35:17.6561606Z   TEST_PASSWORD: Ravi@6444
+2026-07-19T07:35:17.6561770Z   TEST_USER_NAME: Konda
+2026-07-19T07:35:17.6562051Z   EXPO_PUBLIC_API_URL: https://tripsyncbackend-production-37a2.up.railway.app
+2026-07-19T07:35:17.6562380Z   WDIO_CI_SPEC: 
+2026-07-19T07:35:17.6562532Z   JOB_START_TIME: 2026-07-19 13:05:12
+2026-07-19T07:35:17.6562895Z   JAVA_HOME: C:\actions-runner\_work\_tool\Java_Temurin-Hotspot_jdk\21.0.11-10.0.LTS\x64
+2026-07-19T07:35:17.6563342Z   JAVA_HOME_21_X64: C:\actions-runner\_work\_tool\Java_Temurin-Hotspot_jdk\21.0.11-10.0.LTS\x64
+2026-07-19T07:35:17.6563723Z   ANDROID_HOME: C:\Users\konda\AppData\Local\Android\Sdk
+2026-07-19T07:35:17.6564016Z   ANDROID_SDK_ROOT: C:\Users\konda\AppData\Local\Android\Sdk
+2026-07-19T07:35:17.6564254Z ##[endgroup]
+2026-07-19T07:35:18.1634619Z [RUN] node_modules not ready (expo missing). Running npm install...
+2026-07-19T07:35:30.0209909Z npm warn deprecated inflight@1.0.6: This module is not supported, and leaks memory. Do not use it. Check out lru-cache if you want a good and tested way to coalesce async requests by a key value, which is much more comprehensive and powerful.
+2026-07-19T07:35:30.0795192Z npm warn deprecated inflight@1.0.6: This module is not supported, and leaks memory. Do not use it. Check out lru-cache if you want a good and tested way to coalesce async requests by a key value, which is much more comprehensive and powerful.
+2026-07-19T07:35:30.1140072Z npm warn deprecated lodash.get@4.4.2: This package is deprecated. Use the optional chaining (?.) operator instead.
+2026-07-19T07:35:30.2054640Z npm warn deprecated lodash.get@4.4.2: This package is deprecated. Use the optional chaining (?.) operator instead.
+2026-07-19T07:35:30.4520571Z npm warn deprecated lodash.isequal@4.5.0: This package is deprecated. Use require('node:util').isDeepStrictEqual instead.
+2026-07-19T07:35:30.6891964Z npm warn deprecated rimraf@2.4.5: Rimraf versions prior to v4 are no longer supported
+2026-07-19T07:35:30.7082216Z npm warn deprecated rimraf@2.4.5: Rimraf versions prior to v4 are no longer supported
+2026-07-19T07:35:30.7992655Z npm warn deprecated rimraf@2.7.1: Rimraf versions prior to v4 are no longer supported
+2026-07-19T07:35:31.2679823Z npm warn deprecated whatwg-encoding@3.1.1: Use @exodus/bytes instead for a more spec-conformant and faster implementation
+2026-07-19T07:35:31.2730827Z npm warn deprecated rimraf@3.0.2: Rimraf versions prior to v4 are no longer supported
+2026-07-19T07:35:31.5970636Z npm warn deprecated glob@7.2.3: Old versions of glob are not supported, and contain widely publicized security vulnerabilities, which have been fixed in the current version. Please update. Support for old versions may be purchased (at exorbitant rates) by contacting i@izs.me
+2026-07-19T07:35:31.6006384Z npm warn deprecated glob@7.2.3: Old versions of glob are not supported, and contain widely publicized security vulnerabilities, which have been fixed in the current version. Please update. Support for old versions may be purchased (at exorbitant rates) by contacting i@izs.me
+2026-07-19T07:35:31.6012453Z npm warn deprecated glob@7.2.3: Old versions of glob are not supported, and contain widely publicized security vulnerabilities, which have been fixed in the current version. Please update. Support for old versions may be purchased (at exorbitant rates) by contacting i@izs.me
+2026-07-19T07:35:31.6021736Z npm warn deprecated glob@7.2.3: Old versions of glob are not supported, and contain widely publicized security vulnerabilities, which have been fixed in the current version. Please update. Support for old versions may be purchased (at exorbitant rates) by contacting i@izs.me
+2026-07-19T07:35:31.6030034Z npm warn deprecated glob@6.0.4: Old versions of glob are not supported, and contain widely publicized security vulnerabilities, which have been fixed in the current version. Please update. Support for old versions may be purchased (at exorbitant rates) by contacting i@izs.me
+2026-07-19T07:35:31.6036392Z npm warn deprecated glob@8.1.0: Old versions of glob are not supported, and contain widely publicized security vulnerabilities, which have been fixed in the current version. Please update. Support for old versions may be purchased (at exorbitant rates) by contacting i@izs.me
+2026-07-19T07:35:31.6053147Z npm warn deprecated glob@7.2.3: Old versions of glob are not supported, and contain widely publicized security vulnerabilities, which have been fixed in the current version. Please update. Support for old versions may be purchased (at exorbitant rates) by contacting i@izs.me
+2026-07-19T07:35:31.6104276Z npm warn deprecated glob@7.2.3: Old versions of glob are not supported, and contain widely publicized security vulnerabilities, which have been fixed in the current version. Please update. Support for old versions may be purchased (at exorbitant rates) by contacting i@izs.me
+2026-07-19T07:35:31.6175972Z npm warn deprecated glob@6.0.4: Glob versions prior to v9 are no longer supported
+2026-07-19T07:35:31.6310263Z npm warn deprecated glob@7.2.3: Old versions of glob are not supported, and contain widely publicized security vulnerabilities, which have been fixed in the current version. Please update. Support for old versions may be purchased (at exorbitant rates) by contacting i@izs.me
+2026-07-19T07:35:35.9595477Z npm warn deprecated fstream@1.0.12: This package is no longer supported.
+2026-07-19T07:35:39.0697972Z npm warn deprecated uuid@7.0.3: uuid@10 and below is no longer supported.  For ESM codebases, update to uuid@latest.  For CommonJS codebases, use uuid@11 (but be aware this version will likely be deprecated in 2028).
+2026-07-19T07:35:40.4617497Z npm warn deprecated uuid@8.3.2: uuid@10 and below is no longer supported.  For ESM codebases, update to uuid@latest.  For CommonJS codebases, use uuid@11 (but be aware this version will likely be deprecated in 2028).
+2026-07-19T07:35:40.6385387Z npm warn deprecated glob@10.4.5: Old versions of glob are not supported, and contain widely publicized security vulnerabilities, which have been fixed in the current version. Please update. Support for old versions may be purchased (at exorbitant rates) by contacting i@izs.me
+2026-07-19T07:35:40.6642721Z npm warn deprecated glob@10.5.0: Old versions of glob are not supported, and contain widely publicized security vulnerabilities, which have been fixed in the current version. Please update. Support for old versions may be purchased (at exorbitant rates) by contacting i@izs.me
+2026-07-19T07:35:40.6711664Z npm warn deprecated glob@10.5.0: Old versions of glob are not supported, and contain widely publicized security vulnerabilities, which have been fixed in the current version. Please update. Support for old versions may be purchased (at exorbitant rates) by contacting i@izs.me
+2026-07-19T07:36:25.8819028Z 
+2026-07-19T07:36:25.8819813Z added 2132 packages, and audited 2133 packages in 1m
+2026-07-19T07:36:25.8820151Z 
+2026-07-19T07:36:25.8820306Z 286 packages are looking for funding
+2026-07-19T07:36:25.8821845Z   run `npm fund` for details
+2026-07-19T07:36:26.1668446Z 
+2026-07-19T07:36:26.1669056Z 52 vulnerabilities (2 low, 35 moderate, 12 high, 3 critical)
+2026-07-19T07:36:26.1669358Z 
+2026-07-19T07:36:26.1669574Z To address issues that do not require attention, run:
+2026-07-19T07:36:26.1669910Z   npm audit fix
+2026-07-19T07:36:26.1670032Z 
+2026-07-19T07:36:26.1670241Z To address all issues (including breaking changes), run:
+2026-07-19T07:36:26.1670580Z   npm audit fix --force
+2026-07-19T07:36:26.1670725Z 
+2026-07-19T07:36:26.1670837Z Run `npm audit` for details.
+2026-07-19T07:36:26.4451277Z ##[group]Run $cacheDir = "C:\Users\konda\OneDrive\Desktop\TripSync\TripSyncCache"
+2026-07-19T07:36:26.4452217Z [36;1m$cacheDir = "C:\Users\konda\OneDrive\Desktop\TripSync\TripSyncCache"[0m
+2026-07-19T07:36:26.4452859Z [36;1m$cachedApk = Join-Path $cacheDir "app-debug.apk"[0m
+2026-07-19T07:36:26.4453417Z [36;1m$cachedInfo = Join-Path $cacheDir "apk-info.json"[0m
+2026-07-19T07:36:26.4454009Z [36;1m$destApk = "android\app\build\outputs\apk\debug\app-debug.apk"[0m
+2026-07-19T07:36:26.4454545Z [36;1m$forceRebuild = "" -eq "true"[0m
+2026-07-19T07:36:26.4454887Z [36;1m[0m
+2026-07-19T07:36:26.4455130Z [36;1mif ($forceRebuild) {[0m
+2026-07-19T07:36:26.4455611Z [36;1m  Write-Host "[FORCE] force_rebuild=true -- skipping cache check."[0m
+2026-07-19T07:36:26.4456203Z [36;1m  echo "apk-valid=false" >> $env:GITHUB_OUTPUT[0m
+2026-07-19T07:36:26.4456790Z [36;1m  Add-Content -Path $env:GITHUB_ENV -Value "APK_STATUS=Newly Built"[0m
+2026-07-19T07:36:26.4457341Z [36;1m  exit 0[0m
+2026-07-19T07:36:26.4457589Z [36;1m}[0m
+2026-07-19T07:36:26.4457809Z [36;1m[0m
+2026-07-19T07:36:26.4458256Z [36;1mif (-not (Test-Path $cachedApk) -or -not (Test-Path $cachedInfo)) {[0m
+2026-07-19T07:36:26.4458872Z [36;1m  Write-Host "[MISS] Persistent APK Cache not found."[0m
+2026-07-19T07:36:26.4459401Z [36;1m  echo "apk-valid=false" >> $env:GITHUB_OUTPUT[0m
+2026-07-19T07:36:26.4459931Z [36;1m  Add-Content -Path $env:GITHUB_ENV -Value "APK_STATUS=Newly Built"[0m
+2026-07-19T07:36:26.4460386Z [36;1m  exit 0[0m
+2026-07-19T07:36:26.4460629Z [36;1m}[0m
+2026-07-19T07:36:26.4460858Z [36;1m[0m
+2026-07-19T07:36:26.4461210Z [36;1m# Load apk-info.json[0m
+2026-07-19T07:36:26.4461516Z [36;1mtry {[0m
+2026-07-19T07:36:26.4461886Z [36;1m  $info = Get-Content $cachedInfo -Raw | ConvertFrom-Json[0m
+2026-07-19T07:36:26.4462350Z [36;1m} catch {[0m
+2026-07-19T07:36:26.4462770Z [36;1m  Write-Host "[WARN] Failed to parse apk-info.json. Rebuilding."[0m
+2026-07-19T07:36:26.4463362Z [36;1m  echo "apk-valid=false" >> $env:GITHUB_OUTPUT[0m
+2026-07-19T07:36:26.4463952Z [36;1m  Add-Content -Path $env:GITHUB_ENV -Value "APK_STATUS=Newly Built"[0m
+2026-07-19T07:36:26.4464473Z [36;1m  exit 0[0m
+2026-07-19T07:36:26.4464715Z [36;1m}[0m
+2026-07-19T07:36:26.4465407Z [36;1m[0m
+2026-07-19T07:36:26.4465700Z [36;1m# Verify cached APK integrity using SHA256[0m
+2026-07-19T07:36:26.4466279Z [36;1m$cachedApkHash = (Get-FileHash $cachedApk -Algorithm SHA256).Hash[0m
+2026-07-19T07:36:26.4466860Z [36;1mif ($cachedApkHash -ne $info.sha256) {[0m
+2026-07-19T07:36:26.4467450Z [36;1m  Write-Host "[WARN] Cached APK SHA256 mismatch or corrupted. Rebuilding."[0m
+2026-07-19T07:36:26.4468086Z [36;1m  echo "apk-valid=false" >> $env:GITHUB_OUTPUT[0m
+2026-07-19T07:36:26.4468671Z [36;1m  Add-Content -Path $env:GITHUB_ENV -Value "APK_STATUS=Newly Built"[0m
+2026-07-19T07:36:26.4469193Z [36;1m  exit 0[0m
+2026-07-19T07:36:26.4469440Z [36;1m}[0m
+2026-07-19T07:36:26.4469669Z [36;1m[0m
+2026-07-19T07:36:26.4469926Z [36;1m# Calculate current source hash[0m
+2026-07-19T07:36:26.4470300Z [36;1m$sourceFiles = @([0m
+2026-07-19T07:36:26.4470617Z [36;1m  "package.json",[0m
+2026-07-19T07:36:26.4470932Z [36;1m  "package-lock.json",[0m
+2026-07-19T07:36:26.4471265Z [36;1m  "app.json"[0m
+2026-07-19T07:36:26.4471525Z [36;1m)[0m
+2026-07-19T07:36:26.4471749Z [36;1m[0m
+2026-07-19T07:36:26.4471982Z [36;1m$combined = ""[0m
+2026-07-19T07:36:26.4472287Z [36;1mforeach ($f in $sourceFiles) {[0m
+2026-07-19T07:36:26.4472649Z [36;1m  if (Test-Path $f) {[0m
+2026-07-19T07:36:26.4473069Z [36;1m    $combined += (Get-FileHash $f -Algorithm SHA256).Hash[0m
+2026-07-19T07:36:26.4473521Z [36;1m  }[0m
+2026-07-19T07:36:26.4473745Z [36;1m}[0m
+2026-07-19T07:36:26.4474004Z [36;1m# Hash all app/ JS/TS source files[0m
+2026-07-19T07:36:26.4474389Z [36;1mif (Test-Path "app") {[0m
+2026-07-19T07:36:26.4477548Z [36;1m  Get-ChildItem "app" -Recurse -File -Include "*.js","*.ts","*.tsx","*.jsx","*.json" `[0m
+2026-07-19T07:36:26.4478457Z [36;1m    -ErrorAction SilentlyContinue | Sort-Object FullName | ForEach-Object {[0m
+2026-07-19T07:36:26.4479203Z [36;1m      $combined += (Get-FileHash $_.FullName -Algorithm SHA256).Hash[0m
+2026-07-19T07:36:26.4479699Z [36;1m    }[0m
+2026-07-19T07:36:26.4479956Z [36;1m}[0m
+2026-07-19T07:36:26.4480183Z [36;1m[0m
+2026-07-19T07:36:26.4480540Z [36;1m$bytes = [System.Text.Encoding]::UTF8.GetBytes($combined)[0m
+2026-07-19T07:36:26.4481308Z [36;1m$sha = [System.Security.Cryptography.SHA256CryptoServiceProvider]::new()[0m
+2026-07-19T07:36:26.4482117Z [36;1m$curHash = [BitConverter]::ToString($sha.ComputeHash($bytes)).Replace("-","")[0m
+2026-07-19T07:36:26.4482691Z [36;1m[0m
+2026-07-19T07:36:26.4483017Z [36;1mif ($curHash -eq $info.sourceHash) {[0m
+2026-07-19T07:36:26.4483541Z [36;1m  Write-Host "==========================================="[0m
+2026-07-19T07:36:26.4484064Z [36;1m  Write-Host "✅ Persistent APK Cache Found"[0m
+2026-07-19T07:36:26.4484547Z [36;1m  Write-Host "✅ APK Validation Successful"[0m
+2026-07-19T07:36:26.4484986Z [36;1m  Write-Host "⏭ Build APK Skipped"[0m
+2026-07-19T07:36:26.4485578Z [36;1m  Write-Host "Estimated Time Saved: ~15 minutes (Gradle + JS bundle skipped)"[0m
+2026-07-19T07:36:26.4486229Z [36;1m  Write-Host "Continuing with next stage."[0m
+2026-07-19T07:36:26.4486718Z [36;1m  Write-Host "==========================================="[0m
+2026-07-19T07:36:26.4487149Z [36;1m  [0m
+2026-07-19T07:36:26.4487397Z [36;1m  # Restore APK[0m
+2026-07-19T07:36:26.4487746Z [36;1m  $destDir = Split-Path $destApk -Parent[0m
+2026-07-19T07:36:26.4488466Z [36;1m  if (-not (Test-Path $destDir)) { New-Item -ItemType Directory -Path $destDir -Force | Out-Null }[0m
+2026-07-19T07:36:26.4489193Z [36;1m  Copy-Item $cachedApk $destApk -Force[0m
+2026-07-19T07:36:26.4489699Z [36;1m  Write-Host "[OK] Restored APK from cache to: $destApk"[0m
+2026-07-19T07:36:26.4490240Z [36;1m  echo "apk-valid=true" >> $env:GITHUB_OUTPUT[0m
+2026-07-19T07:36:26.4490878Z [36;1m  Add-Content -Path $env:GITHUB_ENV -Value "APK_STATUS=Reused (Cached)"[0m
+2026-07-19T07:36:26.4491432Z [36;1m} else {[0m
+2026-07-19T07:36:26.4491909Z [36;1m  Write-Host "[CHANGE] Source has changed since last build. Rebuild required."[0m
+2026-07-19T07:36:26.4492972Z [36;1m  Write-Host "  Current hash : $($curHash.Substring(0,16))..."[0m
+2026-07-19T07:36:26.4493634Z [36;1m  Write-Host "  Cached hash  : $($info.sourceHash.Substring(0,16))..."[0m
+2026-07-19T07:36:26.4494236Z [36;1m  echo "apk-valid=false" >> $env:GITHUB_OUTPUT[0m
+2026-07-19T07:36:26.4494831Z [36;1m  Add-Content -Path $env:GITHUB_ENV -Value "APK_STATUS=Newly Built"[0m
+2026-07-19T07:36:26.4495353Z [36;1m}[0m
+2026-07-19T07:36:26.4561140Z shell: C:\WINDOWS\System32\WindowsPowerShell\v1.0\powershell.EXE -command ". '{0}'"
+2026-07-19T07:36:26.4561524Z env:
+2026-07-19T07:36:26.4561700Z   TEST_EMAIL: jessuff8@gmail.com
+2026-07-19T07:36:26.4561929Z   TEST_PASSWORD: Ravi@6444
+2026-07-19T07:36:26.4562125Z   TEST_USER_NAME: Konda
+2026-07-19T07:36:26.4562445Z   EXPO_PUBLIC_API_URL: https://tripsyncbackend-production-37a2.up.railway.app
+2026-07-19T07:36:26.4562793Z   WDIO_CI_SPEC: 
+2026-07-19T07:36:26.4562960Z   JOB_START_TIME: 2026-07-19 13:05:12
+2026-07-19T07:36:26.4563308Z   JAVA_HOME: C:\actions-runner\_work\_tool\Java_Temurin-Hotspot_jdk\21.0.11-10.0.LTS\x64
+2026-07-19T07:36:26.4563798Z   JAVA_HOME_21_X64: C:\actions-runner\_work\_tool\Java_Temurin-Hotspot_jdk\21.0.11-10.0.LTS\x64
+2026-07-19T07:36:26.4564215Z   ANDROID_HOME: C:\Users\konda\AppData\Local\Android\Sdk
+2026-07-19T07:36:26.4564534Z   ANDROID_SDK_ROOT: C:\Users\konda\AppData\Local\Android\Sdk
+2026-07-19T07:36:26.4564802Z ##[endgroup]
+2026-07-19T07:36:27.7907041Z ===========================================
+2026-07-19T07:36:27.7915164Z âœ… Persistent APK Cache Found
+2026-07-19T07:36:27.7920933Z âœ… APK Validation Successful
+2026-07-19T07:36:27.7925933Z â­ Build APK Skipped
+2026-07-19T07:36:27.7931925Z Estimated Time Saved: ~15 minutes (Gradle + JS bundle skipped)
+2026-07-19T07:36:27.7935953Z Continuing with next stage.
+2026-07-19T07:36:27.7941198Z ===========================================
+2026-07-19T07:36:27.8786790Z [OK] Restored APK from cache to: android\app\build\outputs\apk\debug\app-debug.apk
+2026-07-19T07:36:27.9914823Z ##[group]Run $apkPath = "android\app\build\outputs\apk\debug\app-debug.apk"
+2026-07-19T07:36:27.9915725Z [36;1m$apkPath = "android\app\build\outputs\apk\debug\app-debug.apk"[0m
+2026-07-19T07:36:27.9916356Z [36;1mif (Test-Path $apkPath) {[0m
+2026-07-19T07:36:27.9916750Z [36;1m  $apk = Get-Item $apkPath[0m
+2026-07-19T07:36:27.9917176Z [36;1m  $sizeMB = [math]::Round($apk.Length / 1MB, 1)[0m
+2026-07-19T07:36:27.9917752Z [36;1m  Write-Host "[OK] APK verified: $apkPath ($sizeMB MB)"[0m
+2026-07-19T07:36:27.9918249Z [36;1m} else {[0m
+2026-07-19T07:36:27.9918637Z [36;1m  Write-Error "[FAIL] APK not found at $apkPath"[0m
+2026-07-19T07:36:27.9919098Z [36;1m  exit 1[0m
+2026-07-19T07:36:27.9919352Z [36;1m}[0m
+2026-07-19T07:36:27.9985423Z shell: C:\WINDOWS\System32\WindowsPowerShell\v1.0\powershell.EXE -command ". '{0}'"
+2026-07-19T07:36:27.9985832Z env:
+2026-07-19T07:36:27.9986035Z   TEST_EMAIL: jessuff8@gmail.com
+2026-07-19T07:36:27.9986363Z   TEST_PASSWORD: Ravi@6444
+2026-07-19T07:36:27.9986563Z   TEST_USER_NAME: Konda
+2026-07-19T07:36:27.9986881Z   EXPO_PUBLIC_API_URL: https://tripsyncbackend-production-37a2.up.railway.app
+2026-07-19T07:36:27.9987275Z   WDIO_CI_SPEC: 
+2026-07-19T07:36:27.9987447Z   JOB_START_TIME: 2026-07-19 13:05:12
+2026-07-19T07:36:27.9987791Z   JAVA_HOME: C:\actions-runner\_work\_tool\Java_Temurin-Hotspot_jdk\21.0.11-10.0.LTS\x64
+2026-07-19T07:36:27.9988361Z   JAVA_HOME_21_X64: C:\actions-runner\_work\_tool\Java_Temurin-Hotspot_jdk\21.0.11-10.0.LTS\x64
+2026-07-19T07:36:27.9988825Z   ANDROID_HOME: C:\Users\konda\AppData\Local\Android\Sdk
+2026-07-19T07:36:27.9989182Z   ANDROID_SDK_ROOT: C:\Users\konda\AppData\Local\Android\Sdk
+2026-07-19T07:36:27.9989673Z   APK_STATUS: Reused (Cached)
+2026-07-19T07:36:27.9990008Z ##[endgroup]
+2026-07-19T07:36:28.4671081Z [OK] APK verified: android\app\build\outputs\apk\debug\app-debug.apk (175.4 MB)
+2026-07-19T07:36:28.5438385Z ##[group]Run $devices = adb devices 2>&1
+2026-07-19T07:36:28.5440428Z [36;1m$devices = adb devices 2>&1[0m
+2026-07-19T07:36:28.5440698Z [36;1mWrite-Host "ADB Devices output:`n$devices"[0m
+2026-07-19T07:36:28.5441192Z [36;1m$match = [System.Text.RegularExpressions.Regex]::Match($devices, "(emulator-\d+|127\.0\.0\.1:\d+)")[0m
+2026-07-19T07:36:28.5441620Z [36;1m[0m
+2026-07-19T07:36:28.5441776Z [36;1mif ($match.Success) {[0m
+2026-07-19T07:36:28.5442011Z [36;1m  $emulatorId = $match.Value[0m
+2026-07-19T07:36:28.5442376Z [36;1m  Write-Host "[REUSE] Emulator already running: $emulatorId"[0m
+2026-07-19T07:36:28.5442748Z [36;1m  echo "running=true" >> $env:GITHUB_OUTPUT[0m
+2026-07-19T07:36:28.5443143Z [36;1m  echo "device-id=$emulatorId" >> $env:GITHUB_OUTPUT[0m
+2026-07-19T07:36:28.5443642Z [36;1m  Add-Content -Path $env:GITHUB_ENV -Value "DEVICE_NAME=$emulatorId"[0m
+2026-07-19T07:36:28.5444177Z [36;1m  Add-Content -Path $env:GITHUB_ENV -Value "EMULATOR_STATUS=Reused (Already Running)"[0m
+2026-07-19T07:36:28.5444543Z [36;1m} else {[0m
+2026-07-19T07:36:28.5444769Z [36;1m  Write-Host "[NONE] No emulator found."[0m
+2026-07-19T07:36:28.5445122Z [36;1m  echo "running=false" >> $env:GITHUB_OUTPUT[0m
+2026-07-19T07:36:28.5445506Z [36;1m  Add-Content -Path $env:GITHUB_ENV -Value "EMULATOR_STATUS=Offline / Missing"[0m
+2026-07-19T07:36:28.5445879Z [36;1m}[0m
+2026-07-19T07:36:28.5494587Z shell: C:\WINDOWS\System32\WindowsPowerShell\v1.0\powershell.EXE -command ". '{0}'"
+2026-07-19T07:36:28.5495099Z env:
+2026-07-19T07:36:28.5495298Z   TEST_EMAIL: jessuff8@gmail.com
+2026-07-19T07:36:28.5495546Z   TEST_PASSWORD: Ravi@6444
+2026-07-19T07:36:28.5495767Z   TEST_USER_NAME: Konda
+2026-07-19T07:36:28.5496095Z   EXPO_PUBLIC_API_URL: https://tripsyncbackend-production-37a2.up.railway.app
+2026-07-19T07:36:28.5496449Z   WDIO_CI_SPEC: 
+2026-07-19T07:36:28.5496621Z   JOB_START_TIME: 2026-07-19 13:05:12
+2026-07-19T07:36:28.5497015Z   JAVA_HOME: C:\actions-runner\_work\_tool\Java_Temurin-Hotspot_jdk\21.0.11-10.0.LTS\x64
+2026-07-19T07:36:28.5497706Z   JAVA_HOME_21_X64: C:\actions-runner\_work\_tool\Java_Temurin-Hotspot_jdk\21.0.11-10.0.LTS\x64
+2026-07-19T07:36:28.5498171Z   ANDROID_HOME: C:\Users\konda\AppData\Local\Android\Sdk
+2026-07-19T07:36:28.5498497Z   ANDROID_SDK_ROOT: C:\Users\konda\AppData\Local\Android\Sdk
+2026-07-19T07:36:28.5498904Z   APK_STATUS: Reused (Cached)
+2026-07-19T07:36:28.5499133Z ##[endgroup]
+2026-07-19T07:36:31.0645467Z adb : * daemon not running; starting now at tcp:5037
+2026-07-19T07:36:31.0646341Z At C:\actions-runner\_work\_temp\5be71211-dd98-4957-ad56-714bd495463d.ps1:2 char:12
+2026-07-19T07:36:31.0646953Z + $devices = adb devices 2>&1
+2026-07-19T07:36:31.0647375Z +            ~~~~~~~~~~~~~~~~
+2026-07-19T07:36:31.0648152Z     + CategoryInfo          : NotSpecified: (* daemon not ru...now at tcp:5037:String) [], RemoteException
+2026-07-19T07:36:31.0648946Z     + FullyQualifiedErrorId : NativeCommandError
+2026-07-19T07:36:31.0649326Z  
+2026-07-19T07:36:31.1117575Z ##[error]Process completed with exit code 1.
+2026-07-19T07:36:31.1336407Z ##[group]Run $resultsDir = "test-results"
+2026-07-19T07:36:31.1336792Z [36;1m$resultsDir = "test-results"[0m
+2026-07-19T07:36:31.1337233Z [36;1mif (-not (Test-Path $resultsDir)) { New-Item -ItemType Directory -Path $resultsDir | Out-Null }[0m
+2026-07-19T07:36:31.1337617Z [36;1m[0m
+2026-07-19T07:36:31.1337885Z [36;1m# Determine ADB target: use DEVICE_NAME if set, else target emulator with -e[0m
+2026-07-19T07:36:31.1338333Z [36;1m$adbTarget = if ($env:DEVICE_NAME) { @("-s", $env:DEVICE_NAME) } else { @("-e") }[0m
+2026-07-19T07:36:31.1338686Z [36;1mWrite-Host "ADB target args: $adbTarget"[0m
+2026-07-19T07:36:31.1338907Z [36;1m[0m
+2026-07-19T07:36:31.1339069Z [36;1mWrite-Host "Collecting ADB devices..."[0m
+2026-07-19T07:36:31.1339398Z [36;1madb devices 2>&1 | Out-File "$resultsDir\adb-devices.log" -Encoding utf8[0m
+2026-07-19T07:36:31.1339696Z [36;1m[0m
+2026-07-19T07:36:31.1339875Z [36;1mWrite-Host "Collecting dumpsys activity..."[0m
+2026-07-19T07:36:31.1340465Z [36;1mtry {[0m
+2026-07-19T07:36:31.1340689Z [36;1m  & adb @adbTarget shell dumpsys activity activities 2>&1 |[0m
+2026-07-19T07:36:31.1340973Z [36;1m    Select-Object -First 100 |[0m
+2026-07-19T07:36:31.1341247Z [36;1m    Out-File "$resultsDir\adb-activity.log" -Encoding utf8[0m
+2026-07-19T07:36:31.1341567Z [36;1m} catch { Write-Host "[WARN] dumpsys skipped: $_" }[0m
+2026-07-19T07:36:31.1341811Z [36;1m[0m
+2026-07-19T07:36:31.1341999Z [36;1mWrite-Host "Collecting logcat (last 1000 lines)..."[0m
+2026-07-19T07:36:31.1342254Z [36;1mtry {[0m
+2026-07-19T07:36:31.1342456Z [36;1m  & adb @adbTarget logcat -d -v threadtime *:W 2>&1 |[0m
+2026-07-19T07:36:31.1342721Z [36;1m    Select-Object -Last 1000 |[0m
+2026-07-19T07:36:31.1342984Z [36;1m    Out-File "$resultsDir\adb-logcat.log" -Encoding utf8[0m
+2026-07-19T07:36:31.1343293Z [36;1m} catch { Write-Host "[WARN] logcat skipped: $_" }[0m
+2026-07-19T07:36:31.1343600Z [36;1m[0m
+2026-07-19T07:36:31.1343900Z [36;1mWrite-Host "[OK] ADB diagnostics collected."[0m
+2026-07-19T07:36:31.1344223Z [36;1mexit 0[0m
+2026-07-19T07:36:31.1384055Z shell: C:\WINDOWS\System32\WindowsPowerShell\v1.0\powershell.EXE -command ". '{0}'"
+2026-07-19T07:36:31.1384397Z env:
+2026-07-19T07:36:31.1384547Z   TEST_EMAIL: jessuff8@gmail.com
+2026-07-19T07:36:31.1384740Z   TEST_PASSWORD: Ravi@6444
+2026-07-19T07:36:31.1384911Z   TEST_USER_NAME: Konda
+2026-07-19T07:36:31.1385196Z   EXPO_PUBLIC_API_URL: https://tripsyncbackend-production-37a2.up.railway.app
+2026-07-19T07:36:31.1385516Z   WDIO_CI_SPEC: 
+2026-07-19T07:36:31.1385672Z   JOB_START_TIME: 2026-07-19 13:05:12
+2026-07-19T07:36:31.1385980Z   JAVA_HOME: C:\actions-runner\_work\_tool\Java_Temurin-Hotspot_jdk\21.0.11-10.0.LTS\x64
+2026-07-19T07:36:31.1386430Z   JAVA_HOME_21_X64: C:\actions-runner\_work\_tool\Java_Temurin-Hotspot_jdk\21.0.11-10.0.LTS\x64
+2026-07-19T07:36:31.1386807Z   ANDROID_HOME: C:\Users\konda\AppData\Local\Android\Sdk
+2026-07-19T07:36:31.1387107Z   ANDROID_SDK_ROOT: C:\Users\konda\AppData\Local\Android\Sdk
+2026-07-19T07:36:31.1387362Z   APK_STATUS: Reused (Cached)
+2026-07-19T07:36:31.1387535Z ##[endgroup]
+2026-07-19T07:36:31.5194675Z ADB target args: -e
+2026-07-19T07:36:31.5200572Z Collecting ADB devices...
+2026-07-19T07:36:33.6623725Z adb : * daemon not running; starting now at tcp:5037
+2026-07-19T07:36:33.6625319Z At C:\actions-runner\_work\_temp\8aa9458e-3e96-4096-9109-41ab7e48a2a2.ps1:10 char:1
+2026-07-19T07:36:33.6625935Z + adb devices 2>&1 | Out-File "$resultsDir\adb-devices.log" -Encoding u ...
+2026-07-19T07:36:33.6626331Z + ~~~~~~~~~~~~~~~~
+2026-07-19T07:36:33.6626790Z     + CategoryInfo          : NotSpecified: (* daemon not ru...now at tcp:5037:String) [], RemoteException
+2026-07-19T07:36:33.6627254Z     + FullyQualifiedErrorId : NativeCommandError
+2026-07-19T07:36:33.6627484Z  
+2026-07-19T07:36:33.7099707Z ##[error]Process completed with exit code 1.
+2026-07-19T07:36:33.7314986Z ##[group]Run $excel = "test-results\TripSync_Android_TestReport.xlsx"
+2026-07-19T07:36:33.7315717Z [36;1m$excel = "test-results\TripSync_Android_TestReport.xlsx"[0m
+2026-07-19T07:36:33.7316261Z [36;1m$html = "test-results\html\execution-report.html"[0m
+2026-07-19T07:36:33.7316680Z [36;1m[0m
+2026-07-19T07:36:33.7316919Z [36;1mif (Test-Path $excel) {[0m
+2026-07-19T07:36:33.7317336Z [36;1m  $size = [math]::Round((Get-Item $excel).Length / 1KB, 1)[0m
+2026-07-19T07:36:33.7317858Z [36;1m  Write-Host "[OK] Excel report: $excel ($size KB)"[0m
+2026-07-19T07:36:33.7318279Z [36;1m} else {[0m
+2026-07-19T07:36:33.7318618Z [36;1m  Write-Host "[WARN] Excel report not found: $excel"[0m
+2026-07-19T07:36:33.7319026Z [36;1m}[0m
+2026-07-19T07:36:33.7319239Z [36;1m[0m
+2026-07-19T07:36:33.7319465Z [36;1mif (Test-Path $html) {[0m
+2026-07-19T07:36:33.7319857Z [36;1m  $size = [math]::Round((Get-Item $html).Length / 1KB, 1)[0m
+2026-07-19T07:36:33.7320372Z [36;1m  Write-Host "[OK] HTML report: $html ($size KB)"[0m
+2026-07-19T07:36:33.7320759Z [36;1m} else {[0m
+2026-07-19T07:36:33.7321504Z [36;1m  Write-Host "[WARN] HTML report not found: $html"[0m
+2026-07-19T07:36:33.7321886Z [36;1m}[0m
+2026-07-19T07:36:33.7322088Z [36;1m[0m
+2026-07-19T07:36:33.7322311Z [36;1m# Show screenshot count[0m
+2026-07-19T07:36:33.7322873Z [36;1m$screenshots = Get-ChildItem "test-results\screenshots" -ErrorAction SilentlyContinue[0m
+2026-07-19T07:36:33.7323610Z [36;1mWrite-Host "Screenshots captured: $($screenshots.Count)"[0m
+2026-07-19T07:36:33.7378759Z shell: C:\WINDOWS\System32\WindowsPowerShell\v1.0\powershell.EXE -command ". '{0}'"
+2026-07-19T07:36:33.7379352Z env:
+2026-07-19T07:36:33.7379596Z   TEST_EMAIL: jessuff8@gmail.com
+2026-07-19T07:36:33.7379905Z   TEST_PASSWORD: Ravi@6444
+2026-07-19T07:36:33.7380199Z   TEST_USER_NAME: Konda
+2026-07-19T07:36:33.7380670Z   EXPO_PUBLIC_API_URL: https://tripsyncbackend-production-37a2.up.railway.app
+2026-07-19T07:36:33.7381258Z   WDIO_CI_SPEC: 
+2026-07-19T07:36:33.7381522Z   JOB_START_TIME: 2026-07-19 13:05:12
+2026-07-19T07:36:33.7382076Z   JAVA_HOME: C:\actions-runner\_work\_tool\Java_Temurin-Hotspot_jdk\21.0.11-10.0.LTS\x64
+2026-07-19T07:36:33.7382877Z   JAVA_HOME_21_X64: C:\actions-runner\_work\_tool\Java_Temurin-Hotspot_jdk\21.0.11-10.0.LTS\x64
+2026-07-19T07:36:33.7383536Z   ANDROID_HOME: C:\Users\konda\AppData\Local\Android\Sdk
+2026-07-19T07:36:33.7384050Z   ANDROID_SDK_ROOT: C:\Users\konda\AppData\Local\Android\Sdk
+2026-07-19T07:36:33.7384486Z   APK_STATUS: Reused (Cached)
+2026-07-19T07:36:33.7384782Z ##[endgroup]
+2026-07-19T07:36:34.1149711Z [WARN] Excel report not found: test-results\TripSync_Android_TestReport.xlsx
+2026-07-19T07:36:34.1159133Z [WARN] HTML report not found: test-results\html\execution-report.html
+2026-07-19T07:36:34.1211308Z Screenshots captured: 0
+2026-07-19T07:36:34.1907732Z Node 20 is being deprecated. This workflow is running with Node 24 by default. If you need to temporarily use Node 20, you can set the ACTIONS_ALLOW_USE_UNSECURE_NODE_VERSION=true environment variable. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/
+2026-07-19T07:36:34.1909596Z ##[group]Run actions/upload-artifact@v4
+2026-07-19T07:36:34.1909934Z with:
+2026-07-19T07:36:34.1910192Z   name: TripSync-Android-E2E-Reports-71
+2026-07-19T07:36:34.1910538Z   retention-days: 30
+2026-07-19T07:36:34.1910801Z   if-no-files-found: warn
+2026-07-19T07:36:34.1912248Z   path: test-results/TripSync_Android_TestReport.xlsx
+test-results/html/execution-report.html
+test-results/appium.log
+test-results/appium-error.log
+test-results/adb-devices.log
+test-results/adb-logcat.log
+test-results/adb-activity.log
+.wdio-results.jsonl
+
+2026-07-19T07:36:34.1913749Z   compression-level: 6
+2026-07-19T07:36:34.1914014Z   overwrite: false
+2026-07-19T07:36:34.1914301Z   include-hidden-files: false
+2026-07-19T07:36:34.1914597Z env:
+2026-07-19T07:36:34.1914824Z   TEST_EMAIL: jessuff8@gmail.com
+2026-07-19T07:36:34.1915118Z   TEST_PASSWORD: Ravi@6444
+2026-07-19T07:36:34.1915385Z   TEST_USER_NAME: Konda
+2026-07-19T07:36:34.1915829Z   EXPO_PUBLIC_API_URL: https://tripsyncbackend-production-37a2.up.railway.app
+2026-07-19T07:36:34.1916364Z   WDIO_CI_SPEC: 
+2026-07-19T07:36:34.1916610Z   JOB_START_TIME: 2026-07-19 13:05:12
+2026-07-19T07:36:34.1917132Z   JAVA_HOME: C:\actions-runner\_work\_tool\Java_Temurin-Hotspot_jdk\21.0.11-10.0.LTS\x64
+2026-07-19T07:36:34.1918137Z   JAVA_HOME_21_X64: C:\actions-runner\_work\_tool\Java_Temurin-Hotspot_jdk\21.0.11-10.0.LTS\x64
+2026-07-19T07:36:34.1918850Z   ANDROID_HOME: C:\Users\konda\AppData\Local\Android\Sdk
+2026-07-19T07:36:34.1919366Z   ANDROID_SDK_ROOT: C:\Users\konda\AppData\Local\Android\Sdk
+2026-07-19T07:36:34.1919815Z   APK_STATUS: Reused (Cached)
+2026-07-19T07:36:34.1920121Z ##[endgroup]
+2026-07-19T07:36:34.9136526Z (node:37700) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-07-19T07:36:34.9137160Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-07-19T07:36:34.9196429Z Multiple search paths detected. Calculating the least common ancestor of all paths
+2026-07-19T07:36:34.9199633Z The least common ancestor is C:\actions-runner\_work\TripSyncApp\TripSyncApp. This will be the root directory of the artifact
+2026-07-19T07:36:34.9200362Z With the provided path, there will be 1 file uploaded
+2026-07-19T07:36:34.9203800Z Artifact name is valid!
+2026-07-19T07:36:34.9206036Z Root directory input is valid!
+2026-07-19T07:36:35.8950127Z Beginning upload of artifact content to blob storage
+2026-07-19T07:36:35.9133875Z (node:37700) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+2026-07-19T07:36:36.9006586Z Uploaded bytes 172
+2026-07-19T07:36:37.1542865Z Finished uploading artifact content to blob storage!
+2026-07-19T07:36:37.1543738Z SHA256 digest of uploaded artifact zip is 4d0aebf688b8b33fffb8e2675bfbc125b30653df4e25592925dac0254f311d03
+2026-07-19T07:36:37.1545032Z Finalizing artifact upload
+2026-07-19T07:36:37.5791864Z Artifact TripSync-Android-E2E-Reports-71.zip successfully finalized. Artifact ID 8439716296
+2026-07-19T07:36:37.5793580Z Artifact TripSync-Android-E2E-Reports-71 has been successfully uploaded! Final size is 172 bytes. Artifact ID is 8439716296
+2026-07-19T07:36:37.5819400Z Artifact download URL: https://github.com/abineshh502/TripSyncApp/actions/runs/29678319998/artifacts/8439716296
+2026-07-19T07:36:37.6254962Z Node 20 is being deprecated. This workflow is running with Node 24 by default. If you need to temporarily use Node 20, you can set the ACTIONS_ALLOW_USE_UNSECURE_NODE_VERSION=true environment variable. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/
+2026-07-19T07:36:37.6256886Z ##[group]Run actions/upload-artifact@v4
+2026-07-19T07:36:37.6257258Z with:
+2026-07-19T07:36:37.6257525Z   name: TripSync-Screenshots-71
+2026-07-19T07:36:37.6257852Z   retention-days: 30
+2026-07-19T07:36:37.6258075Z   if-no-files-found: warn
+2026-07-19T07:36:37.6258389Z   path: test-results/screenshots/
+
+2026-07-19T07:36:37.6258744Z   compression-level: 6
+2026-07-19T07:36:37.6259034Z   overwrite: false
+2026-07-19T07:36:37.6259312Z   include-hidden-files: false
+2026-07-19T07:36:37.6259631Z env:
+2026-07-19T07:36:37.6259876Z   TEST_EMAIL: jessuff8@gmail.com
+2026-07-19T07:36:37.6260217Z   TEST_PASSWORD: Ravi@6444
+2026-07-19T07:36:37.6260564Z   TEST_USER_NAME: Konda
+2026-07-19T07:36:37.6261061Z   EXPO_PUBLIC_API_URL: https://tripsyncbackend-production-37a2.up.railway.app
+2026-07-19T07:36:37.6261627Z   WDIO_CI_SPEC: 
+2026-07-19T07:36:37.6261886Z   JOB_START_TIME: 2026-07-19 13:05:12
+2026-07-19T07:36:37.6262438Z   JAVA_HOME: C:\actions-runner\_work\_tool\Java_Temurin-Hotspot_jdk\21.0.11-10.0.LTS\x64
+2026-07-19T07:36:37.6263296Z   JAVA_HOME_21_X64: C:\actions-runner\_work\_tool\Java_Temurin-Hotspot_jdk\21.0.11-10.0.LTS\x64
+2026-07-19T07:36:37.6264023Z   ANDROID_HOME: C:\Users\konda\AppData\Local\Android\Sdk
+2026-07-19T07:36:37.6264563Z   ANDROID_SDK_ROOT: C:\Users\konda\AppData\Local\Android\Sdk
+2026-07-19T07:36:37.6265028Z   APK_STATUS: Reused (Cached)
+2026-07-19T07:36:37.6265339Z ##[endgroup]
+2026-07-19T07:36:37.7948403Z (node:23580) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-07-19T07:36:37.7949078Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-07-19T07:36:37.7988459Z ##[warning]No files were found with the provided path: test-results/screenshots/. No artifacts will be uploaded.
+2026-07-19T07:36:37.8311896Z ##[group]Run node scripts/generate-summary.js
+2026-07-19T07:36:37.8312458Z [36;1mnode scripts/generate-summary.js[0m
+2026-07-19T07:36:37.8363592Z shell: C:\WINDOWS\System32\WindowsPowerShell\v1.0\powershell.EXE -command ". '{0}'"
+2026-07-19T07:36:37.8364157Z env:
+2026-07-19T07:36:37.8364398Z   TEST_EMAIL: jessuff8@gmail.com
+2026-07-19T07:36:37.8365025Z   TEST_PASSWORD: Ravi@6444
+2026-07-19T07:36:37.8365317Z   TEST_USER_NAME: Konda
+2026-07-19T07:36:37.8365782Z   EXPO_PUBLIC_API_URL: https://tripsyncbackend-production-37a2.up.railway.app
+2026-07-19T07:36:37.8366318Z   WDIO_CI_SPEC: 
+2026-07-19T07:36:37.8366570Z   JOB_START_TIME: 2026-07-19 13:05:12
+2026-07-19T07:36:37.8367088Z   JAVA_HOME: C:\actions-runner\_work\_tool\Java_Temurin-Hotspot_jdk\21.0.11-10.0.LTS\x64
+2026-07-19T07:36:37.8367851Z   JAVA_HOME_21_X64: C:\actions-runner\_work\_tool\Java_Temurin-Hotspot_jdk\21.0.11-10.0.LTS\x64
+2026-07-19T07:36:37.8368513Z   ANDROID_HOME: C:\Users\konda\AppData\Local\Android\Sdk
+2026-07-19T07:36:37.8368995Z   ANDROID_SDK_ROOT: C:\Users\konda\AppData\Local\Android\Sdk
+2026-07-19T07:36:37.8369417Z   APK_STATUS: Reused (Cached)
+2026-07-19T07:36:37.8369704Z ##[endgroup]
+2026-07-19T07:36:38.1499638Z === Generating GitHub Step Summary ===
+2026-07-19T07:36:38.1506498Z .wdio-results.jsonl not found. Standard summary defaults will be used.
+2026-07-19T07:36:38.1518430Z   Total Tests : 0
+2026-07-19T07:36:38.1518781Z   Passed      : 0
+2026-07-19T07:36:38.1519078Z   Failed      : 0
+2026-07-19T07:36:38.1519386Z   Pass Rate   : 0%
+2026-07-19T07:36:38.1519703Z   Time Elapsed: 1m 26s
+2026-07-19T07:36:38.1534622Z ✓ Successfully wrote GITHUB_STEP_SUMMARY
+2026-07-19T07:36:38.2815002Z Node 20 is being deprecated. This workflow is running with Node 24 by default. If you need to temporarily use Node 20, you can set the ACTIONS_ALLOW_USE_UNSECURE_NODE_VERSION=true environment variable. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/
+2026-07-19T07:36:38.2816949Z Post job cleanup.
+2026-07-19T07:36:38.8123685Z (node:30816) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-07-19T07:36:38.8124497Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-07-19T07:36:38.8514515Z Node 20 is being deprecated. This workflow is running with Node 24 by default. If you need to temporarily use Node 20, you can set the ACTIONS_ALLOW_USE_UNSECURE_NODE_VERSION=true environment variable. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/
+2026-07-19T07:36:38.8515751Z Post job cleanup.
+2026-07-19T07:36:38.9781559Z [command]"C:\Program Files\Git\cmd\git.exe" version
+2026-07-19T07:36:39.0270081Z git version 2.54.0.windows.1
+2026-07-19T07:36:39.0332642Z Copying 'C:\Users\konda\.gitconfig' to 'C:\actions-runner\_work\_temp\7b56a429-2dac-40ab-93a5-68a9417598f7\.gitconfig'
+2026-07-19T07:36:39.0358298Z Temporarily overriding HOME='C:\actions-runner\_work\_temp\7b56a429-2dac-40ab-93a5-68a9417598f7' before making global git config changes
+2026-07-19T07:36:39.0359749Z Adding repository directory to the temporary git global config as a safe directory
+2026-07-19T07:36:39.0365838Z [command]"C:\Program Files\Git\cmd\git.exe" config --global --add safe.directory C:\actions-runner\_work\TripSyncApp\TripSyncApp
+2026-07-19T07:36:39.0803863Z [command]"C:\Program Files\Git\cmd\git.exe" config --local --name-only --get-regexp core\.sshCommand
+2026-07-19T07:36:39.1213116Z [command]"C:\Program Files\Git\cmd\git.exe" submodule foreach --recursive "sh -c \"git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :\""
+2026-07-19T07:36:39.9896459Z [command]"C:\Program Files\Git\cmd\git.exe" config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-07-19T07:36:40.0261904Z http.https://github.com/.extraheader
+2026-07-19T07:36:40.0307833Z [command]"C:\Program Files\Git\cmd\git.exe" config --local --unset-all http.https://github.com/.extraheader
+2026-07-19T07:36:40.0745161Z [command]"C:\Program Files\Git\cmd\git.exe" submodule foreach --recursive "sh -c \"git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :\""
+2026-07-19T07:36:40.8127018Z [command]"C:\Program Files\Git\cmd\git.exe" config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-07-19T07:36:40.8544431Z [command]"C:\Program Files\Git\cmd\git.exe" submodule foreach --recursive "git config --local --show-origin --name-only --get-regexp remote.origin.url"
+2026-07-19T07:36:41.6144010Z Cleaning up orphan processes
+2026-07-19T07:36:41.6469786Z ##[warning]Node.js 20 is deprecated. The following actions target Node.js 20 but are being forced to run on Node.js 24: actions/checkout@v4, actions/setup-java@v4, actions/setup-node@v4, actions/upload-artifact@v4. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/

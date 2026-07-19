@@ -1,0 +1,47 @@
+﻿2026-07-19T07:36:34.1907711Z Node 20 is being deprecated. This workflow is running with Node 24 by default. If you need to temporarily use Node 20, you can set the ACTIONS_ALLOW_USE_UNSECURE_NODE_VERSION=true environment variable. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/
+2026-07-19T07:36:34.1909592Z ##[group]Run actions/upload-artifact@v4
+2026-07-19T07:36:34.1909931Z with:
+2026-07-19T07:36:34.1910189Z   name: TripSync-Android-E2E-Reports-71
+2026-07-19T07:36:34.1910535Z   retention-days: 30
+2026-07-19T07:36:34.1910799Z   if-no-files-found: warn
+2026-07-19T07:36:34.1912240Z   path: test-results/TripSync_Android_TestReport.xlsx
+test-results/html/execution-report.html
+test-results/appium.log
+test-results/appium-error.log
+test-results/adb-devices.log
+test-results/adb-logcat.log
+test-results/adb-activity.log
+.wdio-results.jsonl
+
+2026-07-19T07:36:34.1913745Z   compression-level: 6
+2026-07-19T07:36:34.1914012Z   overwrite: false
+2026-07-19T07:36:34.1914272Z   include-hidden-files: false
+2026-07-19T07:36:34.1914595Z env:
+2026-07-19T07:36:34.1914821Z   TEST_EMAIL: jessuff8@gmail.com
+2026-07-19T07:36:34.1915116Z   TEST_PASSWORD: Ravi@6444
+2026-07-19T07:36:34.1915383Z   TEST_USER_NAME: Konda
+2026-07-19T07:36:34.1915826Z   EXPO_PUBLIC_API_URL: https://tripsyncbackend-production-37a2.up.railway.app
+2026-07-19T07:36:34.1916362Z   WDIO_CI_SPEC: 
+2026-07-19T07:36:34.1916608Z   JOB_START_TIME: 2026-07-19 13:05:12
+2026-07-19T07:36:34.1917129Z   JAVA_HOME: C:\actions-runner\_work\_tool\Java_Temurin-Hotspot_jdk\21.0.11-10.0.LTS\x64
+2026-07-19T07:36:34.1918123Z   JAVA_HOME_21_X64: C:\actions-runner\_work\_tool\Java_Temurin-Hotspot_jdk\21.0.11-10.0.LTS\x64
+2026-07-19T07:36:34.1918845Z   ANDROID_HOME: C:\Users\konda\AppData\Local\Android\Sdk
+2026-07-19T07:36:34.1919363Z   ANDROID_SDK_ROOT: C:\Users\konda\AppData\Local\Android\Sdk
+2026-07-19T07:36:34.1919810Z   APK_STATUS: Reused (Cached)
+2026-07-19T07:36:34.1920117Z ##[endgroup]
+2026-07-19T07:36:34.9136470Z (node:37700) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-07-19T07:36:34.9137158Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-07-19T07:36:34.9196400Z Multiple search paths detected. Calculating the least common ancestor of all paths
+2026-07-19T07:36:34.9199625Z The least common ancestor is C:\actions-runner\_work\TripSyncApp\TripSyncApp. This will be the root directory of the artifact
+2026-07-19T07:36:34.9200359Z With the provided path, there will be 1 file uploaded
+2026-07-19T07:36:34.9203795Z Artifact name is valid!
+2026-07-19T07:36:34.9206031Z Root directory input is valid!
+2026-07-19T07:36:35.8950099Z Beginning upload of artifact content to blob storage
+2026-07-19T07:36:35.9133800Z (node:37700) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+2026-07-19T07:36:36.9006547Z Uploaded bytes 172
+2026-07-19T07:36:37.1542819Z Finished uploading artifact content to blob storage!
+2026-07-19T07:36:37.1543734Z SHA256 digest of uploaded artifact zip is 4d0aebf688b8b33fffb8e2675bfbc125b30653df4e25592925dac0254f311d03
+2026-07-19T07:36:37.1545020Z Finalizing artifact upload
+2026-07-19T07:36:37.5791825Z Artifact TripSync-Android-E2E-Reports-71.zip successfully finalized. Artifact ID 8439716296
+2026-07-19T07:36:37.5793570Z Artifact TripSync-Android-E2E-Reports-71 has been successfully uploaded! Final size is 172 bytes. Artifact ID is 8439716296
+2026-07-19T07:36:37.5819367Z Artifact download URL: https://github.com/abineshh502/TripSyncApp/actions/runs/29678319998/artifacts/8439716296

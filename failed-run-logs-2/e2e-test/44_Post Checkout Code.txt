@@ -1,0 +1,16 @@
+﻿2026-07-19T07:36:38.8514490Z Node 20 is being deprecated. This workflow is running with Node 24 by default. If you need to temporarily use Node 20, you can set the ACTIONS_ALLOW_USE_UNSECURE_NODE_VERSION=true environment variable. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/
+2026-07-19T07:36:38.8515747Z Post job cleanup.
+2026-07-19T07:36:38.9781528Z [command]"C:\Program Files\Git\cmd\git.exe" version
+2026-07-19T07:36:39.0270042Z git version 2.54.0.windows.1
+2026-07-19T07:36:39.0332611Z Copying 'C:\Users\konda\.gitconfig' to 'C:\actions-runner\_work\_temp\7b56a429-2dac-40ab-93a5-68a9417598f7\.gitconfig'
+2026-07-19T07:36:39.0358278Z Temporarily overriding HOME='C:\actions-runner\_work\_temp\7b56a429-2dac-40ab-93a5-68a9417598f7' before making global git config changes
+2026-07-19T07:36:39.0359744Z Adding repository directory to the temporary git global config as a safe directory
+2026-07-19T07:36:39.0365785Z [command]"C:\Program Files\Git\cmd\git.exe" config --global --add safe.directory C:\actions-runner\_work\TripSyncApp\TripSyncApp
+2026-07-19T07:36:39.0803843Z [command]"C:\Program Files\Git\cmd\git.exe" config --local --name-only --get-regexp core\.sshCommand
+2026-07-19T07:36:39.1213081Z [command]"C:\Program Files\Git\cmd\git.exe" submodule foreach --recursive "sh -c \"git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :\""
+2026-07-19T07:36:39.9896424Z [command]"C:\Program Files\Git\cmd\git.exe" config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-07-19T07:36:40.0261860Z http.https://github.com/.extraheader
+2026-07-19T07:36:40.0307806Z [command]"C:\Program Files\Git\cmd\git.exe" config --local --unset-all http.https://github.com/.extraheader
+2026-07-19T07:36:40.0745102Z [command]"C:\Program Files\Git\cmd\git.exe" submodule foreach --recursive "sh -c \"git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :\""
+2026-07-19T07:36:40.8126980Z [command]"C:\Program Files\Git\cmd\git.exe" config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-07-19T07:36:40.8544400Z [command]"C:\Program Files\Git\cmd\git.exe" submodule foreach --recursive "git config --local --show-origin --name-only --get-regexp remote.origin.url"

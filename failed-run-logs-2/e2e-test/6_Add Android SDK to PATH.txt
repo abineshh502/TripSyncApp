@@ -1,0 +1,24 @@
+﻿2026-07-19T07:35:17.1434584Z ##[group]Run $platformTools = "C:\Users\konda\AppData\Local\Android\Sdk\platform-tools"
+2026-07-19T07:35:17.1435572Z [36;1m$platformTools = "C:\Users\konda\AppData\Local\Android\Sdk\platform-tools"[0m
+2026-07-19T07:35:17.1436285Z [36;1m$emulatorDir   = "C:\Users\konda\AppData\Local\Android\Sdk\emulator"[0m
+2026-07-19T07:35:17.1436913Z [36;1mAdd-Content -Path $env:GITHUB_PATH -Value $platformTools[0m
+2026-07-19T07:35:17.1437485Z [36;1mAdd-Content -Path $env:GITHUB_PATH -Value $emulatorDir[0m
+2026-07-19T07:35:17.1438226Z [36;1mAdd-Content -Path $env:GITHUB_ENV -Value "ANDROID_HOME=C:\Users\konda\AppData\Local\Android\Sdk"[0m
+2026-07-19T07:35:17.1439192Z [36;1mAdd-Content -Path $env:GITHUB_ENV -Value "ANDROID_SDK_ROOT=C:\Users\konda\AppData\Local\Android\Sdk"[0m
+2026-07-19T07:35:17.1440087Z [36;1mWrite-Host "[OK] Android SDK paths added to PATH and ANDROID_HOME exported"[0m
+2026-07-19T07:35:17.1440718Z [36;1mWrite-Host "  platform-tools: $platformTools"[0m
+2026-07-19T07:35:17.1441184Z [36;1mWrite-Host "  emulator:       $emulatorDir"[0m
+2026-07-19T07:35:17.1491726Z shell: C:\WINDOWS\System32\WindowsPowerShell\v1.0\powershell.EXE -command ". '{0}'"
+2026-07-19T07:35:17.1492114Z env:
+2026-07-19T07:35:17.1492263Z   TEST_EMAIL: jessuff8@gmail.com
+2026-07-19T07:35:17.1492450Z   TEST_PASSWORD: Ravi@6444
+2026-07-19T07:35:17.1492614Z   TEST_USER_NAME: Konda
+2026-07-19T07:35:17.1492894Z   EXPO_PUBLIC_API_URL: https://tripsyncbackend-production-37a2.up.railway.app
+2026-07-19T07:35:17.1493207Z   WDIO_CI_SPEC: 
+2026-07-19T07:35:17.1493352Z   JOB_START_TIME: 2026-07-19 13:05:12
+2026-07-19T07:35:17.1493661Z   JAVA_HOME: C:\actions-runner\_work\_tool\Java_Temurin-Hotspot_jdk\21.0.11-10.0.LTS\x64
+2026-07-19T07:35:17.1494103Z   JAVA_HOME_21_X64: C:\actions-runner\_work\_tool\Java_Temurin-Hotspot_jdk\21.0.11-10.0.LTS\x64
+2026-07-19T07:35:17.1494434Z ##[endgroup]
+2026-07-19T07:35:17.5737539Z [OK] Android SDK paths added to PATH and ANDROID_HOME exported
+2026-07-19T07:35:17.5749660Z   platform-tools: C:\Users\konda\AppData\Local\Android\Sdk\platform-tools
+2026-07-19T07:35:17.5754892Z   emulator:       C:\Users\konda\AppData\Local\Android\Sdk\emulator
