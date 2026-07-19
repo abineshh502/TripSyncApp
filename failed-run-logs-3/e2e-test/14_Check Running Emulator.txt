@@ -1,0 +1,35 @@
+﻿2026-07-19T07:41:33.9497494Z ##[group]Run $ErrorActionPreference = "SilentlyContinue"
+2026-07-19T07:41:33.9498179Z [36;1m$ErrorActionPreference = "SilentlyContinue"[0m
+2026-07-19T07:41:33.9499446Z [36;1m$devices = adb devices 2>$null[0m
+2026-07-19T07:41:33.9499716Z [36;1mWrite-Host "ADB Devices output:`n$devices"[0m
+2026-07-19T07:41:33.9500188Z [36;1m$match = [System.Text.RegularExpressions.Regex]::Match($devices, "(emulator-\d+|127\.0\.0\.1:\d+)")[0m
+2026-07-19T07:41:33.9500598Z [36;1m[0m
+2026-07-19T07:41:33.9500746Z [36;1mif ($match.Success) {[0m
+2026-07-19T07:41:33.9500949Z [36;1m  $emulatorId = $match.Value[0m
+2026-07-19T07:41:33.9501230Z [36;1m  Write-Host "[REUSE] Emulator already running: $emulatorId"[0m
+2026-07-19T07:41:33.9501554Z [36;1m  echo "running=true" >> $env:GITHUB_OUTPUT[0m
+2026-07-19T07:41:33.9501862Z [36;1m  echo "device-id=$emulatorId" >> $env:GITHUB_OUTPUT[0m
+2026-07-19T07:41:33.9502243Z [36;1m  Add-Content -Path $env:GITHUB_ENV -Value "DEVICE_NAME=$emulatorId"[0m
+2026-07-19T07:41:33.9502760Z [36;1m  Add-Content -Path $env:GITHUB_ENV -Value "EMULATOR_STATUS=Reused (Already Running)"[0m
+2026-07-19T07:41:33.9503129Z [36;1m} else {[0m
+2026-07-19T07:41:33.9503315Z [36;1m  Write-Host "[NONE] No emulator found."[0m
+2026-07-19T07:41:33.9503588Z [36;1m  echo "running=false" >> $env:GITHUB_OUTPUT[0m
+2026-07-19T07:41:33.9503947Z [36;1m  Add-Content -Path $env:GITHUB_ENV -Value "EMULATOR_STATUS=Offline / Missing"[0m
+2026-07-19T07:41:33.9504279Z [36;1m}[0m
+2026-07-19T07:41:33.9549764Z shell: C:\WINDOWS\System32\WindowsPowerShell\v1.0\powershell.EXE -command ". '{0}'"
+2026-07-19T07:41:33.9550185Z env:
+2026-07-19T07:41:33.9550350Z   TEST_EMAIL: jessuff8@gmail.com
+2026-07-19T07:41:33.9550566Z   TEST_PASSWORD: Ravi@6444
+2026-07-19T07:41:33.9550751Z   TEST_USER_NAME: Konda
+2026-07-19T07:41:33.9551151Z   EXPO_PUBLIC_API_URL: https://tripsyncbackend-production-37a2.up.railway.app
+2026-07-19T07:41:33.9551510Z   WDIO_CI_SPEC: 
+2026-07-19T07:41:33.9551673Z   JOB_START_TIME: 2026-07-19 13:10:15
+2026-07-19T07:41:33.9552032Z   JAVA_HOME: C:\actions-runner\_work\_tool\Java_Temurin-Hotspot_jdk\21.0.11-10.0.LTS\x64
+2026-07-19T07:41:33.9552554Z   JAVA_HOME_21_X64: C:\actions-runner\_work\_tool\Java_Temurin-Hotspot_jdk\21.0.11-10.0.LTS\x64
+2026-07-19T07:41:33.9552971Z   ANDROID_HOME: C:\Users\konda\AppData\Local\Android\Sdk
+2026-07-19T07:41:33.9553284Z   ANDROID_SDK_ROOT: C:\Users\konda\AppData\Local\Android\Sdk
+2026-07-19T07:41:33.9553557Z   APK_STATUS: Reused (Cached)
+2026-07-19T07:41:33.9553742Z ##[endgroup]
+2026-07-19T07:41:36.5502292Z ADB Devices output:
+2026-07-19T07:41:36.5502762Z List of devices attached 
+2026-07-19T07:41:36.5609069Z [NONE] No emulator found.

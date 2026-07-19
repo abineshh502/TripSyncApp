@@ -1,0 +1,92 @@
+﻿2026-07-19T07:41:42.1816449Z ##[group]Run Write-Host "[RUN] Starting WebDriverIO test execution..."
+2026-07-19T07:41:42.1817310Z [36;1mWrite-Host "[RUN] Starting WebDriverIO test execution..."[0m
+2026-07-19T07:41:42.1817613Z [36;1m$specArg = ""[0m
+2026-07-19T07:41:42.1817806Z [36;1mif ($env:WDIO_CI_SPEC -ne "") {[0m
+2026-07-19T07:41:42.1818093Z [36;1m  Write-Host "[SPEC] Running single spec: $env:WDIO_CI_SPEC"[0m
+2026-07-19T07:41:42.1818370Z [36;1m} else {[0m
+2026-07-19T07:41:42.1818612Z [36;1m  Write-Host "[SPEC] Running all 550 tests (11 suites x 50 tests)"[0m
+2026-07-19T07:41:42.1818895Z [36;1m}[0m
+2026-07-19T07:41:42.1819026Z [36;1m[0m
+2026-07-19T07:41:42.1819197Z [36;1mnode AppiumTests\scripts\ci_run_tests.js[0m
+2026-07-19T07:41:42.1819444Z [36;1m$exitCode = $LASTEXITCODE[0m
+2026-07-19T07:41:42.1819672Z [36;1mWrite-Host "WDIO exit code: $exitCode"[0m
+2026-07-19T07:41:42.1819920Z [36;1mexit $exitCode[0m
+2026-07-19T07:41:42.1861537Z shell: C:\WINDOWS\System32\WindowsPowerShell\v1.0\powershell.EXE -command ". '{0}'"
+2026-07-19T07:41:42.1861944Z env:
+2026-07-19T07:41:42.1862106Z   TEST_EMAIL: jessuff8@gmail.com
+2026-07-19T07:41:42.1862311Z   TEST_PASSWORD: Ravi@6444
+2026-07-19T07:41:42.1862493Z   TEST_USER_NAME: Konda
+2026-07-19T07:41:42.1862812Z   EXPO_PUBLIC_API_URL: https://tripsyncbackend-production-37a2.up.railway.app
+2026-07-19T07:41:42.1863164Z   WDIO_CI_SPEC: 
+2026-07-19T07:41:42.1863330Z   JOB_START_TIME: 2026-07-19 13:10:15
+2026-07-19T07:41:42.1863664Z   JAVA_HOME: C:\actions-runner\_work\_tool\Java_Temurin-Hotspot_jdk\21.0.11-10.0.LTS\x64
+2026-07-19T07:41:42.1864147Z   JAVA_HOME_21_X64: C:\actions-runner\_work\_tool\Java_Temurin-Hotspot_jdk\21.0.11-10.0.LTS\x64
+2026-07-19T07:41:42.1864553Z   ANDROID_HOME: C:\Users\konda\AppData\Local\Android\Sdk
+2026-07-19T07:41:42.1864923Z   ANDROID_SDK_ROOT: C:\Users\konda\AppData\Local\Android\Sdk
+2026-07-19T07:41:42.1865207Z   APK_STATUS: Reused (Cached)
+2026-07-19T07:41:42.1865401Z   EMULATOR_STATUS: Offline / Missing
+2026-07-19T07:41:42.1865612Z ##[endgroup]
+2026-07-19T07:41:42.5521936Z [RUN] Starting WebDriverIO test execution...
+2026-07-19T07:41:42.5589613Z [SPEC] Running single spec: 
+2026-07-19T07:41:42.6619102Z 
+2026-07-19T07:41:42.6620080Z ════════════════════════════════════════════════════════════
+2026-07-19T07:41:42.6623930Z  TripSync Android E2E — CI Orchestrator
+2026-07-19T07:41:42.6624321Z  Self-Hosted Windows Runner
+2026-07-19T07:41:42.6624930Z ════════════════════════════════════════════════════════════
+2026-07-19T07:41:42.6625256Z 
+2026-07-19T07:41:42.6649459Z [13:11:42] 🔧  Verifying ADB availability...
+2026-07-19T07:41:42.6650048Z [13:11:42] ⚙️  $ adb version
+2026-07-19T07:41:42.7234125Z [13:11:42] ✅  ADB found: Android Debug Bridge version 1.0.41
+2026-07-19T07:41:42.7238499Z [13:11:42] 📱  Checking for running emulators...
+2026-07-19T07:41:42.7784479Z [13:11:42] 🚀  No emulator running. Booting AVD: Pixel_6_API_30
+2026-07-19T07:41:42.7924022Z [13:11:42] ⏳  Waiting for emulator to boot (up to 180s)...
+2026-07-19T07:41:47.8650651Z [13:11:47] ⏳  Still booting... (5s elapsed)
+2026-07-19T07:41:52.9344250Z [13:11:52] ⏳  Still booting... (10s elapsed)
+2026-07-19T07:41:57.9950752Z [13:11:57] ⏳  Still booting... (15s elapsed)
+2026-07-19T07:42:03.0546156Z [13:12:03] ⏳  Still booting... (20s elapsed)
+2026-07-19T07:42:08.1140815Z [13:12:08] ⏳  Still booting... (25s elapsed)
+2026-07-19T07:42:13.1611423Z [13:12:13] ⏳  Still booting... (30s elapsed)
+2026-07-19T07:42:18.2154136Z [13:12:18] ⏳  Still booting... (35s elapsed)
+2026-07-19T07:42:23.2625268Z [13:12:23] ⏳  Still booting... (40s elapsed)
+2026-07-19T07:42:28.3245701Z [13:12:28] ⏳  Still booting... (45s elapsed)
+2026-07-19T07:42:33.3801779Z [13:12:33] ⏳  Still booting... (50s elapsed)
+2026-07-19T07:42:38.4285271Z [13:12:38] ⏳  Still booting... (55s elapsed)
+2026-07-19T07:42:43.4841375Z [13:12:43] ⏳  Still booting... (60s elapsed)
+2026-07-19T07:42:48.5288259Z [13:12:48] ⏳  Still booting... (65s elapsed)
+2026-07-19T07:42:53.5769852Z [13:12:53] ⏳  Still booting... (70s elapsed)
+2026-07-19T07:42:58.6404665Z [13:12:58] ⏳  Still booting... (75s elapsed)
+2026-07-19T07:43:03.6996119Z [13:13:03] ⏳  Still booting... (80s elapsed)
+2026-07-19T07:43:08.7460823Z [13:13:08] ⏳  Still booting... (85s elapsed)
+2026-07-19T07:43:13.8069489Z [13:13:13] ⏳  Still booting... (90s elapsed)
+2026-07-19T07:43:18.8586036Z [13:13:18] ⏳  Still booting... (95s elapsed)
+2026-07-19T07:43:23.9131803Z [13:13:23] ⏳  Still booting... (100s elapsed)
+2026-07-19T07:43:28.9620592Z [13:13:28] ⏳  Still booting... (105s elapsed)
+2026-07-19T07:43:34.0136652Z [13:13:34] ⏳  Still booting... (110s elapsed)
+2026-07-19T07:43:39.0751280Z [13:13:39] ⏳  Still booting... (115s elapsed)
+2026-07-19T07:43:44.1381563Z [13:13:44] ⏳  Still booting... (120s elapsed)
+2026-07-19T07:43:49.1968028Z [13:13:49] ⏳  Still booting... (125s elapsed)
+2026-07-19T07:43:54.2454706Z [13:13:54] ⏳  Still booting... (130s elapsed)
+2026-07-19T07:43:59.2921691Z [13:13:59] ⏳  Still booting... (135s elapsed)
+2026-07-19T07:44:04.3490590Z [13:14:04] ⏳  Still booting... (140s elapsed)
+2026-07-19T07:44:09.4078829Z [13:14:09] ⏳  Still booting... (145s elapsed)
+2026-07-19T07:44:14.4607175Z [13:14:14] ⏳  Still booting... (150s elapsed)
+2026-07-19T07:44:19.5196519Z [13:14:19] ⏳  Still booting... (155s elapsed)
+2026-07-19T07:44:24.5781343Z [13:14:24] ⏳  Still booting... (160s elapsed)
+2026-07-19T07:44:29.6275227Z [13:14:29] ⏳  Still booting... (165s elapsed)
+2026-07-19T07:44:34.6793276Z [13:14:34] ⏳  Still booting... (170s elapsed)
+2026-07-19T07:44:39.7310220Z [13:14:39] ⏳  Still booting... (175s elapsed)
+2026-07-19T07:44:44.7932186Z [13:14:44] ⏳  Still booting... (180s elapsed)
+2026-07-19T07:44:44.7932819Z [13:14:44] ❌  FATAL: Emulator failed to boot within 180 seconds.
+2026-07-19T07:44:44.7936460Z Error: Emulator failed to boot within 180 seconds.
+2026-07-19T07:44:44.7936999Z     at detectOrBootEmulator (C:\actions-runner\_work\TripSyncApp\TripSyncApp\AppiumTests\scripts\ci_run_tests.js:164:9)
+2026-07-19T07:44:44.7938000Z     at async main (C:\actions-runner\_work\TripSyncApp\TripSyncApp\AppiumTests\scripts\ci_run_tests.js:696:5)
+2026-07-19T07:44:44.7939022Z [13:14:44] 📋  Collecting final ADB diagnostics...
+2026-07-19T07:44:59.8125676Z [13:14:59] ✅  Logcat saved: C:\actions-runner\_work\TripSyncApp\TripSyncApp\test-results\adb-logcat.log
+2026-07-19T07:44:59.8680808Z [13:14:59] ✅  Run summary written to: C:\actions-runner\_work\_temp\_runner_file_commands\step_summary_5b2aceef-9c50-438b-86ea-a99ac57334b1
+2026-07-19T07:44:59.8681395Z 
+2026-07-19T07:44:59.8681695Z ════════════════════════════════════════════════════════════
+2026-07-19T07:44:59.8682249Z [13:14:59] ❌  CI Run finished. Exit code: 1
+2026-07-19T07:44:59.8682696Z ════════════════════════════════════════════════════════════
+2026-07-19T07:44:59.8682999Z 
+2026-07-19T07:44:59.8782859Z WDIO exit code: 1
+2026-07-19T07:45:04.9929036Z ##[error]Process completed with exit code 1.
