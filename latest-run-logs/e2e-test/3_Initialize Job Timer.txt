@@ -1,0 +1,10 @@
+﻿2026-07-19T07:07:56.8753132Z ##[group]Run Add-Content -Path $env:GITHUB_ENV -Value "JOB_START_TIME=$(Get-Date -Format 'yyyy-MM-dd HH:mm:ss')"
+2026-07-19T07:07:56.8754222Z [36;1mAdd-Content -Path $env:GITHUB_ENV -Value "JOB_START_TIME=$(Get-Date -Format 'yyyy-MM-dd HH:mm:ss')"[0m
+2026-07-19T07:07:56.8809175Z shell: C:\WINDOWS\System32\WindowsPowerShell\v1.0\powershell.EXE -command ". '{0}'"
+2026-07-19T07:07:56.8809758Z env:
+2026-07-19T07:07:56.8810098Z   TEST_EMAIL: jessuff8@gmail.com
+2026-07-19T07:07:56.8810426Z   TEST_PASSWORD: Ravi@6444
+2026-07-19T07:07:56.8810712Z   TEST_USER_NAME: Konda
+2026-07-19T07:07:56.8811175Z   EXPO_PUBLIC_API_URL: https://tripsyncbackend-production-37a2.up.railway.app
+2026-07-19T07:07:56.8811710Z   WDIO_CI_SPEC: 
+2026-07-19T07:07:56.8811955Z ##[endgroup]

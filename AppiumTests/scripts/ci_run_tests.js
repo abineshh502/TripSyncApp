@@ -66,7 +66,7 @@ function log(emoji, msg) {
 
 function run(cmd, opts) {
   log("⚙️", `$ ${cmd}`);
-  return execSync(cmd, { encoding: "utf-8", stdio: "pipe", ...opts });
+  return execSync(cmd, { encoding: "utf-8", stdio: "pipe", timeout: 120000, ...opts });
 }
 
 function runSilent(cmd) {
@@ -455,14 +455,14 @@ async function installAppiumServers() {
     const serverApk = path.join(baseDir, "appium-uiautomator2-server/apks/appium-uiautomator2-server-v7.1.11.apk");
     const testApk = path.join(baseDir, "appium-uiautomator2-server/apks/appium-uiautomator2-server-debug-androidTest.apk");
 
-    log("📦", "Installing io.appium.settings...");
-    execSync(`"${adbBin}" -s ${device} install -r -g "${settingsApk}"`, { stdio: "ignore" });
+     log("📦", "Installing io.appium.settings...");
+    execSync(`"${adbBin}" -s ${device} install -r -g "${settingsApk}"`, { stdio: "ignore", timeout: 45000 });
     
     log("📦", "Installing io.appium.uiautomator2.server...");
-    execSync(`"${adbBin}" -s ${device} install -r -g "${serverApk}"`, { stdio: "ignore" });
+    execSync(`"${adbBin}" -s ${device} install -r -g "${serverApk}"`, { stdio: "ignore", timeout: 45000 });
     
     log("📦", "Installing io.appium.uiautomator2.server.test...");
-    execSync(`"${adbBin}" -s ${device} install -r -g "${testApk}"`, { stdio: "ignore" });
+    execSync(`"${adbBin}" -s ${device} install -r -g "${testApk}"`, { stdio: "ignore", timeout: 45000 });
 
     log("✅", "Appium Server and Settings APKs pre-installed successfully.");
   } catch (e) {

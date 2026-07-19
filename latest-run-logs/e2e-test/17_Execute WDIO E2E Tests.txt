@@ -1,0 +1,73 @@
+﻿2026-07-19T07:09:32.9954567Z ##[group]Run Write-Host "[RUN] Starting WebDriverIO test execution..."
+2026-07-19T07:09:32.9955219Z [36;1mWrite-Host "[RUN] Starting WebDriverIO test execution..."[0m
+2026-07-19T07:09:32.9955493Z [36;1m$specArg = ""[0m
+2026-07-19T07:09:32.9955674Z [36;1mif ($env:WDIO_CI_SPEC -ne "") {[0m
+2026-07-19T07:09:32.9955959Z [36;1m  Write-Host "[SPEC] Running single spec: $env:WDIO_CI_SPEC"[0m
+2026-07-19T07:09:32.9956233Z [36;1m} else {[0m
+2026-07-19T07:09:32.9956524Z [36;1m  Write-Host "[SPEC] Running all 550 tests (11 suites x 50 tests)"[0m
+2026-07-19T07:09:32.9956810Z [36;1m}[0m
+2026-07-19T07:09:32.9956937Z [36;1m[0m
+2026-07-19T07:09:32.9957102Z [36;1mnode AppiumTests\scripts\ci_run_tests.js[0m
+2026-07-19T07:09:32.9957334Z [36;1m$exitCode = $LASTEXITCODE[0m
+2026-07-19T07:09:32.9957548Z [36;1mWrite-Host "WDIO exit code: $exitCode"[0m
+2026-07-19T07:09:32.9957768Z [36;1mexit $exitCode[0m
+2026-07-19T07:09:32.9995864Z shell: C:\WINDOWS\System32\WindowsPowerShell\v1.0\powershell.EXE -command ". '{0}'"
+2026-07-19T07:09:32.9996236Z env:
+2026-07-19T07:09:32.9996380Z   TEST_EMAIL: jessuff8@gmail.com
+2026-07-19T07:09:32.9996564Z   TEST_PASSWORD: Ravi@6444
+2026-07-19T07:09:32.9996728Z   TEST_USER_NAME: Konda
+2026-07-19T07:09:32.9997017Z   EXPO_PUBLIC_API_URL: https://tripsyncbackend-production-37a2.up.railway.app
+2026-07-19T07:09:32.9997323Z   WDIO_CI_SPEC: 
+2026-07-19T07:09:32.9997470Z   JOB_START_TIME: 2026-07-19 12:37:57
+2026-07-19T07:09:32.9997767Z   JAVA_HOME: C:\actions-runner\_work\_tool\Java_Temurin-Hotspot_jdk\21.0.11-10.0.LTS\x64
+2026-07-19T07:09:32.9998209Z   JAVA_HOME_21_X64: C:\actions-runner\_work\_tool\Java_Temurin-Hotspot_jdk\21.0.11-10.0.LTS\x64
+2026-07-19T07:09:32.9998631Z   ANDROID_HOME: C:\Users\konda\AppData\Local\Android\Sdk
+2026-07-19T07:09:32.9998916Z   ANDROID_SDK_ROOT: C:\Users\konda\AppData\Local\Android\Sdk
+2026-07-19T07:09:32.9999159Z   APK_STATUS: Reused (Cached)
+2026-07-19T07:09:32.9999344Z   DEVICE_NAME: emulator-5554
+2026-07-19T07:09:32.9999524Z   EMULATOR_STATUS: Reused (Already Running)
+2026-07-19T07:09:32.9999734Z   ANDROID_VERSION: 17
+2026-07-19T07:09:32.9999878Z ##[endgroup]
+2026-07-19T07:09:33.3576221Z [RUN] Starting WebDriverIO test execution...
+2026-07-19T07:09:33.3624319Z [SPEC] Running single spec: 
+2026-07-19T07:09:33.4485299Z 
+2026-07-19T07:09:33.4486218Z ════════════════════════════════════════════════════════════
+2026-07-19T07:09:33.4487053Z  TripSync Android E2E — CI Orchestrator
+2026-07-19T07:09:33.4487562Z  Self-Hosted Windows Runner
+2026-07-19T07:09:33.4488047Z ════════════════════════════════════════════════════════════
+2026-07-19T07:09:33.4488270Z 
+2026-07-19T07:09:33.4512919Z [12:39:33] 🔧  Verifying ADB availability...
+2026-07-19T07:09:33.4513326Z [12:39:33] ⚙️  $ adb version
+2026-07-19T07:09:33.5052110Z [12:39:33] ✅  ADB found: Android Debug Bridge version 1.0.41
+2026-07-19T07:09:33.5058011Z [12:39:33] 📱  Checking for running emulators...
+2026-07-19T07:09:33.5580869Z [12:39:33] ✅  Reusing existing emulator: emulator-5554
+2026-07-19T07:09:33.5582435Z [12:39:33] 🔍  Validating Cached APK existence, integrity, and JS bundle...
+2026-07-19T07:09:33.7014044Z [12:39:33] 🔍  Verifying JS bundle using aapt...
+2026-07-19T07:09:33.7871259Z [12:39:33] ✅  Verification passed: assets/index.android.bundle is present in APK.
+2026-07-19T07:09:33.7873761Z [12:39:33] 📦  Starting Intelligent Installed APK Validation...
+2026-07-19T07:09:48.7993934Z [12:39:48] 📲  App is not installed on device. Installation required.
+2026-07-19T07:09:48.7995168Z [12:39:48] 🛑  Uninstalling existing app to prevent installation conflicts...
+2026-07-19T07:10:05.3207517Z [12:40:05] 📲  Installing Cached APK...
+2026-07-19T07:10:05.3208602Z [12:40:05] ⚙️  $ adb -s emulator-5554 install -r -d "C:\actions-runner\_work\TripSyncApp\TripSyncApp\android\app\build\outputs\apk\debug\app-debug.apk"
+2026-07-19T07:30:42.1016200Z [13:00:42] ❌  FATAL: APK installation failed: Command failed: adb -s emulator-5554 install -r -d "C:\actions-runner\_work\TripSyncApp\TripSyncApp\android\app\build\outputs\apk\debug\app-debug.apk"
+2026-07-19T07:30:42.1022745Z * daemon still not running
+2026-07-19T07:30:42.1023742Z adb: failed to run abb_exec. Error: cannot connect to daemon at tcp:5037: cannot connect to 127.0.0.1:5037: No connection could be made because the target machine actively refused it. (10061)
+2026-07-19T07:30:42.1025118Z adb.exe: connect error for write: cannot connect to daemon at tcp:5037: cannot connect to 127.0.0.1:5037: No connection could be made because the target machine actively refused it. (10061)
+2026-07-19T07:30:42.1025874Z 
+2026-07-19T07:30:42.1026742Z Error: APK installation failed: Command failed: adb -s emulator-5554 install -r -d "C:\actions-runner\_work\TripSyncApp\TripSyncApp\android\app\build\outputs\apk\debug\app-debug.apk"
+2026-07-19T07:30:42.1027958Z * daemon still not running
+2026-07-19T07:30:42.1028771Z adb: failed to run abb_exec. Error: cannot connect to daemon at tcp:5037: cannot connect to 127.0.0.1:5037: No connection could be made because the target machine actively refused it. (10061)
+2026-07-19T07:30:42.1029969Z adb.exe: connect error for write: cannot connect to daemon at tcp:5037: cannot connect to 127.0.0.1:5037: No connection could be made because the target machine actively refused it. (10061)
+2026-07-19T07:30:42.1030857Z 
+2026-07-19T07:30:42.1031240Z     at intelligentInstallApk (C:\actions-runner\_work\TripSyncApp\TripSyncApp\AppiumTests\scripts\ci_run_tests.js:307:13)
+2026-07-19T07:30:42.1032158Z     at async main (C:\actions-runner\_work\TripSyncApp\TripSyncApp\AppiumTests\scripts\ci_run_tests.js:698:5)
+2026-07-19T07:30:42.1033184Z [13:00:42] 📋  Collecting final ADB diagnostics...
+2026-07-19T07:30:44.4429101Z [13:00:44] ✅  Logcat saved: C:\actions-runner\_work\TripSyncApp\TripSyncApp\test-results\adb-logcat.log
+2026-07-19T07:30:54.5471769Z [13:00:54] ✅  Run summary written to: C:\actions-runner\_work\_temp\_runner_file_commands\step_summary_f809a19c-e5e3-417d-b57a-c012ecbe4fc6
+2026-07-19T07:30:54.5472997Z 
+2026-07-19T07:30:54.5477048Z ════════════════════════════════════════════════════════════
+2026-07-19T07:30:54.5478023Z [13:00:54] ❌  CI Run finished. Exit code: 1
+2026-07-19T07:30:54.5479330Z ════════════════════════════════════════════════════════════
+2026-07-19T07:30:54.5479632Z 
+2026-07-19T07:30:54.6011246Z WDIO exit code: 1
+2026-07-19T07:30:59.9076796Z ##[error]Process completed with exit code 1.

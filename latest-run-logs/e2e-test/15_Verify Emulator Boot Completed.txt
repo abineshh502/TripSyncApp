@@ -1,0 +1,51 @@
+﻿2026-07-19T07:09:31.9834504Z ##[group]Run $deviceId = "emulator-5554"
+2026-07-19T07:09:31.9835004Z [36;1m$deviceId = "emulator-5554"[0m
+2026-07-19T07:09:31.9835452Z [36;1mWrite-Host "Verifying boot for device: $deviceId"[0m
+2026-07-19T07:09:31.9835878Z [36;1m[0m
+2026-07-19T07:09:31.9836218Z [36;1m# Retry up to 60 seconds for the emulator to finish booting[0m
+2026-07-19T07:09:31.9836708Z [36;1m$maxWait = 60[0m
+2026-07-19T07:09:31.9836989Z [36;1m$waited  = 0[0m
+2026-07-19T07:09:31.9837284Z [36;1m$booted  = ""[0m
+2026-07-19T07:09:31.9837546Z [36;1mdo {[0m
+2026-07-19T07:09:31.9837968Z [36;1m  $rawBooted = adb -s $deviceId shell getprop sys.boot_completed 2>$null[0m
+2026-07-19T07:09:31.9838660Z [36;1m  $booted = if ($rawBooted) { $rawBooted.ToString().Trim() } else { "" }[0m
+2026-07-19T07:09:31.9839211Z [36;1m  if ($booted -eq "1") { break }[0m
+2026-07-19T07:09:31.9839575Z [36;1m  Start-Sleep -Seconds 5[0m
+2026-07-19T07:09:31.9839898Z [36;1m  $waited += 5[0m
+2026-07-19T07:09:31.9840290Z [36;1m  Write-Host "  Still booting... ($waited / $maxWait s)"[0m
+2026-07-19T07:09:31.9840806Z [36;1m} while ($waited -lt $maxWait)[0m
+2026-07-19T07:09:31.9841139Z [36;1m[0m
+2026-07-19T07:09:31.9841361Z [36;1mif ($booted -eq "1") {[0m
+2026-07-19T07:09:31.9841728Z [36;1m  Write-Host "[OK] Emulator fully booted."[0m
+2026-07-19T07:09:31.9842124Z [36;1m} else {[0m
+2026-07-19T07:09:31.9851440Z [36;1m  Write-Host "[WARN] Emulator boot_completed='$booted' after ${maxWait}s. Proceeding anyway."[0m
+2026-07-19T07:09:31.9853188Z [36;1m}[0m
+2026-07-19T07:09:31.9853421Z [36;1m[0m
+2026-07-19T07:09:31.9853816Z [36;1m# Capture Android version safely (strip newlines for GITHUB_ENV)[0m
+2026-07-19T07:09:31.9854549Z [36;1m$rawVer = adb -s $deviceId shell getprop ro.build.version.release 2>$null[0m
+2026-07-19T07:09:31.9855417Z [36;1m$androidVer = if ($rawVer) { $rawVer.ToString().Trim() -replace '[\r\n]','' } else { "unknown" }[0m
+2026-07-19T07:09:31.9856057Z [36;1m[0m
+2026-07-19T07:09:31.9856479Z [36;1m$rawBuild = adb -s $deviceId shell getprop ro.build.display.id 2>$null[0m
+2026-07-19T07:09:31.9857426Z [36;1m$buildId = if ($rawBuild) { $rawBuild.ToString().Trim() -replace '[\r\n]','' } else { "unknown" }[0m
+2026-07-19T07:09:31.9858088Z [36;1m[0m
+2026-07-19T07:09:31.9858456Z [36;1mWrite-Host "Android Version: $androidVer | Build: $buildId"[0m
+2026-07-19T07:09:31.9859144Z [36;1mAdd-Content -Path $env:GITHUB_ENV -Value "ANDROID_VERSION=$androidVer"[0m
+2026-07-19T07:09:31.9910173Z shell: C:\WINDOWS\System32\WindowsPowerShell\v1.0\powershell.EXE -command ". '{0}'"
+2026-07-19T07:09:31.9910538Z env:
+2026-07-19T07:09:31.9910701Z   TEST_EMAIL: jessuff8@gmail.com
+2026-07-19T07:09:31.9910906Z   TEST_PASSWORD: Ravi@6444
+2026-07-19T07:09:31.9911082Z   TEST_USER_NAME: Konda
+2026-07-19T07:09:31.9911386Z   EXPO_PUBLIC_API_URL: https://tripsyncbackend-production-37a2.up.railway.app
+2026-07-19T07:09:31.9911726Z   WDIO_CI_SPEC: 
+2026-07-19T07:09:31.9911894Z   JOB_START_TIME: 2026-07-19 12:37:57
+2026-07-19T07:09:31.9912238Z   JAVA_HOME: C:\actions-runner\_work\_tool\Java_Temurin-Hotspot_jdk\21.0.11-10.0.LTS\x64
+2026-07-19T07:09:31.9912719Z   JAVA_HOME_21_X64: C:\actions-runner\_work\_tool\Java_Temurin-Hotspot_jdk\21.0.11-10.0.LTS\x64
+2026-07-19T07:09:31.9913115Z   ANDROID_HOME: C:\Users\konda\AppData\Local\Android\Sdk
+2026-07-19T07:09:31.9913419Z   ANDROID_SDK_ROOT: C:\Users\konda\AppData\Local\Android\Sdk
+2026-07-19T07:09:31.9913690Z   APK_STATUS: Reused (Cached)
+2026-07-19T07:09:31.9913897Z   DEVICE_NAME: emulator-5554
+2026-07-19T07:09:31.9914101Z   EMULATOR_STATUS: Reused (Already Running)
+2026-07-19T07:09:31.9914323Z ##[endgroup]
+2026-07-19T07:09:32.3505021Z Verifying boot for device: emulator-5554
+2026-07-19T07:09:32.4081402Z [OK] Emulator fully booted.
+2026-07-19T07:09:32.4968194Z Android Version: 17 | Build: sdk_gphone16k_x86_64-userdebug 17 CP21.260330.005 15181570 dev-keys

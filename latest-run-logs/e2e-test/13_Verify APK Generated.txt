@@ -1,0 +1,25 @@
+﻿2026-07-19T07:09:30.9414930Z ##[group]Run $apkPath = "android\app\build\outputs\apk\debug\app-debug.apk"
+2026-07-19T07:09:30.9415704Z [36;1m$apkPath = "android\app\build\outputs\apk\debug\app-debug.apk"[0m
+2026-07-19T07:09:30.9416018Z [36;1mif (Test-Path $apkPath) {[0m
+2026-07-19T07:09:30.9416227Z [36;1m  $apk = Get-Item $apkPath[0m
+2026-07-19T07:09:30.9416457Z [36;1m  $sizeMB = [math]::Round($apk.Length / 1MB, 1)[0m
+2026-07-19T07:09:30.9416747Z [36;1m  Write-Host "[OK] APK verified: $apkPath ($sizeMB MB)"[0m
+2026-07-19T07:09:30.9417030Z [36;1m} else {[0m
+2026-07-19T07:09:30.9417248Z [36;1m  Write-Error "[FAIL] APK not found at $apkPath"[0m
+2026-07-19T07:09:30.9417475Z [36;1m  exit 1[0m
+2026-07-19T07:09:30.9417608Z [36;1m}[0m
+2026-07-19T07:09:30.9456441Z shell: C:\WINDOWS\System32\WindowsPowerShell\v1.0\powershell.EXE -command ". '{0}'"
+2026-07-19T07:09:30.9456804Z env:
+2026-07-19T07:09:30.9456958Z   TEST_EMAIL: jessuff8@gmail.com
+2026-07-19T07:09:30.9457201Z   TEST_PASSWORD: Ravi@6444
+2026-07-19T07:09:30.9457414Z   TEST_USER_NAME: Konda
+2026-07-19T07:09:30.9457731Z   EXPO_PUBLIC_API_URL: https://tripsyncbackend-production-37a2.up.railway.app
+2026-07-19T07:09:30.9458068Z   WDIO_CI_SPEC: 
+2026-07-19T07:09:30.9458225Z   JOB_START_TIME: 2026-07-19 12:37:57
+2026-07-19T07:09:30.9458550Z   JAVA_HOME: C:\actions-runner\_work\_tool\Java_Temurin-Hotspot_jdk\21.0.11-10.0.LTS\x64
+2026-07-19T07:09:30.9459016Z   JAVA_HOME_21_X64: C:\actions-runner\_work\_tool\Java_Temurin-Hotspot_jdk\21.0.11-10.0.LTS\x64
+2026-07-19T07:09:30.9459394Z   ANDROID_HOME: C:\Users\konda\AppData\Local\Android\Sdk
+2026-07-19T07:09:30.9459686Z   ANDROID_SDK_ROOT: C:\Users\konda\AppData\Local\Android\Sdk
+2026-07-19T07:09:30.9459939Z   APK_STATUS: Reused (Cached)
+2026-07-19T07:09:30.9460114Z ##[endgroup]
+2026-07-19T07:09:31.3451837Z [OK] APK verified: android\app\build\outputs\apk\debug\app-debug.apk (175.4 MB)

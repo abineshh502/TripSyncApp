@@ -1,0 +1,30 @@
+﻿2026-07-19T07:31:15.4063730Z Node 20 is being deprecated. This workflow is running with Node 24 by default. If you need to temporarily use Node 20, you can set the ACTIONS_ALLOW_USE_UNSECURE_NODE_VERSION=true environment variable. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/
+2026-07-19T07:31:15.4065602Z ##[group]Run actions/upload-artifact@v4
+2026-07-19T07:31:15.4065947Z with:
+2026-07-19T07:31:15.4066219Z   name: TripSync-Screenshots-70
+2026-07-19T07:31:15.4066540Z   retention-days: 30
+2026-07-19T07:31:15.4066818Z   if-no-files-found: warn
+2026-07-19T07:31:15.4067131Z   path: test-results/screenshots/
+
+2026-07-19T07:31:15.4067489Z   compression-level: 6
+2026-07-19T07:31:15.4067762Z   overwrite: false
+2026-07-19T07:31:15.4068033Z   include-hidden-files: false
+2026-07-19T07:31:15.4068334Z env:
+2026-07-19T07:31:15.4068569Z   TEST_EMAIL: jessuff8@gmail.com
+2026-07-19T07:31:15.4068904Z   TEST_PASSWORD: Ravi@6444
+2026-07-19T07:31:15.4069193Z   TEST_USER_NAME: Konda
+2026-07-19T07:31:15.4069697Z   EXPO_PUBLIC_API_URL: https://tripsyncbackend-production-37a2.up.railway.app
+2026-07-19T07:31:15.4070254Z   WDIO_CI_SPEC: 
+2026-07-19T07:31:15.4070499Z   JOB_START_TIME: 2026-07-19 12:37:57
+2026-07-19T07:31:15.4071021Z   JAVA_HOME: C:\actions-runner\_work\_tool\Java_Temurin-Hotspot_jdk\21.0.11-10.0.LTS\x64
+2026-07-19T07:31:15.4071797Z   JAVA_HOME_21_X64: C:\actions-runner\_work\_tool\Java_Temurin-Hotspot_jdk\21.0.11-10.0.LTS\x64
+2026-07-19T07:31:15.4072426Z   ANDROID_HOME: C:\Users\konda\AppData\Local\Android\Sdk
+2026-07-19T07:31:15.4072907Z   ANDROID_SDK_ROOT: C:\Users\konda\AppData\Local\Android\Sdk
+2026-07-19T07:31:15.4073349Z   APK_STATUS: Reused (Cached)
+2026-07-19T07:31:15.4073638Z   DEVICE_NAME: emulator-5554
+2026-07-19T07:31:15.4073989Z   EMULATOR_STATUS: Reused (Already Running)
+2026-07-19T07:31:15.4074353Z   ANDROID_VERSION: 17
+2026-07-19T07:31:15.4074614Z ##[endgroup]
+2026-07-19T07:31:15.6038240Z (node:23408) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-07-19T07:31:15.6039082Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-07-19T07:31:15.6105337Z ##[warning]No files were found with the provided path: test-results/screenshots/. No artifacts will be uploaded.
