@@ -148,16 +148,22 @@ describe("End-to-End User Journeys", () => {
   });
 
   it("E2E-018: [Journey 2] Scroll to confirm trip button and save", async () => {
-    await h.scrollDown(driver, 4);
-    await driver.pause(500);
-    try {
-      const btn = await driver.$('android=new UiSelector().textContains("Confirm Trip")');
-      if (await btn.isDisplayed()) {
-        await btn.click();
-        await driver.pause(td.timeouts.networkOp);
-        try { await driver.acceptAlert(); } catch (_) {}
-      }
-    } catch (_) {
+    let btn = null;
+    for (let i = 0; i < 15; i++) {
+      try {
+        btn = await driver.$('android=new UiSelector().textContains("Confirm Trip")');
+        if (await btn.isDisplayed()) {
+          break;
+        }
+      } catch (_) {}
+      await h.scrollDown(driver, 1);
+      await driver.pause(300);
+    }
+    if (btn) {
+      await btn.click();
+      await driver.pause(td.timeouts.networkOp);
+      try { await driver.acceptAlert(); } catch (_) {}
+    } else {
       await driver.back();
     }
     await h.testEnd();
@@ -420,7 +426,7 @@ describe("End-to-End User Journeys", () => {
   it("E2E-047: [Journey 8] App handles background → foreground transition", async () => {
     await browser.background(2);
     await driver.pause(2000);
-    await browser.activate(td.app.package);
+    await driver.activateApp(td.app.package);
     await driver.pause(td.timeouts.animationSettle);
     const pkg = await browser.getCurrentPackage();
     expect(pkg).toBe(td.app.package);
