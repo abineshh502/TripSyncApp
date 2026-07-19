@@ -159,6 +159,8 @@ exports.config = {
       "appium:newCommandTimeout": 600,
       "appium:ignoreHiddenApiPolicyError": true,
       "appium:skipUnlock": true,
+      "appium:skipServerInstallation": true,
+      "appium:skipDeviceInitialization": true,
     },
   ],
 

@@ -1,0 +1,1083 @@
+﻿2026-07-19T05:39:54.7530854Z Current runner version: '2.335.1'
+2026-07-19T05:39:54.7629694Z Runner name: 'SIVA'
+2026-07-19T05:39:54.7630270Z Runner group name: 'Default'
+2026-07-19T05:39:54.7630954Z Machine name: 'SIVA'
+2026-07-19T05:39:54.7634241Z ##[group]GITHUB_TOKEN Permissions
+2026-07-19T05:39:54.7636613Z Contents: read
+2026-07-19T05:39:54.7636978Z Metadata: read
+2026-07-19T05:39:54.7637312Z Packages: read
+2026-07-19T05:39:54.7637666Z ##[endgroup]
+2026-07-19T05:39:54.7639481Z Secret source: Actions
+2026-07-19T05:39:54.7639951Z Prepare workflow directory
+2026-07-19T05:39:54.9765122Z Prepare all required actions
+2026-07-19T05:39:54.9803889Z Getting action download info
+2026-07-19T05:39:55.9145370Z Download action repository 'actions/checkout@v4' (SHA:34e114876b0b11c390a56381ad16ebd13914f8d5)
+2026-07-19T05:39:58.2878596Z Download action repository 'actions/setup-java@v4' (SHA:c1e323688fd81a25caa38c78aa6df2d33d3e20d9)
+2026-07-19T05:40:00.0942154Z Download action repository 'actions/setup-node@v4' (SHA:49933ea5288caeca8642d1e84afbd3f7d6820020)
+2026-07-19T05:40:01.6501353Z Download action repository 'actions/upload-artifact@v4' (SHA:ea165f8d65b6e75b540449e92b4886f43607fa02)
+2026-07-19T05:40:03.8695167Z Complete job name: e2e-test
+2026-07-19T05:40:03.9809128Z Node 20 is being deprecated. This workflow is running with Node 24 by default. If you need to temporarily use Node 20, you can set the ACTIONS_ALLOW_USE_UNSECURE_NODE_VERSION=true environment variable. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/
+2026-07-19T05:40:03.9819509Z ##[group]Run actions/checkout@v4
+2026-07-19T05:40:03.9820056Z with:
+2026-07-19T05:40:03.9820342Z   repository: abineshh502/TripSyncApp
+2026-07-19T05:40:03.9825215Z   token: ***
+2026-07-19T05:40:03.9825463Z   ssh-strict: true
+2026-07-19T05:40:03.9825712Z   ssh-user: git
+2026-07-19T05:40:03.9825991Z   persist-credentials: true
+2026-07-19T05:40:03.9826288Z   clean: true
+2026-07-19T05:40:03.9826555Z   sparse-checkout-cone-mode: true
+2026-07-19T05:40:03.9826924Z   fetch-depth: 1
+2026-07-19T05:40:03.9827171Z   fetch-tags: false
+2026-07-19T05:40:03.9827427Z   show-progress: true
+2026-07-19T05:40:03.9827683Z   lfs: false
+2026-07-19T05:40:03.9827963Z   submodules: false
+2026-07-19T05:40:03.9828228Z   set-safe-directory: true
+2026-07-19T05:40:03.9828822Z env:
+2026-07-19T05:40:03.9829055Z   TEST_EMAIL: jessuff8@gmail.com
+2026-07-19T05:40:03.9829369Z   TEST_PASSWORD: Ravi@6444
+2026-07-19T05:40:03.9829648Z   TEST_USER_NAME: Konda
+2026-07-19T05:40:03.9830136Z   EXPO_PUBLIC_API_URL: https://tripsyncbackend-production-37a2.up.railway.app
+2026-07-19T05:40:03.9830796Z   WDIO_CI_SPEC: 
+2026-07-19T05:40:03.9831033Z ##[endgroup]
+2026-07-19T05:40:04.3479232Z Syncing repository: abineshh502/TripSyncApp
+2026-07-19T05:40:04.3481503Z ##[group]Getting Git version info
+2026-07-19T05:40:04.3482079Z Working directory is 'C:\actions-runner\_work\TripSyncApp\TripSyncApp'
+2026-07-19T05:40:04.3690308Z [command]"C:\Program Files\Git\cmd\git.exe" version
+2026-07-19T05:40:04.4254845Z git version 2.54.0.windows.1
+2026-07-19T05:40:04.4319177Z ##[endgroup]
+2026-07-19T05:40:04.4337308Z Copying 'C:\Users\konda\.gitconfig' to 'C:\actions-runner\_work\_temp\65f01a0b-6e47-49ec-8d5a-64f4f5b4a8ac\.gitconfig'
+2026-07-19T05:40:04.4366109Z Temporarily overriding HOME='C:\actions-runner\_work\_temp\65f01a0b-6e47-49ec-8d5a-64f4f5b4a8ac' before making global git config changes
+2026-07-19T05:40:04.4367351Z Adding repository directory to the temporary git global config as a safe directory
+2026-07-19T05:40:04.4374793Z [command]"C:\Program Files\Git\cmd\git.exe" config --global --add safe.directory C:\actions-runner\_work\TripSyncApp\TripSyncApp
+2026-07-19T05:40:04.4922314Z [command]"C:\Program Files\Git\cmd\git.exe" config --local --get remote.origin.url
+2026-07-19T05:40:04.5317413Z https://github.com/abineshh502/TripSyncApp
+2026-07-19T05:40:04.5373324Z ##[group]Removing previously created refs, to avoid conflicts
+2026-07-19T05:40:04.5381340Z [command]"C:\Program Files\Git\cmd\git.exe" rev-parse --symbolic-full-name --verify --quiet HEAD
+2026-07-19T05:40:04.5786399Z refs/heads/main
+2026-07-19T05:40:04.5842776Z [command]"C:\Program Files\Git\cmd\git.exe" checkout --detach
+2026-07-19T05:40:04.6534165Z HEAD is now at 20f3385 ci(tests): fix OTP wait and input logic in end-to-end and authentication tests
+2026-07-19T05:40:04.7464005Z ##[endgroup]
+2026-07-19T05:40:04.7472619Z [command]"C:\Program Files\Git\cmd\git.exe" submodule status
+2026-07-19T05:40:05.5766197Z ##[group]Cleaning the repository
+2026-07-19T05:40:05.5779273Z [command]"C:\Program Files\Git\cmd\git.exe" clean -ffdx
+2026-07-19T05:40:54.8734896Z Removing .wdio-results.jsonl
+2026-07-19T05:40:54.8735549Z Removing android/
+2026-07-19T05:40:54.8735884Z Removing node_modules/
+2026-07-19T05:40:54.8736234Z Removing test-results/
+2026-07-19T05:40:54.8827137Z [command]"C:\Program Files\Git\cmd\git.exe" reset --hard HEAD
+2026-07-19T05:40:54.9632667Z HEAD is now at 20f3385 ci(tests): fix OTP wait and input logic in end-to-end and authentication tests
+2026-07-19T05:40:54.9684249Z ##[endgroup]
+2026-07-19T05:40:54.9692844Z ##[group]Disabling automatic garbage collection
+2026-07-19T05:40:54.9703560Z [command]"C:\Program Files\Git\cmd\git.exe" config --local gc.auto 0
+2026-07-19T05:40:55.0132762Z ##[endgroup]
+2026-07-19T05:40:55.0133352Z ##[group]Setting up auth
+2026-07-19T05:40:55.0149841Z [command]"C:\Program Files\Git\cmd\git.exe" config --local --name-only --get-regexp core\.sshCommand
+2026-07-19T05:40:55.0596101Z [command]"C:\Program Files\Git\cmd\git.exe" submodule foreach --recursive "sh -c \"git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :\""
+2026-07-19T05:40:55.9588178Z [command]"C:\Program Files\Git\cmd\git.exe" config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-07-19T05:40:56.0048588Z [command]"C:\Program Files\Git\cmd\git.exe" submodule foreach --recursive "sh -c \"git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :\""
+2026-07-19T05:40:56.7925050Z [command]"C:\Program Files\Git\cmd\git.exe" config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-07-19T05:40:56.8349657Z [command]"C:\Program Files\Git\cmd\git.exe" submodule foreach --recursive "git config --local --show-origin --name-only --get-regexp remote.origin.url"
+2026-07-19T05:40:57.6329975Z [command]"C:\Program Files\Git\cmd\git.exe" config --local http.https://github.com/.extraheader "AUTHORIZATION: basic ***"
+2026-07-19T05:40:57.6892671Z ##[endgroup]
+2026-07-19T05:40:57.6893514Z ##[group]Fetching the repository
+2026-07-19T05:40:57.6907652Z [command]"C:\Program Files\Git\cmd\git.exe" -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin +ead5c672df56d1b22073c669926cf3479e098f16:refs/remotes/origin/main
+2026-07-19T05:40:58.5213634Z From https://github.com/abineshh502/TripSyncApp
+2026-07-19T05:40:58.5214241Z  + 20f3385...ead5c67 ead5c672df56d1b22073c669926cf3479e098f16 -> origin/main  (forced update)
+2026-07-19T05:40:58.5491825Z ##[endgroup]
+2026-07-19T05:40:58.5492172Z ##[group]Determining the checkout info
+2026-07-19T05:40:58.5494112Z ##[endgroup]
+2026-07-19T05:40:58.5502791Z [command]"C:\Program Files\Git\cmd\git.exe" sparse-checkout disable
+2026-07-19T05:40:58.6051672Z [command]"C:\Program Files\Git\cmd\git.exe" config --local --unset-all extensions.worktreeConfig
+2026-07-19T05:40:58.6482664Z ##[group]Checking out the ref
+2026-07-19T05:40:58.6491690Z [command]"C:\Program Files\Git\cmd\git.exe" checkout --progress --force -B main refs/remotes/origin/main
+2026-07-19T05:40:58.6991980Z Previous HEAD position was 20f3385 ci(tests): fix OTP wait and input logic in end-to-end and authentication tests
+2026-07-19T05:40:58.7141092Z Switched to and reset branch 'main'
+2026-07-19T05:40:58.7194684Z branch 'main' set up to track 'origin/main'.
+2026-07-19T05:40:58.7195224Z Your branch is up to date with 'origin/main'.
+2026-07-19T05:40:58.7239565Z ##[endgroup]
+2026-07-19T05:40:58.7697678Z [command]"C:\Program Files\Git\cmd\git.exe" log -1 --format=%H
+2026-07-19T05:40:58.8078464Z ead5c672df56d1b22073c669926cf3479e098f16
+2026-07-19T05:40:58.8688387Z ##[group]Run Add-Content -Path $env:GITHUB_ENV -Value "JOB_START_TIME=$(Get-Date -Format 'yyyy-MM-dd HH:mm:ss')"
+2026-07-19T05:40:58.8689183Z [36;1mAdd-Content -Path $env:GITHUB_ENV -Value "JOB_START_TIME=$(Get-Date -Format 'yyyy-MM-dd HH:mm:ss')"[0m
+2026-07-19T05:40:58.8727388Z shell: C:\WINDOWS\System32\WindowsPowerShell\v1.0\powershell.EXE -command ". '{0}'"
+2026-07-19T05:40:58.8727733Z env:
+2026-07-19T05:40:58.8727890Z   TEST_EMAIL: jessuff8@gmail.com
+2026-07-19T05:40:58.8728083Z   TEST_PASSWORD: Ravi@6444
+2026-07-19T05:40:58.8728256Z   TEST_USER_NAME: Konda
+2026-07-19T05:40:58.8728542Z   EXPO_PUBLIC_API_URL: https://tripsyncbackend-production-37a2.up.railway.app
+2026-07-19T05:40:58.8728982Z   WDIO_CI_SPEC: 
+2026-07-19T05:40:58.8729146Z ##[endgroup]
+2026-07-19T05:40:59.3764692Z Node 20 is being deprecated. This workflow is running with Node 24 by default. If you need to temporarily use Node 20, you can set the ACTIONS_ALLOW_USE_UNSECURE_NODE_VERSION=true environment variable. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/
+2026-07-19T05:40:59.3766967Z ##[group]Run actions/setup-java@v4
+2026-07-19T05:40:59.3767274Z with:
+2026-07-19T05:40:59.3767493Z   java-version: 21
+2026-07-19T05:40:59.3767739Z   distribution: temurin
+2026-07-19T05:40:59.3768004Z   java-package: jdk
+2026-07-19T05:40:59.3768246Z   check-latest: false
+2026-07-19T05:40:59.3768500Z   server-id: github
+2026-07-19T05:40:59.3768754Z   server-username: GITHUB_ACTOR
+2026-07-19T05:40:59.3769122Z   server-password: GITHUB_TOKEN
+2026-07-19T05:40:59.3769417Z   overwrite-settings: true
+2026-07-19T05:40:59.3769695Z   job-status: success
+2026-07-19T05:40:59.3774199Z   token: ***
+2026-07-19T05:40:59.3774455Z env:
+2026-07-19T05:40:59.3774719Z   TEST_EMAIL: jessuff8@gmail.com
+2026-07-19T05:40:59.3775033Z   TEST_PASSWORD: Ravi@6444
+2026-07-19T05:40:59.3775306Z   TEST_USER_NAME: Konda
+2026-07-19T05:40:59.3775783Z   EXPO_PUBLIC_API_URL: https://tripsyncbackend-production-37a2.up.railway.app
+2026-07-19T05:40:59.3776324Z   WDIO_CI_SPEC: 
+2026-07-19T05:40:59.3776569Z   JOB_START_TIME: 2026-07-19 11:10:59
+2026-07-19T05:40:59.3776874Z ##[endgroup]
+2026-07-19T05:40:59.9558871Z ##[group]Installed distributions
+2026-07-19T05:40:59.9603693Z Resolved Java 21.0.11+10.0.LTS from tool-cache
+2026-07-19T05:40:59.9613857Z Setting Java 21.0.11+10.0.LTS as the default
+2026-07-19T05:40:59.9643709Z (node:21364) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-07-19T05:40:59.9644716Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-07-19T05:40:59.9650621Z Creating toolchains.xml for JDK version 21 from temurin
+2026-07-19T05:40:59.9958523Z Overwriting existing file C:\Users\konda\.m2\toolchains.xml
+2026-07-19T05:40:59.9964277Z 
+2026-07-19T05:40:59.9964962Z Java configuration:
+2026-07-19T05:40:59.9965256Z   Distribution: temurin
+2026-07-19T05:40:59.9965488Z   Version: 21.0.11+10.0.LTS
+2026-07-19T05:40:59.9965955Z   Path: C:\actions-runner\_work\_tool\Java_Temurin-Hotspot_jdk\21.0.11-10.0.LTS\x64
+2026-07-19T05:40:59.9966484Z 
+2026-07-19T05:40:59.9967037Z ##[endgroup]
+2026-07-19T05:41:00.0088970Z Creating settings.xml with server-id: github
+2026-07-19T05:41:00.0089490Z Overwriting existing file C:\Users\konda\.m2\settings.xml
+2026-07-19T05:41:00.0429163Z Node 20 is being deprecated. This workflow is running with Node 24 by default. If you need to temporarily use Node 20, you can set the ACTIONS_ALLOW_USE_UNSECURE_NODE_VERSION=true environment variable. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/
+2026-07-19T05:41:00.0430575Z ##[group]Run actions/setup-node@v4
+2026-07-19T05:41:00.0431109Z with:
+2026-07-19T05:41:00.0431238Z   node-version: 20
+2026-07-19T05:41:00.0431380Z   cache: npm
+2026-07-19T05:41:00.0431538Z   cache-dependency-path: package-lock.json
+2026-07-19T05:41:00.0431747Z   always-auth: false
+2026-07-19T05:41:00.0431902Z   check-latest: false
+2026-07-19T05:41:00.0434105Z   token: ***
+2026-07-19T05:41:00.0434243Z env:
+2026-07-19T05:41:00.0434380Z   TEST_EMAIL: jessuff8@gmail.com
+2026-07-19T05:41:00.0434566Z   TEST_PASSWORD: Ravi@6444
+2026-07-19T05:41:00.0434739Z   TEST_USER_NAME: Konda
+2026-07-19T05:41:00.0435051Z   EXPO_PUBLIC_API_URL: https://tripsyncbackend-production-37a2.up.railway.app
+2026-07-19T05:41:00.0435367Z   WDIO_CI_SPEC: 
+2026-07-19T05:41:00.0435519Z   JOB_START_TIME: 2026-07-19 11:10:59
+2026-07-19T05:41:00.0435821Z   JAVA_HOME: C:\actions-runner\_work\_tool\Java_Temurin-Hotspot_jdk\21.0.11-10.0.LTS\x64
+2026-07-19T05:41:00.0436349Z   JAVA_HOME_21_X64: C:\actions-runner\_work\_tool\Java_Temurin-Hotspot_jdk\21.0.11-10.0.LTS\x64
+2026-07-19T05:41:00.0436677Z ##[endgroup]
+2026-07-19T05:41:00.5736556Z Found in cache @ C:\actions-runner\_work\_tool\node\20.20.2\x64
+2026-07-19T05:41:00.5746460Z (node:1324) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-07-19T05:41:00.5747001Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-07-19T05:41:00.5749003Z ##[group]Environment details
+2026-07-19T05:41:02.3547021Z node: v20.20.2
+2026-07-19T05:41:02.3547271Z npm: 10.8.2
+2026-07-19T05:41:02.3547409Z yarn: 
+2026-07-19T05:41:02.3547780Z ##[endgroup]
+2026-07-19T05:41:02.3775218Z [command]C:\WINDOWS\system32\cmd.exe /D /S /C "C:\actions-runner\_work\_tool\node\20.20.2\x64\npm.cmd config get cache"
+2026-07-19T05:41:02.9285075Z C:\Users\konda\AppData\Local\npm-cache
+2026-07-19T05:41:03.8776196Z npm cache is not found
+2026-07-19T05:41:03.9198030Z ##[group]Run $platformTools = "C:\Users\konda\AppData\Local\Android\Sdk\platform-tools"
+2026-07-19T05:41:03.9198896Z [36;1m$platformTools = "C:\Users\konda\AppData\Local\Android\Sdk\platform-tools"[0m
+2026-07-19T05:41:03.9199321Z [36;1m$emulatorDir   = "C:\Users\konda\AppData\Local\Android\Sdk\emulator"[0m
+2026-07-19T05:41:03.9199713Z [36;1mAdd-Content -Path $env:GITHUB_PATH -Value $platformTools[0m
+2026-07-19T05:41:03.9200057Z [36;1mAdd-Content -Path $env:GITHUB_PATH -Value $emulatorDir[0m
+2026-07-19T05:41:03.9200487Z [36;1mAdd-Content -Path $env:GITHUB_ENV -Value "ANDROID_HOME=C:\Users\konda\AppData\Local\Android\Sdk"[0m
+2026-07-19T05:41:03.9201039Z [36;1mAdd-Content -Path $env:GITHUB_ENV -Value "ANDROID_SDK_ROOT=C:\Users\konda\AppData\Local\Android\Sdk"[0m
+2026-07-19T05:41:03.9201521Z [36;1mWrite-Host "[OK] Android SDK paths added to PATH and ANDROID_HOME exported"[0m
+2026-07-19T05:41:03.9201871Z [36;1mWrite-Host "  platform-tools: $platformTools"[0m
+2026-07-19T05:41:03.9202213Z [36;1mWrite-Host "  emulator:       $emulatorDir"[0m
+2026-07-19T05:41:03.9250036Z shell: C:\WINDOWS\System32\WindowsPowerShell\v1.0\powershell.EXE -command ". '{0}'"
+2026-07-19T05:41:03.9250367Z env:
+2026-07-19T05:41:03.9250569Z   TEST_EMAIL: jessuff8@gmail.com
+2026-07-19T05:41:03.9250848Z   TEST_PASSWORD: Ravi@6444
+2026-07-19T05:41:03.9251014Z   TEST_USER_NAME: Konda
+2026-07-19T05:41:03.9251294Z   EXPO_PUBLIC_API_URL: https://tripsyncbackend-production-37a2.up.railway.app
+2026-07-19T05:41:03.9251608Z   WDIO_CI_SPEC: 
+2026-07-19T05:41:03.9251754Z   JOB_START_TIME: 2026-07-19 11:10:59
+2026-07-19T05:41:03.9252055Z   JAVA_HOME: C:\actions-runner\_work\_tool\Java_Temurin-Hotspot_jdk\21.0.11-10.0.LTS\x64
+2026-07-19T05:41:03.9252494Z   JAVA_HOME_21_X64: C:\actions-runner\_work\_tool\Java_Temurin-Hotspot_jdk\21.0.11-10.0.LTS\x64
+2026-07-19T05:41:03.9252811Z ##[endgroup]
+2026-07-19T05:41:04.3430096Z [OK] Android SDK paths added to PATH and ANDROID_HOME exported
+2026-07-19T05:41:04.3441422Z   platform-tools: C:\Users\konda\AppData\Local\Android\Sdk\platform-tools
+2026-07-19T05:41:04.3446352Z   emulator:       C:\Users\konda\AppData\Local\Android\Sdk\emulator
+2026-07-19T05:41:04.4168965Z ##[group]Run $lockHash = (Get-FileHash "package-lock.json" -Algorithm SHA256).Hash
+2026-07-19T05:41:04.4169941Z [36;1m$lockHash = (Get-FileHash "package-lock.json" -Algorithm SHA256).Hash[0m
+2026-07-19T05:41:04.4170571Z [36;1m$cacheFile = "$env:TEMP\tripsync_npm_cache_hash.txt"[0m
+2026-07-19T05:41:04.4170992Z [36;1m[0m
+2026-07-19T05:41:04.4171213Z [36;1m$prevHash = ""[0m
+2026-07-19T05:41:04.4171503Z [36;1mif (Test-Path $cacheFile) {[0m
+2026-07-19T05:41:04.4171890Z [36;1m  $prevHash = Get-Content $cacheFile -Raw[0m
+2026-07-19T05:41:04.4172251Z [36;1m}[0m
+2026-07-19T05:41:04.4172452Z [36;1m[0m
+2026-07-19T05:41:04.4172804Z [36;1m# Also verify node_modules/expo exists (workspace may be stale)[0m
+2026-07-19T05:41:04.4173913Z [36;1m$nmReady = (Test-Path "node_modules\expo") -and (Test-Path "node_modules\.bin\expo")[0m
+2026-07-19T05:41:04.4174487Z [36;1m[0m
+2026-07-19T05:41:04.4174818Z [36;1mif ($lockHash -eq $prevHash.Trim() -and $nmReady) {[0m
+2026-07-19T05:41:04.4175589Z [36;1m  Write-Host "[SKIP] package-lock.json unchanged and node_modules ready. Skipping npm install."[0m
+2026-07-19T05:41:04.4176276Z [36;1m  echo "skipped=true" >> $env:GITHUB_OUTPUT[0m
+2026-07-19T05:41:04.4176649Z [36;1m} else {[0m
+2026-07-19T05:41:04.4176891Z [36;1m  if (-not $nmReady) {[0m
+2026-07-19T05:41:04.4177402Z [36;1m    Write-Host "[RUN] node_modules not ready (expo missing). Running npm install..."[0m
+2026-07-19T05:41:04.4177948Z [36;1m  } else {[0m
+2026-07-19T05:41:04.4178348Z [36;1m    Write-Host "[RUN] Dependencies changed. Running npm install..."[0m
+2026-07-19T05:41:04.4178817Z [36;1m  }[0m
+2026-07-19T05:41:04.4178960Z [36;1m  npm install[0m
+2026-07-19T05:41:04.4179216Z [36;1m  $lockHash | Out-File -FilePath $cacheFile -Encoding utf8 -NoNewline[0m
+2026-07-19T05:41:04.4179611Z [36;1m  echo "skipped=false" >> $env:GITHUB_OUTPUT[0m
+2026-07-19T05:41:04.4179832Z [36;1m}[0m
+2026-07-19T05:41:04.4219289Z shell: C:\WINDOWS\System32\WindowsPowerShell\v1.0\powershell.EXE -command ". '{0}'"
+2026-07-19T05:41:04.4219614Z env:
+2026-07-19T05:41:04.4219763Z   TEST_EMAIL: jessuff8@gmail.com
+2026-07-19T05:41:04.4219952Z   TEST_PASSWORD: Ravi@6444
+2026-07-19T05:41:04.4220124Z   TEST_USER_NAME: Konda
+2026-07-19T05:41:04.4220536Z   EXPO_PUBLIC_API_URL: https://tripsyncbackend-production-37a2.up.railway.app
+2026-07-19T05:41:04.4220880Z   WDIO_CI_SPEC: 
+2026-07-19T05:41:04.4221029Z   JOB_START_TIME: 2026-07-19 11:10:59
+2026-07-19T05:41:04.4221332Z   JAVA_HOME: C:\actions-runner\_work\_tool\Java_Temurin-Hotspot_jdk\21.0.11-10.0.LTS\x64
+2026-07-19T05:41:04.4221773Z   JAVA_HOME_21_X64: C:\actions-runner\_work\_tool\Java_Temurin-Hotspot_jdk\21.0.11-10.0.LTS\x64
+2026-07-19T05:41:04.4222145Z   ANDROID_HOME: C:\Users\konda\AppData\Local\Android\Sdk
+2026-07-19T05:41:04.4222433Z   ANDROID_SDK_ROOT: C:\Users\konda\AppData\Local\Android\Sdk
+2026-07-19T05:41:04.4222673Z ##[endgroup]
+2026-07-19T05:41:05.1876085Z [RUN] node_modules not ready (expo missing). Running npm install...
+2026-07-19T05:41:29.8096363Z npm warn deprecated inflight@1.0.6: This module is not supported, and leaks memory. Do not use it. Check out lru-cache if you want a good and tested way to coalesce async requests by a key value, which is much more comprehensive and powerful.
+2026-07-19T05:41:29.9022015Z npm warn deprecated inflight@1.0.6: This module is not supported, and leaks memory. Do not use it. Check out lru-cache if you want a good and tested way to coalesce async requests by a key value, which is much more comprehensive and powerful.
+2026-07-19T05:41:29.9611860Z npm warn deprecated lodash.get@4.4.2: This package is deprecated. Use the optional chaining (?.) operator instead.
+2026-07-19T05:41:30.0239996Z npm warn deprecated lodash.get@4.4.2: This package is deprecated. Use the optional chaining (?.) operator instead.
+2026-07-19T05:41:30.3126247Z npm warn deprecated lodash.isequal@4.5.0: This package is deprecated. Use require('node:util').isDeepStrictEqual instead.
+2026-07-19T05:41:30.5624775Z npm warn deprecated rimraf@2.4.5: Rimraf versions prior to v4 are no longer supported
+2026-07-19T05:41:30.5865936Z npm warn deprecated rimraf@2.4.5: Rimraf versions prior to v4 are no longer supported
+2026-07-19T05:41:30.7999488Z npm warn deprecated rimraf@2.7.1: Rimraf versions prior to v4 are no longer supported
+2026-07-19T05:41:31.2791954Z npm warn deprecated whatwg-encoding@3.1.1: Use @exodus/bytes instead for a more spec-conformant and faster implementation
+2026-07-19T05:41:31.2996630Z npm warn deprecated rimraf@3.0.2: Rimraf versions prior to v4 are no longer supported
+2026-07-19T05:41:31.6628472Z npm warn deprecated glob@7.2.3: Old versions of glob are not supported, and contain widely publicized security vulnerabilities, which have been fixed in the current version. Please update. Support for old versions may be purchased (at exorbitant rates) by contacting i@izs.me
+2026-07-19T05:41:31.6641963Z npm warn deprecated glob@7.2.3: Old versions of glob are not supported, and contain widely publicized security vulnerabilities, which have been fixed in the current version. Please update. Support for old versions may be purchased (at exorbitant rates) by contacting i@izs.me
+2026-07-19T05:41:31.6652866Z npm warn deprecated glob@7.2.3: Old versions of glob are not supported, and contain widely publicized security vulnerabilities, which have been fixed in the current version. Please update. Support for old versions may be purchased (at exorbitant rates) by contacting i@izs.me
+2026-07-19T05:41:31.6668454Z npm warn deprecated glob@7.2.3: Old versions of glob are not supported, and contain widely publicized security vulnerabilities, which have been fixed in the current version. Please update. Support for old versions may be purchased (at exorbitant rates) by contacting i@izs.me
+2026-07-19T05:41:31.6677046Z npm warn deprecated glob@6.0.4: Old versions of glob are not supported, and contain widely publicized security vulnerabilities, which have been fixed in the current version. Please update. Support for old versions may be purchased (at exorbitant rates) by contacting i@izs.me
+2026-07-19T05:41:31.6681672Z npm warn deprecated glob@8.1.0: Old versions of glob are not supported, and contain widely publicized security vulnerabilities, which have been fixed in the current version. Please update. Support for old versions may be purchased (at exorbitant rates) by contacting i@izs.me
+2026-07-19T05:41:31.6707228Z npm warn deprecated glob@7.2.3: Old versions of glob are not supported, and contain widely publicized security vulnerabilities, which have been fixed in the current version. Please update. Support for old versions may be purchased (at exorbitant rates) by contacting i@izs.me
+2026-07-19T05:41:31.6772971Z npm warn deprecated glob@7.2.3: Old versions of glob are not supported, and contain widely publicized security vulnerabilities, which have been fixed in the current version. Please update. Support for old versions may be purchased (at exorbitant rates) by contacting i@izs.me
+2026-07-19T05:41:31.6844377Z npm warn deprecated glob@6.0.4: Glob versions prior to v9 are no longer supported
+2026-07-19T05:41:31.7007699Z npm warn deprecated glob@7.2.3: Old versions of glob are not supported, and contain widely publicized security vulnerabilities, which have been fixed in the current version. Please update. Support for old versions may be purchased (at exorbitant rates) by contacting i@izs.me
+2026-07-19T05:41:36.6541231Z npm warn deprecated fstream@1.0.12: This package is no longer supported.
+2026-07-19T05:41:40.3971852Z npm warn deprecated uuid@7.0.3: uuid@10 and below is no longer supported.  For ESM codebases, update to uuid@latest.  For CommonJS codebases, use uuid@11 (but be aware this version will likely be deprecated in 2028).
+2026-07-19T05:41:42.0350529Z npm warn deprecated uuid@8.3.2: uuid@10 and below is no longer supported.  For ESM codebases, update to uuid@latest.  For CommonJS codebases, use uuid@11 (but be aware this version will likely be deprecated in 2028).
+2026-07-19T05:41:42.2560973Z npm warn deprecated glob@10.4.5: Old versions of glob are not supported, and contain widely publicized security vulnerabilities, which have been fixed in the current version. Please update. Support for old versions may be purchased (at exorbitant rates) by contacting i@izs.me
+2026-07-19T05:41:42.2783942Z npm warn deprecated glob@10.5.0: Old versions of glob are not supported, and contain widely publicized security vulnerabilities, which have been fixed in the current version. Please update. Support for old versions may be purchased (at exorbitant rates) by contacting i@izs.me
+2026-07-19T05:41:42.2865999Z npm warn deprecated glob@10.5.0: Old versions of glob are not supported, and contain widely publicized security vulnerabilities, which have been fixed in the current version. Please update. Support for old versions may be purchased (at exorbitant rates) by contacting i@izs.me
+2026-07-19T05:42:35.9322379Z 
+2026-07-19T05:42:35.9322918Z added 2132 packages, and audited 2133 packages in 2m
+2026-07-19T05:42:35.9323273Z 
+2026-07-19T05:42:35.9323462Z 286 packages are looking for funding
+2026-07-19T05:42:35.9323913Z   run `npm fund` for details
+2026-07-19T05:42:36.1260248Z 
+2026-07-19T05:42:36.1261022Z 52 vulnerabilities (2 low, 35 moderate, 12 high, 3 critical)
+2026-07-19T05:42:36.1261317Z 
+2026-07-19T05:42:36.1261522Z To address issues that do not require attention, run:
+2026-07-19T05:42:36.1261828Z   npm audit fix
+2026-07-19T05:42:36.1261937Z 
+2026-07-19T05:42:36.1262133Z To address all issues (including breaking changes), run:
+2026-07-19T05:42:36.1262431Z   npm audit fix --force
+2026-07-19T05:42:36.1262557Z 
+2026-07-19T05:42:36.1262666Z Run `npm audit` for details.
+2026-07-19T05:42:36.4281303Z ##[group]Run $cacheDir = "C:\Users\konda\OneDrive\Desktop\TripSync\TripSyncCache"
+2026-07-19T05:42:36.4282176Z [36;1m$cacheDir = "C:\Users\konda\OneDrive\Desktop\TripSync\TripSyncCache"[0m
+2026-07-19T05:42:36.4282569Z [36;1m$cachedApk = Join-Path $cacheDir "app-debug.apk"[0m
+2026-07-19T05:42:36.4282907Z [36;1m$cachedInfo = Join-Path $cacheDir "apk-info.json"[0m
+2026-07-19T05:42:36.4283243Z [36;1m$destApk = "android\app\build\outputs\apk\debug\app-debug.apk"[0m
+2026-07-19T05:42:36.4283545Z [36;1m$forceRebuild = "" -eq "true"[0m
+2026-07-19T05:42:36.4283744Z [36;1m[0m
+2026-07-19T05:42:36.4283891Z [36;1mif ($forceRebuild) {[0m
+2026-07-19T05:42:36.4284200Z [36;1m  Write-Host "[FORCE] force_rebuild=true -- skipping cache check."[0m
+2026-07-19T05:42:36.4284635Z [36;1m  echo "apk-valid=false" >> $env:GITHUB_OUTPUT[0m
+2026-07-19T05:42:36.4284968Z [36;1m  Add-Content -Path $env:GITHUB_ENV -Value "APK_STATUS=Newly Built"[0m
+2026-07-19T05:42:36.4285297Z [36;1m  exit 0[0m
+2026-07-19T05:42:36.4285441Z [36;1m}[0m
+2026-07-19T05:42:36.4285570Z [36;1m[0m
+2026-07-19T05:42:36.4285797Z [36;1mif (-not (Test-Path $cachedApk) -or -not (Test-Path $cachedInfo)) {[0m
+2026-07-19T05:42:36.4286148Z [36;1m  Write-Host "[MISS] Persistent APK Cache not found."[0m
+2026-07-19T05:42:36.4286443Z [36;1m  echo "apk-valid=false" >> $env:GITHUB_OUTPUT[0m
+2026-07-19T05:42:36.4286766Z [36;1m  Add-Content -Path $env:GITHUB_ENV -Value "APK_STATUS=Newly Built"[0m
+2026-07-19T05:42:36.4287053Z [36;1m  exit 0[0m
+2026-07-19T05:42:36.4287195Z [36;1m}[0m
+2026-07-19T05:42:36.4287324Z [36;1m[0m
+2026-07-19T05:42:36.4287466Z [36;1m# Load apk-info.json[0m
+2026-07-19T05:42:36.4287647Z [36;1mtry {[0m
+2026-07-19T05:42:36.4287861Z [36;1m  $info = Get-Content $cachedInfo -Raw | ConvertFrom-Json[0m
+2026-07-19T05:42:36.4288128Z [36;1m} catch {[0m
+2026-07-19T05:42:36.4288376Z [36;1m  Write-Host "[WARN] Failed to parse apk-info.json. Rebuilding."[0m
+2026-07-19T05:42:36.4288703Z [36;1m  echo "apk-valid=false" >> $env:GITHUB_OUTPUT[0m
+2026-07-19T05:42:36.4289028Z [36;1m  Add-Content -Path $env:GITHUB_ENV -Value "APK_STATUS=Newly Built"[0m
+2026-07-19T05:42:36.4289453Z [36;1m  exit 0[0m
+2026-07-19T05:42:36.4289616Z [36;1m}[0m
+2026-07-19T05:42:36.4290214Z [36;1m[0m
+2026-07-19T05:42:36.4290411Z [36;1m# Verify cached APK integrity using SHA256[0m
+2026-07-19T05:42:36.4290749Z [36;1m$cachedApkHash = (Get-FileHash $cachedApk -Algorithm SHA256).Hash[0m
+2026-07-19T05:42:36.4291082Z [36;1mif ($cachedApkHash -ne $info.sha256) {[0m
+2026-07-19T05:42:36.4291416Z [36;1m  Write-Host "[WARN] Cached APK SHA256 mismatch or corrupted. Rebuilding."[0m
+2026-07-19T05:42:36.4291779Z [36;1m  echo "apk-valid=false" >> $env:GITHUB_OUTPUT[0m
+2026-07-19T05:42:36.4292118Z [36;1m  Add-Content -Path $env:GITHUB_ENV -Value "APK_STATUS=Newly Built"[0m
+2026-07-19T05:42:36.4292418Z [36;1m  exit 0[0m
+2026-07-19T05:42:36.4292564Z [36;1m}[0m
+2026-07-19T05:42:36.4292705Z [36;1m[0m
+2026-07-19T05:42:36.4292863Z [36;1m# Calculate current source hash[0m
+2026-07-19T05:42:36.4293083Z [36;1m$sourceFiles = @([0m
+2026-07-19T05:42:36.4293273Z [36;1m  "package.json",[0m
+2026-07-19T05:42:36.4293455Z [36;1m  "package-lock.json",[0m
+2026-07-19T05:42:36.4293649Z [36;1m  "app.json"[0m
+2026-07-19T05:42:36.4293802Z [36;1m)[0m
+2026-07-19T05:42:36.4293932Z [36;1m[0m
+2026-07-19T05:42:36.4294065Z [36;1m$combined = ""[0m
+2026-07-19T05:42:36.4294243Z [36;1mforeach ($f in $sourceFiles) {[0m
+2026-07-19T05:42:36.4294533Z [36;1m  if (Test-Path $f) {[0m
+2026-07-19T05:42:36.4294787Z [36;1m    $combined += (Get-FileHash $f -Algorithm SHA256).Hash[0m
+2026-07-19T05:42:36.4295044Z [36;1m  }[0m
+2026-07-19T05:42:36.4295175Z [36;1m}[0m
+2026-07-19T05:42:36.4295332Z [36;1m# Hash all app/ JS/TS source files[0m
+2026-07-19T05:42:36.4295553Z [36;1mif (Test-Path "app") {[0m
+2026-07-19T05:42:36.4298749Z [36;1m  Get-ChildItem "app" -Recurse -File -Include "*.js","*.ts","*.tsx","*.jsx","*.json" `[0m
+2026-07-19T05:42:36.4299289Z [36;1m    -ErrorAction SilentlyContinue | Sort-Object FullName | ForEach-Object {[0m
+2026-07-19T05:42:36.4299721Z [36;1m      $combined += (Get-FileHash $_.FullName -Algorithm SHA256).Hash[0m
+2026-07-19T05:42:36.4300006Z [36;1m    }[0m
+2026-07-19T05:42:36.4300193Z [36;1m}[0m
+2026-07-19T05:42:36.4300337Z [36;1m[0m
+2026-07-19T05:42:36.4300540Z [36;1m$bytes = [System.Text.Encoding]::UTF8.GetBytes($combined)[0m
+2026-07-19T05:42:36.4300947Z [36;1m$sha = [System.Security.Cryptography.SHA256CryptoServiceProvider]::new()[0m
+2026-07-19T05:42:36.4301407Z [36;1m$curHash = [BitConverter]::ToString($sha.ComputeHash($bytes)).Replace("-","")[0m
+2026-07-19T05:42:36.4301722Z [36;1m[0m
+2026-07-19T05:42:36.4301886Z [36;1mif ($curHash -eq $info.sourceHash) {[0m
+2026-07-19T05:42:36.4302208Z [36;1m  Write-Host "==========================================="[0m
+2026-07-19T05:42:36.4302523Z [36;1m  Write-Host "✅ Persistent APK Cache Found"[0m
+2026-07-19T05:42:36.4302812Z [36;1m  Write-Host "✅ APK Validation Successful"[0m
+2026-07-19T05:42:36.4303068Z [36;1m  Write-Host "⏭ Build APK Skipped"[0m
+2026-07-19T05:42:36.4303402Z [36;1m  Write-Host "Estimated Time Saved: ~15 minutes (Gradle + JS bundle skipped)"[0m
+2026-07-19T05:42:36.4303764Z [36;1m  Write-Host "Continuing with next stage."[0m
+2026-07-19T05:42:36.4304110Z [36;1m  Write-Host "==========================================="[0m
+2026-07-19T05:42:36.4304356Z [36;1m  [0m
+2026-07-19T05:42:36.4304576Z [36;1m  # Restore APK[0m
+2026-07-19T05:42:36.4304778Z [36;1m  $destDir = Split-Path $destApk -Parent[0m
+2026-07-19T05:42:36.4305188Z [36;1m  if (-not (Test-Path $destDir)) { New-Item -ItemType Directory -Path $destDir -Force | Out-Null }[0m
+2026-07-19T05:42:36.4305595Z [36;1m  Copy-Item $cachedApk $destApk -Force[0m
+2026-07-19T05:42:36.4305878Z [36;1m  Write-Host "[OK] Restored APK from cache to: $destApk"[0m
+2026-07-19T05:42:36.4306180Z [36;1m  echo "apk-valid=true" >> $env:GITHUB_OUTPUT[0m
+2026-07-19T05:42:36.4306512Z [36;1m  Add-Content -Path $env:GITHUB_ENV -Value "APK_STATUS=Reused (Cached)"[0m
+2026-07-19T05:42:36.4306809Z [36;1m} else {[0m
+2026-07-19T05:42:36.4307072Z [36;1m  Write-Host "[CHANGE] Source has changed since last build. Rebuild required."[0m
+2026-07-19T05:42:36.4307786Z [36;1m  Write-Host "  Current hash : $($curHash.Substring(0,16))..."[0m
+2026-07-19T05:42:36.4308144Z [36;1m  Write-Host "  Cached hash  : $($info.sourceHash.Substring(0,16))..."[0m
+2026-07-19T05:42:36.4308463Z [36;1m  echo "apk-valid=false" >> $env:GITHUB_OUTPUT[0m
+2026-07-19T05:42:36.4308783Z [36;1m  Add-Content -Path $env:GITHUB_ENV -Value "APK_STATUS=Newly Built"[0m
+2026-07-19T05:42:36.4309124Z [36;1m}[0m
+2026-07-19T05:42:36.4366248Z shell: C:\WINDOWS\System32\WindowsPowerShell\v1.0\powershell.EXE -command ". '{0}'"
+2026-07-19T05:42:36.4366608Z env:
+2026-07-19T05:42:36.4366768Z   TEST_EMAIL: jessuff8@gmail.com
+2026-07-19T05:42:36.4366973Z   TEST_PASSWORD: Ravi@6444
+2026-07-19T05:42:36.4367150Z   TEST_USER_NAME: Konda
+2026-07-19T05:42:36.4367461Z   EXPO_PUBLIC_API_URL: https://tripsyncbackend-production-37a2.up.railway.app
+2026-07-19T05:42:36.4367913Z   WDIO_CI_SPEC: 
+2026-07-19T05:42:36.4368075Z   JOB_START_TIME: 2026-07-19 11:10:59
+2026-07-19T05:42:36.4368415Z   JAVA_HOME: C:\actions-runner\_work\_tool\Java_Temurin-Hotspot_jdk\21.0.11-10.0.LTS\x64
+2026-07-19T05:42:36.4368906Z   JAVA_HOME_21_X64: C:\actions-runner\_work\_tool\Java_Temurin-Hotspot_jdk\21.0.11-10.0.LTS\x64
+2026-07-19T05:42:36.4369313Z   ANDROID_HOME: C:\Users\konda\AppData\Local\Android\Sdk
+2026-07-19T05:42:36.4369715Z   ANDROID_SDK_ROOT: C:\Users\konda\AppData\Local\Android\Sdk
+2026-07-19T05:42:36.4369987Z ##[endgroup]
+2026-07-19T05:42:37.8981543Z ===========================================
+2026-07-19T05:42:37.9016442Z âœ… Persistent APK Cache Found
+2026-07-19T05:42:37.9017045Z âœ… APK Validation Successful
+2026-07-19T05:42:37.9017478Z â­ Build APK Skipped
+2026-07-19T05:42:37.9019605Z Estimated Time Saved: ~15 minutes (Gradle + JS bundle skipped)
+2026-07-19T05:42:37.9020201Z Continuing with next stage.
+2026-07-19T05:42:37.9020587Z ===========================================
+2026-07-19T05:42:37.9810833Z [OK] Restored APK from cache to: android\app\build\outputs\apk\debug\app-debug.apk
+2026-07-19T05:42:38.0781286Z ##[group]Run $apkPath = "android\app\build\outputs\apk\debug\app-debug.apk"
+2026-07-19T05:42:38.0782176Z [36;1m$apkPath = "android\app\build\outputs\apk\debug\app-debug.apk"[0m
+2026-07-19T05:42:38.0782539Z [36;1mif (Test-Path $apkPath) {[0m
+2026-07-19T05:42:38.0782793Z [36;1m  $apk = Get-Item $apkPath[0m
+2026-07-19T05:42:38.0783090Z [36;1m  $sizeMB = [math]::Round($apk.Length / 1MB, 1)[0m
+2026-07-19T05:42:38.0783431Z [36;1m  Write-Host "[OK] APK verified: $apkPath ($sizeMB MB)"[0m
+2026-07-19T05:42:38.0783689Z [36;1m} else {[0m
+2026-07-19T05:42:38.0783886Z [36;1m  Write-Error "[FAIL] APK not found at $apkPath"[0m
+2026-07-19T05:42:38.0784158Z [36;1m  exit 1[0m
+2026-07-19T05:42:38.0784298Z [36;1m}[0m
+2026-07-19T05:42:38.0836103Z shell: C:\WINDOWS\System32\WindowsPowerShell\v1.0\powershell.EXE -command ". '{0}'"
+2026-07-19T05:42:38.0836765Z env:
+2026-07-19T05:42:38.0837016Z   TEST_EMAIL: jessuff8@gmail.com
+2026-07-19T05:42:38.0837425Z   TEST_PASSWORD: Ravi@6444
+2026-07-19T05:42:38.0837740Z   TEST_USER_NAME: Konda
+2026-07-19T05:42:38.0838257Z   EXPO_PUBLIC_API_URL: https://tripsyncbackend-production-37a2.up.railway.app
+2026-07-19T05:42:38.0838853Z   WDIO_CI_SPEC: 
+2026-07-19T05:42:38.0839138Z   JOB_START_TIME: 2026-07-19 11:10:59
+2026-07-19T05:42:38.0839731Z   JAVA_HOME: C:\actions-runner\_work\_tool\Java_Temurin-Hotspot_jdk\21.0.11-10.0.LTS\x64
+2026-07-19T05:42:38.0840564Z   JAVA_HOME_21_X64: C:\actions-runner\_work\_tool\Java_Temurin-Hotspot_jdk\21.0.11-10.0.LTS\x64
+2026-07-19T05:42:38.0841263Z   ANDROID_HOME: C:\Users\konda\AppData\Local\Android\Sdk
+2026-07-19T05:42:38.0841770Z   ANDROID_SDK_ROOT: C:\Users\konda\AppData\Local\Android\Sdk
+2026-07-19T05:42:38.0842229Z   APK_STATUS: Reused (Cached)
+2026-07-19T05:42:38.0842509Z ##[endgroup]
+2026-07-19T05:42:38.5274380Z [OK] APK verified: android\app\build\outputs\apk\debug\app-debug.apk (175.4 MB)
+2026-07-19T05:42:38.5996226Z ##[group]Run $devices = adb devices 2>&1
+2026-07-19T05:42:38.5997557Z [36;1m$devices = adb devices 2>&1[0m
+2026-07-19T05:42:38.5997808Z [36;1mWrite-Host "ADB Devices output:`n$devices"[0m
+2026-07-19T05:42:38.5998240Z [36;1m$match = [System.Text.RegularExpressions.Regex]::Match($devices, "(emulator-\d+|127\.0\.0\.1:\d+)")[0m
+2026-07-19T05:42:38.5998616Z [36;1m[0m
+2026-07-19T05:42:38.5998758Z [36;1mif ($match.Success) {[0m
+2026-07-19T05:42:38.5998951Z [36;1m  $emulatorId = $match.Value[0m
+2026-07-19T05:42:38.5999308Z [36;1m  Write-Host "[REUSE] Emulator already running: $emulatorId"[0m
+2026-07-19T05:42:38.5999610Z [36;1m  echo "running=true" >> $env:GITHUB_OUTPUT[0m
+2026-07-19T05:42:38.5999885Z [36;1m  echo "device-id=$emulatorId" >> $env:GITHUB_OUTPUT[0m
+2026-07-19T05:42:38.6000232Z [36;1m  Add-Content -Path $env:GITHUB_ENV -Value "DEVICE_NAME=$emulatorId"[0m
+2026-07-19T05:42:38.6000698Z [36;1m  Add-Content -Path $env:GITHUB_ENV -Value "EMULATOR_STATUS=Reused (Already Running)"[0m
+2026-07-19T05:42:38.6001038Z [36;1m} else {[0m
+2026-07-19T05:42:38.6001208Z [36;1m  Write-Host "[NONE] No emulator found."[0m
+2026-07-19T05:42:38.6001458Z [36;1m  echo "running=false" >> $env:GITHUB_OUTPUT[0m
+2026-07-19T05:42:38.6001792Z [36;1m  Add-Content -Path $env:GITHUB_ENV -Value "EMULATOR_STATUS=Offline / Missing"[0m
+2026-07-19T05:42:38.6002098Z [36;1m}[0m
+2026-07-19T05:42:38.6043838Z shell: C:\WINDOWS\System32\WindowsPowerShell\v1.0\powershell.EXE -command ". '{0}'"
+2026-07-19T05:42:38.6044182Z env:
+2026-07-19T05:42:38.6044338Z   TEST_EMAIL: jessuff8@gmail.com
+2026-07-19T05:42:38.6044533Z   TEST_PASSWORD: Ravi@6444
+2026-07-19T05:42:38.6044705Z   TEST_USER_NAME: Konda
+2026-07-19T05:42:38.6045005Z   EXPO_PUBLIC_API_URL: https://tripsyncbackend-production-37a2.up.railway.app
+2026-07-19T05:42:38.6045334Z   WDIO_CI_SPEC: 
+2026-07-19T05:42:38.6045490Z   JOB_START_TIME: 2026-07-19 11:10:59
+2026-07-19T05:42:38.6045821Z   JAVA_HOME: C:\actions-runner\_work\_tool\Java_Temurin-Hotspot_jdk\21.0.11-10.0.LTS\x64
+2026-07-19T05:42:38.6046286Z   JAVA_HOME_21_X64: C:\actions-runner\_work\_tool\Java_Temurin-Hotspot_jdk\21.0.11-10.0.LTS\x64
+2026-07-19T05:42:38.6046720Z   ANDROID_HOME: C:\Users\konda\AppData\Local\Android\Sdk
+2026-07-19T05:42:38.6047568Z   ANDROID_SDK_ROOT: C:\Users\konda\AppData\Local\Android\Sdk
+2026-07-19T05:42:38.6048011Z   APK_STATUS: Reused (Cached)
+2026-07-19T05:42:38.6048492Z ##[endgroup]
+2026-07-19T05:42:39.0640118Z ADB Devices output:
+2026-07-19T05:42:39.0640579Z List of devices attached emulator-5554	device 
+2026-07-19T05:42:39.0771030Z [REUSE] Emulator already running: emulator-5554
+2026-07-19T05:42:39.2013424Z ##[group]Run $deviceId = "emulator-5554"
+2026-07-19T05:42:39.2013937Z [36;1m$deviceId = "emulator-5554"[0m
+2026-07-19T05:42:39.2014347Z [36;1mWrite-Host "Verifying boot for device: $deviceId"[0m
+2026-07-19T05:42:39.2014686Z [36;1m[0m
+2026-07-19T05:42:39.2014988Z [36;1m# Retry up to 60 seconds for the emulator to finish booting[0m
+2026-07-19T05:42:39.2015381Z [36;1m$maxWait = 60[0m
+2026-07-19T05:42:39.2015643Z [36;1m$waited  = 0[0m
+2026-07-19T05:42:39.2015870Z [36;1m$booted  = ""[0m
+2026-07-19T05:42:39.2016169Z [36;1mdo {[0m
+2026-07-19T05:42:39.2016507Z [36;1m  $rawBooted = adb -s $deviceId shell getprop sys.boot_completed 2>$null[0m
+2026-07-19T05:42:39.2016959Z [36;1m  $booted = if ($rawBooted) { $rawBooted.ToString().Trim() } else { "" }[0m
+2026-07-19T05:42:39.2017502Z [36;1m  if ($booted -eq "1") { break }[0m
+2026-07-19T05:42:39.2017804Z [36;1m  Start-Sleep -Seconds 5[0m
+2026-07-19T05:42:39.2018133Z [36;1m  $waited += 5[0m
+2026-07-19T05:42:39.2018537Z [36;1m  Write-Host "  Still booting... ($waited / $maxWait s)"[0m
+2026-07-19T05:42:39.2018914Z [36;1m} while ($waited -lt $maxWait)[0m
+2026-07-19T05:42:39.2019165Z [36;1m[0m
+2026-07-19T05:42:39.2019351Z [36;1mif ($booted -eq "1") {[0m
+2026-07-19T05:42:39.2019647Z [36;1m  Write-Host "[OK] Emulator fully booted."[0m
+2026-07-19T05:42:39.2019930Z [36;1m} else {[0m
+2026-07-19T05:42:39.2020679Z [36;1m  Write-Host "[WARN] Emulator boot_completed='$booted' after ${maxWait}s. Proceeding anyway."[0m
+2026-07-19T05:42:39.2021134Z [36;1m}[0m
+2026-07-19T05:42:39.2021467Z [36;1m[0m
+2026-07-19T05:42:39.2021784Z [36;1m# Capture Android version safely (strip newlines for GITHUB_ENV)[0m
+2026-07-19T05:42:39.2022263Z [36;1m$rawVer = adb -s $deviceId shell getprop ro.build.version.release 2>$null[0m
+2026-07-19T05:42:39.2022876Z [36;1m$androidVer = if ($rawVer) { $rawVer.ToString().Trim() -replace '[\r\n]','' } else { "unknown" }[0m
+2026-07-19T05:42:39.2023357Z [36;1m[0m
+2026-07-19T05:42:39.2023682Z [36;1m$rawBuild = adb -s $deviceId shell getprop ro.build.display.id 2>$null[0m
+2026-07-19T05:42:39.2024234Z [36;1m$buildId = if ($rawBuild) { $rawBuild.ToString().Trim() -replace '[\r\n]','' } else { "unknown" }[0m
+2026-07-19T05:42:39.2024664Z [36;1m[0m
+2026-07-19T05:42:39.2024947Z [36;1mWrite-Host "Android Version: $androidVer | Build: $buildId"[0m
+2026-07-19T05:42:39.2025412Z [36;1mAdd-Content -Path $env:GITHUB_ENV -Value "ANDROID_VERSION=$androidVer"[0m
+2026-07-19T05:42:39.2067798Z shell: C:\WINDOWS\System32\WindowsPowerShell\v1.0\powershell.EXE -command ". '{0}'"
+2026-07-19T05:42:39.2068590Z env:
+2026-07-19T05:42:39.2069024Z   TEST_EMAIL: jessuff8@gmail.com
+2026-07-19T05:42:39.2069548Z   TEST_PASSWORD: Ravi@6444
+2026-07-19T05:42:39.2070010Z   TEST_USER_NAME: Konda
+2026-07-19T05:42:39.2070676Z   EXPO_PUBLIC_API_URL: https://tripsyncbackend-production-37a2.up.railway.app
+2026-07-19T05:42:39.2071221Z   WDIO_CI_SPEC: 
+2026-07-19T05:42:39.2071510Z   JOB_START_TIME: 2026-07-19 11:10:59
+2026-07-19T05:42:39.2072063Z   JAVA_HOME: C:\actions-runner\_work\_tool\Java_Temurin-Hotspot_jdk\21.0.11-10.0.LTS\x64
+2026-07-19T05:42:39.2072652Z   JAVA_HOME_21_X64: C:\actions-runner\_work\_tool\Java_Temurin-Hotspot_jdk\21.0.11-10.0.LTS\x64
+2026-07-19T05:42:39.2073149Z   ANDROID_HOME: C:\Users\konda\AppData\Local\Android\Sdk
+2026-07-19T05:42:39.2073579Z   ANDROID_SDK_ROOT: C:\Users\konda\AppData\Local\Android\Sdk
+2026-07-19T05:42:39.2073905Z   APK_STATUS: Reused (Cached)
+2026-07-19T05:42:39.2074223Z   DEVICE_NAME: emulator-5554
+2026-07-19T05:42:39.2074487Z   EMULATOR_STATUS: Reused (Already Running)
+2026-07-19T05:42:39.2074820Z ##[endgroup]
+2026-07-19T05:42:39.5885246Z Verifying boot for device: emulator-5554
+2026-07-19T05:42:39.6778059Z [OK] Emulator fully booted.
+2026-07-19T05:42:39.7721422Z Android Version: 17 | Build: sdk_gphone16k_x86_64-userdebug 17 CP21.260330.005 15181570 dev-keys
+2026-07-19T05:42:39.8762963Z ##[group]Run if (-not (Test-Path test-results)) { New-Item -ItemType Directory -Path test-results | Out-Null }
+2026-07-19T05:42:39.8763803Z [36;1mif (-not (Test-Path test-results)) { New-Item -ItemType Directory -Path test-results | Out-Null }[0m
+2026-07-19T05:42:39.8764770Z [36;1mif (-not (Test-Path test-results\screenshots)) { New-Item -ItemType Directory -Path test-results\screenshots | Out-Null }[0m
+2026-07-19T05:42:39.8805233Z shell: C:\WINDOWS\System32\WindowsPowerShell\v1.0\powershell.EXE -command ". '{0}'"
+2026-07-19T05:42:39.8805606Z env:
+2026-07-19T05:42:39.8805764Z   TEST_EMAIL: jessuff8@gmail.com
+2026-07-19T05:42:39.8805957Z   TEST_PASSWORD: Ravi@6444
+2026-07-19T05:42:39.8806128Z   TEST_USER_NAME: Konda
+2026-07-19T05:42:39.8806425Z   EXPO_PUBLIC_API_URL: https://tripsyncbackend-production-37a2.up.railway.app
+2026-07-19T05:42:39.8806748Z   WDIO_CI_SPEC: 
+2026-07-19T05:42:39.8806903Z   JOB_START_TIME: 2026-07-19 11:10:59
+2026-07-19T05:42:39.8807242Z   JAVA_HOME: C:\actions-runner\_work\_tool\Java_Temurin-Hotspot_jdk\21.0.11-10.0.LTS\x64
+2026-07-19T05:42:39.8807705Z   JAVA_HOME_21_X64: C:\actions-runner\_work\_tool\Java_Temurin-Hotspot_jdk\21.0.11-10.0.LTS\x64
+2026-07-19T05:42:39.8808086Z   ANDROID_HOME: C:\Users\konda\AppData\Local\Android\Sdk
+2026-07-19T05:42:39.8808377Z   ANDROID_SDK_ROOT: C:\Users\konda\AppData\Local\Android\Sdk
+2026-07-19T05:42:39.8808627Z   APK_STATUS: Reused (Cached)
+2026-07-19T05:42:39.8808814Z   DEVICE_NAME: emulator-5554
+2026-07-19T05:42:39.8809567Z   EMULATOR_STATUS: Reused (Already Running)
+2026-07-19T05:42:39.8809918Z   ANDROID_VERSION: 17
+2026-07-19T05:42:39.8810165Z ##[endgroup]
+2026-07-19T05:42:40.2739998Z ##[group]Run Write-Host "[RUN] Starting WebDriverIO test execution..."
+2026-07-19T05:42:40.2740715Z [36;1mWrite-Host "[RUN] Starting WebDriverIO test execution..."[0m
+2026-07-19T05:42:40.2741004Z [36;1m$specArg = ""[0m
+2026-07-19T05:42:40.2741198Z [36;1mif ($env:WDIO_CI_SPEC -ne "") {[0m
+2026-07-19T05:42:40.2741480Z [36;1m  Write-Host "[SPEC] Running single spec: $env:WDIO_CI_SPEC"[0m
+2026-07-19T05:42:40.2741749Z [36;1m} else {[0m
+2026-07-19T05:42:40.2741969Z [36;1m  Write-Host "[SPEC] Running all 550 tests (11 suites x 50 tests)"[0m
+2026-07-19T05:42:40.2742233Z [36;1m}[0m
+2026-07-19T05:42:40.2742351Z [36;1m[0m
+2026-07-19T05:42:40.2742506Z [36;1mnode AppiumTests\scripts\ci_run_tests.js[0m
+2026-07-19T05:42:40.2742735Z [36;1m$exitCode = $LASTEXITCODE[0m
+2026-07-19T05:42:40.2742944Z [36;1mWrite-Host "WDIO exit code: $exitCode"[0m
+2026-07-19T05:42:40.2743181Z [36;1mexit $exitCode[0m
+2026-07-19T05:42:40.2784452Z shell: C:\WINDOWS\System32\WindowsPowerShell\v1.0\powershell.EXE -command ". '{0}'"
+2026-07-19T05:42:40.2784884Z env:
+2026-07-19T05:42:40.2785069Z   TEST_EMAIL: jessuff8@gmail.com
+2026-07-19T05:42:40.2785314Z   TEST_PASSWORD: Ravi@6444
+2026-07-19T05:42:40.2785530Z   TEST_USER_NAME: Konda
+2026-07-19T05:42:40.2785900Z   EXPO_PUBLIC_API_URL: https://tripsyncbackend-production-37a2.up.railway.app
+2026-07-19T05:42:40.2786329Z   WDIO_CI_SPEC: 
+2026-07-19T05:42:40.2786532Z   JOB_START_TIME: 2026-07-19 11:10:59
+2026-07-19T05:42:40.2786939Z   JAVA_HOME: C:\actions-runner\_work\_tool\Java_Temurin-Hotspot_jdk\21.0.11-10.0.LTS\x64
+2026-07-19T05:42:40.2787598Z   JAVA_HOME_21_X64: C:\actions-runner\_work\_tool\Java_Temurin-Hotspot_jdk\21.0.11-10.0.LTS\x64
+2026-07-19T05:42:40.2788089Z   ANDROID_HOME: C:\Users\konda\AppData\Local\Android\Sdk
+2026-07-19T05:42:40.2788465Z   ANDROID_SDK_ROOT: C:\Users\konda\AppData\Local\Android\Sdk
+2026-07-19T05:42:40.2788802Z   APK_STATUS: Reused (Cached)
+2026-07-19T05:42:40.2789038Z   DEVICE_NAME: emulator-5554
+2026-07-19T05:42:40.2789292Z   EMULATOR_STATUS: Reused (Already Running)
+2026-07-19T05:42:40.2789565Z   ANDROID_VERSION: 17
+2026-07-19T05:42:40.2789761Z ##[endgroup]
+2026-07-19T05:42:40.6557108Z [RUN] Starting WebDriverIO test execution...
+2026-07-19T05:42:40.6606634Z [SPEC] Running single spec: 
+2026-07-19T05:42:40.7455270Z 
+2026-07-19T05:42:40.7456524Z ════════════════════════════════════════════════════════════
+2026-07-19T05:42:40.7457479Z  TripSync Android E2E — CI Orchestrator
+2026-07-19T05:42:40.7457943Z  Self-Hosted Windows Runner
+2026-07-19T05:42:40.7458615Z ════════════════════════════════════════════════════════════
+2026-07-19T05:42:40.7458993Z 
+2026-07-19T05:42:40.7492293Z [11:12:40] 🔧  Verifying ADB availability...
+2026-07-19T05:42:40.7492745Z [11:12:40] ⚙️  $ adb version
+2026-07-19T05:42:40.8059239Z [11:12:40] ✅  ADB found: Android Debug Bridge version 1.0.41
+2026-07-19T05:42:40.8064217Z [11:12:40] 📱  Checking for running emulators...
+2026-07-19T05:42:40.8608901Z [11:12:40] ✅  Reusing existing emulator: emulator-5554
+2026-07-19T05:42:40.8609450Z [11:12:40] 🔍  Validating Cached APK existence, integrity, and JS bundle...
+2026-07-19T05:42:41.0070960Z [11:12:41] 🔍  Verifying JS bundle using aapt...
+2026-07-19T05:42:41.0786812Z [11:12:41] ✅  Verification passed: assets/index.android.bundle is present in APK.
+2026-07-19T05:42:41.0790373Z [11:12:41] 📦  Starting Intelligent Installed APK Validation...
+2026-07-19T05:42:41.1672248Z [11:12:41] 🔍  App is installed. Extracting version details and SHA256...
+2026-07-19T05:42:53.0283680Z [11:12:53] 📋  Device vs Local Comparison:
+2026-07-19T05:42:53.0290760Z [11:12:53] 📋    - Version Code: Device=1 vs Local=1
+2026-07-19T05:42:53.0291318Z [11:12:53] 📋    - Version Name: Device=1.0.0 vs Local=1.0.0
+2026-07-19T05:42:53.0291765Z [11:12:53] 📋    - SHA256      : Device=d8ea364e1a... vs Local=d8ea364e1a...
+2026-07-19T05:42:53.0292765Z [11:12:53] ✅  Intelligent Validation: Installed APK is identical to Cached APK. Reinstall skipped!
+2026-07-19T05:42:53.0295935Z [11:12:53] 🚀  Launching: com.kondajeswanth.TripSyncApp/com.kondajeswanth.TripSyncApp.MainActivity
+2026-07-19T05:42:53.0296572Z [11:12:53] 🧹  Clearing app data for clean state...
+2026-07-19T05:43:09.0504382Z [11:13:09] 🔑  Granting default permissions (Location, Notifications) to bypass system dialogues...
+2026-07-19T05:43:09.8905008Z [11:13:09] 📄  am start output: Starting: Intent { cmp=com.kondajeswanth.TripSyncApp/.MainActivity }
+2026-07-19T05:43:09.8905801Z Warning: Activity not started, intent has been delivered to currently running top-most instance.
+2026-07-19T05:43:09.8906241Z Status: ok
+2026-07-19T05:43:09.8906435Z LaunchState: UNKNOWN (0)
+2026-07-19T05:43:09.8906756Z Activity: com.kondajeswanth.TripSyncApp/.MainActivity
+2026-07-19T05:43:09.8907057Z TotalTime: 0
+2026-07-19T05:43:09.8907222Z WaitTime: 29
+2026-07-19T05:43:09.8907411Z Complete
+2026-07-19T05:43:09.8907789Z [11:13:09] ⏳  Polling for foreground activity (up to 30s)...
+2026-07-19T05:43:11.9733799Z [11:13:11] 🔍    [Poll 1/15] Top activity: topResumedActivity=ActivityRecord{254902644 u0 com.kondajeswanth.TripSyncApp/.MainActivity t35}
+2026-07-19T05:43:11.9734626Z [11:13:11] ✅  TripSync app verified in foreground.
+2026-07-19T05:43:27.0700163Z [11:13:27] 📸  Pre-WDIO screenshot saved: C:\actions-runner\_work\TripSyncApp\TripSyncApp\test-results\pre-wdio-launch-screenshot.png
+2026-07-19T05:43:27.0700869Z [11:13:27] ⏳  Waiting 8s for React Native to finish loading elements...
+2026-07-19T05:43:35.1673998Z [11:13:35] ✅  App launch verified. TripSync is visible and ready for WDIO.
+2026-07-19T05:43:35.1682383Z [11:13:35] 🔍  Checking Appium on port 4723...
+2026-07-19T05:43:35.1790185Z [11:13:35] 🚀  Starting Appium server...
+2026-07-19T05:43:35.1924173Z [11:13:35] ⏳  Waiting for Appium to become ready...
+2026-07-19T05:43:45.2512021Z [11:13:45] ✅  Appium is ready at :4723
+2026-07-19T05:43:45.2512597Z [11:13:45] 🔗  Verifying Appium session creation eligibility...
+2026-07-19T05:43:45.2545169Z [11:13:45] 🔑  Seeding Firebase Auth test user...
+2026-07-19T05:43:45.5634451Z [seed] Attempting to seed Firebase Auth user: testuser@tripsync.dev...
+2026-07-19T05:43:46.0938487Z [seed] ✅ User already exists in Firebase Auth.
+2026-07-19T05:43:46.1752255Z [11:13:46] 🧪  Starting WebDriverIO test execution...
+2026-07-19T05:43:46.1752778Z [11:13:46] 📋  Running all tests across all suites
+2026-07-19T05:44:05.2959435Z 2026-07-19T05:44:05.294Z INFO @wdio/cli:launcher: Run onPrepare hook
+2026-07-19T05:44:05.2962444Z 
+2026-07-19T05:44:05.2963375Z [wdio] ─────────────────────────────────────────────
+2026-07-19T05:44:05.2964070Z [wdio] TripSync Android E2E — Starting Test Run
+2026-07-19T05:44:05.2964802Z [wdio] Specs: C:\actions-runner\_work\TripSyncApp\TripSyncApp\AppiumTests\tests\**\*.test.js
+2026-07-19T05:44:05.2965604Z [wdio] ─────────────────────────────────────────────
+2026-07-19T05:44:05.2965843Z 
+2026-07-19T05:44:05.4629538Z Expected Specs : 11
+2026-07-19T05:44:05.4630121Z Expected Suites : 11
+2026-07-19T05:44:05.4630513Z Expected Tests : 551
+2026-07-19T05:44:05.4630715Z 
+2026-07-19T05:44:05.4769129Z [wdio] ✅ Appium server is responding at :4723
+2026-07-19T05:44:05.4861786Z 
+2026-07-19T05:44:05.4863053Z Execution of 11 workers started at 2026-07-19T05:44:05.485Z
+2026-07-19T05:44:05.4864053Z 
+2026-07-19T05:44:05.4892311Z 2026-07-19T05:44:05.488Z INFO @wdio/cli:launcher: Run onWorkerStart hook
+2026-07-19T05:44:05.4899251Z 2026-07-19T05:44:05.489Z INFO @wdio/xvfb: XvfbManager.init() called
+2026-07-19T05:44:05.4900861Z 2026-07-19T05:44:05.489Z INFO @wdio/xvfb: Xvfb not needed on current platform
+2026-07-19T05:44:05.4910834Z 2026-07-19T05:44:05.490Z INFO @wdio/local-runner: Start worker 0-0 with arg: run C:\actions-runner\_work\TripSyncApp\TripSyncApp\AppiumTests\wdio.conf.js
+2026-07-19T05:44:05.5165494Z 2026-07-19T05:44:05.516Z INFO @wdio/xvfb:ProcessFactory: xvfb-run not found, falling back to regular fork
+2026-07-19T05:44:05.5167910Z 2026-07-19T05:44:05.516Z INFO @wdio/xvfb:ProcessFactory: ProcessFactory: shouldRun=false, isAvailable=false
+2026-07-19T05:44:05.5168748Z 2026-07-19T05:44:05.516Z INFO @wdio/xvfb:ProcessFactory: Creating worker process with regular fork
+2026-07-19T05:44:08.6541431Z [0-0] 2026-07-19T05:44:08.649Z INFO @wdio/local-runner: Run worker command: run
+2026-07-19T05:44:09.5916262Z [0-0] [wdio] Creating Appium session...
+2026-07-19T05:44:11.8111437Z [0-0] RUNNING in Android on Android - file:///C:/actions-runner/_work/TripSyncApp/TripSyncApp/AppiumTests/tests/accessibility.test.js
+2026-07-19T05:44:11.8129717Z [0-0] 2026-07-19T05:44:11.811Z INFO webdriver: Initiate new session using the WebDriver protocol
+2026-07-19T05:44:11.8131875Z [0-0] 2026-07-19T05:44:11.812Z INFO @wdio/utils: Connecting to existing driver at http://127.0.0.1:4723/
+2026-07-19T05:44:11.8255910Z [0-0] 2026-07-19T05:44:11.824Z INFO webdriver: [POST] http://127.0.0.1:4723/session
+2026-07-19T05:46:14.7170280Z [0-0] 2026-07-19T05:46:14.649Z ERROR webdriver: Error: WebDriverError: Request failed with error code UND_ERR_HEADERS_TIMEOUT when running "http://127.0.0.1:4723/session" with method "POST"
+2026-07-19T05:46:14.7172421Z [0-0]     at FetchRequest._libRequest (file:///C:/actions-runner/_work/TripSyncApp/TripSyncApp/node_modules/webdriver/build/node.js:2194:13)
+2026-07-19T05:46:14.7173616Z [0-0]     at async FetchRequest._request (file:///C:/actions-runner/_work/TripSyncApp/TripSyncApp/node_modules/webdriver/build/node.js:2220:20)
+2026-07-19T05:46:14.7174853Z [0-0]     at async startWebDriverSession (file:///C:/actions-runner/_work/TripSyncApp/TripSyncApp/node_modules/webdriver/build/node.js:1357:16)
+2026-07-19T05:46:14.7176724Z [0-0]     at async _WebDriver.newSession (file:///C:/actions-runner/_work/TripSyncApp/TripSyncApp/node_modules/webdriver/build/node.js:1779:41)
+2026-07-19T05:46:14.7177695Z [0-0]     at async remote (C:\actions-runner\_work\TripSyncApp\TripSyncApp\node_modules\webdriverio\build\node.js:10061:20)
+2026-07-19T05:46:14.7178712Z [0-0]     at async Runner._startSession (file:///C:/actions-runner/_work/TripSyncApp/TripSyncApp/node_modules/@wdio/runner/build/index.js:836:24)
+2026-07-19T05:46:14.7179840Z [0-0]     at async Runner._initSession (file:///C:/actions-runner/_work/TripSyncApp/TripSyncApp/node_modules/@wdio/runner/build/index.js:810:22)
+2026-07-19T05:46:14.7180874Z [0-0]     at async Runner.run (file:///C:/actions-runner/_work/TripSyncApp/TripSyncApp/node_modules/@wdio/runner/build/index.js:711:16)
+2026-07-19T05:46:14.7182074Z [0-0] 2026-07-19T05:46:14.716Z ERROR @wdio/runner: Error: WebDriverError: Request failed with error code UND_ERR_HEADERS_TIMEOUT when running "http://127.0.0.1:4723/session" with method "POST"
+2026-07-19T05:46:14.7183017Z [0-0]     at startWebDriverSession (file:///C:/actions-runner/_work/TripSyncApp/TripSyncApp/node_modules/webdriver/build/node.js:1361:11)
+2026-07-19T05:46:14.7183835Z [0-0]     at async _WebDriver.newSession (file:///C:/actions-runner/_work/TripSyncApp/TripSyncApp/node_modules/webdriver/build/node.js:1779:41)
+2026-07-19T05:46:14.7184613Z [0-0]     at async remote (C:\actions-runner\_work\TripSyncApp\TripSyncApp\node_modules\webdriverio\build\node.js:10061:20)
+2026-07-19T05:46:14.7185392Z [0-0]     at async Runner._startSession (file:///C:/actions-runner/_work/TripSyncApp/TripSyncApp/node_modules/@wdio/runner/build/index.js:836:24)
+2026-07-19T05:46:14.7186255Z [0-0]     at async Runner._initSession (file:///C:/actions-runner/_work/TripSyncApp/TripSyncApp/node_modules/@wdio/runner/build/index.js:810:22)
+2026-07-19T05:46:14.7187113Z [0-0]     at async Runner.run (file:///C:/actions-runner/_work/TripSyncApp/TripSyncApp/node_modules/@wdio/runner/build/index.js:711:16)
+2026-07-19T05:46:14.8425418Z [0-0] FAILED in Android on Android - file:///C:/actions-runner/_work/TripSyncApp/TripSyncApp/AppiumTests/tests/accessibility.test.js (1 retries)
+2026-07-19T05:46:14.8426254Z 2026-07-19T05:46:14.841Z INFO @wdio/cli:launcher: Run onWorkerEnd hook
+2026-07-19T05:46:14.8427909Z 2026-07-19T05:46:14.841Z INFO @wdio/cli:launcher: Run onWorkerStart hook
+2026-07-19T05:46:14.8435262Z 2026-07-19T05:46:14.842Z INFO @wdio/local-runner: Start worker 0-1 with arg: run C:\actions-runner\_work\TripSyncApp\TripSyncApp\AppiumTests\wdio.conf.js
+2026-07-19T05:46:14.8617452Z 2026-07-19T05:46:14.860Z INFO @wdio/xvfb:ProcessFactory: xvfb-run not found, falling back to regular fork
+2026-07-19T05:46:14.8618193Z 2026-07-19T05:46:14.860Z INFO @wdio/xvfb:ProcessFactory: ProcessFactory: shouldRun=false, isAvailable=false
+2026-07-19T05:46:14.8618807Z 2026-07-19T05:46:14.860Z INFO @wdio/xvfb:ProcessFactory: Creating worker process with regular fork
+2026-07-19T05:46:16.5322270Z [0-1] 2026-07-19T05:46:16.529Z INFO @wdio/local-runner: Run worker command: run
+2026-07-19T05:46:17.2160834Z [0-1] [wdio] Creating Appium session...
+2026-07-19T05:46:17.4684196Z [0-1] RUNNING in Android on Android - file:///C:/actions-runner/_work/TripSyncApp/TripSyncApp/AppiumTests/tests/aiAssistant.test.js
+2026-07-19T05:46:17.4704315Z [0-1] 2026-07-19T05:46:17.470Z INFO webdriver: Initiate new session using the WebDriver protocol
+2026-07-19T05:46:17.4706329Z [0-1] 2026-07-19T05:46:17.470Z INFO @wdio/utils: Connecting to existing driver at http://127.0.0.1:4723/
+2026-07-19T05:46:17.4819005Z [0-1] 2026-07-19T05:46:17.481Z INFO webdriver: [POST] http://127.0.0.1:4723/session
+2026-07-19T05:48:20.2525217Z [0-1] 2026-07-19T05:48:20.188Z ERROR webdriver: Error: WebDriverError: Request failed with error code UND_ERR_HEADERS_TIMEOUT when running "http://127.0.0.1:4723/session" with method "POST"
+2026-07-19T05:48:20.2526844Z [0-1]     at FetchRequest._libRequest (file:///C:/actions-runner/_work/TripSyncApp/TripSyncApp/node_modules/webdriver/build/node.js:2194:13)
+2026-07-19T05:48:20.2528089Z [0-1]     at async FetchRequest._request (file:///C:/actions-runner/_work/TripSyncApp/TripSyncApp/node_modules/webdriver/build/node.js:2220:20)
+2026-07-19T05:48:20.2529584Z [0-1]     at async startWebDriverSession (file:///C:/actions-runner/_work/TripSyncApp/TripSyncApp/node_modules/webdriver/build/node.js:1357:16)
+2026-07-19T05:48:20.2530757Z [0-1]     at async _WebDriver.newSession (file:///C:/actions-runner/_work/TripSyncApp/TripSyncApp/node_modules/webdriver/build/node.js:1779:41)
+2026-07-19T05:48:20.2531837Z [0-1]     at async remote (C:\actions-runner\_work\TripSyncApp\TripSyncApp\node_modules\webdriverio\build\node.js:10061:20)
+2026-07-19T05:48:20.2532713Z [0-1]     at async Runner._startSession (file:///C:/actions-runner/_work/TripSyncApp/TripSyncApp/node_modules/@wdio/runner/build/index.js:836:24)
+2026-07-19T05:48:20.2533579Z [0-1]     at async Runner._initSession (file:///C:/actions-runner/_work/TripSyncApp/TripSyncApp/node_modules/@wdio/runner/build/index.js:810:22)
+2026-07-19T05:48:20.2534365Z [0-1]     at async Runner.run (file:///C:/actions-runner/_work/TripSyncApp/TripSyncApp/node_modules/@wdio/runner/build/index.js:711:16)
+2026-07-19T05:48:20.2535400Z [0-1] 2026-07-19T05:48:20.252Z ERROR @wdio/runner: Error: WebDriverError: Request failed with error code UND_ERR_HEADERS_TIMEOUT when running "http://127.0.0.1:4723/session" with method "POST"
+2026-07-19T05:48:20.2536332Z [0-1]     at startWebDriverSession (file:///C:/actions-runner/_work/TripSyncApp/TripSyncApp/node_modules/webdriver/build/node.js:1361:11)
+2026-07-19T05:48:20.2537142Z [0-1]     at async _WebDriver.newSession (file:///C:/actions-runner/_work/TripSyncApp/TripSyncApp/node_modules/webdriver/build/node.js:1779:41)
+2026-07-19T05:48:20.2537896Z [0-1]     at async remote (C:\actions-runner\_work\TripSyncApp\TripSyncApp\node_modules\webdriverio\build\node.js:10061:20)
+2026-07-19T05:48:20.2538664Z [0-1]     at async Runner._startSession (file:///C:/actions-runner/_work/TripSyncApp/TripSyncApp/node_modules/@wdio/runner/build/index.js:836:24)
+2026-07-19T05:48:20.2539477Z [0-1]     at async Runner._initSession (file:///C:/actions-runner/_work/TripSyncApp/TripSyncApp/node_modules/@wdio/runner/build/index.js:810:22)
+2026-07-19T05:48:20.2541902Z [0-1]     at async Runner.run (file:///C:/actions-runner/_work/TripSyncApp/TripSyncApp/node_modules/@wdio/runner/build/index.js:711:16)
+2026-07-19T05:48:20.3724896Z [0-1] FAILED in Android on Android - file:///C:/actions-runner/_work/TripSyncApp/TripSyncApp/AppiumTests/tests/aiAssistant.test.js (1 retries)
+2026-07-19T05:48:20.3726008Z 2026-07-19T05:48:20.372Z INFO @wdio/cli:launcher: Run onWorkerEnd hook
+2026-07-19T05:48:20.3726728Z 2026-07-19T05:48:20.372Z INFO @wdio/cli:launcher: Run onWorkerStart hook
+2026-07-19T05:48:20.3734401Z 2026-07-19T05:48:20.373Z INFO @wdio/local-runner: Start worker 0-2 with arg: run C:\actions-runner\_work\TripSyncApp\TripSyncApp\AppiumTests\wdio.conf.js
+2026-07-19T05:48:20.4041572Z 2026-07-19T05:48:20.403Z INFO @wdio/xvfb:ProcessFactory: xvfb-run not found, falling back to regular fork
+2026-07-19T05:48:20.4042598Z 2026-07-19T05:48:20.403Z INFO @wdio/xvfb:ProcessFactory: ProcessFactory: shouldRun=false, isAvailable=false
+2026-07-19T05:48:20.4043368Z 2026-07-19T05:48:20.403Z INFO @wdio/xvfb:ProcessFactory: Creating worker process with regular fork
+2026-07-19T05:48:22.0738347Z [0-2] 2026-07-19T05:48:22.070Z INFO @wdio/local-runner: Run worker command: run
+2026-07-19T05:48:22.7550542Z [0-2] [wdio] Creating Appium session...
+2026-07-19T05:48:23.0055844Z [0-2] RUNNING in Android on Android - file:///C:/actions-runner/_work/TripSyncApp/TripSyncApp/AppiumTests/tests/authentication.test.js
+2026-07-19T05:48:23.0073732Z [0-2] 2026-07-19T05:48:23.005Z INFO webdriver: Initiate new session using the WebDriver protocol
+2026-07-19T05:48:23.0075758Z [0-2] 2026-07-19T05:48:23.005Z INFO @wdio/utils: Connecting to existing driver at http://127.0.0.1:4723/
+2026-07-19T05:48:23.0190746Z [0-2] 2026-07-19T05:48:23.017Z INFO webdriver: [POST] http://127.0.0.1:4723/session
+2026-07-19T05:50:25.3786617Z [0-2] 2026-07-19T05:50:25.307Z ERROR webdriver: Error: WebDriverError: Request failed with error code UND_ERR_HEADERS_TIMEOUT when running "http://127.0.0.1:4723/session" with method "POST"
+2026-07-19T05:50:25.3788287Z [0-2]     at FetchRequest._libRequest (file:///C:/actions-runner/_work/TripSyncApp/TripSyncApp/node_modules/webdriver/build/node.js:2194:13)
+2026-07-19T05:50:25.3789863Z [0-2]     at async FetchRequest._request (file:///C:/actions-runner/_work/TripSyncApp/TripSyncApp/node_modules/webdriver/build/node.js:2220:20)
+2026-07-19T05:50:25.3791298Z [0-2]     at async startWebDriverSession (file:///C:/actions-runner/_work/TripSyncApp/TripSyncApp/node_modules/webdriver/build/node.js:1357:16)
+2026-07-19T05:50:25.3792340Z [0-2]     at async _WebDriver.newSession (file:///C:/actions-runner/_work/TripSyncApp/TripSyncApp/node_modules/webdriver/build/node.js:1779:41)
+2026-07-19T05:50:25.3793292Z [0-2]     at async remote (C:\actions-runner\_work\TripSyncApp\TripSyncApp\node_modules\webdriverio\build\node.js:10061:20)
+2026-07-19T05:50:25.3794259Z [0-2]     at async Runner._startSession (file:///C:/actions-runner/_work/TripSyncApp/TripSyncApp/node_modules/@wdio/runner/build/index.js:836:24)
+2026-07-19T05:50:25.3795220Z [0-2]     at async Runner._initSession (file:///C:/actions-runner/_work/TripSyncApp/TripSyncApp/node_modules/@wdio/runner/build/index.js:810:22)
+2026-07-19T05:50:25.3796057Z [0-2]     at async Runner.run (file:///C:/actions-runner/_work/TripSyncApp/TripSyncApp/node_modules/@wdio/runner/build/index.js:711:16)
+2026-07-19T05:50:25.3797032Z [0-2] 2026-07-19T05:50:25.377Z ERROR @wdio/runner: Error: WebDriverError: Request failed with error code UND_ERR_HEADERS_TIMEOUT when running "http://127.0.0.1:4723/session" with method "POST"
+2026-07-19T05:50:25.3797987Z [0-2]     at startWebDriverSession (file:///C:/actions-runner/_work/TripSyncApp/TripSyncApp/node_modules/webdriver/build/node.js:1361:11)
+2026-07-19T05:50:25.3798805Z [0-2]     at async _WebDriver.newSession (file:///C:/actions-runner/_work/TripSyncApp/TripSyncApp/node_modules/webdriver/build/node.js:1779:41)
+2026-07-19T05:50:25.3799572Z [0-2]     at async remote (C:\actions-runner\_work\TripSyncApp\TripSyncApp\node_modules\webdriverio\build\node.js:10061:20)
+2026-07-19T05:50:25.3801071Z [0-2]     at async Runner._startSession (file:///C:/actions-runner/_work/TripSyncApp/TripSyncApp/node_modules/@wdio/runner/build/index.js:836:24)
+2026-07-19T05:50:25.3801915Z [0-2]     at async Runner._initSession (file:///C:/actions-runner/_work/TripSyncApp/TripSyncApp/node_modules/@wdio/runner/build/index.js:810:22)
+2026-07-19T05:50:25.3802738Z [0-2]     at async Runner.run (file:///C:/actions-runner/_work/TripSyncApp/TripSyncApp/node_modules/@wdio/runner/build/index.js:711:16)
+2026-07-19T05:50:25.5070193Z [0-2] FAILED in Android on Android - file:///C:/actions-runner/_work/TripSyncApp/TripSyncApp/AppiumTests/tests/authentication.test.js (1 retries)
+2026-07-19T05:50:25.5070868Z 2026-07-19T05:50:25.506Z INFO @wdio/cli:launcher: Run onWorkerEnd hook
+2026-07-19T05:50:25.5071478Z 2026-07-19T05:50:25.506Z INFO @wdio/cli:launcher: Run onWorkerStart hook
+2026-07-19T05:50:25.5084192Z 2026-07-19T05:50:25.507Z INFO @wdio/local-runner: Start worker 0-3 with arg: run C:\actions-runner\_work\TripSyncApp\TripSyncApp\AppiumTests\wdio.conf.js
+2026-07-19T05:50:25.5259536Z 2026-07-19T05:50:25.524Z INFO @wdio/xvfb:ProcessFactory: xvfb-run not found, falling back to regular fork
+2026-07-19T05:50:25.5260390Z 2026-07-19T05:50:25.525Z INFO @wdio/xvfb:ProcessFactory: ProcessFactory: shouldRun=false, isAvailable=false
+2026-07-19T05:50:25.5261156Z 2026-07-19T05:50:25.525Z INFO @wdio/xvfb:ProcessFactory: Creating worker process with regular fork
+2026-07-19T05:50:27.1775815Z [0-3] 2026-07-19T05:50:27.174Z INFO @wdio/local-runner: Run worker command: run
+2026-07-19T05:50:27.8559844Z [0-3] [wdio] Creating Appium session...
+2026-07-19T05:50:28.1025749Z [0-3] RUNNING in Android on Android - file:///C:/actions-runner/_work/TripSyncApp/TripSyncApp/AppiumTests/tests/endToEnd.test.js
+2026-07-19T05:50:28.1042500Z [0-3] 2026-07-19T05:50:28.103Z INFO webdriver: Initiate new session using the WebDriver protocol
+2026-07-19T05:50:28.1044047Z [0-3] 2026-07-19T05:50:28.103Z INFO @wdio/utils: Connecting to existing driver at http://127.0.0.1:4723/
+2026-07-19T05:50:28.1156886Z [0-3] 2026-07-19T05:50:28.114Z INFO webdriver: [POST] http://127.0.0.1:4723/session
+2026-07-19T05:52:30.0068501Z [0-3] 2026-07-19T05:52:29.941Z ERROR webdriver: Error: WebDriverError: Request failed with error code UND_ERR_HEADERS_TIMEOUT when running "http://127.0.0.1:4723/session" with method "POST"
+2026-07-19T05:52:30.0070225Z [0-3]     at FetchRequest._libRequest (file:///C:/actions-runner/_work/TripSyncApp/TripSyncApp/node_modules/webdriver/build/node.js:2194:13)
+2026-07-19T05:52:30.0071396Z [0-3]     at async FetchRequest._request (file:///C:/actions-runner/_work/TripSyncApp/TripSyncApp/node_modules/webdriver/build/node.js:2220:20)
+2026-07-19T05:52:30.0073088Z [0-3]     at async startWebDriverSession (file:///C:/actions-runner/_work/TripSyncApp/TripSyncApp/node_modules/webdriver/build/node.js:1357:16)
+2026-07-19T05:52:30.0074429Z [0-3]     at async _WebDriver.newSession (file:///C:/actions-runner/_work/TripSyncApp/TripSyncApp/node_modules/webdriver/build/node.js:1779:41)
+2026-07-19T05:52:30.0075450Z [0-3]     at async remote (C:\actions-runner\_work\TripSyncApp\TripSyncApp\node_modules\webdriverio\build\node.js:10061:20)
+2026-07-19T05:52:30.0076614Z [0-3]     at async Runner._startSession (file:///C:/actions-runner/_work/TripSyncApp/TripSyncApp/node_modules/@wdio/runner/build/index.js:836:24)
+2026-07-19T05:52:30.0077734Z [0-3]     at async Runner._initSession (file:///C:/actions-runner/_work/TripSyncApp/TripSyncApp/node_modules/@wdio/runner/build/index.js:810:22)
+2026-07-19T05:52:30.0078648Z [0-3]     at async Runner.run (file:///C:/actions-runner/_work/TripSyncApp/TripSyncApp/node_modules/@wdio/runner/build/index.js:711:16)
+2026-07-19T05:52:30.0079660Z [0-3] 2026-07-19T05:52:30.006Z ERROR @wdio/runner: Error: WebDriverError: Request failed with error code UND_ERR_HEADERS_TIMEOUT when running "http://127.0.0.1:4723/session" with method "POST"
+2026-07-19T05:52:30.0081841Z [0-3]     at startWebDriverSession (file:///C:/actions-runner/_work/TripSyncApp/TripSyncApp/node_modules/webdriver/build/node.js:1361:11)
+2026-07-19T05:52:30.0082929Z [0-3]     at async _WebDriver.newSession (file:///C:/actions-runner/_work/TripSyncApp/TripSyncApp/node_modules/webdriver/build/node.js:1779:41)
+2026-07-19T05:52:30.0083748Z [0-3]     at async remote (C:\actions-runner\_work\TripSyncApp\TripSyncApp\node_modules\webdriverio\build\node.js:10061:20)
+2026-07-19T05:52:30.0084659Z [0-3]     at async Runner._startSession (file:///C:/actions-runner/_work/TripSyncApp/TripSyncApp/node_modules/@wdio/runner/build/index.js:836:24)
+2026-07-19T05:52:30.0085548Z [0-3]     at async Runner._initSession (file:///C:/actions-runner/_work/TripSyncApp/TripSyncApp/node_modules/@wdio/runner/build/index.js:810:22)
+2026-07-19T05:52:30.0086399Z [0-3]     at async Runner.run (file:///C:/actions-runner/_work/TripSyncApp/TripSyncApp/node_modules/@wdio/runner/build/index.js:711:16)
+2026-07-19T05:52:30.1383938Z [0-3] FAILED in Android on Android - file:///C:/actions-runner/_work/TripSyncApp/TripSyncApp/AppiumTests/tests/endToEnd.test.js (1 retries)
+2026-07-19T05:52:30.1384907Z 2026-07-19T05:52:30.136Z INFO @wdio/cli:launcher: Run onWorkerEnd hook
+2026-07-19T05:52:30.1385820Z 2026-07-19T05:52:30.137Z INFO @wdio/cli:launcher: Run onWorkerStart hook
+2026-07-19T05:52:30.1392787Z 2026-07-19T05:52:30.137Z INFO @wdio/local-runner: Start worker 0-4 with arg: run C:\actions-runner\_work\TripSyncApp\TripSyncApp\AppiumTests\wdio.conf.js
+2026-07-19T05:52:30.1569016Z 2026-07-19T05:52:30.155Z INFO @wdio/xvfb:ProcessFactory: xvfb-run not found, falling back to regular fork
+2026-07-19T05:52:30.1570278Z 2026-07-19T05:52:30.155Z INFO @wdio/xvfb:ProcessFactory: ProcessFactory: shouldRun=false, isAvailable=false
+2026-07-19T05:52:30.1571283Z 2026-07-19T05:52:30.155Z INFO @wdio/xvfb:ProcessFactory: Creating worker process with regular fork
+2026-07-19T05:52:31.7952797Z [0-4] 2026-07-19T05:52:31.791Z INFO @wdio/local-runner: Run worker command: run
+2026-07-19T05:52:32.4700115Z [0-4] [wdio] Creating Appium session...
+2026-07-19T05:52:32.7194783Z [0-4] RUNNING in Android on Android - file:///C:/actions-runner/_work/TripSyncApp/TripSyncApp/AppiumTests/tests/groupChat.test.js
+2026-07-19T05:52:32.7214945Z [0-4] 2026-07-19T05:52:32.719Z INFO webdriver: Initiate new session using the WebDriver protocol
+2026-07-19T05:52:32.7215984Z [0-4] 2026-07-19T05:52:32.720Z INFO @wdio/utils: Connecting to existing driver at http://127.0.0.1:4723/
+2026-07-19T05:52:32.7335229Z [0-4] 2026-07-19T05:52:32.731Z INFO webdriver: [POST] http://127.0.0.1:4723/session
+2026-07-19T05:54:35.0277154Z [0-4] 2026-07-19T05:54:34.961Z ERROR webdriver: Error: WebDriverError: Request failed with error code UND_ERR_HEADERS_TIMEOUT when running "http://127.0.0.1:4723/session" with method "POST"
+2026-07-19T05:54:35.0278748Z [0-4]     at FetchRequest._libRequest (file:///C:/actions-runner/_work/TripSyncApp/TripSyncApp/node_modules/webdriver/build/node.js:2194:13)
+2026-07-19T05:54:35.0279847Z [0-4]     at async FetchRequest._request (file:///C:/actions-runner/_work/TripSyncApp/TripSyncApp/node_modules/webdriver/build/node.js:2220:20)
+2026-07-19T05:54:35.0281573Z [0-4]     at async startWebDriverSession (file:///C:/actions-runner/_work/TripSyncApp/TripSyncApp/node_modules/webdriver/build/node.js:1357:16)
+2026-07-19T05:54:35.0282872Z [0-4]     at async _WebDriver.newSession (file:///C:/actions-runner/_work/TripSyncApp/TripSyncApp/node_modules/webdriver/build/node.js:1779:41)
+2026-07-19T05:54:35.0283824Z [0-4]     at async remote (C:\actions-runner\_work\TripSyncApp\TripSyncApp\node_modules\webdriverio\build\node.js:10061:20)
+2026-07-19T05:54:35.0284787Z [0-4]     at async Runner._startSession (file:///C:/actions-runner/_work/TripSyncApp/TripSyncApp/node_modules/@wdio/runner/build/index.js:836:24)
+2026-07-19T05:54:35.0285806Z [0-4]     at async Runner._initSession (file:///C:/actions-runner/_work/TripSyncApp/TripSyncApp/node_modules/@wdio/runner/build/index.js:810:22)
+2026-07-19T05:54:35.0288162Z [0-4]     at async Runner.run (file:///C:/actions-runner/_work/TripSyncApp/TripSyncApp/node_modules/@wdio/runner/build/index.js:711:16)
+2026-07-19T05:54:35.0289458Z [0-4] 2026-07-19T05:54:35.027Z ERROR @wdio/runner: Error: WebDriverError: Request failed with error code UND_ERR_HEADERS_TIMEOUT when running "http://127.0.0.1:4723/session" with method "POST"
+2026-07-19T05:54:35.0290443Z [0-4]     at startWebDriverSession (file:///C:/actions-runner/_work/TripSyncApp/TripSyncApp/node_modules/webdriver/build/node.js:1361:11)
+2026-07-19T05:54:35.0291335Z [0-4]     at async _WebDriver.newSession (file:///C:/actions-runner/_work/TripSyncApp/TripSyncApp/node_modules/webdriver/build/node.js:1779:41)
+2026-07-19T05:54:35.0292248Z [0-4]     at async remote (C:\actions-runner\_work\TripSyncApp\TripSyncApp\node_modules\webdriverio\build\node.js:10061:20)
+2026-07-19T05:54:35.0293118Z [0-4]     at async Runner._startSession (file:///C:/actions-runner/_work/TripSyncApp/TripSyncApp/node_modules/@wdio/runner/build/index.js:836:24)
+2026-07-19T05:54:35.0294012Z [0-4]     at async Runner._initSession (file:///C:/actions-runner/_work/TripSyncApp/TripSyncApp/node_modules/@wdio/runner/build/index.js:810:22)
+2026-07-19T05:54:35.0294858Z [0-4]     at async Runner.run (file:///C:/actions-runner/_work/TripSyncApp/TripSyncApp/node_modules/@wdio/runner/build/index.js:711:16)
+2026-07-19T05:54:35.1608849Z [0-4] FAILED in Android on Android - file:///C:/actions-runner/_work/TripSyncApp/TripSyncApp/AppiumTests/tests/groupChat.test.js (1 retries)
+2026-07-19T05:54:35.1610014Z 2026-07-19T05:54:35.159Z INFO @wdio/cli:launcher: Run onWorkerEnd hook
+2026-07-19T05:54:35.1610712Z 2026-07-19T05:54:35.160Z INFO @wdio/cli:launcher: Run onWorkerStart hook
+2026-07-19T05:54:35.1616694Z 2026-07-19T05:54:35.160Z INFO @wdio/local-runner: Start worker 0-5 with arg: run C:\actions-runner\_work\TripSyncApp\TripSyncApp\AppiumTests\wdio.conf.js
+2026-07-19T05:54:35.1800423Z 2026-07-19T05:54:35.178Z INFO @wdio/xvfb:ProcessFactory: xvfb-run not found, falling back to regular fork
+2026-07-19T05:54:35.1801257Z 2026-07-19T05:54:35.179Z INFO @wdio/xvfb:ProcessFactory: ProcessFactory: shouldRun=false, isAvailable=false
+2026-07-19T05:54:35.1802043Z 2026-07-19T05:54:35.179Z INFO @wdio/xvfb:ProcessFactory: Creating worker process with regular fork
+2026-07-19T05:54:36.8270855Z [0-5] 2026-07-19T05:54:36.824Z INFO @wdio/local-runner: Run worker command: run
+2026-07-19T05:54:37.5166826Z [0-5] [wdio] Creating Appium session...
+2026-07-19T05:54:37.7657900Z [0-5] RUNNING in Android on Android - file:///C:/actions-runner/_work/TripSyncApp/TripSyncApp/AppiumTests/tests/groups.test.js
+2026-07-19T05:54:37.7676691Z [0-5] 2026-07-19T05:54:37.767Z INFO webdriver: Initiate new session using the WebDriver protocol
+2026-07-19T05:54:37.7679333Z [0-5] 2026-07-19T05:54:37.767Z INFO @wdio/utils: Connecting to existing driver at http://127.0.0.1:4723/
+2026-07-19T05:54:37.7796239Z [0-5] 2026-07-19T05:54:37.778Z INFO webdriver: [POST] http://127.0.0.1:4723/session
+2026-07-19T05:56:40.0487891Z [0-5] 2026-07-19T05:56:39.982Z ERROR webdriver: Error: WebDriverError: Request failed with error code UND_ERR_HEADERS_TIMEOUT when running "http://127.0.0.1:4723/session" with method "POST"
+2026-07-19T05:56:40.0489488Z [0-5]     at FetchRequest._libRequest (file:///C:/actions-runner/_work/TripSyncApp/TripSyncApp/node_modules/webdriver/build/node.js:2194:13)
+2026-07-19T05:56:40.0490816Z [0-5]     at async FetchRequest._request (file:///C:/actions-runner/_work/TripSyncApp/TripSyncApp/node_modules/webdriver/build/node.js:2220:20)
+2026-07-19T05:56:40.0492426Z [0-5]     at async startWebDriverSession (file:///C:/actions-runner/_work/TripSyncApp/TripSyncApp/node_modules/webdriver/build/node.js:1357:16)
+2026-07-19T05:56:40.0493514Z [0-5]     at async _WebDriver.newSession (file:///C:/actions-runner/_work/TripSyncApp/TripSyncApp/node_modules/webdriver/build/node.js:1779:41)
+2026-07-19T05:56:40.0494354Z [0-5]     at async remote (C:\actions-runner\_work\TripSyncApp\TripSyncApp\node_modules\webdriverio\build\node.js:10061:20)
+2026-07-19T05:56:40.0496525Z [0-5]     at async Runner._startSession (file:///C:/actions-runner/_work/TripSyncApp/TripSyncApp/node_modules/@wdio/runner/build/index.js:836:24)
+2026-07-19T05:56:40.0497512Z [0-5]     at async Runner._initSession (file:///C:/actions-runner/_work/TripSyncApp/TripSyncApp/node_modules/@wdio/runner/build/index.js:810:22)
+2026-07-19T05:56:40.0498367Z [0-5]     at async Runner.run (file:///C:/actions-runner/_work/TripSyncApp/TripSyncApp/node_modules/@wdio/runner/build/index.js:711:16)
+2026-07-19T05:56:40.0499479Z [0-5] 2026-07-19T05:56:40.048Z ERROR @wdio/runner: Error: WebDriverError: Request failed with error code UND_ERR_HEADERS_TIMEOUT when running "http://127.0.0.1:4723/session" with method "POST"
+2026-07-19T05:56:40.0500446Z [0-5]     at startWebDriverSession (file:///C:/actions-runner/_work/TripSyncApp/TripSyncApp/node_modules/webdriver/build/node.js:1361:11)
+2026-07-19T05:56:40.0501296Z [0-5]     at async _WebDriver.newSession (file:///C:/actions-runner/_work/TripSyncApp/TripSyncApp/node_modules/webdriver/build/node.js:1779:41)
+2026-07-19T05:56:40.0502411Z [0-5]     at async remote (C:\actions-runner\_work\TripSyncApp\TripSyncApp\node_modules\webdriverio\build\node.js:10061:20)
+2026-07-19T05:56:40.0503813Z [0-5]     at async Runner._startSession (file:///C:/actions-runner/_work/TripSyncApp/TripSyncApp/node_modules/@wdio/runner/build/index.js:836:24)
+2026-07-19T05:56:40.0505311Z [0-5]     at async Runner._initSession (file:///C:/actions-runner/_work/TripSyncApp/TripSyncApp/node_modules/@wdio/runner/build/index.js:810:22)
+2026-07-19T05:56:40.0506817Z [0-5]     at async Runner.run (file:///C:/actions-runner/_work/TripSyncApp/TripSyncApp/node_modules/@wdio/runner/build/index.js:711:16)
+2026-07-19T05:56:40.1826872Z [0-5] FAILED in Android on Android - file:///C:/actions-runner/_work/TripSyncApp/TripSyncApp/AppiumTests/tests/groups.test.js (1 retries)
+2026-07-19T05:56:40.1828232Z 2026-07-19T05:56:40.181Z INFO @wdio/cli:launcher: Run onWorkerEnd hook
+2026-07-19T05:56:40.1829279Z 2026-07-19T05:56:40.182Z INFO @wdio/cli:launcher: Run onWorkerStart hook
+2026-07-19T05:56:40.1835334Z 2026-07-19T05:56:40.182Z INFO @wdio/local-runner: Start worker 0-6 with arg: run C:\actions-runner\_work\TripSyncApp\TripSyncApp\AppiumTests\wdio.conf.js
+2026-07-19T05:56:40.2009539Z 2026-07-19T05:56:40.200Z INFO @wdio/xvfb:ProcessFactory: xvfb-run not found, falling back to regular fork
+2026-07-19T05:56:40.2010997Z 2026-07-19T05:56:40.200Z INFO @wdio/xvfb:ProcessFactory: ProcessFactory: shouldRun=false, isAvailable=false
+2026-07-19T05:56:40.2012373Z 2026-07-19T05:56:40.200Z INFO @wdio/xvfb:ProcessFactory: Creating worker process with regular fork
+2026-07-19T05:56:41.8486151Z [0-6] 2026-07-19T05:56:41.846Z INFO @wdio/local-runner: Run worker command: run
+2026-07-19T05:56:42.5207890Z [0-6] [wdio] Creating Appium session...
+2026-07-19T05:56:42.7700098Z [0-6] RUNNING in Android on Android - file:///C:/actions-runner/_work/TripSyncApp/TripSyncApp/AppiumTests/tests/mapsExplore.test.js
+2026-07-19T05:56:42.7721225Z [0-6] 2026-07-19T05:56:42.771Z INFO webdriver: Initiate new session using the WebDriver protocol
+2026-07-19T05:56:42.7724104Z [0-6] 2026-07-19T05:56:42.771Z INFO @wdio/utils: Connecting to existing driver at http://127.0.0.1:4723/
+2026-07-19T05:56:42.7839123Z [0-6] 2026-07-19T05:56:42.783Z INFO webdriver: [POST] http://127.0.0.1:4723/session
+2026-07-19T05:58:45.6438139Z [0-6] 2026-07-19T05:58:45.575Z ERROR webdriver: Error: WebDriverError: Request failed with error code UND_ERR_HEADERS_TIMEOUT when running "http://127.0.0.1:4723/session" with method "POST"
+2026-07-19T05:58:45.6439895Z [0-6]     at FetchRequest._libRequest (file:///C:/actions-runner/_work/TripSyncApp/TripSyncApp/node_modules/webdriver/build/node.js:2194:13)
+2026-07-19T05:58:45.6441222Z [0-6]     at async FetchRequest._request (file:///C:/actions-runner/_work/TripSyncApp/TripSyncApp/node_modules/webdriver/build/node.js:2220:20)
+2026-07-19T05:58:45.6442462Z [0-6]     at async startWebDriverSession (file:///C:/actions-runner/_work/TripSyncApp/TripSyncApp/node_modules/webdriver/build/node.js:1357:16)
+2026-07-19T05:58:45.6444793Z [0-6]     at async _WebDriver.newSession (file:///C:/actions-runner/_work/TripSyncApp/TripSyncApp/node_modules/webdriver/build/node.js:1779:41)
+2026-07-19T05:58:45.6445642Z [0-6]     at async remote (C:\actions-runner\_work\TripSyncApp\TripSyncApp\node_modules\webdriverio\build\node.js:10061:20)
+2026-07-19T05:58:45.6446456Z [0-6]     at async Runner._startSession (file:///C:/actions-runner/_work/TripSyncApp/TripSyncApp/node_modules/@wdio/runner/build/index.js:836:24)
+2026-07-19T05:58:45.6447362Z [0-6]     at async Runner._initSession (file:///C:/actions-runner/_work/TripSyncApp/TripSyncApp/node_modules/@wdio/runner/build/index.js:810:22)
+2026-07-19T05:58:45.6448153Z [0-6]     at async Runner.run (file:///C:/actions-runner/_work/TripSyncApp/TripSyncApp/node_modules/@wdio/runner/build/index.js:711:16)
+2026-07-19T05:58:45.6449120Z [0-6] 2026-07-19T05:58:45.643Z ERROR @wdio/runner: Error: WebDriverError: Request failed with error code UND_ERR_HEADERS_TIMEOUT when running "http://127.0.0.1:4723/session" with method "POST"
+2026-07-19T05:58:45.6450072Z [0-6]     at startWebDriverSession (file:///C:/actions-runner/_work/TripSyncApp/TripSyncApp/node_modules/webdriver/build/node.js:1361:11)
+2026-07-19T05:58:45.6450998Z [0-6]     at async _WebDriver.newSession (file:///C:/actions-runner/_work/TripSyncApp/TripSyncApp/node_modules/webdriver/build/node.js:1779:41)
+2026-07-19T05:58:45.6451773Z [0-6]     at async remote (C:\actions-runner\_work\TripSyncApp\TripSyncApp\node_modules\webdriverio\build\node.js:10061:20)
+2026-07-19T05:58:45.6452556Z [0-6]     at async Runner._startSession (file:///C:/actions-runner/_work/TripSyncApp/TripSyncApp/node_modules/@wdio/runner/build/index.js:836:24)
+2026-07-19T05:58:45.6453387Z [0-6]     at async Runner._initSession (file:///C:/actions-runner/_work/TripSyncApp/TripSyncApp/node_modules/@wdio/runner/build/index.js:810:22)
+2026-07-19T05:58:45.6454210Z [0-6]     at async Runner.run (file:///C:/actions-runner/_work/TripSyncApp/TripSyncApp/node_modules/@wdio/runner/build/index.js:711:16)
+2026-07-19T05:58:45.7746030Z [0-6] FAILED in Android on Android - file:///C:/actions-runner/_work/TripSyncApp/TripSyncApp/AppiumTests/tests/mapsExplore.test.js (1 retries)
+2026-07-19T05:58:45.7747188Z 2026-07-19T05:58:45.773Z INFO @wdio/cli:launcher: Run onWorkerEnd hook
+2026-07-19T05:58:45.7747881Z 2026-07-19T05:58:45.774Z INFO @wdio/cli:launcher: Run onWorkerStart hook
+2026-07-19T05:58:45.7754328Z 2026-07-19T05:58:45.774Z INFO @wdio/local-runner: Start worker 0-7 with arg: run C:\actions-runner\_work\TripSyncApp\TripSyncApp\AppiumTests\wdio.conf.js
+2026-07-19T05:58:45.8020314Z 2026-07-19T05:58:45.801Z INFO @wdio/xvfb:ProcessFactory: xvfb-run not found, falling back to regular fork
+2026-07-19T05:58:45.8021159Z 2026-07-19T05:58:45.801Z INFO @wdio/xvfb:ProcessFactory: ProcessFactory: shouldRun=false, isAvailable=false
+2026-07-19T05:58:45.8021922Z 2026-07-19T05:58:45.801Z INFO @wdio/xvfb:ProcessFactory: Creating worker process with regular fork
+2026-07-19T05:58:47.6086656Z [0-7] 2026-07-19T05:58:47.605Z INFO @wdio/local-runner: Run worker command: run
+2026-07-19T05:58:48.4018086Z [0-7] [wdio] Creating Appium session...
+2026-07-19T05:58:48.7014487Z [0-7] RUNNING in Android on Android - file:///C:/actions-runner/_work/TripSyncApp/TripSyncApp/AppiumTests/tests/navigation.test.js
+2026-07-19T05:58:48.7036266Z [0-7] 2026-07-19T05:58:48.702Z INFO webdriver: Initiate new session using the WebDriver protocol
+2026-07-19T05:58:48.7038420Z [0-7] 2026-07-19T05:58:48.703Z INFO @wdio/utils: Connecting to existing driver at http://127.0.0.1:4723/
+2026-07-19T05:58:48.7162490Z [0-7] 2026-07-19T05:58:48.715Z INFO webdriver: [POST] http://127.0.0.1:4723/session
+2026-07-19T06:00:51.5811697Z [0-7] 2026-07-19T06:00:51.515Z ERROR webdriver: Error: WebDriverError: Request failed with error code UND_ERR_HEADERS_TIMEOUT when running "http://127.0.0.1:4723/session" with method "POST"
+2026-07-19T06:00:51.5814135Z [0-7]     at FetchRequest._libRequest (file:///C:/actions-runner/_work/TripSyncApp/TripSyncApp/node_modules/webdriver/build/node.js:2194:13)
+2026-07-19T06:00:51.5815658Z [0-7]     at async FetchRequest._request (file:///C:/actions-runner/_work/TripSyncApp/TripSyncApp/node_modules/webdriver/build/node.js:2220:20)
+2026-07-19T06:00:51.5816949Z [0-7]     at async startWebDriverSession (file:///C:/actions-runner/_work/TripSyncApp/TripSyncApp/node_modules/webdriver/build/node.js:1357:16)
+2026-07-19T06:00:51.5817999Z [0-7]     at async _WebDriver.newSession (file:///C:/actions-runner/_work/TripSyncApp/TripSyncApp/node_modules/webdriver/build/node.js:1779:41)
+2026-07-19T06:00:51.5818969Z [0-7]     at async remote (C:\actions-runner\_work\TripSyncApp\TripSyncApp\node_modules\webdriverio\build\node.js:10061:20)
+2026-07-19T06:00:51.5820579Z [0-7]     at async Runner._startSession (file:///C:/actions-runner/_work/TripSyncApp/TripSyncApp/node_modules/@wdio/runner/build/index.js:836:24)
+2026-07-19T06:00:51.5821833Z [0-7]     at async Runner._initSession (file:///C:/actions-runner/_work/TripSyncApp/TripSyncApp/node_modules/@wdio/runner/build/index.js:810:22)
+2026-07-19T06:00:51.5822803Z [0-7]     at async Runner.run (file:///C:/actions-runner/_work/TripSyncApp/TripSyncApp/node_modules/@wdio/runner/build/index.js:711:16)
+2026-07-19T06:00:51.5823776Z [0-7] 2026-07-19T06:00:51.580Z ERROR @wdio/runner: Error: WebDriverError: Request failed with error code UND_ERR_HEADERS_TIMEOUT when running "http://127.0.0.1:4723/session" with method "POST"
+2026-07-19T06:00:51.5824711Z [0-7]     at startWebDriverSession (file:///C:/actions-runner/_work/TripSyncApp/TripSyncApp/node_modules/webdriver/build/node.js:1361:11)
+2026-07-19T06:00:51.5825528Z [0-7]     at async _WebDriver.newSession (file:///C:/actions-runner/_work/TripSyncApp/TripSyncApp/node_modules/webdriver/build/node.js:1779:41)
+2026-07-19T06:00:51.5826291Z [0-7]     at async remote (C:\actions-runner\_work\TripSyncApp\TripSyncApp\node_modules\webdriverio\build\node.js:10061:20)
+2026-07-19T06:00:51.5827082Z [0-7]     at async Runner._startSession (file:///C:/actions-runner/_work/TripSyncApp/TripSyncApp/node_modules/@wdio/runner/build/index.js:836:24)
+2026-07-19T06:00:51.5827934Z [0-7]     at async Runner._initSession (file:///C:/actions-runner/_work/TripSyncApp/TripSyncApp/node_modules/@wdio/runner/build/index.js:810:22)
+2026-07-19T06:00:51.5828723Z [0-7]     at async Runner.run (file:///C:/actions-runner/_work/TripSyncApp/TripSyncApp/node_modules/@wdio/runner/build/index.js:711:16)
+2026-07-19T06:00:51.7026894Z [0-7] FAILED in Android on Android - file:///C:/actions-runner/_work/TripSyncApp/TripSyncApp/AppiumTests/tests/navigation.test.js (1 retries)
+2026-07-19T06:00:51.7028008Z 2026-07-19T06:00:51.701Z INFO @wdio/cli:launcher: Run onWorkerEnd hook
+2026-07-19T06:00:51.7028795Z 2026-07-19T06:00:51.702Z INFO @wdio/cli:launcher: Run onWorkerStart hook
+2026-07-19T06:00:51.7037133Z 2026-07-19T06:00:51.702Z INFO @wdio/local-runner: Start worker 0-8 with arg: run C:\actions-runner\_work\TripSyncApp\TripSyncApp\AppiumTests\wdio.conf.js
+2026-07-19T06:00:51.7294045Z 2026-07-19T06:00:51.728Z INFO @wdio/xvfb:ProcessFactory: xvfb-run not found, falling back to regular fork
+2026-07-19T06:00:51.7294861Z 2026-07-19T06:00:51.728Z INFO @wdio/xvfb:ProcessFactory: ProcessFactory: shouldRun=false, isAvailable=false
+2026-07-19T06:00:51.7295459Z 2026-07-19T06:00:51.728Z INFO @wdio/xvfb:ProcessFactory: Creating worker process with regular fork
+2026-07-19T06:00:53.3942835Z [0-8] 2026-07-19T06:00:53.391Z INFO @wdio/local-runner: Run worker command: run
+2026-07-19T06:00:54.0775244Z [0-8] [wdio] Creating Appium session...
+2026-07-19T06:00:54.3321745Z [0-8] RUNNING in Android on Android - file:///C:/actions-runner/_work/TripSyncApp/TripSyncApp/AppiumTests/tests/profileNotifications.test.js
+2026-07-19T06:00:54.3339397Z [0-8] 2026-07-19T06:00:54.333Z INFO webdriver: Initiate new session using the WebDriver protocol
+2026-07-19T06:00:54.3341242Z [0-8] 2026-07-19T06:00:54.333Z INFO @wdio/utils: Connecting to existing driver at http://127.0.0.1:4723/
+2026-07-19T06:00:54.3452743Z [0-8] 2026-07-19T06:00:54.344Z INFO webdriver: [POST] http://127.0.0.1:4723/session
+2026-07-19T06:01:43.1070706Z [0-8] 2026-07-19T06:01:43.110Z WARN webdriver: WebDriverError: Request failed with error code ECONNRESET when running "http://127.0.0.1:4723/session" with method "POST"
+2026-07-19T06:01:43.1072094Z [0-8] 2026-07-19T06:01:43.111Z INFO webdriver: Retrying 1/3
+2026-07-19T06:01:43.1089503Z WDIO exit code: -1
+2026-07-19T06:01:48.2542352Z ##[error]Process completed with exit code 1.
+2026-07-19T06:01:48.2830021Z ##[group]Run $resultsDir = "test-results"
+2026-07-19T06:01:48.2830533Z [36;1m$resultsDir = "test-results"[0m
+2026-07-19T06:01:48.2831033Z [36;1mif (-not (Test-Path $resultsDir)) { New-Item -ItemType Directory -Path $resultsDir | Out-Null }[0m
+2026-07-19T06:01:48.2831398Z [36;1m[0m
+2026-07-19T06:01:48.2831639Z [36;1m# Determine ADB target: use DEVICE_NAME if set, else target emulator with -e[0m
+2026-07-19T06:01:48.2832087Z [36;1m$adbTarget = if ($env:DEVICE_NAME) { @("-s", $env:DEVICE_NAME) } else { @("-e") }[0m
+2026-07-19T06:01:48.2832433Z [36;1mWrite-Host "ADB target args: $adbTarget"[0m
+2026-07-19T06:01:48.2832672Z [36;1m[0m
+2026-07-19T06:01:48.2832830Z [36;1mWrite-Host "Collecting ADB devices..."[0m
+2026-07-19T06:01:48.2833144Z [36;1madb devices 2>&1 | Out-File "$resultsDir\adb-devices.log" -Encoding utf8[0m
+2026-07-19T06:01:48.2833433Z [36;1m[0m
+2026-07-19T06:01:48.2833599Z [36;1mWrite-Host "Collecting dumpsys activity..."[0m
+2026-07-19T06:01:48.2833849Z [36;1mtry {[0m
+2026-07-19T06:01:48.2834143Z [36;1m  & adb @adbTarget shell dumpsys activity activities 2>&1 |[0m
+2026-07-19T06:01:48.2834418Z [36;1m    Select-Object -First 100 |[0m
+2026-07-19T06:01:48.2834689Z [36;1m    Out-File "$resultsDir\adb-activity.log" -Encoding utf8[0m
+2026-07-19T06:01:48.2835020Z [36;1m} catch { Write-Host "[WARN] dumpsys skipped: $_" }[0m
+2026-07-19T06:01:48.2835266Z [36;1m[0m
+2026-07-19T06:01:48.2835456Z [36;1mWrite-Host "Collecting logcat (last 1000 lines)..."[0m
+2026-07-19T06:01:48.2835696Z [36;1mtry {[0m
+2026-07-19T06:01:48.2835887Z [36;1m  & adb @adbTarget logcat -d -v threadtime *:W 2>&1 |[0m
+2026-07-19T06:01:48.2836137Z [36;1m    Select-Object -Last 1000 |[0m
+2026-07-19T06:01:48.2836389Z [36;1m    Out-File "$resultsDir\adb-logcat.log" -Encoding utf8[0m
+2026-07-19T06:01:48.2836680Z [36;1m} catch { Write-Host "[WARN] logcat skipped: $_" }[0m
+2026-07-19T06:01:48.2836905Z [36;1m[0m
+2026-07-19T06:01:48.2837076Z [36;1mWrite-Host "[OK] ADB diagnostics collected."[0m
+2026-07-19T06:01:48.2837295Z [36;1mexit 0[0m
+2026-07-19T06:01:48.2893042Z shell: C:\WINDOWS\System32\WindowsPowerShell\v1.0\powershell.EXE -command ". '{0}'"
+2026-07-19T06:01:48.2893379Z env:
+2026-07-19T06:01:48.2893525Z   TEST_EMAIL: jessuff8@gmail.com
+2026-07-19T06:01:48.2893715Z   TEST_PASSWORD: Ravi@6444
+2026-07-19T06:01:48.2893883Z   TEST_USER_NAME: Konda
+2026-07-19T06:01:48.2894191Z   EXPO_PUBLIC_API_URL: https://tripsyncbackend-production-37a2.up.railway.app
+2026-07-19T06:01:48.2894504Z   WDIO_CI_SPEC: 
+2026-07-19T06:01:48.2894652Z   JOB_START_TIME: 2026-07-19 11:10:59
+2026-07-19T06:01:48.2894952Z   JAVA_HOME: C:\actions-runner\_work\_tool\Java_Temurin-Hotspot_jdk\21.0.11-10.0.LTS\x64
+2026-07-19T06:01:48.2895482Z   JAVA_HOME_21_X64: C:\actions-runner\_work\_tool\Java_Temurin-Hotspot_jdk\21.0.11-10.0.LTS\x64
+2026-07-19T06:01:48.2895848Z   ANDROID_HOME: C:\Users\konda\AppData\Local\Android\Sdk
+2026-07-19T06:01:48.2896136Z   ANDROID_SDK_ROOT: C:\Users\konda\AppData\Local\Android\Sdk
+2026-07-19T06:01:48.2896385Z   APK_STATUS: Reused (Cached)
+2026-07-19T06:01:48.2896561Z   DEVICE_NAME: emulator-5554
+2026-07-19T06:01:48.2896741Z   EMULATOR_STATUS: Reused (Already Running)
+2026-07-19T06:01:48.2896939Z   ANDROID_VERSION: 17
+2026-07-19T06:01:48.2897084Z ##[endgroup]
+2026-07-19T06:01:48.6759805Z ADB target args: -s emulator-5554
+2026-07-19T06:01:48.6766106Z Collecting ADB devices...
+2026-07-19T06:01:48.7126466Z Collecting dumpsys activity...
+2026-07-19T06:02:53.0734538Z ##[error]Process completed with exit code -1.
+2026-07-19T06:02:53.0937825Z ##[group]Run $excel = "test-results\TripSync_Android_TestReport.xlsx"
+2026-07-19T06:02:53.0938432Z [36;1m$excel = "test-results\TripSync_Android_TestReport.xlsx"[0m
+2026-07-19T06:02:53.0938876Z [36;1m$html = "test-results\html\execution-report.html"[0m
+2026-07-19T06:02:53.0939204Z [36;1m[0m
+2026-07-19T06:02:53.0939392Z [36;1mif (Test-Path $excel) {[0m
+2026-07-19T06:02:53.0939737Z [36;1m  $size = [math]::Round((Get-Item $excel).Length / 1KB, 1)[0m
+2026-07-19T06:02:53.0940169Z [36;1m  Write-Host "[OK] Excel report: $excel ($size KB)"[0m
+2026-07-19T06:02:53.0940510Z [36;1m} else {[0m
+2026-07-19T06:02:53.0940777Z [36;1m  Write-Host "[WARN] Excel report not found: $excel"[0m
+2026-07-19T06:02:53.0941215Z [36;1m}[0m
+2026-07-19T06:02:53.0941401Z [36;1m[0m
+2026-07-19T06:02:53.0941585Z [36;1mif (Test-Path $html) {[0m
+2026-07-19T06:02:53.0941940Z [36;1m  $size = [math]::Round((Get-Item $html).Length / 1KB, 1)[0m
+2026-07-19T06:02:53.0942384Z [36;1m  Write-Host "[OK] HTML report: $html ($size KB)"[0m
+2026-07-19T06:02:53.0942720Z [36;1m} else {[0m
+2026-07-19T06:02:53.0943008Z [36;1m  Write-Host "[WARN] HTML report not found: $html"[0m
+2026-07-19T06:02:53.0943349Z [36;1m}[0m
+2026-07-19T06:02:53.0943529Z [36;1m[0m
+2026-07-19T06:02:53.0943723Z [36;1m# Show screenshot count[0m
+2026-07-19T06:02:53.0944237Z [36;1m$screenshots = Get-ChildItem "test-results\screenshots" -ErrorAction SilentlyContinue[0m
+2026-07-19T06:02:53.0947828Z [36;1mWrite-Host "Screenshots captured: $($screenshots.Count)"[0m
+2026-07-19T06:02:53.0995292Z shell: C:\WINDOWS\System32\WindowsPowerShell\v1.0\powershell.EXE -command ". '{0}'"
+2026-07-19T06:02:53.0995632Z env:
+2026-07-19T06:02:53.0995785Z   TEST_EMAIL: jessuff8@gmail.com
+2026-07-19T06:02:53.0995974Z   TEST_PASSWORD: Ravi@6444
+2026-07-19T06:02:53.0996159Z   TEST_USER_NAME: Konda
+2026-07-19T06:02:53.0996447Z   EXPO_PUBLIC_API_URL: https://tripsyncbackend-production-37a2.up.railway.app
+2026-07-19T06:02:53.0996771Z   WDIO_CI_SPEC: 
+2026-07-19T06:02:53.0996920Z   JOB_START_TIME: 2026-07-19 11:10:59
+2026-07-19T06:02:53.0997224Z   JAVA_HOME: C:\actions-runner\_work\_tool\Java_Temurin-Hotspot_jdk\21.0.11-10.0.LTS\x64
+2026-07-19T06:02:53.0997678Z   JAVA_HOME_21_X64: C:\actions-runner\_work\_tool\Java_Temurin-Hotspot_jdk\21.0.11-10.0.LTS\x64
+2026-07-19T06:02:53.0998154Z   ANDROID_HOME: C:\Users\konda\AppData\Local\Android\Sdk
+2026-07-19T06:02:53.0998449Z   ANDROID_SDK_ROOT: C:\Users\konda\AppData\Local\Android\Sdk
+2026-07-19T06:02:53.0998732Z   APK_STATUS: Reused (Cached)
+2026-07-19T06:02:53.0998911Z   DEVICE_NAME: emulator-5554
+2026-07-19T06:02:53.0999099Z   EMULATOR_STATUS: Reused (Already Running)
+2026-07-19T06:02:53.0999306Z   ANDROID_VERSION: 17
+2026-07-19T06:02:53.0999456Z ##[endgroup]
+2026-07-19T06:02:53.4952106Z [WARN] Excel report not found: test-results\TripSync_Android_TestReport.xlsx
+2026-07-19T06:02:53.4961189Z [WARN] HTML report not found: test-results\html\execution-report.html
+2026-07-19T06:02:53.5011690Z Screenshots captured: 0
+2026-07-19T06:02:53.5752764Z Node 20 is being deprecated. This workflow is running with Node 24 by default. If you need to temporarily use Node 20, you can set the ACTIONS_ALLOW_USE_UNSECURE_NODE_VERSION=true environment variable. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/
+2026-07-19T06:02:53.5754602Z ##[group]Run actions/upload-artifact@v4
+2026-07-19T06:02:53.5754923Z with:
+2026-07-19T06:02:53.5755171Z   name: TripSync-Android-E2E-Reports-68
+2026-07-19T06:02:53.5755513Z   retention-days: 30
+2026-07-19T06:02:53.5755774Z   if-no-files-found: warn
+2026-07-19T06:02:53.5757211Z   path: test-results/TripSync_Android_TestReport.xlsx
+test-results/html/execution-report.html
+test-results/appium.log
+test-results/appium-error.log
+test-results/adb-devices.log
+test-results/adb-logcat.log
+test-results/adb-activity.log
+.wdio-results.jsonl
+
+2026-07-19T06:02:53.5759181Z   compression-level: 6
+2026-07-19T06:02:53.5759445Z   overwrite: false
+2026-07-19T06:02:53.5759733Z   include-hidden-files: false
+2026-07-19T06:02:53.5760014Z env:
+2026-07-19T06:02:53.5760230Z   TEST_EMAIL: jessuff8@gmail.com
+2026-07-19T06:02:53.5760528Z   TEST_PASSWORD: Ravi@6444
+2026-07-19T06:02:53.5760782Z   TEST_USER_NAME: Konda
+2026-07-19T06:02:53.5761225Z   EXPO_PUBLIC_API_URL: https://tripsyncbackend-production-37a2.up.railway.app
+2026-07-19T06:02:53.5761787Z   WDIO_CI_SPEC: 
+2026-07-19T06:02:53.5762017Z   JOB_START_TIME: 2026-07-19 11:10:59
+2026-07-19T06:02:53.5762486Z   JAVA_HOME: C:\actions-runner\_work\_tool\Java_Temurin-Hotspot_jdk\21.0.11-10.0.LTS\x64
+2026-07-19T06:02:53.5763226Z   JAVA_HOME_21_X64: C:\actions-runner\_work\_tool\Java_Temurin-Hotspot_jdk\21.0.11-10.0.LTS\x64
+2026-07-19T06:02:53.5763886Z   ANDROID_HOME: C:\Users\konda\AppData\Local\Android\Sdk
+2026-07-19T06:02:53.5764382Z   ANDROID_SDK_ROOT: C:\Users\konda\AppData\Local\Android\Sdk
+2026-07-19T06:02:53.5764802Z   APK_STATUS: Reused (Cached)
+2026-07-19T06:02:53.5765103Z   DEVICE_NAME: emulator-5554
+2026-07-19T06:02:53.5765421Z   EMULATOR_STATUS: Reused (Already Running)
+2026-07-19T06:02:53.5765744Z   ANDROID_VERSION: 17
+2026-07-19T06:02:53.5765974Z ##[endgroup]
+2026-07-19T06:02:54.2968892Z (node:26828) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-07-19T06:02:54.2969673Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-07-19T06:02:54.3032796Z Multiple search paths detected. Calculating the least common ancestor of all paths
+2026-07-19T06:02:54.3036337Z The least common ancestor is C:\actions-runner\_work\TripSyncApp\TripSyncApp. This will be the root directory of the artifact
+2026-07-19T06:02:54.3036936Z With the provided path, there will be 3 files uploaded
+2026-07-19T06:02:54.3040519Z Artifact name is valid!
+2026-07-19T06:02:54.3042893Z Root directory input is valid!
+2026-07-19T06:02:55.2537411Z Beginning upload of artifact content to blob storage
+2026-07-19T06:02:55.3047291Z (node:26828) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+2026-07-19T06:02:56.4513989Z Uploaded bytes 3682
+2026-07-19T06:02:56.7164697Z Finished uploading artifact content to blob storage!
+2026-07-19T06:02:56.7165439Z SHA256 digest of uploaded artifact zip is f442442267e3cb58c97f0a45986eb2e982d32afaf0d558db9aeef083bf9eb709
+2026-07-19T06:02:56.7167189Z Finalizing artifact upload
+2026-07-19T06:02:57.1261316Z Artifact TripSync-Android-E2E-Reports-68.zip successfully finalized. Artifact ID 8438821103
+2026-07-19T06:02:57.1311685Z Artifact TripSync-Android-E2E-Reports-68 has been successfully uploaded! Final size is 3682 bytes. Artifact ID is 8438821103
+2026-07-19T06:02:57.1333179Z Artifact download URL: https://github.com/abineshh502/TripSyncApp/actions/runs/29675192343/artifacts/8438821103
+2026-07-19T06:02:57.1830173Z Node 20 is being deprecated. This workflow is running with Node 24 by default. If you need to temporarily use Node 20, you can set the ACTIONS_ALLOW_USE_UNSECURE_NODE_VERSION=true environment variable. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/
+2026-07-19T06:02:57.1831972Z ##[group]Run actions/upload-artifact@v4
+2026-07-19T06:02:57.1832293Z with:
+2026-07-19T06:02:57.1832525Z   name: TripSync-Screenshots-68
+2026-07-19T06:02:57.1832816Z   retention-days: 30
+2026-07-19T06:02:57.1833043Z   if-no-files-found: warn
+2026-07-19T06:02:57.1833329Z   path: test-results/screenshots/
+
+2026-07-19T06:02:57.1833647Z   compression-level: 6
+2026-07-19T06:02:57.1834030Z   overwrite: false
+2026-07-19T06:02:57.1834291Z   include-hidden-files: false
+2026-07-19T06:02:57.1834586Z env:
+2026-07-19T06:02:57.1835195Z   TEST_EMAIL: jessuff8@gmail.com
+2026-07-19T06:02:57.1835506Z   TEST_PASSWORD: Ravi@6444
+2026-07-19T06:02:57.1835820Z   TEST_USER_NAME: Konda
+2026-07-19T06:02:57.1836285Z   EXPO_PUBLIC_API_URL: https://tripsyncbackend-production-37a2.up.railway.app
+2026-07-19T06:02:57.1836822Z   WDIO_CI_SPEC: 
+2026-07-19T06:02:57.1837075Z   JOB_START_TIME: 2026-07-19 11:10:59
+2026-07-19T06:02:57.1838060Z   JAVA_HOME: C:\actions-runner\_work\_tool\Java_Temurin-Hotspot_jdk\21.0.11-10.0.LTS\x64
+2026-07-19T06:02:57.1838858Z   JAVA_HOME_21_X64: C:\actions-runner\_work\_tool\Java_Temurin-Hotspot_jdk\21.0.11-10.0.LTS\x64
+2026-07-19T06:02:57.1839499Z   ANDROID_HOME: C:\Users\konda\AppData\Local\Android\Sdk
+2026-07-19T06:02:57.1839989Z   ANDROID_SDK_ROOT: C:\Users\konda\AppData\Local\Android\Sdk
+2026-07-19T06:02:57.1840399Z   APK_STATUS: Reused (Cached)
+2026-07-19T06:02:57.1840683Z   DEVICE_NAME: emulator-5554
+2026-07-19T06:02:57.1840993Z   EMULATOR_STATUS: Reused (Already Running)
+2026-07-19T06:02:57.1841360Z   ANDROID_VERSION: 17
+2026-07-19T06:02:57.1841612Z ##[endgroup]
+2026-07-19T06:02:57.3648688Z (node:24924) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-07-19T06:02:57.3649856Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-07-19T06:02:57.3703640Z ##[warning]No files were found with the provided path: test-results/screenshots/. No artifacts will be uploaded.
+2026-07-19T06:02:57.3998659Z ##[group]Run node scripts/generate-summary.js
+2026-07-19T06:02:57.3998995Z [36;1mnode scripts/generate-summary.js[0m
+2026-07-19T06:02:57.4037631Z shell: C:\WINDOWS\System32\WindowsPowerShell\v1.0\powershell.EXE -command ". '{0}'"
+2026-07-19T06:02:57.4037968Z env:
+2026-07-19T06:02:57.4038116Z   TEST_EMAIL: jessuff8@gmail.com
+2026-07-19T06:02:57.4038301Z   TEST_PASSWORD: Ravi@6444
+2026-07-19T06:02:57.4038468Z   TEST_USER_NAME: Konda
+2026-07-19T06:02:57.4038758Z   EXPO_PUBLIC_API_URL: https://tripsyncbackend-production-37a2.up.railway.app
+2026-07-19T06:02:57.4039096Z   WDIO_CI_SPEC: 
+2026-07-19T06:02:57.4039256Z   JOB_START_TIME: 2026-07-19 11:10:59
+2026-07-19T06:02:57.4039566Z   JAVA_HOME: C:\actions-runner\_work\_tool\Java_Temurin-Hotspot_jdk\21.0.11-10.0.LTS\x64
+2026-07-19T06:02:57.4040006Z   JAVA_HOME_21_X64: C:\actions-runner\_work\_tool\Java_Temurin-Hotspot_jdk\21.0.11-10.0.LTS\x64
+2026-07-19T06:02:57.4040395Z   ANDROID_HOME: C:\Users\konda\AppData\Local\Android\Sdk
+2026-07-19T06:02:57.4040685Z   ANDROID_SDK_ROOT: C:\Users\konda\AppData\Local\Android\Sdk
+2026-07-19T06:02:57.4040935Z   APK_STATUS: Reused (Cached)
+2026-07-19T06:02:57.4041117Z   DEVICE_NAME: emulator-5554
+2026-07-19T06:02:57.4041306Z   EMULATOR_STATUS: Reused (Already Running)
+2026-07-19T06:02:57.4041506Z   ANDROID_VERSION: 17
+2026-07-19T06:02:57.4041654Z ##[endgroup]
+2026-07-19T06:02:57.8597077Z === Generating GitHub Step Summary ===
+2026-07-19T06:02:57.8603747Z .wdio-results.jsonl not found. Standard summary defaults will be used.
+2026-07-19T06:02:57.8615832Z   Total Tests : 0
+2026-07-19T06:02:57.8616102Z   Passed      : 0
+2026-07-19T06:02:57.8616361Z   Failed      : 0
+2026-07-19T06:02:57.8616590Z   Pass Rate   : 0%
+2026-07-19T06:02:57.8616792Z   Time Elapsed: 21m 58s
+2026-07-19T06:02:57.8631599Z ✓ Successfully wrote GITHUB_STEP_SUMMARY
+2026-07-19T06:02:58.0010960Z Node 20 is being deprecated. This workflow is running with Node 24 by default. If you need to temporarily use Node 20, you can set the ACTIONS_ALLOW_USE_UNSECURE_NODE_VERSION=true environment variable. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/
+2026-07-19T06:02:58.0012482Z Post job cleanup.
+2026-07-19T06:02:58.4507136Z (node:26768) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-07-19T06:02:58.4507965Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-07-19T06:02:58.4961991Z Node 20 is being deprecated. This workflow is running with Node 24 by default. If you need to temporarily use Node 20, you can set the ACTIONS_ALLOW_USE_UNSECURE_NODE_VERSION=true environment variable. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/
+2026-07-19T06:02:58.4964489Z Post job cleanup.
+2026-07-19T06:02:58.6626328Z [command]"C:\Program Files\Git\cmd\git.exe" version
+2026-07-19T06:02:58.7095315Z git version 2.54.0.windows.1
+2026-07-19T06:02:58.7170428Z Copying 'C:\Users\konda\.gitconfig' to 'C:\actions-runner\_work\_temp\d46c3705-bca3-4b79-8b0c-7ed3de62fa85\.gitconfig'
+2026-07-19T06:02:58.7199692Z Temporarily overriding HOME='C:\actions-runner\_work\_temp\d46c3705-bca3-4b79-8b0c-7ed3de62fa85' before making global git config changes
+2026-07-19T06:02:58.7201086Z Adding repository directory to the temporary git global config as a safe directory
+2026-07-19T06:02:58.7213067Z [command]"C:\Program Files\Git\cmd\git.exe" config --global --add safe.directory C:\actions-runner\_work\TripSyncApp\TripSyncApp
+2026-07-19T06:02:58.7698611Z [command]"C:\Program Files\Git\cmd\git.exe" config --local --name-only --get-regexp core\.sshCommand
+2026-07-19T06:02:58.8169050Z [command]"C:\Program Files\Git\cmd\git.exe" submodule foreach --recursive "sh -c \"git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :\""
+2026-07-19T06:02:59.6921320Z [command]"C:\Program Files\Git\cmd\git.exe" config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-07-19T06:02:59.7352152Z http.https://github.com/.extraheader
+2026-07-19T06:02:59.7402186Z [command]"C:\Program Files\Git\cmd\git.exe" config --local --unset-all http.https://github.com/.extraheader
+2026-07-19T06:02:59.7847907Z [command]"C:\Program Files\Git\cmd\git.exe" submodule foreach --recursive "sh -c \"git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :\""
+2026-07-19T06:03:00.5757078Z [command]"C:\Program Files\Git\cmd\git.exe" config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-07-19T06:03:00.6235521Z [command]"C:\Program Files\Git\cmd\git.exe" submodule foreach --recursive "git config --local --show-origin --name-only --get-regexp remote.origin.url"
+2026-07-19T06:03:01.4302785Z Cleaning up orphan processes
+2026-07-19T06:03:01.4511919Z Terminate orphan process: pid (28436) (adb)
+2026-07-19T06:03:01.4553793Z Terminate orphan process: pid (10596) (adb)
+2026-07-19T06:03:01.4720968Z ##[warning]Node.js 20 is deprecated. The following actions target Node.js 20 but are being forced to run on Node.js 24: actions/checkout@v4, actions/setup-java@v4, actions/setup-node@v4, actions/upload-artifact@v4. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/

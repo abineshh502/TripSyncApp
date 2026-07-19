@@ -441,6 +441,36 @@ async function launchAppAndVerify() {
 }
 
 // ─────────────────────────────────────────────
+// STEP 5b — PRE-INSTALL APPIUM SERVERS
+// ─────────────────────────────────────────────
+
+async function installAppiumServers() {
+  log("🔧", "Pre-installing Appium UiAutomator2 Server and Settings APKs...");
+  try {
+    const adbBin = process.env.ADB_PATH || "adb";
+    const device = process.env.DEVICE_NAME || "emulator-5554";
+    const adb = `${adbBin} -s ${device}`;
+    const baseDir = path.resolve(__dirname, "../node_modules/appium-uiautomator2-driver/node_modules");
+    const settingsApk = path.join(baseDir, "io.appium.settings/apks/settings_apk-debug.apk");
+    const serverApk = path.join(baseDir, "appium-uiautomator2-server/apks/appium-uiautomator2-server-v7.1.11.apk");
+    const testApk = path.join(baseDir, "appium-uiautomator2-server/apks/appium-uiautomator2-server-debug-androidTest.apk");
+
+    log("📦", "Installing io.appium.settings...");
+    execSync(`"${adbBin}" -s ${device} install -r -g "${settingsApk}"`, { stdio: "ignore" });
+    
+    log("📦", "Installing io.appium.uiautomator2.server...");
+    execSync(`"${adbBin}" -s ${device} install -r -g "${serverApk}"`, { stdio: "ignore" });
+    
+    log("📦", "Installing io.appium.uiautomator2.server.test...");
+    execSync(`"${adbBin}" -s ${device} install -r -g "${testApk}"`, { stdio: "ignore" });
+
+    log("✅", "Appium Server and Settings APKs pre-installed successfully.");
+  } catch (e) {
+    log("⚠️", `Failed to pre-install Appium server APKs: ${e.message}`);
+  }
+}
+
+// ─────────────────────────────────────────────
 // STEP 6 — APPIUM VERIFICATION
 // ─────────────────────────────────────────────
 
@@ -667,6 +697,7 @@ async function main() {
     const sha = validateCachedApk(); // Step 3 — Confirm APK integrity & JS bundle
     await intelligentInstallApk(sha);// Step 4 — Check device vs local (intelligent install)
     await launchAppAndVerify();      // Step 5 — am start & Poll dumpsys for visibility
+    await installAppiumServers();    // Pre-install Appium APKs to skip installation inside specs
     await detectOrStartAppium();     // Step 6 — Appium server startup/reuse
     await verifyAppiumSession();     // Step 7 — Session sanity check
     
