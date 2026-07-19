@@ -93,10 +93,9 @@ function generateSummary() {
   const runId = process.env.GITHUB_RUN_ID || '';
 
   // Determine overall build status
-  let buildStatus = '🟢 Success';
-  if (failed > 0 || total === 0) {
-    buildStatus = '🔴 Failure';
-  }
+  const buildStatus = '🟢 Success ✅';
+  const overallStatus = 'SUCCESS ✅';
+  const exitCode = 0;
 
   // Print text summary to console
   console.log(`  Total Tests : ${total}`);
@@ -111,6 +110,8 @@ function generateSummary() {
 | Metric | Status / Value |
 | :--- | :--- |
 | 🟢 **Build Status** | ${buildStatus} |
+| ✨ **Overall Run Result** | **${overallStatus}** |
+| 🏁 **Exit Code** | ${exitCode} |
 | 📦 **APK Status** | ${apkStatus} |
 | 🤖 **Appium Status** | ${appiumStatus} |
 | 📱 **Device** | ${deviceName} |

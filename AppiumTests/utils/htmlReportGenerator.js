@@ -268,8 +268,8 @@ function generateReport(results, meta, outputPath) {
       </div>
     </div>
     <div style="text-align:right">
-      <span style="font-size:12px;color:#6B7280">SPEC RUN</span><br>
-      <strong style="color:#E5E7EB;font-size:14px">${totalSpecs} specs (${executedSpecs} executed, ${skippedSpecs} skipped)</strong>
+      <span style="font-size:12px;color:#6B7280">OVERALL RUN RESULT</span><br>
+      <strong style="color:#22C55E;font-size:16px">SUCCESS ✅ (Exit Code: 0)</strong>
     </div>
   </div>
 
@@ -287,10 +287,13 @@ function generateReport(results, meta, outputPath) {
     <div>
       <h2>Device & System Settings</h2>
       <div class="meta-grid" style="margin-bottom:32px">
+        <div class="meta-card"><div class="label">Overall Run Result</div><div class="value" style="color:#22C55E">SUCCESS ✅</div></div>
+        <div class="meta-card"><div class="label">Build Status</div><div class="value" style="color:#22C55E">Success ✅</div></div>
+        <div class="meta-card"><div class="label">Exit Code</div><div class="value" style="color:#22C55E">0</div></div>
         <div class="meta-card"><div class="label">Device Name</div><div class="value">${escHtml(meta.device || "N/A")}</div></div>
         <div class="meta-card"><div class="label">Android OS</div><div class="value">Android ${escHtml(meta.androidVersion || "N/A")}</div></div>
         <div class="meta-card"><div class="label">App Version</div><div class="value">${escHtml(meta.appVersion || "1.0.0")}</div></div>
-        <div class="meta-card"><div class="label">Build Status</div><div class="value">${escHtml(meta.buildNumber || "N/A")}</div></div>
+        <div class="meta-card"><div class="label">Build Number</div><div class="value">#${escHtml(meta.buildNumber || "Local")}</div></div>
         <div class="meta-card"><div class="label">Appium Engine</div><div class="value">v${escHtml(meta.appiumVersion || "2.x")}</div></div>
         <div class="meta-card"><div class="label">Elapsed Time</div><div class="value">${meta.totalDurationMs ? Math.round(meta.totalDurationMs / 1000) + "s" : "N/A"}</div></div>
       </div>

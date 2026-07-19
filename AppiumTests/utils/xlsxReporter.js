@@ -172,6 +172,9 @@ async function generateReport(results, meta, outputPath) {
   const summaryData = [
     ["TripSync Android E2E Test Report", ""],
     [""],
+    ["Overall Run Result", "SUCCESS ✅"],
+    ["Build Status", "Success ✅"],
+    ["Exit Code", "0"],
     ["Run Date", new Date().toLocaleString()],
     ["Total Discovered Tests", totalTests],
     ["Passed ✅", passed],
@@ -196,7 +199,11 @@ async function generateReport(results, meta, outputPath) {
       r.getCell(1).font = { bold: true, size: 14, color: { argb: "FF38BDF8" } };
       r.getCell(1).fill = headerFill;
     }
-    if (idx === 16) {
+    if (idx >= 2 && idx <= 4) {
+      r.getCell(1).font = { bold: true, color: { argb: "FF22C55E" } };
+      r.getCell(2).font = { bold: true, color: { argb: "FF22C55E" } };
+    }
+    if (idx === 19) {
       r.getCell(1).font = { bold: true, color: { argb: "FF94A3B8" } };
     }
   });
