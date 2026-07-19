@@ -511,6 +511,16 @@ async function verifyAppiumSession() {
 // ─────────────────────────────────────────────
 
 async function runWdio() {
+  log("🧹", "Stopping any running UiAutomator2 server on device...");
+  try {
+    const adbBin = process.env.ADB_PATH || "adb";
+    const device = process.env.DEVICE_NAME || "emulator-5554";
+    const adb = `${adbBin} -s ${device}`;
+    execSync(`${adb} shell am force-stop io.appium.uiautomator2.server`, { stdio: "ignore" });
+    execSync(`${adb} shell am force-stop io.appium.uiautomator2.server.test`, { stdio: "ignore" });
+    execSync(`${adb} shell am force-stop io.appium.settings`, { stdio: "ignore" });
+  } catch (_) {}
+
   log("🧪", "Starting WebDriverIO test execution...");
   const spec = process.env.WDIO_CI_SPEC || "";
   const wdioCmd = process.platform === "win32" ? `${WDIO_BIN}.cmd` : WDIO_BIN;
