@@ -1,0 +1,42 @@
+﻿2026-07-19T08:45:49.2859990Z Node 20 is being deprecated. This workflow is running with Node 24 by default. If you need to temporarily use Node 20, you can set the ACTIONS_ALLOW_USE_UNSECURE_NODE_VERSION=true environment variable. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/
+2026-07-19T08:45:49.2862447Z ##[group]Run actions/upload-artifact@v4
+2026-07-19T08:45:49.2862862Z with:
+2026-07-19T08:45:49.2863165Z   name: TripSync-Screenshots-74
+2026-07-19T08:45:49.2863564Z   retention-days: 30
+2026-07-19T08:45:49.2863903Z   if-no-files-found: warn
+2026-07-19T08:45:49.2864267Z   path: test-results/screenshots/
+
+2026-07-19T08:45:49.2864675Z   compression-level: 6
+2026-07-19T08:45:49.2865039Z   overwrite: false
+2026-07-19T08:45:49.2865365Z   include-hidden-files: false
+2026-07-19T08:45:49.2865724Z env:
+2026-07-19T08:45:49.2866007Z   TEST_EMAIL: jessuff8@gmail.com
+2026-07-19T08:45:49.2866395Z   TEST_PASSWORD: Ravi@6444
+2026-07-19T08:45:49.2866749Z   TEST_USER_NAME: Konda
+2026-07-19T08:45:49.2867281Z   EXPO_PUBLIC_API_URL: https://tripsyncbackend-production-37a2.up.railway.app
+2026-07-19T08:45:49.2867671Z   WDIO_CI_SPEC: 
+2026-07-19T08:45:49.2867852Z   JOB_START_TIME: 2026-07-19 13:25:54
+2026-07-19T08:45:49.2868497Z   JAVA_HOME: C:\actions-runner\_work\_tool\Java_Temurin-Hotspot_jdk\21.0.11-10.0.LTS\x64
+2026-07-19T08:45:49.2869494Z   JAVA_HOME_21_X64: C:\actions-runner\_work\_tool\Java_Temurin-Hotspot_jdk\21.0.11-10.0.LTS\x64
+2026-07-19T08:45:49.2870345Z   ANDROID_HOME: C:\Users\konda\AppData\Local\Android\Sdk
+2026-07-19T08:45:49.2870969Z   ANDROID_SDK_ROOT: C:\Users\konda\AppData\Local\Android\Sdk
+2026-07-19T08:45:49.2871496Z   APK_STATUS: Reused (Cached)
+2026-07-19T08:45:49.2872290Z   DEVICE_NAME: emulator-5554
+2026-07-19T08:45:49.2872700Z   EMULATOR_STATUS: Reused (Already Running)
+2026-07-19T08:45:49.2873136Z   ANDROID_VERSION: 17
+2026-07-19T08:45:49.2873443Z ##[endgroup]
+2026-07-19T08:45:49.4820436Z (node:19344) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-07-19T08:45:49.4821358Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-07-19T08:45:49.5178801Z With the provided path, there will be 100 files uploaded
+2026-07-19T08:45:49.5183561Z Artifact name is valid!
+2026-07-19T08:45:49.5185936Z Root directory input is valid!
+2026-07-19T08:45:50.4810156Z Beginning upload of artifact content to blob storage
+2026-07-19T08:45:50.8451656Z (node:19344) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+2026-07-19T08:45:54.7061858Z Uploaded bytes 8388608
+2026-07-19T08:45:56.1831403Z Uploaded bytes 15461129
+2026-07-19T08:45:56.4478543Z Finished uploading artifact content to blob storage!
+2026-07-19T08:45:56.4479715Z SHA256 digest of uploaded artifact zip is 8727251235dfc70a19ac4c99e699aaa117bdfa7586e706ffe589ee6133c8d883
+2026-07-19T08:45:56.4481297Z Finalizing artifact upload
+2026-07-19T08:45:57.4649928Z Artifact TripSync-Screenshots-74.zip successfully finalized. Artifact ID 8440353937
+2026-07-19T08:45:57.4651131Z Artifact TripSync-Screenshots-74 has been successfully uploaded! Final size is 15461129 bytes. Artifact ID is 8440353937
+2026-07-19T08:45:57.4672882Z Artifact download URL: https://github.com/abineshh502/TripSyncApp/actions/runs/29678902722/artifacts/8440353937

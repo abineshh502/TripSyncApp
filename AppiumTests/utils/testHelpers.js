@@ -88,6 +88,18 @@ async function loginAs(driver, email, password) {
   const e = email || testData.credentials.validEmail;
   const p = password || testData.credentials.validPassword;
 
+  // Smart check: If we are already logged in (tab bar or main screen elements visible), skip login
+  try {
+    const checkSel = ["~Trips", "~trips", "~Groups", "~groups", "~Profile", "~profile"];
+    for (const sel of checkSel) {
+      const el = await driver.$(sel);
+      if (await el.isDisplayed()) {
+        console.log(`[loginAs] User already logged in (found element ${sel}). Skipping login.`);
+        return;
+      }
+    }
+  } catch (_) {}
+
   // Wait for login screen to be ready
   await waitForElement(driver, "email-input", testData.timeouts.appLaunch);
 

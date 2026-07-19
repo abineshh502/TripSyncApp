@@ -1,0 +1,37 @@
+﻿2026-07-19T07:55:54.5247512Z Node 20 is being deprecated. This workflow is running with Node 24 by default. If you need to temporarily use Node 20, you can set the ACTIONS_ALLOW_USE_UNSECURE_NODE_VERSION=true environment variable. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/
+2026-07-19T07:55:54.5249330Z ##[group]Run actions/setup-java@v4
+2026-07-19T07:55:54.5249566Z with:
+2026-07-19T07:55:54.5249727Z   java-version: 21
+2026-07-19T07:55:54.5249898Z   distribution: temurin
+2026-07-19T07:55:54.5250083Z   java-package: jdk
+2026-07-19T07:55:54.5250260Z   check-latest: false
+2026-07-19T07:55:54.5250432Z   server-id: github
+2026-07-19T07:55:54.5250612Z   server-username: GITHUB_ACTOR
+2026-07-19T07:55:54.5250820Z   server-password: GITHUB_TOKEN
+2026-07-19T07:55:54.5251029Z   overwrite-settings: true
+2026-07-19T07:55:54.5251218Z   job-status: success
+2026-07-19T07:55:54.5253341Z   token: ***
+2026-07-19T07:55:54.5253505Z env:
+2026-07-19T07:55:54.5253657Z   TEST_EMAIL: jessuff8@gmail.com
+2026-07-19T07:55:54.5253904Z   TEST_PASSWORD: Ravi@6444
+2026-07-19T07:55:54.5254108Z   TEST_USER_NAME: Konda
+2026-07-19T07:55:54.5254421Z   EXPO_PUBLIC_API_URL: https://tripsyncbackend-production-37a2.up.railway.app
+2026-07-19T07:55:54.5254776Z   WDIO_CI_SPEC: 
+2026-07-19T07:55:54.5254947Z   JOB_START_TIME: 2026-07-19 13:25:54
+2026-07-19T07:55:54.5255204Z ##[endgroup]
+2026-07-19T07:55:55.1691709Z ##[group]Installed distributions
+2026-07-19T07:55:55.1734232Z Resolved Java 21.0.11+10.0.LTS from tool-cache
+2026-07-19T07:55:55.1734805Z Setting Java 21.0.11+10.0.LTS as the default
+2026-07-19T07:55:55.1792409Z (node:6068) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-07-19T07:55:55.1793494Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-07-19T07:55:55.1800481Z Creating toolchains.xml for JDK version 21 from temurin
+2026-07-19T07:55:55.2139361Z Overwriting existing file C:\Users\konda\.m2\toolchains.xml
+2026-07-19T07:55:55.2148050Z 
+2026-07-19T07:55:55.2148891Z Java configuration:
+2026-07-19T07:55:55.2149356Z   Distribution: temurin
+2026-07-19T07:55:55.2151033Z   Version: 21.0.11+10.0.LTS
+2026-07-19T07:55:55.2151642Z   Path: C:\actions-runner\_work\_tool\Java_Temurin-Hotspot_jdk\21.0.11-10.0.LTS\x64
+2026-07-19T07:55:55.2152171Z 
+2026-07-19T07:55:55.2152627Z ##[endgroup]
+2026-07-19T07:55:55.2295250Z Creating settings.xml with server-id: github
+2026-07-19T07:55:55.2295932Z Overwriting existing file C:\Users\konda\.m2\settings.xml

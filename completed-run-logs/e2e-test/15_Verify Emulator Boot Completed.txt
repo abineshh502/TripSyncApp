@@ -1,0 +1,52 @@
+﻿2026-07-19T07:57:55.6686558Z ##[group]Run $ErrorActionPreference = "SilentlyContinue"
+2026-07-19T07:57:55.6687436Z [36;1m$ErrorActionPreference = "SilentlyContinue"[0m
+2026-07-19T07:57:55.6687954Z [36;1m$deviceId = "emulator-5554"[0m
+2026-07-19T07:57:55.6688506Z [36;1mWrite-Host "Verifying boot for device: $deviceId"[0m
+2026-07-19T07:57:55.6689037Z [36;1m[0m
+2026-07-19T07:57:55.6689481Z [36;1m# Retry up to 60 seconds for the emulator to finish booting[0m
+2026-07-19T07:57:55.6690107Z [36;1m$maxWait = 60[0m
+2026-07-19T07:57:55.6690453Z [36;1m$waited  = 0[0m
+2026-07-19T07:57:55.6690769Z [36;1m$booted  = ""[0m
+2026-07-19T07:57:55.6691089Z [36;1mdo {[0m
+2026-07-19T07:57:55.6691612Z [36;1m  $rawBooted = adb -s $deviceId shell getprop sys.boot_completed 2>$null[0m
+2026-07-19T07:57:55.6692486Z [36;1m  $booted = if ($rawBooted) { $rawBooted.ToString().Trim() } else { "" }[0m
+2026-07-19T07:57:55.6693188Z [36;1m  if ($booted -eq "1") { break }[0m
+2026-07-19T07:57:55.6693639Z [36;1m  Start-Sleep -Seconds 5[0m
+2026-07-19T07:57:55.6694087Z [36;1m  $waited += 5[0m
+2026-07-19T07:57:55.6694934Z [36;1m  Write-Host "  Still booting... ($waited / $maxWait s)"[0m
+2026-07-19T07:57:55.6695509Z [36;1m} while ($waited -lt $maxWait)[0m
+2026-07-19T07:57:55.6695882Z [36;1m[0m
+2026-07-19T07:57:55.6696169Z [36;1mif ($booted -eq "1") {[0m
+2026-07-19T07:57:55.6696661Z [36;1m  Write-Host "[OK] Emulator fully booted."[0m
+2026-07-19T07:57:55.6697799Z [36;1m} else {[0m
+2026-07-19T07:57:55.6698596Z [36;1m  Write-Host "[WARN] Emulator boot_completed='$booted' after ${maxWait}s. Proceeding anyway."[0m
+2026-07-19T07:57:55.6699477Z [36;1m}[0m
+2026-07-19T07:57:55.6699776Z [36;1m[0m
+2026-07-19T07:57:55.6700274Z [36;1m# Capture Android version safely (strip newlines for GITHUB_ENV)[0m
+2026-07-19T07:57:55.6701250Z [36;1m$rawVer = adb -s $deviceId shell getprop ro.build.version.release 2>$null[0m
+2026-07-19T07:57:55.6702396Z [36;1m$androidVer = if ($rawVer) { $rawVer.ToString().Trim() -replace '[\r\n]','' } else { "unknown" }[0m
+2026-07-19T07:57:55.6703296Z [36;1m[0m
+2026-07-19T07:57:55.6703901Z [36;1m$rawBuild = adb -s $deviceId shell getprop ro.build.display.id 2>$null[0m
+2026-07-19T07:57:55.6705008Z [36;1m$buildId = if ($rawBuild) { $rawBuild.ToString().Trim() -replace '[\r\n]','' } else { "unknown" }[0m
+2026-07-19T07:57:55.6705980Z [36;1m[0m
+2026-07-19T07:57:55.6706458Z [36;1mWrite-Host "Android Version: $androidVer | Build: $buildId"[0m
+2026-07-19T07:57:55.6707375Z [36;1mAdd-Content -Path $env:GITHUB_ENV -Value "ANDROID_VERSION=$androidVer"[0m
+2026-07-19T07:57:55.6791361Z shell: C:\WINDOWS\System32\WindowsPowerShell\v1.0\powershell.EXE -command ". '{0}'"
+2026-07-19T07:57:55.6792177Z env:
+2026-07-19T07:57:55.6792524Z   TEST_EMAIL: jessuff8@gmail.com
+2026-07-19T07:57:55.6792944Z   TEST_PASSWORD: Ravi@6444
+2026-07-19T07:57:55.6793317Z   TEST_USER_NAME: Konda
+2026-07-19T07:57:55.6793941Z   EXPO_PUBLIC_API_URL: https://tripsyncbackend-production-37a2.up.railway.app
+2026-07-19T07:57:55.6794704Z   WDIO_CI_SPEC: 
+2026-07-19T07:57:55.6795026Z   JOB_START_TIME: 2026-07-19 13:25:54
+2026-07-19T07:57:55.6795744Z   JAVA_HOME: C:\actions-runner\_work\_tool\Java_Temurin-Hotspot_jdk\21.0.11-10.0.LTS\x64
+2026-07-19T07:57:55.6796932Z   JAVA_HOME_21_X64: C:\actions-runner\_work\_tool\Java_Temurin-Hotspot_jdk\21.0.11-10.0.LTS\x64
+2026-07-19T07:57:55.6797768Z   ANDROID_HOME: C:\Users\konda\AppData\Local\Android\Sdk
+2026-07-19T07:57:55.6798446Z   ANDROID_SDK_ROOT: C:\Users\konda\AppData\Local\Android\Sdk
+2026-07-19T07:57:55.6798998Z   APK_STATUS: Reused (Cached)
+2026-07-19T07:57:55.6799395Z   DEVICE_NAME: emulator-5554
+2026-07-19T07:57:55.6799805Z   EMULATOR_STATUS: Reused (Already Running)
+2026-07-19T07:57:55.6800263Z ##[endgroup]
+2026-07-19T07:57:56.3127362Z Verifying boot for device: emulator-5554
+2026-07-19T07:57:56.4240360Z [OK] Emulator fully booted.
+2026-07-19T07:57:56.5741171Z Android Version: 17 | Build: sdk_gphone16k_x86_64-userdebug 17 CP21.260330.005 15181570 dev-keys

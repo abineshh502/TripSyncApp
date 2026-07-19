@@ -177,8 +177,16 @@ describe("Trips", () => {
         await driver.pause(td.timeouts.networkOp);
         // Dismiss alert if shown
         try {
-          await driver.acceptAlert();
-        } catch (_) {}
+          const viewTripsBtn = await driver.$('android=new UiSelector().text("VIEW MY TRIPS")');
+          if (await viewTripsBtn.isDisplayed()) {
+            await viewTripsBtn.click();
+          } else {
+            const viewTripsBtn2 = await driver.$('android=new UiSelector().text("View My Trips")');
+            await viewTripsBtn2.click();
+          }
+        } catch (_) {
+          try { await driver.acceptAlert(); } catch (_) {}
+        }
       }
     } catch (_) {
       await driver.back();

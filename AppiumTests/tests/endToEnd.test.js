@@ -162,10 +162,21 @@ describe("End-to-End User Journeys", () => {
     if (btn) {
       await btn.click();
       await driver.pause(td.timeouts.networkOp);
-      try { await driver.acceptAlert(); } catch (_) {}
+      try {
+        const viewTripsBtn = await driver.$('android=new UiSelector().text("VIEW MY TRIPS")');
+        if (await viewTripsBtn.isDisplayed()) {
+          await viewTripsBtn.click();
+        } else {
+          const viewTripsBtn2 = await driver.$('android=new UiSelector().text("View My Trips")');
+          await viewTripsBtn2.click();
+        }
+      } catch (_) {
+        try { await driver.acceptAlert(); } catch (_) {}
+      }
     } else {
       await driver.back();
     }
+    await driver.pause(td.timeouts.animationSettle);
     await h.testEnd();
   });
 
@@ -205,6 +216,15 @@ describe("End-to-End User Journeys", () => {
   it("E2E-023: [Journey 3] Submit group creation", async () => {
     await h.tapElement(driver, "group-submit-btn");
     await driver.pause(td.timeouts.networkOp);
+    try {
+      const okBtn = await driver.$('android=new UiSelector().text("OK")');
+      if (await okBtn.isDisplayed()) {
+        await okBtn.click();
+      }
+    } catch (_) {
+      try { await driver.acceptAlert(); } catch (_) {}
+    }
+    await driver.pause(td.timeouts.animationSettle);
     await h.testEnd();
   });
 

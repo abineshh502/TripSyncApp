@@ -1,0 +1,80 @@
+﻿2026-07-19T07:55:58.5503983Z ##[group]Run $lockHash = (Get-FileHash "package-lock.json" -Algorithm SHA256).Hash
+2026-07-19T07:55:58.5505337Z [36;1m$lockHash = (Get-FileHash "package-lock.json" -Algorithm SHA256).Hash[0m
+2026-07-19T07:55:58.5506087Z [36;1m$cacheFile = "$env:TEMP\tripsync_npm_cache_hash.txt"[0m
+2026-07-19T07:55:58.5506540Z [36;1m[0m
+2026-07-19T07:55:58.5506777Z [36;1m$prevHash = ""[0m
+2026-07-19T07:55:58.5507098Z [36;1mif (Test-Path $cacheFile) {[0m
+2026-07-19T07:55:58.5507512Z [36;1m  $prevHash = Get-Content $cacheFile -Raw[0m
+2026-07-19T07:55:58.5507905Z [36;1m}[0m
+2026-07-19T07:55:58.5508123Z [36;1m[0m
+2026-07-19T07:55:58.5508522Z [36;1m# Also verify node_modules/expo exists (workspace may be stale)[0m
+2026-07-19T07:55:58.5509313Z [36;1m$nmReady = (Test-Path "node_modules\expo") -and (Test-Path "node_modules\.bin\expo")[0m
+2026-07-19T07:55:58.5509939Z [36;1m[0m
+2026-07-19T07:55:58.5510273Z [36;1mif ($lockHash -eq $prevHash.Trim() -and $nmReady) {[0m
+2026-07-19T07:55:58.5511059Z [36;1m  Write-Host "[SKIP] package-lock.json unchanged and node_modules ready. Skipping npm install."[0m
+2026-07-19T07:55:58.5511889Z [36;1m  echo "skipped=true" >> $env:GITHUB_OUTPUT[0m
+2026-07-19T07:55:58.5512298Z [36;1m} else {[0m
+2026-07-19T07:55:58.5512563Z [36;1m  if (-not $nmReady) {[0m
+2026-07-19T07:55:58.5513134Z [36;1m    Write-Host "[RUN] node_modules not ready (expo missing). Running npm install..."[0m
+2026-07-19T07:55:58.5513749Z [36;1m  } else {[0m
+2026-07-19T07:55:58.5514188Z [36;1m    Write-Host "[RUN] Dependencies changed. Running npm install..."[0m
+2026-07-19T07:55:58.5514709Z [36;1m  }[0m
+2026-07-19T07:55:58.5514958Z [36;1m  npm install[0m
+2026-07-19T07:55:58.5515438Z [36;1m  $lockHash | Out-File -FilePath $cacheFile -Encoding utf8 -NoNewline[0m
+2026-07-19T07:55:58.5516056Z [36;1m  echo "skipped=false" >> $env:GITHUB_OUTPUT[0m
+2026-07-19T07:55:58.5516460Z [36;1m}[0m
+2026-07-19T07:55:58.5576198Z shell: C:\WINDOWS\System32\WindowsPowerShell\v1.0\powershell.EXE -command ". '{0}'"
+2026-07-19T07:55:58.5576904Z env:
+2026-07-19T07:55:58.5577197Z   TEST_EMAIL: jessuff8@gmail.com
+2026-07-19T07:55:58.5577578Z   TEST_PASSWORD: Ravi@6444
+2026-07-19T07:55:58.5577905Z   TEST_USER_NAME: Konda
+2026-07-19T07:55:58.5578487Z   EXPO_PUBLIC_API_URL: https://tripsyncbackend-production-37a2.up.railway.app
+2026-07-19T07:55:58.5579146Z   WDIO_CI_SPEC: 
+2026-07-19T07:55:58.5579447Z   JOB_START_TIME: 2026-07-19 13:25:54
+2026-07-19T07:55:58.5580081Z   JAVA_HOME: C:\actions-runner\_work\_tool\Java_Temurin-Hotspot_jdk\21.0.11-10.0.LTS\x64
+2026-07-19T07:55:58.5581048Z   JAVA_HOME_21_X64: C:\actions-runner\_work\_tool\Java_Temurin-Hotspot_jdk\21.0.11-10.0.LTS\x64
+2026-07-19T07:55:58.5581837Z   ANDROID_HOME: C:\Users\konda\AppData\Local\Android\Sdk
+2026-07-19T07:55:58.5582397Z   ANDROID_SDK_ROOT: C:\Users\konda\AppData\Local\Android\Sdk
+2026-07-19T07:55:58.5582851Z ##[endgroup]
+2026-07-19T07:55:59.0644433Z [RUN] node_modules not ready (expo missing). Running npm install...
+2026-07-19T07:56:13.8654998Z npm warn deprecated inflight@1.0.6: This module is not supported, and leaks memory. Do not use it. Check out lru-cache if you want a good and tested way to coalesce async requests by a key value, which is much more comprehensive and powerful.
+2026-07-19T07:56:13.9239274Z npm warn deprecated inflight@1.0.6: This module is not supported, and leaks memory. Do not use it. Check out lru-cache if you want a good and tested way to coalesce async requests by a key value, which is much more comprehensive and powerful.
+2026-07-19T07:56:13.9607840Z npm warn deprecated lodash.get@4.4.2: This package is deprecated. Use the optional chaining (?.) operator instead.
+2026-07-19T07:56:14.0889192Z npm warn deprecated lodash.get@4.4.2: This package is deprecated. Use the optional chaining (?.) operator instead.
+2026-07-19T07:56:14.4024636Z npm warn deprecated lodash.isequal@4.5.0: This package is deprecated. Use require('node:util').isDeepStrictEqual instead.
+2026-07-19T07:56:14.6682021Z npm warn deprecated rimraf@2.4.5: Rimraf versions prior to v4 are no longer supported
+2026-07-19T07:56:14.6921836Z npm warn deprecated rimraf@2.4.5: Rimraf versions prior to v4 are no longer supported
+2026-07-19T07:56:14.9221818Z npm warn deprecated rimraf@2.7.1: Rimraf versions prior to v4 are no longer supported
+2026-07-19T07:56:15.4332854Z npm warn deprecated whatwg-encoding@3.1.1: Use @exodus/bytes instead for a more spec-conformant and faster implementation
+2026-07-19T07:56:15.4383011Z npm warn deprecated rimraf@3.0.2: Rimraf versions prior to v4 are no longer supported
+2026-07-19T07:56:15.8878551Z npm warn deprecated glob@7.2.3: Old versions of glob are not supported, and contain widely publicized security vulnerabilities, which have been fixed in the current version. Please update. Support for old versions may be purchased (at exorbitant rates) by contacting i@izs.me
+2026-07-19T07:56:15.8886449Z npm warn deprecated glob@7.2.3: Old versions of glob are not supported, and contain widely publicized security vulnerabilities, which have been fixed in the current version. Please update. Support for old versions may be purchased (at exorbitant rates) by contacting i@izs.me
+2026-07-19T07:56:15.8895280Z npm warn deprecated glob@7.2.3: Old versions of glob are not supported, and contain widely publicized security vulnerabilities, which have been fixed in the current version. Please update. Support for old versions may be purchased (at exorbitant rates) by contacting i@izs.me
+2026-07-19T07:56:15.8900179Z npm warn deprecated glob@7.2.3: Old versions of glob are not supported, and contain widely publicized security vulnerabilities, which have been fixed in the current version. Please update. Support for old versions may be purchased (at exorbitant rates) by contacting i@izs.me
+2026-07-19T07:56:15.8916149Z npm warn deprecated glob@6.0.4: Old versions of glob are not supported, and contain widely publicized security vulnerabilities, which have been fixed in the current version. Please update. Support for old versions may be purchased (at exorbitant rates) by contacting i@izs.me
+2026-07-19T07:56:15.8920016Z npm warn deprecated glob@8.1.0: Old versions of glob are not supported, and contain widely publicized security vulnerabilities, which have been fixed in the current version. Please update. Support for old versions may be purchased (at exorbitant rates) by contacting i@izs.me
+2026-07-19T07:56:15.8943582Z npm warn deprecated glob@7.2.3: Old versions of glob are not supported, and contain widely publicized security vulnerabilities, which have been fixed in the current version. Please update. Support for old versions may be purchased (at exorbitant rates) by contacting i@izs.me
+2026-07-19T07:56:15.9025029Z npm warn deprecated glob@7.2.3: Old versions of glob are not supported, and contain widely publicized security vulnerabilities, which have been fixed in the current version. Please update. Support for old versions may be purchased (at exorbitant rates) by contacting i@izs.me
+2026-07-19T07:56:15.9114790Z npm warn deprecated glob@6.0.4: Glob versions prior to v9 are no longer supported
+2026-07-19T07:56:15.9352046Z npm warn deprecated glob@7.2.3: Old versions of glob are not supported, and contain widely publicized security vulnerabilities, which have been fixed in the current version. Please update. Support for old versions may be purchased (at exorbitant rates) by contacting i@izs.me
+2026-07-19T07:56:21.4216126Z npm warn deprecated fstream@1.0.12: This package is no longer supported.
+2026-07-19T07:56:25.7249000Z npm warn deprecated uuid@7.0.3: uuid@10 and below is no longer supported.  For ESM codebases, update to uuid@latest.  For CommonJS codebases, use uuid@11 (but be aware this version will likely be deprecated in 2028).
+2026-07-19T07:56:27.5981996Z npm warn deprecated uuid@8.3.2: uuid@10 and below is no longer supported.  For ESM codebases, update to uuid@latest.  For CommonJS codebases, use uuid@11 (but be aware this version will likely be deprecated in 2028).
+2026-07-19T07:56:27.8183344Z npm warn deprecated glob@10.4.5: Old versions of glob are not supported, and contain widely publicized security vulnerabilities, which have been fixed in the current version. Please update. Support for old versions may be purchased (at exorbitant rates) by contacting i@izs.me
+2026-07-19T07:56:27.8495230Z npm warn deprecated glob@10.5.0: Old versions of glob are not supported, and contain widely publicized security vulnerabilities, which have been fixed in the current version. Please update. Support for old versions may be purchased (at exorbitant rates) by contacting i@izs.me
+2026-07-19T07:56:27.8563443Z npm warn deprecated glob@10.5.0: Old versions of glob are not supported, and contain widely publicized security vulnerabilities, which have been fixed in the current version. Please update. Support for old versions may be purchased (at exorbitant rates) by contacting i@izs.me
+2026-07-19T07:57:50.9818395Z 
+2026-07-19T07:57:50.9819952Z added 2132 packages, and audited 2133 packages in 2m
+2026-07-19T07:57:50.9820917Z 
+2026-07-19T07:57:50.9821373Z 286 packages are looking for funding
+2026-07-19T07:57:50.9829871Z   run `npm fund` for details
+2026-07-19T07:57:51.3068961Z 
+2026-07-19T07:57:51.3069958Z 52 vulnerabilities (2 low, 35 moderate, 12 high, 3 critical)
+2026-07-19T07:57:51.3070793Z 
+2026-07-19T07:57:51.3071293Z To address issues that do not require attention, run:
+2026-07-19T07:57:51.3072503Z   npm audit fix
+2026-07-19T07:57:51.3073222Z 
+2026-07-19T07:57:51.3073909Z To address all issues (including breaking changes), run:
+2026-07-19T07:57:51.3074818Z   npm audit fix --force
+2026-07-19T07:57:51.3075347Z 
+2026-07-19T07:57:51.3075837Z Run `npm audit` for details.

@@ -1,0 +1,80 @@
+﻿2026-07-19T07:54:58.6665688Z Node 20 is being deprecated. This workflow is running with Node 24 by default. If you need to temporarily use Node 20, you can set the ACTIONS_ALLOW_USE_UNSECURE_NODE_VERSION=true environment variable. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/
+2026-07-19T07:54:58.6676222Z ##[group]Run actions/checkout@v4
+2026-07-19T07:54:58.6677038Z with:
+2026-07-19T07:54:58.6677434Z   repository: abineshh502/TripSyncApp
+2026-07-19T07:54:58.6681633Z   token: ***
+2026-07-19T07:54:58.6682002Z   ssh-strict: true
+2026-07-19T07:54:58.6682363Z   ssh-user: git
+2026-07-19T07:54:58.6682729Z   persist-credentials: true
+2026-07-19T07:54:58.6683136Z   clean: true
+2026-07-19T07:54:58.6683513Z   sparse-checkout-cone-mode: true
+2026-07-19T07:54:58.6683981Z   fetch-depth: 1
+2026-07-19T07:54:58.6684356Z   fetch-tags: false
+2026-07-19T07:54:58.6684714Z   show-progress: true
+2026-07-19T07:54:58.6685072Z   lfs: false
+2026-07-19T07:54:58.6685382Z   submodules: false
+2026-07-19T07:54:58.6685784Z   set-safe-directory: true
+2026-07-19T07:54:58.6686469Z env:
+2026-07-19T07:54:58.6686825Z   TEST_EMAIL: jessuff8@gmail.com
+2026-07-19T07:54:58.6687258Z   TEST_PASSWORD: Ravi@6444
+2026-07-19T07:54:58.6687638Z   TEST_USER_NAME: Konda
+2026-07-19T07:54:58.6688222Z   EXPO_PUBLIC_API_URL: https://tripsyncbackend-production-37a2.up.railway.app
+2026-07-19T07:54:58.6688880Z   WDIO_CI_SPEC: 
+2026-07-19T07:54:58.6689200Z ##[endgroup]
+2026-07-19T07:54:59.0288543Z Syncing repository: abineshh502/TripSyncApp
+2026-07-19T07:54:59.0290116Z ##[group]Getting Git version info
+2026-07-19T07:54:59.0290577Z Working directory is 'C:\actions-runner\_work\TripSyncApp\TripSyncApp'
+2026-07-19T07:54:59.0457548Z [command]"C:\Program Files\Git\cmd\git.exe" version
+2026-07-19T07:54:59.0834481Z git version 2.54.0.windows.1
+2026-07-19T07:54:59.0881677Z ##[endgroup]
+2026-07-19T07:54:59.0895927Z Copying 'C:\Users\konda\.gitconfig' to 'C:\actions-runner\_work\_temp\1e4629c8-2a41-423a-a9a0-b3aee8ba15b5\.gitconfig'
+2026-07-19T07:54:59.0924850Z Temporarily overriding HOME='C:\actions-runner\_work\_temp\1e4629c8-2a41-423a-a9a0-b3aee8ba15b5' before making global git config changes
+2026-07-19T07:54:59.0927375Z Adding repository directory to the temporary git global config as a safe directory
+2026-07-19T07:54:59.0938443Z [command]"C:\Program Files\Git\cmd\git.exe" config --global --add safe.directory C:\actions-runner\_work\TripSyncApp\TripSyncApp
+2026-07-19T07:54:59.1442927Z [command]"C:\Program Files\Git\cmd\git.exe" config --local --get remote.origin.url
+2026-07-19T07:54:59.1847018Z https://github.com/abineshh502/TripSyncApp
+2026-07-19T07:54:59.1906473Z ##[group]Removing previously created refs, to avoid conflicts
+2026-07-19T07:54:59.1913572Z [command]"C:\Program Files\Git\cmd\git.exe" rev-parse --symbolic-full-name --verify --quiet HEAD
+2026-07-19T07:54:59.2329173Z refs/heads/main
+2026-07-19T07:54:59.2381664Z [command]"C:\Program Files\Git\cmd\git.exe" checkout --detach
+2026-07-19T07:54:59.3152506Z HEAD is now at c6c4420 ci(orchestrator): update default AVD_NAME to Pixel_6
+2026-07-19T07:54:59.4217344Z ##[endgroup]
+2026-07-19T07:54:59.4225747Z [command]"C:\Program Files\Git\cmd\git.exe" submodule status
+2026-07-19T07:55:00.4584235Z ##[group]Cleaning the repository
+2026-07-19T07:55:00.4596424Z [command]"C:\Program Files\Git\cmd\git.exe" clean -ffdx
+2026-07-19T07:55:49.2032866Z Removing android/
+2026-07-19T07:55:49.2033264Z Removing node_modules/
+2026-07-19T07:55:49.2033509Z Removing test-results/
+2026-07-19T07:55:49.2115941Z [command]"C:\Program Files\Git\cmd\git.exe" reset --hard HEAD
+2026-07-19T07:55:49.2862395Z HEAD is now at c6c4420 ci(orchestrator): update default AVD_NAME to Pixel_6
+2026-07-19T07:55:49.2909646Z ##[endgroup]
+2026-07-19T07:55:49.2920076Z ##[group]Disabling automatic garbage collection
+2026-07-19T07:55:49.2927273Z [command]"C:\Program Files\Git\cmd\git.exe" config --local gc.auto 0
+2026-07-19T07:55:49.3387689Z ##[endgroup]
+2026-07-19T07:55:49.3388416Z ##[group]Setting up auth
+2026-07-19T07:55:49.3400327Z [command]"C:\Program Files\Git\cmd\git.exe" config --local --name-only --get-regexp core\.sshCommand
+2026-07-19T07:55:49.3867487Z [command]"C:\Program Files\Git\cmd\git.exe" submodule foreach --recursive "sh -c \"git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :\""
+2026-07-19T07:55:50.2623464Z [command]"C:\Program Files\Git\cmd\git.exe" config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-07-19T07:55:50.3303354Z [command]"C:\Program Files\Git\cmd\git.exe" submodule foreach --recursive "sh -c \"git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :\""
+2026-07-19T07:55:51.2346832Z [command]"C:\Program Files\Git\cmd\git.exe" config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-07-19T07:55:51.2810827Z [command]"C:\Program Files\Git\cmd\git.exe" submodule foreach --recursive "git config --local --show-origin --name-only --get-regexp remote.origin.url"
+2026-07-19T07:55:52.1679642Z [command]"C:\Program Files\Git\cmd\git.exe" config --local http.https://github.com/.extraheader "AUTHORIZATION: basic ***"
+2026-07-19T07:55:52.2308004Z ##[endgroup]
+2026-07-19T07:55:52.2308882Z ##[group]Fetching the repository
+2026-07-19T07:55:52.2327201Z [command]"C:\Program Files\Git\cmd\git.exe" -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin +4833b4a79d2dc01c78e8d509af1ec55341bbd904:refs/remotes/origin/main
+2026-07-19T07:55:53.4334360Z From https://github.com/abineshh502/TripSyncApp
+2026-07-19T07:55:53.4335284Z  + c6c4420...4833b4a 4833b4a79d2dc01c78e8d509af1ec55341bbd904 -> origin/main  (forced update)
+2026-07-19T07:55:53.4705488Z ##[endgroup]
+2026-07-19T07:55:53.4705929Z ##[group]Determining the checkout info
+2026-07-19T07:55:53.4708967Z ##[endgroup]
+2026-07-19T07:55:53.4718703Z [command]"C:\Program Files\Git\cmd\git.exe" sparse-checkout disable
+2026-07-19T07:55:53.5519237Z [command]"C:\Program Files\Git\cmd\git.exe" config --local --unset-all extensions.worktreeConfig
+2026-07-19T07:55:53.6071437Z ##[group]Checking out the ref
+2026-07-19T07:55:53.6081099Z [command]"C:\Program Files\Git\cmd\git.exe" checkout --progress --force -B main refs/remotes/origin/main
+2026-07-19T07:55:53.7069156Z Previous HEAD position was c6c4420 ci(orchestrator): update default AVD_NAME to Pixel_6
+2026-07-19T07:55:53.7268356Z Switched to and reset branch 'main'
+2026-07-19T07:55:53.7356484Z branch 'main' set up to track 'origin/main'.
+2026-07-19T07:55:53.7356915Z Your branch is up to date with 'origin/main'.
+2026-07-19T07:55:53.7407774Z ##[endgroup]
+2026-07-19T07:55:53.8080568Z [command]"C:\Program Files\Git\cmd\git.exe" log -1 --format=%H
+2026-07-19T07:55:53.8604553Z 4833b4a79d2dc01c78e8d509af1ec55341bbd904

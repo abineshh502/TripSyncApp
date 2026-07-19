@@ -1,0 +1,30 @@
+﻿2026-07-19T07:55:55.3111335Z Node 20 is being deprecated. This workflow is running with Node 24 by default. If you need to temporarily use Node 20, you can set the ACTIONS_ALLOW_USE_UNSECURE_NODE_VERSION=true environment variable. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/
+2026-07-19T07:55:55.3113235Z ##[group]Run actions/setup-node@v4
+2026-07-19T07:55:55.3113499Z with:
+2026-07-19T07:55:55.3113675Z   node-version: 20
+2026-07-19T07:55:55.3114293Z   cache: npm
+2026-07-19T07:55:55.3114512Z   cache-dependency-path: package-lock.json
+2026-07-19T07:55:55.3114813Z   always-auth: false
+2026-07-19T07:55:55.3115083Z   check-latest: false
+2026-07-19T07:55:55.3117654Z   token: ***
+2026-07-19T07:55:55.3117829Z env:
+2026-07-19T07:55:55.3117999Z   TEST_EMAIL: jessuff8@gmail.com
+2026-07-19T07:55:55.3118243Z   TEST_PASSWORD: Ravi@6444
+2026-07-19T07:55:55.3118460Z   TEST_USER_NAME: Konda
+2026-07-19T07:55:55.3118834Z   EXPO_PUBLIC_API_URL: https://tripsyncbackend-production-37a2.up.railway.app
+2026-07-19T07:55:55.3119373Z   WDIO_CI_SPEC: 
+2026-07-19T07:55:55.3119571Z   JOB_START_TIME: 2026-07-19 13:25:54
+2026-07-19T07:55:55.3119990Z   JAVA_HOME: C:\actions-runner\_work\_tool\Java_Temurin-Hotspot_jdk\21.0.11-10.0.LTS\x64
+2026-07-19T07:55:55.3120607Z   JAVA_HOME_21_X64: C:\actions-runner\_work\_tool\Java_Temurin-Hotspot_jdk\21.0.11-10.0.LTS\x64
+2026-07-19T07:55:55.3121055Z ##[endgroup]
+2026-07-19T07:55:55.9530506Z Found in cache @ C:\actions-runner\_work\_tool\node\20.20.2\x64
+2026-07-19T07:55:55.9545204Z (node:26608) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-07-19T07:55:55.9545861Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-07-19T07:55:55.9549368Z ##[group]Environment details
+2026-07-19T07:55:56.4313318Z node: v20.20.2
+2026-07-19T07:55:56.4313699Z npm: 10.8.2
+2026-07-19T07:55:56.4313847Z yarn: 
+2026-07-19T07:55:56.4314208Z ##[endgroup]
+2026-07-19T07:55:56.4539573Z [command]C:\WINDOWS\system32\cmd.exe /D /S /C "C:\actions-runner\_work\_tool\node\20.20.2\x64\npm.cmd config get cache"
+2026-07-19T07:55:56.9752750Z C:\Users\konda\AppData\Local\npm-cache
+2026-07-19T07:55:57.9804775Z npm cache is not found

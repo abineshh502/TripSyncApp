@@ -120,6 +120,15 @@ describe("Groups", () => {
   it("GROUPS-018: Group submit button creates group on tap", async () => {
     await h.tapElement(driver, "group-submit-btn");
     await driver.pause(td.timeouts.networkOp);
+    try {
+      const okBtn = await driver.$('android=new UiSelector().text("OK")');
+      if (await okBtn.isDisplayed()) {
+        await okBtn.click();
+      }
+    } catch (_) {
+      try { await driver.acceptAlert(); } catch (_) {}
+    }
+    await driver.pause(td.timeouts.animationSettle);
     await h.testEnd();
   });
 
@@ -230,6 +239,15 @@ describe("Groups", () => {
     await h.typeInto(driver, "group-end-date-input", "2025-12-15");
     await h.tapElement(driver, "group-submit-btn");
     await driver.pause(td.timeouts.networkOp);
+    try {
+      const okBtn = await driver.$('android=new UiSelector().text("OK")');
+      if (await okBtn.isDisplayed()) {
+        await okBtn.click();
+      }
+    } catch (_) {
+      try { await driver.acceptAlert(); } catch (_) {}
+    }
+    await driver.pause(td.timeouts.animationSettle);
     await h.testEnd();
   });
 
@@ -301,6 +319,15 @@ describe("Groups", () => {
     // Submit without filling any fields
     await h.tapElement(driver, "group-submit-btn");
     await driver.pause(td.timeouts.animationSettle);
+    try {
+      const okBtn = await driver.$('android=new UiSelector().text("OK")');
+      if (await okBtn.isDisplayed()) {
+        await okBtn.click();
+      }
+    } catch (_) {
+      try { await driver.acceptAlert(); } catch (_) {}
+    }
+    await driver.pause(500);
     await driver.back();
     await driver.pause(500);
     await h.testEnd();
