@@ -3,7 +3,7 @@ import { Platform } from "react-native";
 import Constants from "expo-constants";
 
 const getApiBaseUrl = () => {
-  const envUrl = process.env.EXPO_PUBLIC_API_URL || "https://tripsyncbackend-production-37a2.up.railway.app";
+  const envUrl = process.env.EXPO_PUBLIC_API_URL || "https://tripsync-backend-ra7p.onrender.com";
   const cleaned = envUrl.replace(/\/+$/, "");
   return cleaned.endsWith("/api") ? cleaned : `${cleaned}/api`;
 };
