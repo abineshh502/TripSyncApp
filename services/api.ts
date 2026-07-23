@@ -1,6 +1,7 @@
 // TripSync API Service Layer — FastAPI backend with free AI provider chain (Gemini → Groq → OpenRouter → HuggingFace)
 import { Platform } from "react-native";
 import Constants from "expo-constants";
+import { auth } from "../firebaseConfig";
 
 const getApiBaseUrl = () => {
   const envUrl = process.env.EXPO_PUBLIC_API_URL || "https://tripsync-backend-ra7p.onrender.com";
@@ -9,6 +10,22 @@ const getApiBaseUrl = () => {
 };
 
 const API_BASE_URL = getApiBaseUrl();
+
+async function getAuthHeaders(): Promise<Record<string, string>> {
+  const headers: Record<string, string> = {
+    "Content-Type": "application/json",
+  };
+  const user = auth?.currentUser;
+  if (user) {
+    try {
+      const token = await user.getIdToken(false);
+      headers["Authorization"] = `Bearer ${token}`;
+    } catch (e) {
+      console.warn("[App API] Failed to acquire Firebase ID token:", e);
+    }
+  }
+  return headers;
+}
 
 export interface SafetyMetrics {
   generalSafety: number;
@@ -34,14 +51,13 @@ export interface ChatMessage {
 export const travelApiService = {
   /**
    * AI Chatbot Assistant — POST /api/chat
-   * Uses free AI provider chain: Gemini → Groq → OpenRouter → local fallback
-   * Sends full conversation history for context-aware multi-turn replies.
    */
   async askChatbot(message: string, history: ChatMessage[] = []): Promise<string> {
     try {
+      const headers = await getAuthHeaders();
       const response = await fetch(`${API_BASE_URL}/chat`, {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers,
         body: JSON.stringify({
           message,
           history: history.map((h) => ({ role: h.role, content: h.content })),
@@ -50,14 +66,9 @@ export const travelApiService = {
       if (!response.ok) throw new Error(`Backend HTTP ${response.status}`);
       const data = await response.json();
       return data.reply;
-    } catch {
-      // Local fallback — never crashes
-      const q = message.toLowerCase();
-      if (q.includes("goa") || q.includes("beach"))
-        return "🏖️ Goa is a paradise for beach lovers! Best months: Nov–Feb. Ask me about safety scores or hidden gems!";
-      if (q.includes("manali"))
-        return "🏔️ Manali is perfect for snow adventures. Best time: Dec–Feb for skiing, Jun–Aug for trekking!";
-      return `🤖 TripSync AI: Got your message about "${message}". Start the backend for full AI-powered responses!`;
+    } catch (err: any) {
+      console.warn("[App API] askChatbot error:", err);
+      throw err;
     }
   },
 
@@ -67,38 +78,13 @@ export const travelApiService = {
    * Returns safety scores, traffic index, hidden gems, travel recommendations.
    */
   async getCitySafety(city: string): Promise<SafetyMetrics> {
-    try {
-      const response = await fetch(
-        `${API_BASE_URL}/safety?city=${encodeURIComponent(city)}`
-      );
-      if (!response.ok) throw new Error(`Backend HTTP ${response.status}`);
-      return await response.json();
-    } catch {
-      const hash = city.length % 3;
-      return {
-        city,
-        generalSafety: Number((8.2 + hash * 0.5).toFixed(1)),
-        nightSafety: Number((7.8 + hash * 0.4).toFixed(1)),
-        trafficIndex:
-          hash === 0 ? "Mild Delays" : hash === 1 ? "Moderate Traffic" : "Heavy Transit",
-        weatherHazard: hash === 2 ? "Moderate (Windy)" : "Low Risk",
-        gems: [
-          {
-            name: "Scenic Sunrise Cliff",
-            desc: "A quiet, spectacular valley view ideal for morning meditation",
-          },
-          {
-            name: "Old Heritage Alleyway",
-            desc: "19th century vintage buildings away from standard tourist maps",
-          },
-          {
-            name: "Cozy Riverbank Brews",
-            desc: "Local organic tea/coffee shop with relaxing wooden swing decks",
-          },
-        ],
-        recommendations: `${city} is generally safe for travelers. Maintain standard vigilance and enjoy your trip!`,
-      };
-    }
+    const headers = await getAuthHeaders();
+    const response = await fetch(
+      `${API_BASE_URL}/safety?city=${encodeURIComponent(city)}`,
+      { headers }
+    );
+    if (!response.ok) throw new Error(`Backend HTTP ${response.status}`);
+    return await response.json();
   },
 
   /**
